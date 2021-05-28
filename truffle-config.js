@@ -94,7 +94,15 @@ module.exports = {
       confirmations: 1,
       websockets: true,
       from: MMaddress
-    }
+    },
+    development: {
+			host: "127.0.0.1",
+			port: 7545,
+			network_id: "5777",
+			confirmations: 1,
+			// gas: 0x1ffffffffffffe
+			// websockets: true,        // Enable EventEmitter interface for web3 (default: false)
+		}
   },
 
   // Set default mocha options here, use special reporters etc.

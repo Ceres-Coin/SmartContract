@@ -19,4 +19,11 @@ module.exports = async function(deployer, network, accounts) {
 	console.log("IS_MAINNET: ",IS_MAINNET);
 	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
 
+	// set the deploy address
+	const ADMIN = accounts[0];
+	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
+
+	console.log("ADMIN is: ",ADMIN);
+	console.log("COLLATERAL_CERES_AND_CERESHARES_OWNER is: ",COLLATERAL_CERES_AND_CERESHARES_OWNER);
+
 }
