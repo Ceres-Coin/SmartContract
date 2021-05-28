@@ -97,9 +97,9 @@ module.exports = {
     },
     development: {
 			host: "127.0.0.1",
-			port: 7545,
-			network_id: "5777",
-			confirmations: 1,
+			port: 8545,
+			network_id: "31337"
+			// confirmations: 1,
 			// gas: 0x1ffffffffffffe
 			// websockets: true,        // Enable EventEmitter interface for web3 (default: false)
 		}
