@@ -13,6 +13,10 @@ const UniswapV2ERC20 = artifacts.require("Uniswap/UniswapV2ERC20");
 const UniswapV2OracleLibrary = artifacts.require("Uniswap/UniswapV2OracleLibrary");
 const UniswapV2Library = artifacts.require("Uniswap/UniswapV2Library");
 const UniswapV2Pair = artifacts.require("Uniswap/UniswapV2Pair");
+const UniswapV2Factory = artifacts.require("Uniswap/UniswapV2Factory");
+const SafeERC20 = artifacts.require("ERC20/SafeERC20");
+
+const DUMP_ADDRESS = "0x1111111111111111111111111111111111111111";
 
 
 
@@ -26,6 +30,8 @@ module.exports = async function(deployer, network, accounts) {
     await deployer.deploy(UniswapV2Library);
 
     await deployer.deploy(UniswapV2Pair);
+    await deployer.deploy(UniswapV2Factory, DUMP_ADDRESS);
+    await deployer.deploy(SafeERC20);
 
 
 
