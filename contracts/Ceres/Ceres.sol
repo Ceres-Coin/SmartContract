@@ -8,11 +8,12 @@ import "../ERC20/IERC20.sol";
 import "../ERC20/ERC20Custom.sol";
 import "../ERC20/ERC20.sol";
 import "../Math/SafeMath.sol";
+import "./Pools/CeresPool.sol";
 import "../Oracle/UniswapPairOracle.sol";
 import "../Oracle/ChainlinkETHUSDPriceConsumer.sol";
 import "../Governance/AccessControl.sol";
 
-contract CeresCoin is ERC20Custom, AccessControl {
+contract CEREStable is ERC20Custom, AccessControl {
     using SafeMath for uint256;
 
     /* ========== STATE VARIABLES ========== */
@@ -157,7 +158,7 @@ contract CeresCoin is ERC20Custom, AccessControl {
 
         for (uint i = 0; i < ceres_pools_array.length; i++){ 
             if (ceres_pools_array[i] != address(0)){
-                // todo task
+                total_collateral_value_d18 = total_collateral_value_d18.add(CeresPool(ceres_pools_array[i]).collatDollarBalance());
             }
 
         }
