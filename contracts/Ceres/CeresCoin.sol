@@ -34,7 +34,7 @@ contract CeresCoin is ERC20Custom, AccessControl {
     address public css_eth_oracle_address;
     address public weth_address;
     address public eth_usd_consumer_address;
-    uint256 public constant genesis_supply = 2000000e18; 
+    uint256 public constant genesis_supply = 1000000e18; 
 
     
     address[] public ceres_pools_array;
@@ -139,7 +139,33 @@ contract CeresCoin is ERC20Custom, AccessControl {
         return uint256(eth_usd_pricer.getLatestPrice()).mul(PRICE_PRECISION).div(uint256(10) ** eth_usd_pricer_decimals);
     }
 
-    
+    function ceres_info() public view returns (uint256, uint256, uint256, uint256, uint256, uint256, uint256, uint256) {
+        return (
+            oracle_price(PriceChoice.CERES), 
+            oracle_price(PriceChoice.CSS), 
+            totalSupply(), 
+            global_collateral_ratio, 
+            globalCollateralValue(), 
+            minting_fee, 
+            redemption_fee, 
+            uint256(eth_usd_pricer.getLatestPrice()).mul(PRICE_PRECISION).div(uint256(10) ** eth_usd_pricer_decimals) 
+        );
+    }
+
+    function globalCollateralValue() public view returns (uint256) {
+        uint256 total_collateral_value_d18 = 0; 
+
+        for (uint i = 0; i < ceres_pools_array.length; i++){ 
+            if (ceres_pools_array[i] != address(0)){
+                // todo task
+            }
+
+        }
+        return total_collateral_value_d18;
+    }
+
+
+    // public function
     
     uint256 public last_call_time; 
     function refreshCollateralRatio() public {
