@@ -1,5 +1,6 @@
 # Build and Release Folders
 .env
+migrations/
 node_modules
 build
 bin-debug/
