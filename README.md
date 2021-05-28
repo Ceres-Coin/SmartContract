@@ -1,2 +1,1 @@
-# SmartContract
-Ceres Smart Contract
+# Smart Contract
