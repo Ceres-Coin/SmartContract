@@ -9,6 +9,15 @@ const BIG6 = new BigNumber("1e6");
 const BIG18 = new BigNumber("1e18");
 const chalk = require('chalk');
 
+// Defin Contracts
+const Address = artifacts.require("Utils/Address");
+const BlockMiner = artifacts.require("Utils/BlockMiner");
+const Babylonian = artifacts.require("Math/Babylonian");
+const UQ112x112 = artifacts.require("Math/UQ112x112");
+const StringHelpers = artifacts.require("Utils/StringHelpers");
+
+
+
 
 // Make sure Ganache is running beforehand
 module.exports = async function(deployer, network, accounts) {
@@ -43,6 +52,16 @@ module.exports = async function(deployer, network, accounts) {
 	console.log("TEN_MILLION_DEC18: ",TEN_MILLION_DEC18.toString());
 	console.log("ONE_HUNDRED_MILLION_DEC18: ",ONE_HUNDRED_MILLION_DEC18.toString());
 	console.log("ONE_HUNDRED_MILLION_DEC6: ",ONE_HUNDRED_MILLION_DEC6.toString());
+	console.log("ONE_BILLION_DEC18: ",ONE_BILLION_DEC18.toString());
 	console.log("COLLATERAL_SEED_DEC18: ",COLLATERAL_SEED_DEC18.toString());
+
+	// Deploy Contracts P1 
+	console.log(chalk.red('====== Deploy Contracts P1 ======='));
+	await deployer.deploy(Address);
+	await deployer.deploy(BlockMiner);
+	await deployer.deploy(Babylonian);
+	await deployer.deploy(UQ112x112);
+	await deployer.deploy(StringHelpers);
+
 
 }
