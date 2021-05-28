@@ -10,6 +10,8 @@ const BIG18 = new BigNumber("1e18");
 const chalk = require('chalk');
 
 const UniswapV2ERC20 = artifacts.require("Uniswap/UniswapV2ERC20");
+const UniswapV2OracleLibrary = artifacts.require("Uniswap/UniswapV2OracleLibrary");
+const UniswapV2Library = artifacts.require("Uniswap/UniswapV2Library");
 
 
 
@@ -19,6 +21,8 @@ module.exports = async function(deployer, network, accounts) {
 	console.log(chalk.red('====== Deploy Contracts P3 ======='));
 
     await deployer.deploy(UniswapV2ERC20);
+    await deployer.deploy(UniswapV2OracleLibrary);
+    await deployer.deploy(UniswapV2Library);
 
 
 
