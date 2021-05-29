@@ -29,7 +29,6 @@ contract CEREStable is ERC20Custom, AccessControl {
     address public creator_address;
     address public timelock_address; 
     address public controller_address; 
-    address public ceres_address;
     address public css_address;
     address public ceres_eth_oracle_address;
     address public css_eth_oracle_address;
