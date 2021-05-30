@@ -42,6 +42,9 @@ const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DE
 const CEREStable = artifacts.require("Ceres/CEREStable");
 const CEREShares = artifacts.require("CSS/CEREShares");
 
+// Timelock
+const Timelock = artifacts.require("Governance/Timelock");
+
 
 
 contract('FRAX', async (accounts) => {
@@ -55,6 +58,12 @@ contract('FRAX', async (accounts) => {
 
 	// UniswapV2Router
 	let routerInstance;
+
+	// timelock instance
+	let timelockInstance;
+
+	// uniswapFactoryInstance 
+	let uniswapFactoryInstance;
 	
 
     beforeEach(async() => {
@@ -91,6 +100,18 @@ contract('FRAX', async (accounts) => {
 		console.log(chalk.red('====== UniswapV2Router02_Modified ======='));		
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
 		console.log("routerInstance: ",routerInstance.address);
+
+		// Fill the Timelock instance
+		timelockInstance = await Timelock.deployed(); 
+		console.log(chalk.red('====== timelockInstance ======='));	
+		console.log("timelockInstance: ",timelockInstance.address);
+
+		// Initialize the Uniswap Factory Instance
+		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
+		console.log(chalk.red('====== uniswapFactoryInstance ======='));	
+		console.log("uniswapFactoryInstance: ",uniswapFactoryInstance.address);
+
+
 
     });
 
