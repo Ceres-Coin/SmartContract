@@ -186,5 +186,16 @@ module.exports = async function(deployer, network, accounts) {
 
 	console.log("pair_instance_CSS_WETH: ",pair_instance_CSS_WETH.address);
 	console.log("pair_instance_CSS_USDC: ",pair_instance_CSS_USDC.address);
+
+	// erc20 approve
+	console.log(chalk.red("============ approve weth/usdc/usdt/ceres/css ============="));
+
+	await Promise.all([
+		wethInstance.approve(routerInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		col_instance_USDC.approve(routerInstance.address, new BigNumber(2000000e6), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		col_instance_USDT.approve(routerInstance.address, new BigNumber(2000000e6), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		ceresInstance.approve(routerInstance.address, new BigNumber(1000000e18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		cssInstance.approve(routerInstance.address, new BigNumber(5000000e18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
+	]);
 	
 }
