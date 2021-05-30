@@ -89,6 +89,12 @@ contract('CERES', async (accounts) => {
 	let oracle_instance_CERES_USDC;
 	let oracle_instance_CSS_WETH;
 	let oracle_instance_CSS_USDC;
+
+	let first_CERES_WETH;
+	let first_CERES_USDC;
+	let first_CSS_WETH;
+	let first_CSS_USDC;
+
 	
 
     beforeEach(async() => {
@@ -178,6 +184,18 @@ contract('CERES', async (accounts) => {
 		console.log("oracle_instance_CSS_WETH",oracle_instance_CSS_WETH.address);
 		oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
 		console.log("oracle_instance_CSS_USDC",oracle_instance_CSS_USDC.address);
+
+		// Get the pair order results
+		first_CERES_WETH = await oracle_instance_CERES_WETH.token0();
+		first_CERES_USDC = await oracle_instance_CERES_USDC.token0();
+		console.log("first_CERES_WETH: ",first_CERES_WETH);
+		console.log("first_CERES_USDC: ",first_CERES_USDC);
+
+		first_CSS_WETH = await oracle_instance_CSS_WETH.token0();
+		first_CSS_USDC = await oracle_instance_CSS_USDC.token0();
+		console.log("first_CSS_WETH: ",first_CSS_WETH);
+		console.log("first_CSS_USDC: ",first_CSS_USDC);
+
 		
 
     });
