@@ -146,9 +146,11 @@ module.exports = async function(deployer, network, accounts) {
 	]);
 
 	// ======== Get the addresses of the pairs ========
-	// console.log(chalk.yellow('===== GET THE ADDRESSES OF THE PAIRS ====='));
-	// const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-	// const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	console.log(chalk.yellow('===== GET THE ADDRESSES OF THE PAIRS ====='));
+	const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
+	console.log("pair_addr_CERES_WETH: ",pair_addr_CERES_WETH.address);
+	console.log("pair_addr_CERES_USDC: ",pair_addr_CERES_USDC.address);
 	
 }
