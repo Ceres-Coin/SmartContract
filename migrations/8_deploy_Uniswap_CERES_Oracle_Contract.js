@@ -94,24 +94,78 @@ module.exports = async function(deployer, network, accounts) {
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
 	}
 	
+	// add liquidility
+	await Promise.all([
+		// CERES / WETH
+		routerInstance.addLiquidity(
+			ceresInstance.address, 
+			wethInstance.address,
+			new BigNumber(600e18), 
+			new BigNumber(1e18), 
+			new BigNumber(600e18), 
+			new BigNumber(1e18), 
+			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
+			new BigNumber(2105300114), 
+			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
+		),
+		// CERES / USDC
+		routerInstance.addLiquidity(
+			ceresInstance.address, 
+			col_instance_USDC.address,
+			new BigNumber(100e18), 
+			new BigNumber(100e6), 
+			new BigNumber(100e18), 
+			new BigNumber(100e6), 
+			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
+			new BigNumber(2105300114), 
+			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
+		),
+		// CSS / WETH
+		routerInstance.addLiquidity(
+			cssInstance.address, 
+			wethInstance.address,
+			new BigNumber(800e18), 
+			new BigNumber(1e18), 
+			new BigNumber(800e18), 
+			new BigNumber(1e18), 
+			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
+			new BigNumber(2105300114), 
+			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
+		),
+		// CSS / USDC
+		routerInstance.addLiquidity(
+			cssInstance.address, 
+			col_instance_USDC.address,
+			new BigNumber(133333e15), 
+			new BigNumber(100e6), 
+			new BigNumber(133333e15), 
+			new BigNumber(100e6), 
+			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
+			new BigNumber(2105300114), 
+			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
+		)
+	]);
 
 
 	// get uniswapFactory Instance * ceres/css instance;
 
 	// ======== Set the Uniswap oracles ========
+	// set the uniswap ceres_weth & ceres_usdc
 	console.log(chalk.yellow('========== UNISWAP ORACLES =========='));
 	console.log(chalk.blue('=== CERES ORACLES ==='));
 	await Promise.all([
-		// deployer.deploy(UniswapPairOracle_CERES_WETH, uniswapFactoryInstance.address, ceresInstance.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
-		// deployer.deploy(UniswapPairOracle_CERES_USDC, uniswapFactoryInstance.address, ceresInstance.address, col_instance_USDC.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
-		
-		
+		deployer.deploy(UniswapPairOracle_CERES_WETH, uniswapFactoryInstance.address, ceresInstance.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
+		deployer.deploy(UniswapPairOracle_CERES_USDC, uniswapFactoryInstance.address, ceresInstance.address, col_instance_USDC.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
 	]);
 
-
-	
-
-
+	// ======== Set the Uniswap oracles ========
+	// set the uniswap css_weth & css_usdc
+	console.log(chalk.yellow('========== UNISWAP ORACLES =========='));
+	console.log(chalk.blue('=== CSS ORACLES ==='));
+	await Promise.all([
+		deployer.deploy(UniswapPairOracle_CSS_WETH, uniswapFactoryInstance.address, cssInstance.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
+		deployer.deploy(UniswapPairOracle_CSS_WETH, uniswapFactoryInstance.address, cssInstance.address, col_instance_USDC.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
+	]);
 
 	
 }
