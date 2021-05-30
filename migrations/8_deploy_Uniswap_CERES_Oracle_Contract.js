@@ -164,7 +164,7 @@ module.exports = async function(deployer, network, accounts) {
 	console.log(chalk.blue('=== CSS ORACLES ==='));
 	await Promise.all([
 		deployer.deploy(UniswapPairOracle_CSS_WETH, uniswapFactoryInstance.address, cssInstance.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
-		deployer.deploy(UniswapPairOracle_CSS_WETH, uniswapFactoryInstance.address, cssInstance.address, col_instance_USDC.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
+		deployer.deploy(UniswapPairOracle_CSS_USDC, uniswapFactoryInstance.address, cssInstance.address, col_instance_USDC.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
 	]);
 
 	

@@ -45,6 +45,12 @@ const CEREShares = artifacts.require("CSS/CEREShares");
 // Timelock
 const Timelock = artifacts.require("Governance/Timelock");
 
+// Fake Oracle
+const UniswapPairOracle_CERES_WETH = artifacts.require("Oracle/Fakes/UniswapPairOracle_CERES_WETH");
+const UniswapPairOracle_CERES_USDC = artifacts.require("Oracle/Fakes/UniswapPairOracle_CERES_USDC");
+const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_WETH");
+const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_USDC");
+
 
 
 contract('CERES', async (accounts) => {
@@ -77,6 +83,12 @@ contract('CERES', async (accounts) => {
 	// css price pair
 	let pair_addr_CSS_WETH;
 	let pair_addr_CSS_USDC;
+
+	// uniswap oracle price
+	let oracle_instance_CERES_WETH;
+	let oracle_instance_CERES_USDC;
+	let oracle_instance_CSS_WETH;
+	let oracle_instance_CSS_USDC;
 	
 
     beforeEach(async() => {
@@ -155,7 +167,17 @@ contract('CERES', async (accounts) => {
 		pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 		console.log("pair_addr_CSS_USDC: ",pair_addr_CSS_USDC);
 
-		
+		// Fill oracle instances
+		oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
+		console.log("oracle_instance_CERES_WETH",oracle_instance_CERES_WETH.address);
+		oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed();
+		console.log("oracle_instance_CERES_USDC",oracle_instance_CERES_USDC.address);
+
+		// Fill oracle instances
+		oracle_instance_CSS_WETH = await UniswapPairOracle_CSS_WETH.deployed();
+		console.log("oracle_instance_CSS_WETH",oracle_instance_CSS_WETH.address);
+		oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
+		console.log("oracle_instance_CSS_USDC",oracle_instance_CSS_USDC.address);
 		
 
     });
