@@ -136,7 +136,7 @@ module.exports = async function(deployer, network, accounts) {
 	console.log("cssInstance: ",cssInstance.address);
 
 
-	// ======== Set the Uniswap pairs ========
+	// ======== Set the Uniswap pairs CERES_WETH & CERES_USDC ========
 	console.log(chalk.yellow('===== SET UNISWAP PAIRS ====='));
 	console.log(chalk.blue('=== CERES / XXXX ==='));
 	console.log("CERES - WETH");
@@ -146,7 +146,7 @@ module.exports = async function(deployer, network, accounts) {
 		uniswapFactoryInstance.createPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
 	]);
 
-	// ======== Get the addresses of the pairs ========
+	// ======== Get the addresses of the pairs CERES_WETH & CERES_USDC ========
 	console.log(chalk.yellow('===== GET THE ADDRESSES OF THE PAIRS ====='));
 	const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 	const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
@@ -160,5 +160,31 @@ module.exports = async function(deployer, network, accounts) {
 
 	console.log("pair_instance_CERES_WETH: ",pair_instance_CERES_WETH.address);
 	console.log("pair_instance_CERES_USDC: ",pair_instance_CERES_USDC.address);
+
+
+	// ======== Set the Uniswap pairs CSS_WETH & CSS_USDC ========
+	console.log(chalk.yellow('===== SET UNISWAP PAIRS ====='));
+	console.log(chalk.blue('=== CSS / XXXX ==='));
+	console.log("CSS - WETH");
+	console.log("CSS - USDC");
+	await Promise.all([
+		uniswapFactoryInstance.createPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		uniswapFactoryInstance.createPair(cssInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
+	]);
+
+	// ======== Get the addresses of the pairs CSS_WETH & CSS_USDC ========
+	console.log(chalk.yellow('===== GET THE ADDRESSES OF THE PAIRS ====='));
+	const pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	const pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+
+	console.log("pair_addr_CSS_WETH: ",pair_addr_CSS_WETH);
+	console.log("pair_addr_CSS_USDC: ",pair_addr_CSS_USDC);
+
+	console.log(chalk.yellow('===== GET VARIOUS PAIR INSTANCES ====='));
+	const pair_instance_CSS_WETH = await UniswapV2Pair.at(pair_addr_CSS_WETH);
+	const pair_instance_CSS_USDC = await UniswapV2Pair.at(pair_addr_CSS_USDC);
+
+	console.log("pair_instance_CSS_WETH: ",pair_instance_CSS_WETH.address);
+	console.log("pair_instance_CSS_USDC: ",pair_instance_CSS_USDC.address);
 	
 }
