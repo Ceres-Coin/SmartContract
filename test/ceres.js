@@ -64,6 +64,11 @@ contract('FRAX', async (accounts) => {
 
 	// uniswapFactoryInstance 
 	let uniswapFactoryInstance;
+
+	// uniswap library
+	let uniswapLibraryInstance;
+	let uniswapOracleLibraryInstance;
+	let swapToPriceInstance;
 	
 
     beforeEach(async() => {
@@ -111,6 +116,16 @@ contract('FRAX', async (accounts) => {
 		console.log(chalk.red('====== uniswapFactoryInstance ======='));	
 		console.log("uniswapFactoryInstance: ",uniswapFactoryInstance.address);
 
+		// Initialize the Uniswap Libraries
+		uniswapLibraryInstance = await UniswapV2Library.deployed(); 
+		uniswapOracleLibraryInstance = await UniswapV2OracleLibrary.deployed(); 
+		// Initialize the swap to price contract
+		swapToPriceInstance = await SwapToPrice.deployed(); 
+
+		console.log(chalk.red('====== uniswap Libraries & swapToPrice ======='));	
+		console.log("uniswapLibraryInstance: ",uniswapLibraryInstance.address);
+		console.log("uniswapOracleLibraryInstance: ",uniswapOracleLibraryInstance.address);
+		console.log("swapToPriceInstance: ",swapToPriceInstance.address);
 
 
     });

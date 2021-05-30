@@ -31,6 +31,8 @@ const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
 
+const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
+
 
 
 // Make sure Ganache is running beforehand
@@ -105,5 +107,17 @@ module.exports = async function(deployer, network, accounts) {
 	console.log(chalk.yellow('===== RouterInstantce & Uniswap Factor address ====='));
 	console.log("routerInstance: ",routerInstance.address);
 	console.log("uniswapFactoryInstance: ",uniswapFactoryInstance.address);
-	
+
+	// Deploy SwapToPrice contract
+	let swapToPriceInstance;
+	if (IS_MAINNET){
+		swapToPriceInstance = await SwapToPrice.at('0xa61cBe7E326B13A8dbA11D00f42531BE704DF51B'); 
+	}
+	else {
+		await deployer.deploy(SwapToPrice, uniswapFactoryInstance.address, routerInstance.address);
+		swapToPriceInstance = await SwapToPrice.deployed();
+	}
+
+	console.log(chalk.yellow('===== swapToPriceInstance address ====='));
+	console.log("swapToPriceInstance: ",swapToPriceInstance.address);
 }
