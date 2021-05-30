@@ -33,6 +33,10 @@ const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
 
 const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 
+// Core Contract
+const CEREStable = artifacts.require("Ceres/CEREStable");
+const CEREShares = artifacts.require("CSS/CEREShares");
+
 
 
 // Make sure Ganache is running beforehand
@@ -120,4 +124,31 @@ module.exports = async function(deployer, network, accounts) {
 
 	console.log(chalk.yellow('===== swapToPriceInstance address ====='));
 	console.log("swapToPriceInstance: ",swapToPriceInstance.address);
+
+
+	// CERES
+	const ceresInstance = await CEREStable.deployed();
+	console.log("ceresInstance: ",ceresInstance.address);
+
+	// CSS
+	const cssInstance = await CEREShares.deployed();
+	console.log("cssInstance: ",cssInstance.address);
+
+
+	// ======== Set the Uniswap pairs ========
+	console.log(chalk.yellow('===== SET UNISWAP PAIRS ====='));
+	console.log(chalk.blue('=== CERES / XXXX ==='));
+	console.log("CERES - WETH");
+	console.log("CERES - USDC");
+	await Promise.all([
+		uniswapFactoryInstance.createPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		uniswapFactoryInstance.createPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
+	]);
+
+	// ======== Get the addresses of the pairs ========
+	// console.log(chalk.yellow('===== GET THE ADDRESSES OF THE PAIRS ====='));
+	// const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	// const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+
+	
 }
