@@ -188,13 +188,22 @@ contract('CERES', async (accounts) => {
 		// Get the pair order results
 		first_CERES_WETH = await oracle_instance_CERES_WETH.token0();
 		first_CERES_USDC = await oracle_instance_CERES_USDC.token0();
-		console.log("first_CERES_WETH: ",first_CERES_WETH);
-		console.log("first_CERES_USDC: ",first_CERES_USDC);
+
 
 		first_CSS_WETH = await oracle_instance_CSS_WETH.token0();
 		first_CSS_USDC = await oracle_instance_CSS_USDC.token0();
+
+
+		first_CERES_WETH = ceresInstance.address == first_CERES_WETH;
+		first_CERES_USDC = ceresInstance.address == first_CERES_USDC;
+		first_CSS_WETH = cssInstance.address == first_CSS_WETH;
+		first_CSS_USDC = cssInstance.address == first_CSS_USDC;
+
+		console.log("first_CERES_WETH: ",first_CERES_WETH);
+		console.log("first_CERES_USDC: ",first_CERES_USDC);
 		console.log("first_CSS_WETH: ",first_CSS_WETH);
 		console.log("first_CSS_USDC: ",first_CSS_USDC);
+
 
 		
 
