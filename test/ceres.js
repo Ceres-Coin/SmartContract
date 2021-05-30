@@ -38,13 +38,40 @@ const FakeCollateral_USDC = artifacts.require("FakeCollateral/FakeCollateral_USD
 const FakeCollateral_USDT = artifacts.require("FakeCollateral/FakeCollateral_USDT");
 const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DEC");
 
+// Core Contract CERES & CSS
+const CEREStable = artifacts.require("Ceres/CEREStable");
+const CEREShares = artifacts.require("CSS/CEREShares");
+
 
 
 contract('FRAX', async (accounts) => {
+	// deploy address;
+	let ADMIN;
+	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
+
+	// CERES Core  Contract instances
+	let ceresInstance;
+	let cssInstance;
 	
 
     beforeEach(async() => {
 		console.log("begin test");
+
+		// set the deploy address
+		console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
+		ADMIN = accounts[0];
+		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
+		console.log("ADMIN: ",ADMIN.address);
+		console.log("COLLATERAL_CERES_AND_CERESHARES_OWNER: ",COLLATERAL_CERES_AND_CERESHARES_OWNER.address);
+
+		// CERES Core  Contract instances
+		console.log(chalk.red('===== GET THE CORE ADDRESSES ====='));
+		ceresInstance = await CEREStable.deployed();
+		cssInstance = await CEREShares.deployed();
+		console.log(chalk.yellow("ceresInstance: ",ceresInstance.address));
+		console.log(chalk.yellow("cssInstance: ",cssInstance.address));
+
+
 		console.log(chalk.red('====== Get Fake WETH & USDC & USDT ======='));
 		// Fill collateral instances
 		wethInstance = await WETH.deployed();
