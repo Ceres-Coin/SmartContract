@@ -14,6 +14,7 @@ const chalk = require('chalk');
 const UniswapV2Router02 = artifacts.require("Uniswap/UniswapV2Router02");
 const UniswapV2Router02_Modified = artifacts.require("Uniswap/UniswapV2Router02_Modified");
 const UniswapV2Factory = artifacts.require("Uniswap/UniswapV2Factory");
+const UniswapV2Pair = artifacts.require("Uniswap/UniswapV2Pair");
 
 // Define WETH & USDC & USDT & 6DEC USDC
 const WETH = artifacts.require("ERC20/WETH");
@@ -150,7 +151,14 @@ module.exports = async function(deployer, network, accounts) {
 	const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 	const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
-	console.log("pair_addr_CERES_WETH: ",pair_addr_CERES_WETH.address);
-	console.log("pair_addr_CERES_USDC: ",pair_addr_CERES_USDC.address);
+	console.log("pair_addr_CERES_WETH: ",pair_addr_CERES_WETH);
+	console.log("pair_addr_CERES_USDC: ",pair_addr_CERES_USDC);
+
+	console.log(chalk.yellow('===== GET VARIOUS PAIR INSTANCES ====='));
+	const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
+	const pair_instance_CERES_USDC = await UniswapV2Pair.at(pair_addr_CERES_USDC);
+
+	console.log("pair_instance_CERES_WETH: ",pair_instance_CERES_WETH.address);
+	console.log("pair_instance_CERES_USDC: ",pair_instance_CERES_USDC.address);
 	
 }

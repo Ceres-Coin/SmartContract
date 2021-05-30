@@ -132,7 +132,10 @@ contract('CERES', async (accounts) => {
 
 
 		// Get the addresses of the pairs
-		// pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		console.log("pair_addr_CERES_WETH: ",pair_addr_CERES_WETH);
+		
+		// pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
     });
 
