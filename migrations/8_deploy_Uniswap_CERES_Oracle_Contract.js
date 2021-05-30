@@ -38,6 +38,11 @@ const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 const CEREStable = artifacts.require("Ceres/CEREStable");
 const CEREShares = artifacts.require("CSS/CEREShares");
 
+const UniswapPairOracle_CERES_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_CERES_WETH");
+const UniswapPairOracle_CERES_USDC = artifacts.require("Oracle/Variants/UniswapPairOracle_CERES_USDC");
+const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_CSS_WETH");
+const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Variants/UniswapPairOracle_CSS_USDC");
+
 
 
 // Make sure Ganache is running beforehand
@@ -62,7 +67,7 @@ module.exports = async function(deployer, network, accounts) {
 	console.log("IS_RINKEBY: ",IS_RINKEBY);
 	console.log("IS_DEV: ",IS_DEV);
 
-	
+
 
 	
 }
