@@ -52,12 +52,6 @@ module.exports = async function(deployer, network, accounts) {
     console.log(chalk.red('====== todo: link phrase2 ======='));
 	// Link Phrase 2;
     // todo: link phrase2
-	// await deployer.link(FixedPoint, [UniswapV2OracleLibrary, UniswapPairOracle_FRAX_WETH, UniswapPairOracle_FRAX_USDC, UniswapPairOracle_FRAX_USDT, UniswapPairOracle_FRAX_FXS, UniswapPairOracle_FXS_WETH, UniswapPairOracle_FXS_USDC, UniswapPairOracle_FXS_USDT, UniswapPairOracle_USDC_WETH, UniswapPairOracle_USDT_WETH]);
-	// await deployer.link(Address, [ERC20, ERC20Custom, SafeERC20, WETH, FakeCollateral_USDC, FakeCollateral_USDT]);
-	// await deployer.link(Math, [StakingRewards_FRAX_WETH, StakingRewards_FRAX_WETH, StakingRewards_FRAX_USDC, StakingRewards_FRAX_FXS, StakingRewards_FXS_WETH, UniswapV2ERC20, UniswapV2Pair]);
-	// await deployer.link(SafeMath, [ERC20, ERC20Custom, SafeERC20, WETH, FakeCollateral_USDC, FakeCollateral_USDT, FRAXStablecoin, Pool_USDC, Pool_USDT, FRAXShares, StakingRewards_FRAX_WETH, StakingRewards_FRAX_USDC, StakingRewards_FRAX_FXS, StakingRewards_FXS_WETH, UniswapV2ERC20, UniswapV2Library, UniswapV2Router02, UniswapV2Router02_Modified, SwapToPrice, Timelock]);
-	// await deployer.link(TransferHelper, [UniswapV2Router02, UniswapV2Router02_Modified, SwapToPrice, StakingRewards_FRAX_WETH, StakingRewards_FRAX_USDC, StakingRewards_FRAX_FXS, StakingRewards_FXS_WETH, Pool_USDC, Pool_USDT]);
-
 
 	console.log(chalk.red('====== Link Contracts P3 ======='));
     console.log(chalk.red('====== todo: link phrase3 ======='));
@@ -68,10 +62,6 @@ module.exports = async function(deployer, network, accounts) {
 
     console.log("link UniswapV2Pair, [UniswapV2Factory]");
     await deployer.link(UniswapV2Pair, [UniswapV2Factory]);
-	// await deployer.link(UniswapV2OracleLibrary, [UniswapPairOracle_FRAX_WETH, UniswapPairOracle_FRAX_USDC, UniswapPairOracle_FRAX_USDT, UniswapPairOracle_FRAX_FXS, UniswapPairOracle_FXS_WETH, UniswapPairOracle_FXS_WETH, UniswapPairOracle_FXS_USDC, UniswapPairOracle_FXS_USDT, UniswapPairOracle_USDC_WETH, UniswapPairOracle_USDT_WETH]);
-	// await deployer.link(UniswapV2Library, [UniswapPairOracle_FRAX_WETH, UniswapPairOracle_FRAX_USDC, UniswapPairOracle_FXS_WETH, UniswapPairOracle_FXS_USDC, UniswapPairOracle_USDC_WETH, UniswapV2Router02, UniswapV2Router02_Modified, SwapToPrice]);
-	
-	// await deployer.link(SafeERC20, [WETH, FakeCollateral_USDC, FakeCollateral_USDT, FRAXStablecoin, Pool_USDC, Pool_USDT, FRAXShares, StakingRewards_FRAX_WETH, StakingRewards_FRAX_USDC, StakingRewards_FRAX_FXS, StakingRewards_FXS_WETH]);
 
 
 }

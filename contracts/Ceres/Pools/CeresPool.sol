@@ -135,7 +135,7 @@ contract CeresPool is AccessControl {
         }
     }
 
-    // Returns the value of excess collateral held in this Frax pool, compared to what is needed to maintain the global collateral ratio
+    // Returns the value of excess collateral held in this CERES pool, compared to what is needed to maintain the global collateral ratio
     function availableExcessCollatDV() public view returns (uint256) {
         uint256 total_supply = CERES.totalSupply();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();
@@ -190,7 +190,7 @@ contract CeresPool is AccessControl {
         require(CERES.global_collateral_ratio() == 0, "Collateral ratio must be 0");
         
         (uint256 ceres_amount_d18) = CERESPoolLibrary.calcMintAlgorithmicCERES(
-            css_price, // X FXS / 1 USD
+            css_price, // X CSS / 1 USD
             css_amount_d18
         );
 
@@ -254,7 +254,7 @@ contract CeresPool is AccessControl {
     }
 
     // Will fail if fully collateralized or algorithmic
-    // Redeem CERES for collateral and FXS. > 0% and < 100% collateral-backed
+    // Redeem CERES for collateral and CSS. > 0% and < 100% collateral-backed
     function redeemFractionalCERES(uint256 CERES_amount, uint256 CSS_out_min, uint256 COLLATERAL_out_min) external notRedeemPaused {
         uint256 css_price = CERES.css_price();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();
@@ -344,7 +344,7 @@ contract CeresPool is AccessControl {
         }
     }
 
-   function recollateralizeFRAX(uint256 collateral_amount, uint256 CSS_out_min) external {
+   function recollateralizeCERES(uint256 collateral_amount, uint256 CSS_out_min) external {
         require(recollateralizePaused == false, "Recollateralize is paused");
         uint256 collateral_amount_d18 = collateral_amount * (10 ** missing_decimals);
         uint256 css_price = CERES.css_price();

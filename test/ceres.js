@@ -47,7 +47,7 @@ const Timelock = artifacts.require("Governance/Timelock");
 
 
 
-contract('FRAX', async (accounts) => {
+contract('CERES', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
@@ -69,6 +69,9 @@ contract('FRAX', async (accounts) => {
 	let uniswapLibraryInstance;
 	let uniswapOracleLibraryInstance;
 	let swapToPriceInstance;
+
+	// ceres price pair
+	let pair_addr_CERES_WETH;
 	
 
     beforeEach(async() => {
@@ -127,6 +130,9 @@ contract('FRAX', async (accounts) => {
 		console.log("uniswapOracleLibraryInstance: ",uniswapOracleLibraryInstance.address);
 		console.log("swapToPriceInstance: ",swapToPriceInstance.address);
 
+
+		// Get the addresses of the pairs
+		// pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
     });
 
