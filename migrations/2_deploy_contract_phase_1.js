@@ -17,11 +17,7 @@ const UQ112x112 = artifacts.require("Math/UQ112x112");
 const StringHelpers = artifacts.require("Utils/StringHelpers");
 const Owned = artifacts.require("Staking/Owned");
 
-// Define WETH & USDC & USDT & 6DEC USDC
-const WETH = artifacts.require("ERC20/WETH");
-const FakeCollateral_USDC = artifacts.require("FakeCollateral/FakeCollateral_USDC");
-const FakeCollateral_USDT = artifacts.require("FakeCollateral/FakeCollateral_USDT");
-const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DEC");
+
 
 
 
@@ -31,9 +27,11 @@ module.exports = async function(deployer, network, accounts) {
 	const USE_MAINNET_EXISTING = true;
 	const IS_MAINNET = (process.env.MIGRATION_MODE == 'mainnet');
 	const IS_ROPSTEN = (process.env.MIGRATION_MODE == 'ropsten');
+	const IS_DEV = (process.env.MIGRATION_MODE == 'dev');
 
 	console.log("IS_MAINNET: ",IS_MAINNET);
 	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
+	console.log("IS_DEV: ",IS_DEV);
 
 	// set the deploy address
 	console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
@@ -71,31 +69,7 @@ module.exports = async function(deployer, network, accounts) {
 	await deployer.deploy(StringHelpers);
 	await deployer.deploy(Owned, COLLATERAL_CERES_AND_CERESHARES_OWNER);
 
-	if (IS_MAINNET){
-		console.log(chalk.yellow('===== REAL COLLATERAL ====='));
-		wethInstance = await WETH.at("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2");
-		col_instance_USDC = await FakeCollateral_USDC.at("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"); 
-		col_instance_USDT = await FakeCollateral_USDT.at("0xdac17f958d2ee523a2206206994597c13d831ec7"); 
-
-	}
-	else {
-		console.log(chalk.yellow('===== FAKE COLLATERAL ====='));
-
-		await deployer.deploy(WETH, COLLATERAL_CERES_AND_CERESHARES_OWNER);
-		await deployer.deploy(FakeCollateral_USDC, COLLATERAL_CERES_AND_CERESHARES_OWNER, ONE_HUNDRED_MILLION_DEC6, "USDC", 6);
-		await deployer.deploy(FakeCollateral_USDT, COLLATERAL_CERES_AND_CERESHARES_OWNER, ONE_HUNDRED_MILLION_DEC6, "USDT", 6);
-		await deployer.deploy(FakeCollateral_6DEC, COLLATERAL_CERES_AND_CERESHARES_OWNER, ONE_HUNDRED_MILLION_DEC6, "USDT", 6);
-		wethInstance = await WETH.deployed();
-		col_instance_USDC = await FakeCollateral_USDC.deployed(); 
-		col_instance_USDT = await FakeCollateral_USDT.deployed(); 
-		col_instance_6DEC = await FakeCollateral_6DEC.deployed(); 
-
-		console.log("wethInstance: ",wethInstance.address);
-		console.log("col_instance_USDC: ",col_instance_USDC.address);
-		console.log("col_instance_USDT: ",col_instance_USDT.address);
-		console.log("col_instance_6DEC: ",col_instance_6DEC.address);
-
-	}
+	
 
 
 }

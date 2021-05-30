@@ -52,6 +52,9 @@ contract('FRAX', async (accounts) => {
 	// CERES Core  Contract instances
 	let ceresInstance;
 	let cssInstance;
+
+	// UniswapV2Router
+	let routerInstance;
 	
 
     beforeEach(async() => {
@@ -83,6 +86,11 @@ contract('FRAX', async (accounts) => {
 		console.log("col_instance_USDC: ",col_instance_USDC.address);
 		console.log("col_instance_USDT: ",col_instance_USDT.address);
 		console.log("col_instance_6DEC: ",col_instance_6DEC.address);
+
+		// Fill the Uniswap Router Instance
+		console.log(chalk.red('====== UniswapV2Router02_Modified ======='));		
+		routerInstance = await UniswapV2Router02_Modified.deployed(); 
+		console.log("routerInstance: ",routerInstance.address);
 
     });
 
