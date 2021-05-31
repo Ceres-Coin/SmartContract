@@ -167,5 +167,18 @@ module.exports = async function(deployer, network, accounts) {
 		deployer.deploy(UniswapPairOracle_CSS_USDC, uniswapFactoryInstance.address, cssInstance.address, col_instance_USDC.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
 	]);
 
+	const oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
+	const oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed(); 
+	const oracle_instance_CSS_WETH = await UniswapPairOracle_CSS_WETH.deployed();
+	const oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
+
+	// set ceresInstance Price Oracle
+	
+	console.log(chalk.blue('=== LINK CERES_WETH & CSS_WETH Oracle to CeresInstance ==='));
+	await Promise.all([
+		ceresInstance.setCeresEthOracle(oracle_instance_CERES_WETH.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		ceresInstance.setCSSEthOracle(oracle_instance_CSS_WETH.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),		
+	]);
+
 	
 }

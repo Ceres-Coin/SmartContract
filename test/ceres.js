@@ -103,6 +103,17 @@ contract('CERES', async (accounts) => {
 	let totalSupplyCSS;
 	let globalCollateralRatio;
 	let globalCollateralValue;
+	// CERES public constants
+	let global_collateral_ratio;
+	let redemption_fee;
+	let minting_fee;
+	let ceres_step;
+	let refresh_cooldown;
+	let price_target;
+	let price_band;
+	let DEFAULT_ADMIN_ADDRESS;
+	let COLLATERAL_RATIO_PAUSER;
+	let collateral_ratio_paused;
 
 	
 
@@ -252,7 +263,61 @@ contract('CERES', async (accounts) => {
 		console.log("css_price_from_CSS_USDC: ", css_price_from_CSS_USDC.toString(), " CSS = 1 USDC");
 	});
 
+	// it("test scripts for ceresInstance.ceres_info", async () => {
+	// 	console.log(chalk.blue("============ ceresInstance.ceres_info============"));
+		
+
+	// 	console.log(chalk.blue('Try ceres_info'));
+	// 	let info;
+	// 	info = await ceresInstance.ceres_info();
+	// 	console.log("oracle_price CERES: ",info[0].toString());
+	// 	console.log("oracle_price CSS : ",info[1].toString());
+	// 	console.log("totalSupply: ",info[2].toString());
+	// 	console.log("global_collateral_ratio: ",info[3].toString());
+	// 	console.log("globalCollateralValue: ",info[4].toString());
+	// 	console.log("minting_fee: ",info[5].toString());
+	// 	console.log("redemption_fee: ",info[6].toString());
+	// 	console.log("eth_usd_price: ",info[7].toString());
+
+	// });
+
+	it("test scripts for ceresInstance public variants ", async () => {
+		console.log(chalk.red("============ ceresInstance public info ============"));
+		console.log(chalk.red("============ ceresInstance public info ============"));
+		console.log(chalk.red("============ ceresInstance public info ============"));
+		
+		global_collateral_ratio = await ceresInstance.global_collateral_ratio.call();
+		redemption_fee = await ceresInstance.redemption_fee.call();
+		minting_fee = await ceresInstance.minting_fee.call();
+		ceres_step = await ceresInstance.ceres_step.call();
+		refresh_cooldown = await ceresInstance.refresh_cooldown.call();
+		price_target = await ceresInstance.price_target.call();
+		price_band = await ceresInstance.price_band.call();
+
+		console.log(chalk.blue("global_collateral_ratio: ",global_collateral_ratio.toString()));
+		console.log(chalk.blue("redemption_fee: ",redemption_fee.toString()));
+		console.log(chalk.blue("minting_fee: ",minting_fee.toString()));
+		console.log(chalk.blue("ceres_step: ",ceres_step.toString()));
+		console.log(chalk.blue("refresh_cooldown: ",refresh_cooldown.toString()));
+		console.log(chalk.blue("price_target: ",price_target.toString()));
+		console.log(chalk.blue("price_band: ",price_band.toString()));
+
+		console.log(chalk.blue("========================= ceresInstantce public admin addresses ==========================="));
+
+		DEFAULT_ADMIN_ADDRESS = await ceresInstance.DEFAULT_ADMIN_ADDRESS.call();
+		COLLATERAL_RATIO_PAUSER = await ceresInstance.COLLATERAL_RATIO_PAUSER.call();
+		collateral_ratio_paused = await ceresInstance.collateral_ratio_paused.call();
+
+		console.log(chalk.blue("DEFAULT_ADMIN_ADDRESS: ",DEFAULT_ADMIN_ADDRESS.toString()));
+		console.log(chalk.blue("COLLATERAL_RATIO_PAUSER: ",COLLATERAL_RATIO_PAUSER.toString()));
+		console.log(chalk.blue("collateral_ratio_paused: ",collateral_ratio_paused.toString()));
+
+
+	});
+
 	it("Mints 1 USDC to 1 CERES test scripts", async () => {
+		console.log(chalk.blue("============ mint 1 USDC 1CERES()============"));
+		console.log(chalk.blue("============ mint 1 USDC 1CERES()============"));
 		console.log(chalk.blue("============ mint 1 USDC 1CERES()============"));
 		
 
@@ -265,6 +330,10 @@ contract('CERES', async (accounts) => {
 		globalCollateralValue = new BigNumber(await ceresInstance.globalCollateralValue.call()).div(BIG18).toNumber();
 		console.log("globalCollateralRatio: ",globalCollateralRatio);
 		console.log("globalCollateralValue: ",globalCollateralValue);
+
+		
+		// const ceres_price = await ceresInstance.ceres_price.call();
+		// console.log("ceres_price: ",ceres_price.toString());
 
 		// console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
 		// console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
