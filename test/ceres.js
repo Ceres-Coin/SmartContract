@@ -98,6 +98,12 @@ contract('CERES', async (accounts) => {
 	let first_CSS_WETH;
 	let first_CSS_USDC;
 
+	// CERES Constants
+	let totalSupplyCERES;
+	let totalSupplyCSS;
+	let globalCollateralRatio;
+	let globalCollateralValue;
+
 	
 
     beforeEach(async() => {
@@ -247,7 +253,26 @@ contract('CERES', async (accounts) => {
 	});
 
 	it("Mints 1 USDC to 1 CERES test scripts", async () => {
-		console.log("============ mint 1 USDC 1CERES()============");
+		console.log(chalk.blue("============ mint 1 USDC 1CERES()============"));
+		
+
+		totalSupplyCERES = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18).toNumber();
+		totalSupplyCSS = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18).toNumber();
+		console.log("totalSupplyCERES: ",totalSupplyCERES);
+		console.log("totalSupplyCSS: ",totalSupplyCSS);
+
+		globalCollateralRatio = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
+		globalCollateralValue = new BigNumber(await ceresInstance.globalCollateralValue.call()).div(BIG18).toNumber();
+		console.log("globalCollateralRatio: ",globalCollateralRatio);
+		console.log("globalCollateralValue: ",globalCollateralValue);
+
+		// console.log("FRAX price (USD): ", (new BigNumber(await fraxInstance.frax_price.call()).div(BIG6)).toNumber());
+		// console.log("FXS price (USD): ", (new BigNumber(await fraxInstance.fxs_price.call()).div(BIG6)).toNumber());
+		// console.log("totalSupplyFRAX: ", totalSupplyFRAX);
+		// console.log("totalSupplyFXS: ", totalSupplyFXS);
+		// console.log("globalCollateralRatio: ", globalCollateralRatio);
+		// console.log("globalCollateralValue: ", globalCollateralValue);
+		// console.log("");
 	});
 
 });
