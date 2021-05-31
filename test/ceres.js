@@ -10,6 +10,9 @@ Contract.setProvider('http://127.0.0.1:8545');
 global.artifacts = artifacts;
 global.web3 = web3;
 
+const BIG6 = new BigNumber("1e6");
+const BIG18 = new BigNumber("1e18");
+
 const Address = artifacts.require("Utils/Address");
 const BlockMiner = artifacts.require("Utils/BlockMiner");
 const Math = artifacts.require("Math/Math");
@@ -213,6 +216,42 @@ contract('CERES', async (accounts) => {
 	// ================================================================
 	it('Check up on the oracles and make sure the prices are set', async () => {
 		console.log("Check up on the oracles and make sure the prices are set");
+
+		// time.increase 1 day
+		console.log(chalk.yellow("Time.increase 1 day"));
+		await time.increase(86400 + 1);
+		await time.advanceBlock();
+
+		// ceres_weth & ceres_usdc update
+		console.log(chalk.yellow("oracle_instance_ceres_xxxx & css_xxxx update()"));
+		await oracle_instance_CERES_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		await oracle_instance_CERES_USDC.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		await oracle_instance_CSS_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		await oracle_instance_CSS_USDC.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+
+		// test for the price of ceres for 1 eth;
+		console.log(chalk.blue("==== old price ===="));
+		let ceres_price_from_CERES_WETH;
+		let ceres_price_from_CERES_USDC;
+		ceres_price_from_CERES_WETH = (new BigNumber(await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		console.log("ceres_price_from_CERES_WETH: ", ceres_price_from_CERES_WETH.toString(), " CERES = 1 WETH");
+		ceres_price_from_CERES_USDC = (new BigNumber(await oracle_instance_CERES_USDC.consult.call(col_instance_USDC.address, 1e6))).div(BIG18).toNumber();
+		console.log("ceres_price_from_CERES_USDC: ", ceres_price_from_CERES_USDC.toString(), " CERES = 1 USDC");
+
+		let css_price_from_CSS_WETH;
+		let css_price_from_CSS_USDC;
+		css_price_from_CSS_WETH = (new BigNumber(await oracle_instance_CSS_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		console.log("css_price_from_CSS_WETH: ", css_price_from_CSS_WETH.toString(), " CSS = 1 WETH");
+		css_price_from_CSS_USDC = (new BigNumber(await oracle_instance_CSS_USDC.consult.call(col_instance_USDC.address, 1e6))).div(BIG18).toNumber();
+		console.log("css_price_from_CSS_USDC: ", css_price_from_CSS_USDC.toString(), " CSS = 1 USDC");
+
+
+
+		// console.log(chalk.blue("========= to do tasks: swap ceres_xxxx & css_xxxx ========="));
+
+		// console.log(chalk.blue("==== new price ===="));
+		// ceres_price_from_CERES_WETH = (new BigNumber(await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		// console.log("ceres_price_from_CERES_WETH: ", ceres_price_from_CERES_WETH.toString(), " FRAX = 1 WETH");
 	});
 
 });
