@@ -266,13 +266,9 @@ contract('CERES', async (accounts) => {
 		console.log("globalCollateralRatio: ",globalCollateralRatio);
 		console.log("globalCollateralValue: ",globalCollateralValue);
 
-		// console.log("FRAX price (USD): ", (new BigNumber(await fraxInstance.frax_price.call()).div(BIG6)).toNumber());
-		// console.log("FXS price (USD): ", (new BigNumber(await fraxInstance.fxs_price.call()).div(BIG6)).toNumber());
-		// console.log("totalSupplyFRAX: ", totalSupplyFRAX);
-		// console.log("totalSupplyFXS: ", totalSupplyFXS);
-		// console.log("globalCollateralRatio: ", globalCollateralRatio);
-		// console.log("globalCollateralValue: ", globalCollateralValue);
-		// console.log("");
+		// console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
+		// console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
+
 	});
 
 });
