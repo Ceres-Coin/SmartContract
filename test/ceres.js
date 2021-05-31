@@ -212,9 +212,9 @@ contract('CERES', async (accounts) => {
 
     });
 
-	// INITIALIZATION
-	// ================================================================
-	it('Check up on the oracles and make sure the prices are set', async () => {
+
+	// ============================= test scripts for oracle price===================================
+	it('Check up on the oracles prices', async () => {
 		console.log("Check up on the oracles and make sure the prices are set");
 
 		// time.increase 1 day
@@ -244,14 +244,10 @@ contract('CERES', async (accounts) => {
 		console.log("css_price_from_CSS_WETH: ", css_price_from_CSS_WETH.toString(), " CSS = 1 WETH");
 		css_price_from_CSS_USDC = (new BigNumber(await oracle_instance_CSS_USDC.consult.call(col_instance_USDC.address, 1e6))).div(BIG18).toNumber();
 		console.log("css_price_from_CSS_USDC: ", css_price_from_CSS_USDC.toString(), " CSS = 1 USDC");
+	});
 
-
-
-		// console.log(chalk.blue("========= to do tasks: swap ceres_xxxx & css_xxxx ========="));
-
-		// console.log(chalk.blue("==== new price ===="));
-		// ceres_price_from_CERES_WETH = (new BigNumber(await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
-		// console.log("ceres_price_from_CERES_WETH: ", ceres_price_from_CERES_WETH.toString(), " FRAX = 1 WETH");
+	it("Mints 1 USDC to 1 CERES test scripts", async () => {
+		console.log("============ mint 1 USDC 1CERES()============");
 	});
 
 });
