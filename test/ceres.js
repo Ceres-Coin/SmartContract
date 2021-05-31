@@ -337,7 +337,34 @@ contract('CERES', async (accounts) => {
 		console.log(chalk.red("============ ceresInstance ERC20 info ============"));
 		
 		symbol = await ceresInstance.symbol.call();
+		name = await ceresInstance.name.call();
+		decimals = await ceresInstance.decimals.call();
+		owner_address = await ceresInstance.owner_address.call();
+		creator_address = await ceresInstance.creator_address.call();
+		timelock_address = await ceresInstance.timelock_address.call();
+		controller_address = await ceresInstance.controller_address.call();
+		
+		css_address = await ceresInstance.css_address.call();
+		ceres_eth_oracle_address = await ceresInstance.ceres_eth_oracle_address.call();
+		css_eth_oracle_address = await ceresInstance.css_eth_oracle_address.call();
+		weth_address = await ceresInstance.weth_address.call();
+		eth_usd_consumer_address = await ceresInstance.eth_usd_consumer_address.call();
+		genesis_supply = await ceresInstance.genesis_supply.call();
+
 		console.log(chalk.blue("symbol: ",symbol.toString()));
+		console.log(chalk.blue("name: ",name.toString()));
+		console.log(chalk.blue("decimals: ",decimals.toString()));
+		console.log(chalk.blue("owner_address: ",owner_address.toString()));
+		console.log(chalk.blue("creator_address: ",creator_address.toString()));
+		console.log(chalk.blue("timelock_address: ",timelock_address.toString()));
+		console.log(chalk.blue("controller_address: ",controller_address.toString()));
+		console.log(chalk.blue("css_address: ",css_address.toString()));
+
+		console.log(chalk.blue("ceres_eth_oracle_address: ",ceres_eth_oracle_address.toString()));
+		console.log(chalk.blue("css_eth_oracle_address: ",css_eth_oracle_address.toString()));
+		console.log(chalk.blue("weth_address: ",weth_address.toString()));
+		console.log(chalk.blue("eth_usd_consumer_address: ",eth_usd_consumer_address.toString()));
+		console.log(chalk.blue("genesis_supply: ",genesis_supply.toString()));
 		
 
 
@@ -358,6 +385,9 @@ contract('CERES', async (accounts) => {
 		globalCollateralValue = new BigNumber(await ceresInstance.globalCollateralValue.call()).div(BIG18).toNumber();
 		console.log("globalCollateralRatio: ",globalCollateralRatio);
 		console.log("globalCollateralValue: ",globalCollateralValue);
+
+		// const eth_usd_price = await ceresInstance.eth_usd_price.call();
+		// console.log("eth_usd_price: ",eth_usd_price.toString());
 
 		
 		// const ceres_price = await ceresInstance.ceres_price.call();
