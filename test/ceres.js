@@ -115,6 +115,22 @@ contract('CERES', async (accounts) => {
 	let COLLATERAL_RATIO_PAUSER;
 	let collateral_ratio_paused;
 
+	// CERES ERC20 info
+	let symbol;
+	let name;
+	let decimals;
+	let owner_address;
+	let creator_address;
+	let timelock_address;
+	let controller_address;
+	let css_address;
+	let ceres_eth_oracle_address;
+	let css_eth_oracle_address;
+	let weth_address;
+	let eth_usd_consumer_address;
+	let genesis_supply;
+
+
 	
 
     beforeEach(async() => {
@@ -311,6 +327,18 @@ contract('CERES', async (accounts) => {
 		console.log(chalk.blue("DEFAULT_ADMIN_ADDRESS: ",DEFAULT_ADMIN_ADDRESS.toString()));
 		console.log(chalk.blue("COLLATERAL_RATIO_PAUSER: ",COLLATERAL_RATIO_PAUSER.toString()));
 		console.log(chalk.blue("collateral_ratio_paused: ",collateral_ratio_paused.toString()));
+
+
+	});
+
+	it("test scripts for ceresInstance ERC20 info ", async () => {
+		console.log(chalk.red("============ ceresInstance ERC20 info ============"));
+		console.log(chalk.red("============ ceresInstance ERC20 info ============"));
+		console.log(chalk.red("============ ceresInstance ERC20 info ============"));
+		
+		symbol = await ceresInstance.symbol.call();
+		console.log(chalk.blue("symbol: ",symbol.toString()));
+		
 
 
 	});
