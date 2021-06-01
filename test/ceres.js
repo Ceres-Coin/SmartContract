@@ -279,23 +279,23 @@ contract('CERES', async (accounts) => {
 		console.log("css_price_from_CSS_USDC: ", css_price_from_CSS_USDC.toString(), " CSS = 1 USDC");
 	});
 
-	// it("test scripts for ceresInstance.ceres_info", async () => {
-	// 	console.log(chalk.blue("============ ceresInstance.ceres_info============"));
+	it("test scripts for ceresInstance.ceres_info", async () => {
+		console.log(chalk.blue("============ ceresInstance.ceres_info============"));
 		
 
-	// 	console.log(chalk.blue('Try ceres_info'));
-	// 	let info;
-	// 	info = await ceresInstance.ceres_info();
-	// 	console.log("oracle_price CERES: ",info[0].toString());
-	// 	console.log("oracle_price CSS : ",info[1].toString());
-	// 	console.log("totalSupply: ",info[2].toString());
-	// 	console.log("global_collateral_ratio: ",info[3].toString());
-	// 	console.log("globalCollateralValue: ",info[4].toString());
-	// 	console.log("minting_fee: ",info[5].toString());
-	// 	console.log("redemption_fee: ",info[6].toString());
-	// 	console.log("eth_usd_price: ",info[7].toString());
+		console.log(chalk.blue('Try ceres_info'));
+		let info;
+		info = await ceresInstance.ceres_info();
+		console.log("oracle_price CERES: ",info[0].toString());
+		console.log("oracle_price CSS : ",info[1].toString());
+		console.log("totalSupply: ",info[2].toString());
+		console.log("global_collateral_ratio: ",info[3].toString());
+		console.log("globalCollateralValue: ",info[4].toString());
+		console.log("minting_fee: ",info[5].toString());
+		console.log("redemption_fee: ",info[6].toString());
+		console.log("eth_usd_price: ",info[7].toString());
 
-	// });
+	});
 
 	it("test scripts for ceresInstance public variants ", async () => {
 		console.log(chalk.red("============ ceresInstance public info ============"));
@@ -343,7 +343,7 @@ contract('CERES', async (accounts) => {
 		creator_address = await ceresInstance.creator_address.call();
 		timelock_address = await ceresInstance.timelock_address.call();
 		controller_address = await ceresInstance.controller_address.call();
-		
+
 		css_address = await ceresInstance.css_address.call();
 		ceres_eth_oracle_address = await ceresInstance.ceres_eth_oracle_address.call();
 		css_eth_oracle_address = await ceresInstance.css_eth_oracle_address.call();
@@ -386,15 +386,25 @@ contract('CERES', async (accounts) => {
 		console.log("globalCollateralRatio: ",globalCollateralRatio);
 		console.log("globalCollateralValue: ",globalCollateralValue);
 
-		// const eth_usd_price = await ceresInstance.eth_usd_price.call();
-		// console.log("eth_usd_price: ",eth_usd_price.toString());
+		// todo get some ceresInstance information
 
-		
-		// const ceres_price = await ceresInstance.ceres_price.call();
-		// console.log("ceres_price: ",ceres_price.toString());
+		const eth_usd_pricer = await ceresInstance.eth_usd_pricer.call();
+		console.log("eth_usd_pricer: ",eth_usd_pricer);
+		const eth_usd_pricer_decimals = await ceresInstance.eth_usd_pricer_decimals.call();
+		console.log("eth_usd_pricer_decimals: ",eth_usd_pricer_decimals.toString());
 
-		// console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
-		// console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
+		const eth_usd_pricer_getDecimals = await ceresInstance.eth_usd_pricer_getDecimals.call();
+		console.log("eth_usd_pricer_getDecimals: ",eth_usd_pricer_getDecimals.toString());
+
+		const eth_usd_pricer_latestPrice = await ceresInstance.eth_usd_pricer_latestPrice.call();
+		console.log("eth_usd_pricer_latestPrice: ",eth_usd_pricer_latestPrice.toString());
+
+		const eth_usd_price = await ceresInstance.eth_usd_price.call();
+		console.log("eth_usd_price: ",eth_usd_price.toString());
+
+
+		console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
+		console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
 
 	});
 

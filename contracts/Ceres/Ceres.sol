@@ -18,10 +18,10 @@ contract CEREStable is ERC20Custom, AccessControl {
 
     /* ========== STATE VARIABLES ========== */
     enum PriceChoice { CERES, CSS }
-    ChainlinkETHUSDPriceConsumer private eth_usd_pricer;
-    uint8 private eth_usd_pricer_decimals;
-    UniswapPairOracle private CeresEthOracle;
-    UniswapPairOracle private CSSEthOracle;
+    ChainlinkETHUSDPriceConsumer public eth_usd_pricer;
+    uint8 public eth_usd_pricer_decimals;
+    UniswapPairOracle public CeresEthOracle;
+    UniswapPairOracle public CSSEthOracle;
     string public symbol;
     string public name;
     uint8 public constant decimals = 18;
@@ -43,7 +43,7 @@ contract CEREStable is ERC20Custom, AccessControl {
     mapping(address => bool) public ceres_pools; 
 
     
-    uint256 private constant PRICE_PRECISION = 1e6;
+    uint256 public constant PRICE_PRECISION = 1e6;
     
     uint256 public global_collateral_ratio; 
     uint256 public redemption_fee; 
@@ -138,6 +138,15 @@ contract CEREStable is ERC20Custom, AccessControl {
     function eth_usd_price() public view returns (uint256) {
         return uint256(eth_usd_pricer.getLatestPrice()).mul(PRICE_PRECISION).div(uint256(10) ** eth_usd_pricer_decimals);
     }
+
+    function eth_usd_pricer_latestPrice() public view returns(uint256) {
+        return uint256(eth_usd_pricer.getLatestPrice());
+    }
+
+    function eth_usd_pricer_getDecimals() public view returns(uint256) {
+        return uint256(eth_usd_pricer.getDecimals());
+    }
+
 
     function ceres_info() public view returns (uint256, uint256, uint256, uint256, uint256, uint256, uint256, uint256) {
         return (

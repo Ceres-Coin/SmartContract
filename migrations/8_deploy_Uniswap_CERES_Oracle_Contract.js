@@ -191,18 +191,16 @@ module.exports = async function(deployer, network, accounts) {
 	// Initialize ETH-USD Chainlink Oracle too
 	let oracle_chainlink_ETH_USD;
 
-	// // Add the ETH / USD Chainlink oracle
-	// if (IS_MAINNET){
-	// 	oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumer.at("0xBa6C6EaC41a24F9D39032513f66D738B3559f15a");
-	// 	await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-	// }
-	// else {
-	// 	oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumerTest.deployed();
-	// 	// console.log("oracle_chainlink_ETH_USD: ",oracle_chainlink_ETH_USD.address);
-	// 	await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	// Add the ETH / USD Chainlink oracle
+	if (IS_MAINNET){
+		oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumer.at("0xBa6C6EaC41a24F9D39032513f66D738B3559f15a");
+		await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	}
+	else {
+		oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumerTest.deployed();
+		await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	}
 
-	// }
-	
 
 	
 }
