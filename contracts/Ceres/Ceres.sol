@@ -139,14 +139,6 @@ contract CEREStable is ERC20Custom, AccessControl {
         return uint256(eth_usd_pricer.getLatestPrice()).mul(PRICE_PRECISION).div(uint256(10) ** eth_usd_pricer_decimals);
     }
 
-    function eth_usd_pricer_latestPrice() public view returns(uint256) {
-        return uint256(eth_usd_pricer.getLatestPrice());
-    }
-
-    function eth_usd_pricer_getDecimals() public view returns(uint256) {
-        return uint256(eth_usd_pricer.getDecimals());
-    }
-
 
     function ceres_info() public view returns (uint256, uint256, uint256, uint256, uint256, uint256, uint256, uint256) {
         return (

@@ -135,6 +135,11 @@ contract('CERES', async (accounts) => {
 	let ceres_pools_length;
 	let PRICE_PRECISION;
 
+	// CERES Price Functions
+	let ceres_price;
+	let css_price;
+	let eth_usd_price;
+
 	
 
     beforeEach(async() => {
@@ -402,12 +407,6 @@ contract('CERES', async (accounts) => {
 		const eth_usd_pricer_decimals = await ceresInstance.eth_usd_pricer_decimals.call();
 		console.log("eth_usd_pricer_decimals: ",eth_usd_pricer_decimals.toString());
 
-		const eth_usd_pricer_getDecimals = await ceresInstance.eth_usd_pricer_getDecimals.call();
-		console.log("eth_usd_pricer_getDecimals: ",eth_usd_pricer_getDecimals.toString());
-
-		const eth_usd_pricer_latestPrice = await ceresInstance.eth_usd_pricer_latestPrice.call();
-		console.log("eth_usd_pricer_latestPrice: ",eth_usd_pricer_latestPrice.toString());
-
 		const eth_usd_price = await ceresInstance.eth_usd_price.call();
 		console.log("eth_usd_price: ",eth_usd_price.toString());
 
@@ -431,5 +430,27 @@ contract('CERES', async (accounts) => {
 		PRICE_PRECISION = await ceresInstance.PRICE_PRECISION.call();
 		console.log(chalk.blue("PRICE_PRECISION: ",PRICE_PRECISION.toString()));
 	});
+
+	it("test scripts for ceresInstance Price Function ", async () => {
+		console.log(chalk.red("============ ceresInstance Price Function ============"));
+		console.log(chalk.red("============ ceresInstance Price Function ============"));
+		console.log(chalk.red("============ ceresInstance Price Function ============"));
+		
+
+		ceres_price = await ceresInstance.ceres_price.call();
+		console.log(chalk.blue("ceres_price: ",ceres_price.toString()));
+
+		css_price = await ceresInstance.css_price.call();
+		console.log(chalk.blue("css_price: ",css_price.toString()));
+
+		eth_usd_price = await ceresInstance.eth_usd_price.call();
+		console.log(chalk.blue("eth_usd_price: ",eth_usd_price.toString()));
+
+
+	});
+
+
+
+
 
 });
