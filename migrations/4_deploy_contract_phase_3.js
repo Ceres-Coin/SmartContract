@@ -19,6 +19,12 @@ const SafeERC20 = artifacts.require("ERC20/SafeERC20");
 const DUMP_ADDRESS = "0x1111111111111111111111111111111111111111";
 
 
+// Chainlink Price Consumer
+const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumer");
+const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest");
+
+
+
 
 // Make sure Ganache is running beforehand
 module.exports = async function(deployer, network, accounts) {
@@ -32,6 +38,9 @@ module.exports = async function(deployer, network, accounts) {
     await deployer.deploy(UniswapV2Pair);
     await deployer.deploy(UniswapV2Factory, DUMP_ADDRESS);
     await deployer.deploy(SafeERC20);
+
+    await deployer.deploy(ChainlinkETHUSDPriceConsumer);
+	await deployer.deploy(ChainlinkETHUSDPriceConsumerTest);
 
 
 

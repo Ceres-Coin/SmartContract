@@ -47,6 +47,11 @@ const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Variants/UniswapPai
 // Uniswap Contract
 const Timelock = artifacts.require("Governance/Timelock");
 
+// Chainlink Price Consumer
+const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumer");
+const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest");
+
+
 
 
 // Make sure Ganache is running beforehand
@@ -179,6 +184,25 @@ module.exports = async function(deployer, network, accounts) {
 		ceresInstance.setCeresEthOracle(oracle_instance_CERES_WETH.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
 		ceresInstance.setCSSEthOracle(oracle_instance_CSS_WETH.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),		
 	]);
+
+	// ======== Set the Chainlink oracle ========
+	console.log(chalk.redBright('===== SET THE CHAINLINK ORACLE ====='));
+
+	// Initialize ETH-USD Chainlink Oracle too
+	let oracle_chainlink_ETH_USD;
+
+	// // Add the ETH / USD Chainlink oracle
+	// if (IS_MAINNET){
+	// 	oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumer.at("0xBa6C6EaC41a24F9D39032513f66D738B3559f15a");
+	// 	await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	// }
+	// else {
+	// 	oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumerTest.deployed();
+	// 	// console.log("oracle_chainlink_ETH_USD: ",oracle_chainlink_ETH_USD.address);
+	// 	await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+
+	// }
+	
 
 	
 }
