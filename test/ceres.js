@@ -140,6 +140,8 @@ contract('CERES', async (accounts) => {
 	let css_price;
 	let eth_usd_price;
 
+	let last_call_time;
+
 	
 
     beforeEach(async() => {
@@ -447,6 +449,54 @@ contract('CERES', async (accounts) => {
 		console.log(chalk.blue("eth_usd_price: ",eth_usd_price.toString()));
 
 
+	});
+
+	it("test scripts for ceresInstance Public View Function ", async () => {
+		console.log(chalk.red("============ ceresInstance Public View Function ============"));
+		console.log(chalk.red("============ ceresInstance Public View Function ============"));
+		console.log(chalk.red("============ ceresInstance Public View Function ============"));
+		
+		globalCollateralValue = await ceresInstance.globalCollateralValue.call();
+		console.log(chalk.blue("globalCollateralValue: ",globalCollateralValue.toString()));
+
+		last_call_time = await ceresInstance.last_call_time.call();
+		console.log(chalk.blue("last_call_time: ",last_call_time.toString()));
+
+	});
+
+	it("test scripts for ceresInstance Public Invoke Function ", async () => {
+		console.log(chalk.red("============ ceresInstance Public Invoke Function ============"));
+		console.log(chalk.red("============ ceresInstance Public Invoke Function ============"));
+		console.log(chalk.red("============ ceresInstance Public Invoke Function ============"));
+		
+
+		
+		let info_before;
+		console.log(chalk.blue("=========== get ceres_info before refresh collateral ratio ========== "));
+		info_before = await ceresInstance.ceres_info();
+		console.log(chalk.blue("oracle_price CERES: ",info_before[0].toString()));
+		console.log(chalk.blue("oracle_price CSS : ",info_before[1].toString()));
+		console.log(chalk.blue("totalSupply: ",info_before[2].toString()));
+		console.log(chalk.blue("global_collateral_ratio: ",info_before[3].toString()));
+		console.log(chalk.blue("globalCollateralValue: ",info_before[4].toString()));
+		console.log(chalk.blue("minting_fee: ",info_before[5].toString()));
+		console.log(chalk.blue("redemption_fee: ",info_before[6].toString()));
+		console.log(chalk.blue("eth_usd_price: ",info_before[7].toString()));
+
+		console.log(chalk.blue('Refreshing collateral ratio'))
+		await ceresInstance.refreshCollateralRatio();
+
+		let info_after;
+		console.log(chalk.blue("=========== get ceres_info after refresh collateral ratio ========== "));
+		info_after = await ceresInstance.ceres_info();
+		console.log(chalk.blue("oracle_price CERES: ",info_after[0].toString()));
+		console.log(chalk.blue("oracle_price CSS : ",info_after[1].toString()));
+		console.log(chalk.blue("totalSupply: ",info_after[2].toString()));
+		console.log(chalk.blue("global_collateral_ratio: ",info_after[3].toString()));
+		console.log(chalk.blue("globalCollateralValue: ",info_after[4].toString()));
+		console.log(chalk.blue("minting_fee: ",info_after[5].toString()));
+		console.log(chalk.blue("redemption_fee: ",info_after[6].toString()));
+		console.log(chalk.blue("eth_usd_price: ",info_after[7].toString()));
 	});
 
 
