@@ -142,6 +142,12 @@ contract('CERES', async (accounts) => {
 
 	let last_call_time;
 
+	// ceres Minting Parameters
+	const REDEMPTION_FEE = 400; // 0.04%
+	const MINTING_FEE = 300; // 0.03%
+	const BUYBACK_FEE = 100; //0.01%
+	const RECOLLAT_FEE = 100; //0.01%
+
 	
 
     beforeEach(async() => {
@@ -384,8 +390,6 @@ contract('CERES', async (accounts) => {
 
 	});
 
-
-
 	it("Mints 1 USDC to 1 CERES test scripts", async () => {
 		console.log(chalk.red("============ mint 1 USDC 1CERES()============"));
 		console.log(chalk.red("============ mint 1 USDC 1CERES()============"));
@@ -464,7 +468,7 @@ contract('CERES', async (accounts) => {
 
 	});
 
-	it("test scripts for ceresInstance Public Invoke Function ", async () => {
+	it("test scripts for ceresInstance.refreshCollateralRatio() ", async () => {
 		console.log(chalk.red("============ ceresInstance Public Invoke Function ============"));
 		console.log(chalk.red("============ ceresInstance Public Invoke Function ============"));
 		console.log(chalk.red("============ ceresInstance Public Invoke Function ============"));
@@ -488,6 +492,46 @@ contract('CERES', async (accounts) => {
 
 		let info_after;
 		console.log(chalk.blue("=========== get ceres_info after refresh collateral ratio ========== "));
+		info_after = await ceresInstance.ceres_info();
+		console.log(chalk.blue("oracle_price CERES: ",info_after[0].toString()));
+		console.log(chalk.blue("oracle_price CSS : ",info_after[1].toString()));
+		console.log(chalk.blue("totalSupply: ",info_after[2].toString()));
+		console.log(chalk.blue("global_collateral_ratio: ",info_after[3].toString()));
+		console.log(chalk.blue("globalCollateralValue: ",info_after[4].toString()));
+		console.log(chalk.blue("minting_fee: ",info_after[5].toString()));
+		console.log(chalk.blue("redemption_fee: ",info_after[6].toString()));
+		console.log(chalk.blue("eth_usd_price: ",info_after[7].toString()));
+	});
+
+	it("test scripts for ceresInstance.setRedemptionFee() & setMintingFee() ", async () => {
+		console.log(chalk.red("============ ceresInstance.setRedemptionFee() & setMintingFee()  ============"));
+		console.log(chalk.red("============ ceresInstance.setRedemptionFee() & setMintingFee()  ============"));
+		console.log(chalk.red("============ ceresInstance.setRedemptionFee() & setMintingFee()  ============"));
+		
+
+		
+		let info_before;
+		console.log(chalk.blue("=========== get ceres_info before setRedemptionFee() & setMintingFee()  ========== "));
+		info_before = await ceresInstance.ceres_info();
+		console.log(chalk.blue("oracle_price CERES: ",info_before[0].toString()));
+		console.log(chalk.blue("oracle_price CSS : ",info_before[1].toString()));
+		console.log(chalk.blue("totalSupply: ",info_before[2].toString()));
+		console.log(chalk.blue("global_collateral_ratio: ",info_before[3].toString()));
+		console.log(chalk.blue("globalCollateralValue: ",info_before[4].toString()));
+		console.log(chalk.blue("minting_fee: ",info_before[5].toString()));
+		console.log(chalk.blue("redemption_fee: ",info_before[6].toString()));
+		console.log(chalk.blue("eth_usd_price: ",info_before[7].toString()));
+
+		console.log(chalk.blue('setRedemptionFee() & setMintingFee()'))
+		// Set the redemption fee to 0.04%
+		// Set the minting fee to 0.03%
+		await Promise.all([
+			ceresInstance.setRedemptionFee(REDEMPTION_FEE, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+			ceresInstance.setMintingFee(MINTING_FEE, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
+		])
+
+		let info_after;
+		console.log(chalk.blue("=========== get ceres_info after setRedemptionFee() & setMintingFee()  ========== "));
 		info_after = await ceresInstance.ceres_info();
 		console.log(chalk.blue("oracle_price CERES: ",info_after[0].toString()));
 		console.log(chalk.blue("oracle_price CSS : ",info_after[1].toString()));
