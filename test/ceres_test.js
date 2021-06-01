@@ -1,8 +1,10 @@
 const BigNumber = require('bignumber.js');
+const BN = BigNumber.clone({ DECIMAL_PLACES: 9 })
 const util = require('util');
 const chalk = require('chalk');
 const Contract = require('web3-eth-contract');
 const { expectRevert, time } = require('@openzeppelin/test-helpers');
+const { assert } = require('chai');
 
 // Set provider for all later instances to use
 Contract.setProvider('http://127.0.0.1:8545');
@@ -148,6 +150,8 @@ contract('CERES', async (accounts) => {
 	const BUYBACK_FEE = 100; //0.01%
 	const RECOLLAT_FEE = 100; //0.01%
 	const CERES_STEP = 7890; //0.789%
+	const PRICE_TARGET_AFTER = 1500000;
+	const PRICE_TARGET_BEFORE = 1000000;
 
 	
 
@@ -572,6 +576,33 @@ contract('CERES', async (accounts) => {
 		
 
 	});
+
+	it("test scripts for ceresInstance.setPriceTarget()  ", async () => {
+		console.log(chalk.red("============ ceresInstance.setPriceTarget() ============"));
+		console.log(chalk.red("============ ceresInstance.setPriceTarget() ============"));
+		console.log(chalk.red("============ ceresInstance.setPriceTarget() ============"));
+		console.log(chalk.blue("scenario: PRICE_TARGET_BEFORE: ",PRICE_TARGET_BEFORE));
+		console.log(chalk.blue("scenario: PRICE_TARGET_AFTER: ",PRICE_TARGET_AFTER));
+		
+		// Before
+		const price_target_before = new BN(await ceresInstance.price_target.call());
+		assert.equal(price_target_before,PRICE_TARGET_BEFORE);
+
+		// Action
+		await Promise.all([
+			ceresInstance.setPriceTarget(PRICE_TARGET_AFTER, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		]);
+
+		// After
+		const price_target_after = new BN(await ceresInstance.price_target.call());
+		assert.equal(price_target_after,PRICE_TARGET_AFTER);
+
+		// Optional Code: Print
+		console.log(chalk.blue("===== console.log [Optional] ===="))
+		console.log(chalk.yellow("price_target_before: ",price_target_before));
+		console.log(chalk.yellow("price_target_after: ",price_target_after));
+	});
+
 
 
 

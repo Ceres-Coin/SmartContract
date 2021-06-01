@@ -17,7 +17,8 @@
     "@openzeppelin/contracts": "^3.2.0",
     "@openzeppelin/test-helpers": "^0.5.11",
     "@truffle/hdwallet-provider": "^1.4.0",
-    "big-number": "^2.0.0"
+    "big-number": "^2.0.0",
+    "chai": "^4.3.4"
   },
   "author": "",
   "license": "ISC",
