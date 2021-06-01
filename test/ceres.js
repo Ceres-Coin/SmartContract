@@ -130,6 +130,10 @@ contract('CERES', async (accounts) => {
 	let eth_usd_consumer_address;
 	let genesis_supply;
 
+	// CERES Other Info
+	let ceres_pools_array_length;
+	let ceres_pools_length;
+	let PRICE_PRECISION;
 
 	
 
@@ -373,6 +377,8 @@ contract('CERES', async (accounts) => {
 
 	});
 
+
+
 	it("Mints 1 USDC to 1 CERES test scripts", async () => {
 		console.log(chalk.red("============ mint 1 USDC 1CERES()============"));
 		console.log(chalk.red("============ mint 1 USDC 1CERES()============"));
@@ -409,6 +415,21 @@ contract('CERES', async (accounts) => {
 		console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
 		console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
 
+	});
+
+	it("test scripts for ceresInstance Other info ", async () => {
+		console.log(chalk.red("============ ceresInstance Other info ============"));
+		console.log(chalk.red("============ ceresInstance Other info ============"));
+		console.log(chalk.red("============ ceresInstance Other info ============"));
+		
+		ceres_pools_array_length = await ceresInstance.ceres_pools_array.length;
+		console.log(chalk.blue("ceres_pools_array_length: ",ceres_pools_array_length));
+
+		ceres_pools_length = await ceresInstance.ceres_pools.length;
+		console.log(chalk.blue("ceres_pools_length: ",ceres_pools_length));
+
+		PRICE_PRECISION = await ceresInstance.PRICE_PRECISION.call();
+		console.log(chalk.blue("PRICE_PRECISION: ",PRICE_PRECISION.toString()));
 	});
 
 });
