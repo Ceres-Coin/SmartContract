@@ -147,6 +147,7 @@ contract('CERES', async (accounts) => {
 	const MINTING_FEE = 300; // 0.03%
 	const BUYBACK_FEE = 100; //0.01%
 	const RECOLLAT_FEE = 100; //0.01%
+	const CERES_STEP = 7890; //0.789%
 
 	
 
@@ -541,6 +542,30 @@ contract('CERES', async (accounts) => {
 		console.log(chalk.blue("minting_fee: ",info_after[5].toString()));
 		console.log(chalk.blue("redemption_fee: ",info_after[6].toString()));
 		console.log(chalk.blue("eth_usd_price: ",info_after[7].toString()));
+	});
+
+	it("test scripts for ceresInstance.setCeresStep()  ", async () => {
+		console.log(chalk.red("============ ceresInstance.setCeresStep() ============"));
+		console.log(chalk.red("============ ceresInstance.setCeresStep() ============"));
+		console.log(chalk.red("============ ceresInstance.setCeresStep() ============"));
+		
+		let ceres_step_before;
+		console.log(chalk.blue("=========== get ceres_step_before before setCeresStep() ========== "));
+		ceres_step_before = await ceresInstance.ceres_step.call();
+		console.log(chalk.blue("ceres_step_before: ",ceres_step_before.toString()));
+
+		console.log(chalk.blue('setCeresStep() & setPriceTarget()'))
+		// Set the ceresStep from 2500 to 7890 
+		await Promise.all([
+			ceresInstance.setCeresStep(CERES_STEP, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		]);
+
+		let ceres_step_after;
+		console.log(chalk.blue("=========== get ceres_step_after before setCeresStep() ========== "));
+		ceres_step_after = await ceresInstance.ceres_step.call();
+		console.log(chalk.blue("ceres_step_after: ",ceres_step_after.toString()));
+
+
 	});
 
 
