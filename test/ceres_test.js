@@ -562,9 +562,14 @@ contract('CERES', async (accounts) => {
 
 		let ceres_step_after;
 		console.log(chalk.blue("=========== get ceres_step_after before setCeresStep() ========== "));
-		ceres_step_after = await ceresInstance.ceres_step.call();
+		ceres_step_after = new BigNumber(await ceresInstance.ceres_step.call());
 		console.log(chalk.blue("ceres_step_after: ",ceres_step_after.toString()));
 
+		assert.equal(ceres_step_after, CERES_STEP);
+		assert.equal(ceres_step_after, 7890);
+		// assert.equal(ceres_step_after, 7889); test for assert fail scenario. 
+		
+		
 
 	});
 
