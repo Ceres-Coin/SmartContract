@@ -636,6 +636,30 @@ contract('CERES', async (accounts) => {
 	// 	console.log(chalk.yellow("refresh_cooldown_after: ",refresh_cooldown_after));
 	// });
 
+	// it("test scripts for ceresInstance.setCSSAddress()  ", async () => {
+	// 	console.log(chalk.red("============ ceresInstance.setCSSAddress() ============"));
+	// 	console.log(chalk.red("============ ceresInstance.setCSSAddress() ============"));
+	// 	console.log(chalk.red("============ ceresInstance.setCSSAddress() ============"));
+		
+	// 	console.log(chalk.blue("scenario: CSS_ADDRESS_BEFORE: ",CSS_ADDRESS_BEFORE));
+	// 	console.log(chalk.blue("scenario: CSS_ADDRESS_AFTER: ", CSS_ADDRESS_AFTER));
+		
+	// 	// Before
+	// 	const css_address_before = new BN(await ceresInstance.css_address.call());
+	// 	assert.equal(css_address_before,CSS_ADDRESS_BEFORE);
+		
+
+	// 	// Action
+	// 	await Promise.all([
+	// 		ceresInstance.setCSSAddress(CSS_ADDRESS_AFTER, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+	// 	]);
+
+	// 	// After
+	// 	const css_address_after = await ceresInstance.css_address.call();
+	// 	assert.equal(css_address_after,CSS_ADDRESS_AFTER);
+
+	// });
+
 	it("test scripts for ceresInstance.setCSSAddress()  ", async () => {
 		console.log(chalk.red("============ ceresInstance.setCSSAddress() ============"));
 		console.log(chalk.red("============ ceresInstance.setCSSAddress() ============"));
