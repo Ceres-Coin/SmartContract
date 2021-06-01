@@ -247,8 +247,11 @@ contract('CERES', async (accounts) => {
 
 
 	// ============================= test scripts for oracle price===================================
-	it('Check up on the oracles prices', async () => {
-		console.log("Check up on the oracles and make sure the prices are set");
+	it('test for oracles prices', async () => {
+		
+		console.log(chalk.red("============ test for oracles prices ============"));
+		console.log(chalk.red("============ test for oracles prices ============"));
+		console.log(chalk.red("============ test for oracles prices ============"));
 
 		// time.increase 1 day
 		console.log(chalk.yellow("Time.increase 1 day"));
@@ -280,20 +283,20 @@ contract('CERES', async (accounts) => {
 	});
 
 	it("test scripts for ceresInstance.ceres_info", async () => {
-		console.log(chalk.blue("============ ceresInstance.ceres_info============"));
-		
-
-		console.log(chalk.blue('Try ceres_info'));
+		console.log(chalk.red("============ ceresInstance.ceres_info============"));
+		console.log(chalk.red("============ ceresInstance.ceres_info============"));
+		console.log(chalk.red("============ ceresInstance.ceres_info============"));
+				
 		let info;
 		info = await ceresInstance.ceres_info();
-		console.log("oracle_price CERES: ",info[0].toString());
-		console.log("oracle_price CSS : ",info[1].toString());
-		console.log("totalSupply: ",info[2].toString());
-		console.log("global_collateral_ratio: ",info[3].toString());
-		console.log("globalCollateralValue: ",info[4].toString());
-		console.log("minting_fee: ",info[5].toString());
-		console.log("redemption_fee: ",info[6].toString());
-		console.log("eth_usd_price: ",info[7].toString());
+		console.log(chalk.blue("oracle_price CERES: ",info[0].toString()));
+		console.log(chalk.blue("oracle_price CSS : ",info[1].toString()));
+		console.log(chalk.blue("totalSupply: ",info[2].toString()));
+		console.log(chalk.blue("global_collateral_ratio: ",info[3].toString()));
+		console.log(chalk.blue("globalCollateralValue: ",info[4].toString()));
+		console.log(chalk.blue("minting_fee: ",info[5].toString()));
+		console.log(chalk.blue("redemption_fee: ",info[6].toString()));
+		console.log(chalk.blue("eth_usd_price: ",info[7].toString()));
 
 	});
 
@@ -371,9 +374,9 @@ contract('CERES', async (accounts) => {
 	});
 
 	it("Mints 1 USDC to 1 CERES test scripts", async () => {
-		console.log(chalk.blue("============ mint 1 USDC 1CERES()============"));
-		console.log(chalk.blue("============ mint 1 USDC 1CERES()============"));
-		console.log(chalk.blue("============ mint 1 USDC 1CERES()============"));
+		console.log(chalk.red("============ mint 1 USDC 1CERES()============"));
+		console.log(chalk.red("============ mint 1 USDC 1CERES()============"));
+		console.log(chalk.red("============ mint 1 USDC 1CERES()============"));
 		
 
 		totalSupplyCERES = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18).toNumber();
