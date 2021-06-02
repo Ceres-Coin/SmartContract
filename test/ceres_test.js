@@ -164,6 +164,11 @@ contract('CERES', async (accounts) => {
 	let CSS_ADDRESS_BEFORE = 0;
 	let CSS_ADDRESS_AFTER = "0x1111111111111111111111111111111111111111"
 
+	// price_band
+	PRICE_BAND_BEFORE = 5000;
+	PRICE_BAND_AFTER = 10000;
+
+
 	
 
     beforeEach(async() => {
@@ -665,38 +670,66 @@ contract('CERES', async (accounts) => {
 
 	// });
 
-	it("test scripts for ceresInstance.setETHUSDOracle()  ", async () => {
-		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
-		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
-		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
+	// it("test scripts for ceresInstance.setETHUSDOracle()  ", async () => {
+	// 	console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
+	// 	console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
+	// 	console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
 		
+		
+	// 	// Before
+	// 	const eth_usd_consumer_address_before = await ceresInstance.eth_usd_consumer_address.call();
+	// 	const eth_usd_pricer_before = await ceresInstance.eth_usd_pricer.call();
+	// 	const eth_usd_pricer_decimals_before = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
+		
+	// 	console.log(chalk.blue("eth_usd_consumer_address_before: ",eth_usd_consumer_address_before));
+	// 	console.log(chalk.blue("eth_usd_pricer_before: ",eth_usd_pricer_before));
+	// 	console.log(chalk.blue("eth_usd_pricer_decimals_before: ",eth_usd_pricer_decimals_before));
+
+	// 	// Action
+	// 	let oracle_chainlink_ETH_USD_after = await ChainlinkETHUSDPriceConsumerTest2.deployed();
+	// 	await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD_after.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		
+	// 	// After
+	// 	const eth_usd_consumer_address_after = await ceresInstance.eth_usd_consumer_address.call();
+	// 	const eth_usd_pricer_after = await ceresInstance.eth_usd_pricer.call();
+	// 	const eth_usd_pricer_decimals_after = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
+		
+	// 	console.log(chalk.blue("eth_usd_consumer_address_after: ",eth_usd_consumer_address_after));
+	// 	console.log(chalk.blue("eth_usd_pricer_after: ",eth_usd_pricer_after));
+	// 	console.log(chalk.blue("eth_usd_pricer_decimals_after: ",eth_usd_pricer_decimals_after));
+
+	// 	// Assert
+	// 	assert.notEqual(eth_usd_consumer_address_before.toString(),eth_usd_consumer_address_after.toString());
+	// 	assert.notEqual(eth_usd_pricer_before.toString(),eth_usd_pricer_after.toString());
+	// 	assert.equal(eth_usd_pricer_decimals_before.toString(),eth_usd_pricer_decimals_after.toString());
+	// });
+
+	it("test scripts for ceresInstance.setPriceBand()  ", async () => {
+		console.log(chalk.red("============ ceresInstance.setPriceBand() ============"));
+		console.log(chalk.red("============ ceresInstance.setPriceBand() ============"));
+		console.log(chalk.red("============ ceresInstance.setPriceBand() ============"));
+		
+		console.log(chalk.blue("EXPECTED RESULT: PRICE_BAND_BEFORE: ",PRICE_BAND_BEFORE));
+		console.log(chalk.blue("EXPECTED RESULT: PRICE_BAND_AFTER: ", PRICE_BAND_AFTER));
 		
 		// Before
-		const eth_usd_consumer_address_before = await ceresInstance.eth_usd_consumer_address.call();
-		const eth_usd_pricer_before = await ceresInstance.eth_usd_pricer.call();
-		const eth_usd_pricer_decimals_before = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
+		const price_band_before = new BN(await ceresInstance.price_band.call());
+		assert.equal(price_band_before,PRICE_BAND_BEFORE);
 		
-		console.log(chalk.blue("eth_usd_consumer_address_before: ",eth_usd_consumer_address_before));
-		console.log(chalk.blue("eth_usd_pricer_before: ",eth_usd_pricer_before));
-		console.log(chalk.blue("eth_usd_pricer_decimals_before: ",eth_usd_pricer_decimals_before));
 
 		// Action
-		let oracle_chainlink_ETH_USD_after = await ChainlinkETHUSDPriceConsumerTest2.deployed();
-		await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD_after.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		
-		// After
-		const eth_usd_consumer_address_after = await ceresInstance.eth_usd_consumer_address.call();
-		const eth_usd_pricer_after = await ceresInstance.eth_usd_pricer.call();
-		const eth_usd_pricer_decimals_after = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
-		
-		console.log(chalk.blue("eth_usd_consumer_address_after: ",eth_usd_consumer_address_after));
-		console.log(chalk.blue("eth_usd_pricer_after: ",eth_usd_pricer_after));
-		console.log(chalk.blue("eth_usd_pricer_decimals_after: ",eth_usd_pricer_decimals_after));
+		await Promise.all([
+			ceresInstance.setPriceBand(PRICE_BAND_AFTER, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		]);
 
-		// Assert
-		assert.notEqual(eth_usd_consumer_address_before.toString(),eth_usd_consumer_address_after.toString());
-		assert.notEqual(eth_usd_pricer_before.toString(),eth_usd_pricer_after.toString());
-		assert.equal(eth_usd_pricer_decimals_before.toString(),eth_usd_pricer_decimals_after.toString());
+		// After
+		const price_band_after = await ceresInstance.price_band.call();
+		assert.equal(price_band_after,PRICE_BAND_AFTER);
+
+		// Optional Print
+		console.log(chalk.yellow("actual result price_band_before: ",price_band_before));
+		console.log(chalk.yellow("actual result price_band_after: ",price_band_after));
+
 	});
 
 
