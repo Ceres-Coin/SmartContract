@@ -252,6 +252,10 @@ contract CEREStable is ERC20Custom, AccessControl {
         price_target = _new_price_target;
     }
 
+    function setPriceBand(uint256 _price_band) external onlyByOwnerOrGovernance {
+        price_band = _price_band;
+    }
+
     function setRefreshCooldown(uint256 _new_cooldown) public onlyByOwnerOrGovernance {
     	refresh_cooldown = _new_cooldown;
     }
@@ -274,9 +278,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         controller_address = _controller_address;
     }
 
-    function setPriceBand(uint256 _price_band) external onlyByOwnerOrGovernance {
-        price_band = _price_band;
-    }
+
 
      
     function setCeresEthOracle(address _ceres_oracle_addr, address _weth_address) public onlyByOwnerOrGovernance {

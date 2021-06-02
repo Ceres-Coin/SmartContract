@@ -762,8 +762,32 @@ contract('CERES', async (accounts) => {
 	// 	console.log(chalk.yellow("Actual Result: timelock_address_after: ",timelock_address_after));
 	// });
 
+	// it("test scripts for ceresInstance.setController()  ", async () => {
+	// 	console.log(chalk.red("============ ceresInstance.setController() ============"));
+	// 	console.log(chalk.red("============ ceresInstance.setController() ============"));
+	// 	console.log(chalk.red("============ ceresInstance.setController() ============"));
 
+	// 	const CONTROLLER_ADDRESS_BEFORE = await ceresInstance.controller_address.call();
+	// 	const CONTROLLER_ADDRESS_AFTER = await accounts[3];
+	// 	console.log(chalk.blue("Expected Result: CONTROLLER_ADDRESS_BEFORE ",CONTROLLER_ADDRESS_BEFORE));
+	// 	console.log(chalk.blue("Expected Result: CONTROLLER_ADDRESS_AFTER ",CONTROLLER_ADDRESS_AFTER));
+				
+	// 	// Before
+	// 	const controller_address_before = await ceresInstance.controller_address.call();
+		
+	// 	// Action
+	// 	await ceresInstance.setController(CONTROLLER_ADDRESS_AFTER, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		
+	// 	// After
+	// 	const controller_address_after = await ceresInstance.controller_address.call();
+		
+	// 	// Assert
+	// 	assert.notEqual(controller_address_before.toString(),controller_address_after.toString());
 
+	// 	// Print
+	// 	console.log(chalk.yellow("Actual Result: controller_address_before: ",controller_address_before));
+	// 	console.log(chalk.yellow("Actual Result: controller_address_after: ",controller_address_after));
+	// });
 
 
 
@@ -796,13 +820,6 @@ contract('CERES', async (accounts) => {
 		console.log(chalk.yellow("Actual Result: controller_address_before: ",controller_address_before));
 		console.log(chalk.yellow("Actual Result: controller_address_after: ",controller_address_after));
 	});
-
-
-
-
-
-
-
 
 
 	
