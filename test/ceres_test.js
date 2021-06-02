@@ -790,35 +790,31 @@ contract('CERES', async (accounts) => {
 	// });
 
 
+	it("test scripts for ceresInstance.toggleCollateralRatio()  ", async () => {
+		console.log(chalk.red("============ ceresInstance.toggleCollateralRatio() ============"));
+		console.log(chalk.red("============ ceresInstance.toggleCollateralRatio() ============"));
+		console.log(chalk.red("============ ceresInstance.toggleCollateralRatio() ============"));
 
-
-
-
-	it("test scripts for ceresInstance.setController()  ", async () => {
-		console.log(chalk.red("============ ceresInstance.setController() ============"));
-		console.log(chalk.red("============ ceresInstance.setController() ============"));
-		console.log(chalk.red("============ ceresInstance.setController() ============"));
-
-		const CONTROLLER_ADDRESS_BEFORE = await ceresInstance.controller_address.call();
-		const CONTROLLER_ADDRESS_AFTER = await accounts[3];
-		console.log(chalk.blue("Expected Result: CONTROLLER_ADDRESS_BEFORE ",CONTROLLER_ADDRESS_BEFORE));
-		console.log(chalk.blue("Expected Result: CONTROLLER_ADDRESS_AFTER ",CONTROLLER_ADDRESS_AFTER));
+		const COLLATERAL_RATIO_PAUSED_BEFORE = await ceresInstance.collateral_ratio_paused.call();
+		const COLLATERAL_RATIO_PAUSED_AFTER = !COLLATERAL_RATIO_PAUSED_BEFORE;
+		console.log(chalk.blue("Expected Result: COLLATERAL_RATIO_PAUSED_BEFORE ",COLLATERAL_RATIO_PAUSED_BEFORE));
+		console.log(chalk.blue("Expected Result: COLLATERAL_RATIO_PAUSED_AFTER ",COLLATERAL_RATIO_PAUSED_AFTER));
 				
 		// Before
-		const controller_address_before = await ceresInstance.controller_address.call();
+		const collateral_ratio_paused_before = await ceresInstance.collateral_ratio_paused.call();
 		
 		// Action
-		await ceresInstance.setController(CONTROLLER_ADDRESS_AFTER, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		await ceresInstance.toggleCollateralRatio({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 		
 		// After
-		const controller_address_after = await ceresInstance.controller_address.call();
+		const collateral_ratio_paused_after = await ceresInstance.collateral_ratio_paused.call();
 		
 		// Assert
-		assert.notEqual(controller_address_before.toString(),controller_address_after.toString());
+		assert.notEqual(collateral_ratio_paused_before.toString(),collateral_ratio_paused_after.toString());
 
 		// Print
-		console.log(chalk.yellow("Actual Result: controller_address_before: ",controller_address_before));
-		console.log(chalk.yellow("Actual Result: controller_address_after: ",controller_address_after));
+		console.log(chalk.yellow("Actual Result: collateral_ratio_paused_before: ",collateral_ratio_paused_before));
+		console.log(chalk.yellow("Actual Result: collateral_ratio_paused_after: ",collateral_ratio_paused_after));
 	});
 
 
