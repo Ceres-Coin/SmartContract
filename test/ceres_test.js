@@ -1050,31 +1050,13 @@ contract('CeresInstance Advanced Func Test Scripts', async (accounts) => {
     });
 
 
-	it("test scripts for ceresInstance.toggleCollateralRatio()  ", async () => {
-		console.log(chalk.red("============ ceresInstance.toggleCollateralRatio() ============"));
-		console.log(chalk.red("============ ceresInstance.toggleCollateralRatio() ============"));
-		console.log(chalk.red("============ ceresInstance.toggleCollateralRatio() ============"));
+	it("test scripts for ceresInstance.mint()  ", async () => {
+		console.log(chalk.red("============ ceresInstance.mint() ============"));
+		console.log(chalk.red("============ ceresInstance.mint() ============"));
+		console.log(chalk.red("============ ceresInstance.mint() ============"));
+		
 
-		const COLLATERAL_RATIO_PAUSED_BEFORE = await ceresInstance.collateral_ratio_paused.call();
-		const COLLATERAL_RATIO_PAUSED_AFTER = !COLLATERAL_RATIO_PAUSED_BEFORE;
-		console.log(chalk.blue("Expected Result: COLLATERAL_RATIO_PAUSED_BEFORE ",COLLATERAL_RATIO_PAUSED_BEFORE));
-		console.log(chalk.blue("Expected Result: COLLATERAL_RATIO_PAUSED_AFTER ",COLLATERAL_RATIO_PAUSED_AFTER));
-				
-		// Before
-		const collateral_ratio_paused_before = await ceresInstance.collateral_ratio_paused.call();
-		
-		// Action
-		await ceresInstance.toggleCollateralRatio({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		
-		// After
-		const collateral_ratio_paused_after = await ceresInstance.collateral_ratio_paused.call();
-		
-		// Assert
-		assert.notEqual(collateral_ratio_paused_before.toString(),collateral_ratio_paused_after.toString());
 
-		// Print
-		console.log(chalk.yellow("Actual Result: collateral_ratio_paused_before: ",collateral_ratio_paused_before));
-		console.log(chalk.yellow("Actual Result: collateral_ratio_paused_after: ",collateral_ratio_paused_after));
 	});
 
 });
