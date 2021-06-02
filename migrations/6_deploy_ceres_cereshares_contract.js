@@ -19,6 +19,13 @@ const CEREShares = artifacts.require("CSS/CEREShares");
 
 // Make sure Ganache is running beforehand
 module.exports = async function(deployer, network, accounts) {
+	const IS_MAINNET = (process.env.MIGRATION_MODE == 'mainnet');
+	const IS_ROPSTEN = (process.env.MIGRATION_MODE == 'ropsten');
+	const IS_DEV = (process.env.MIGRATION_MODE == 'dev');
+
+	console.log("IS_MAINNET: ",IS_MAINNET);
+	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
+	console.log("IS_DEV: ",IS_DEV);
 
 	// set the deploy address
 	console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
@@ -37,6 +44,11 @@ module.exports = async function(deployer, network, accounts) {
 	// Deploy Timelock & MigrationHelp 
 	console.log(chalk.red("======== deploy contracts TIMELOCK ==========="));
 	await deployer.deploy(Timelock, ADMIN, TIMELOCK_DELAY);
+	// For Test Setting 
+	if (IS_DEV) {
+		const TimelockTest = artifacts.require("Governance/TimelockTest");
+		await deployer.deploy(TimelockTest,ADMIN,TIMELOCK_DELAY);
+	}
 	await deployer.deploy(MigrationHelper, ADMIN);
 
 	// Timelock and MigrationHelper instance

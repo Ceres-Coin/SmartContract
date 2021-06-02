@@ -1,6 +1,7 @@
 # Build and Release Folders
 .env
 # migrations
+cache
 artifacts
 node_modules
 build
