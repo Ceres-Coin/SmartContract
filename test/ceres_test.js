@@ -744,34 +744,26 @@ contract('CERES', async (accounts) => {
 		console.log(chalk.red("============ ceresInstance.setTimelock() ============"));
 		console.log(chalk.red("============ ceresInstance.setTimelock() ============"));
 		console.log(chalk.red("============ ceresInstance.setTimelock() ============"));
-		
-		
+		const TIMELOCK = await Timelock.deployed();
+		const TIMELOCK_TEST = await TimelockTest.deployed();
+		console.log(chalk.blue("Expected Result: TIMELOCK ",TIMELOCK.address));
+		console.log(chalk.blue("Expected Result: TIMELOCK_TEST ",TIMELOCK_TEST.address));
+				
 		// Before
-		const eth_usd_consumer_address_before = await ceresInstance.eth_usd_consumer_address.call();
-		const eth_usd_pricer_before = await ceresInstance.eth_usd_pricer.call();
-		const eth_usd_pricer_decimals_before = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
+		const timelock_address_before = await ceresInstance.timelock_address.call();
 		
-		console.log(chalk.blue("eth_usd_consumer_address_before: ",eth_usd_consumer_address_before));
-		console.log(chalk.blue("eth_usd_pricer_before: ",eth_usd_pricer_before));
-		console.log(chalk.blue("eth_usd_pricer_decimals_before: ",eth_usd_pricer_decimals_before));
-
 		// Action
-		let oracle_chainlink_ETH_USD_after = await ChainlinkETHUSDPriceConsumerTest2.deployed();
-		await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD_after.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		await ceresInstance.setTimelock(TIMELOCK_TEST.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 		
 		// After
-		const eth_usd_consumer_address_after = await ceresInstance.eth_usd_consumer_address.call();
-		const eth_usd_pricer_after = await ceresInstance.eth_usd_pricer.call();
-		const eth_usd_pricer_decimals_after = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
+		const timelock_address_after = await ceresInstance.timelock_address.call();
 		
-		console.log(chalk.blue("eth_usd_consumer_address_after: ",eth_usd_consumer_address_after));
-		console.log(chalk.blue("eth_usd_pricer_after: ",eth_usd_pricer_after));
-		console.log(chalk.blue("eth_usd_pricer_decimals_after: ",eth_usd_pricer_decimals_after));
-
 		// Assert
-		assert.notEqual(eth_usd_consumer_address_before.toString(),eth_usd_consumer_address_after.toString());
-		assert.notEqual(eth_usd_pricer_before.toString(),eth_usd_pricer_after.toString());
-		assert.equal(eth_usd_pricer_decimals_before.toString(),eth_usd_pricer_decimals_after.toString());
+		assert.notEqual(timelock_address_before.toString(),timelock_address_after.toString());
+
+		// Print
+		console.log(chalk.yellow("Actual Result: timelock_address_before: ",timelock_address_before));
+		console.log(chalk.yellow("Actual Result: timelock_address_after: ",timelock_address_after));
 	});
 
 
