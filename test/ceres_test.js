@@ -173,49 +173,50 @@ contract('CERES', async (accounts) => {
 	
 
     beforeEach(async() => {
-		console.log("begin test");
+		console.log(chalk.red.bgBlue.bold("====================== BEFORE EACH TEST CASE ======================"));
 
 		// set the deploy address
-		console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
+		
 		ADMIN = accounts[0];
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
-		console.log("ADMIN: ",ADMIN.address);
-		console.log("COLLATERAL_CERES_AND_CERESHARES_OWNER: ",COLLATERAL_CERES_AND_CERESHARES_OWNER.address);
+		// console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
+		// console.log("ADMIN: ",ADMIN.address);
+		// console.log("COLLATERAL_CERES_AND_CERESHARES_OWNER: ",COLLATERAL_CERES_AND_CERESHARES_OWNER.address);
 
 		// CERES Core  Contract instances
-		console.log(chalk.red('===== GET THE CORE ADDRESSES ====='));
+		
 		ceresInstance = await CEREStable.deployed();
 		cssInstance = await CEREShares.deployed();
-		console.log(chalk.yellow("ceresInstance: ",ceresInstance.address));
-		console.log(chalk.yellow("cssInstance: ",cssInstance.address));
+		// console.log(chalk.red('===== GET THE CORE ADDRESSES ====='));
+		// console.log(chalk.yellow("ceresInstance: ",ceresInstance.address));
+		// console.log(chalk.yellow("cssInstance: ",cssInstance.address));
 
 
-		console.log(chalk.red('====== Get Fake WETH & USDC & USDT ======='));
 		// Fill collateral instances
 		wethInstance = await WETH.deployed();
 		col_instance_USDC = await FakeCollateral_USDC.deployed(); 
 		col_instance_USDT = await FakeCollateral_USDT.deployed(); 
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
+		// console.log(chalk.red('====== Get Fake WETH & USDC & USDT ======='));
+		// console.log("wethInstance: ",wethInstance.address);
+		// console.log("col_instance_USDC: ",col_instance_USDC.address);
+		// console.log("col_instance_USDT: ",col_instance_USDT.address);
+		// console.log("col_instance_6DEC: ",col_instance_6DEC.address);
 
-		console.log("wethInstance: ",wethInstance.address);
-		console.log("col_instance_USDC: ",col_instance_USDC.address);
-		console.log("col_instance_USDT: ",col_instance_USDT.address);
-		console.log("col_instance_6DEC: ",col_instance_6DEC.address);
-
-		// Fill the Uniswap Router Instance
-		console.log(chalk.red('====== UniswapV2Router02_Modified ======='));		
+		// Fill the Uniswap Router Instance		
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
-		console.log("routerInstance: ",routerInstance.address);
+		// console.log(chalk.red('====== UniswapV2Router02_Modified ======='));		
+		// console.log("routerInstance: ",routerInstance.address);
 
 		// Fill the Timelock instance
 		timelockInstance = await Timelock.deployed(); 
-		console.log(chalk.red('====== timelockInstance ======='));	
-		console.log("timelockInstance: ",timelockInstance.address);
+		// console.log(chalk.red('====== timelockInstance ======='));	
+		// console.log("timelockInstance: ",timelockInstance.address);
 
 		// Initialize the Uniswap Factory Instance
 		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
-		console.log(chalk.red('====== uniswapFactoryInstance ======='));	
-		console.log("uniswapFactoryInstance: ",uniswapFactoryInstance.address);
+		// console.log(chalk.red('====== uniswapFactoryInstance ======='));	
+		// console.log("uniswapFactoryInstance: ",uniswapFactoryInstance.address);
 
 		// Initialize the Uniswap Libraries
 		uniswapLibraryInstance = await UniswapV2Library.deployed(); 
@@ -223,42 +224,45 @@ contract('CERES', async (accounts) => {
 		// Initialize the swap to price contract
 		swapToPriceInstance = await SwapToPrice.deployed(); 
 
-		console.log(chalk.red('====== uniswap Libraries & swapToPrice ======='));	
-		console.log("uniswapLibraryInstance: ",uniswapLibraryInstance.address);
-		console.log("uniswapOracleLibraryInstance: ",uniswapOracleLibraryInstance.address);
-		console.log("swapToPriceInstance: ",swapToPriceInstance.address);
+		// console.log(chalk.red('====== uniswap Libraries & swapToPrice ======='));	
+		// console.log("uniswapLibraryInstance: ",uniswapLibraryInstance.address);
+		// console.log("uniswapOracleLibraryInstance: ",uniswapOracleLibraryInstance.address);
+		// console.log("swapToPriceInstance: ",swapToPriceInstance.address);
 
 
 		// Get the addresses of the pairs
-		console.log(chalk.red('======= get uniswap pair ceres_xxxx addresses ====='));
+		
 		// ceres_weth
 		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		console.log("pair_addr_CERES_WETH: ",pair_addr_CERES_WETH);
 		// ceres_usdc
 		pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		console.log("pair_addr_CERES_USDC: ",pair_addr_CERES_USDC);
+
+		// console.log(chalk.red('======= get uniswap pair ceres_xxxx addresses ====='));
+		// console.log("pair_addr_CERES_WETH: ",pair_addr_CERES_WETH);
+		// console.log("pair_addr_CERES_USDC: ",pair_addr_CERES_USDC);
 
 
 		// Get the addresses of the pairs
-		console.log(chalk.red('======= get uniswap pair css_xxxx addresses ====='));
+		
 		// css_weth
 		pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		console.log("pair_addr_CSS_WETH: ",pair_addr_CSS_WETH);
 		// ceres_usdc
 		pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		console.log("pair_addr_CSS_USDC: ",pair_addr_CSS_USDC);
+		// console.log(chalk.red('======= get uniswap pair css_xxxx addresses ====='));
+		// console.log("pair_addr_CSS_WETH: ",pair_addr_CSS_WETH);
+		// console.log("pair_addr_CSS_USDC: ",pair_addr_CSS_USDC);
 
 		// Fill oracle instances
 		oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
-		console.log("oracle_instance_CERES_WETH",oracle_instance_CERES_WETH.address);
 		oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed();
-		console.log("oracle_instance_CERES_USDC",oracle_instance_CERES_USDC.address);
+		// console.log("oracle_instance_CERES_WETH",oracle_instance_CERES_WETH.address);
+		// console.log("oracle_instance_CERES_USDC",oracle_instance_CERES_USDC.address);
 
 		// Fill oracle instances
 		oracle_instance_CSS_WETH = await UniswapPairOracle_CSS_WETH.deployed();
-		console.log("oracle_instance_CSS_WETH",oracle_instance_CSS_WETH.address);
 		oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
-		console.log("oracle_instance_CSS_USDC",oracle_instance_CSS_USDC.address);
+		// console.log("oracle_instance_CSS_WETH",oracle_instance_CSS_WETH.address);
+		// console.log("oracle_instance_CSS_USDC",oracle_instance_CSS_USDC.address);
 
 		// Get the pair order results
 		first_CERES_WETH = await oracle_instance_CERES_WETH.token0();
@@ -274,10 +278,10 @@ contract('CERES', async (accounts) => {
 		first_CSS_WETH = cssInstance.address == first_CSS_WETH;
 		first_CSS_USDC = cssInstance.address == first_CSS_USDC;
 
-		console.log("first_CERES_WETH: ",first_CERES_WETH);
-		console.log("first_CERES_USDC: ",first_CERES_USDC);
-		console.log("first_CSS_WETH: ",first_CSS_WETH);
-		console.log("first_CSS_USDC: ",first_CSS_USDC);
+		// console.log("first_CERES_WETH: ",first_CERES_WETH);
+		// console.log("first_CERES_USDC: ",first_CERES_USDC);
+		// console.log("first_CSS_WETH: ",first_CSS_WETH);
+		// console.log("first_CSS_USDC: ",first_CSS_USDC);
 
 
 		
@@ -699,39 +703,39 @@ contract('CERES', async (accounts) => {
 
 	// });
 
-	// it("test scripts for ceresInstance.setETHUSDOracle()  ", async () => {
-	// 	console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
-	// 	console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
-	// 	console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
+	it("test scripts for ceresInstance.setETHUSDOracle()  ", async () => {
+		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
+		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
+		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
 		
 		
-	// 	// Before
-	// 	const eth_usd_consumer_address_before = await ceresInstance.eth_usd_consumer_address.call();
-	// 	const eth_usd_pricer_before = await ceresInstance.eth_usd_pricer.call();
-	// 	const eth_usd_pricer_decimals_before = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
+		// Before
+		const eth_usd_consumer_address_before = await ceresInstance.eth_usd_consumer_address.call();
+		const eth_usd_pricer_before = await ceresInstance.eth_usd_pricer.call();
+		const eth_usd_pricer_decimals_before = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
 		
-	// 	console.log(chalk.blue("eth_usd_consumer_address_before: ",eth_usd_consumer_address_before));
-	// 	console.log(chalk.blue("eth_usd_pricer_before: ",eth_usd_pricer_before));
-	// 	console.log(chalk.blue("eth_usd_pricer_decimals_before: ",eth_usd_pricer_decimals_before));
+		console.log(chalk.blue("eth_usd_consumer_address_before: ",eth_usd_consumer_address_before));
+		console.log(chalk.blue("eth_usd_pricer_before: ",eth_usd_pricer_before));
+		console.log(chalk.blue("eth_usd_pricer_decimals_before: ",eth_usd_pricer_decimals_before));
 
-	// 	// Action
-	// 	let oracle_chainlink_ETH_USD_after = await ChainlinkETHUSDPriceConsumerTest2.deployed();
-	// 	await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD_after.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		// Action
+		let oracle_chainlink_ETH_USD_after = await ChainlinkETHUSDPriceConsumerTest2.deployed();
+		await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD_after.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 		
-	// 	// After
-	// 	const eth_usd_consumer_address_after = await ceresInstance.eth_usd_consumer_address.call();
-	// 	const eth_usd_pricer_after = await ceresInstance.eth_usd_pricer.call();
-	// 	const eth_usd_pricer_decimals_after = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
+		// After
+		const eth_usd_consumer_address_after = await ceresInstance.eth_usd_consumer_address.call();
+		const eth_usd_pricer_after = await ceresInstance.eth_usd_pricer.call();
+		const eth_usd_pricer_decimals_after = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
 		
-	// 	console.log(chalk.blue("eth_usd_consumer_address_after: ",eth_usd_consumer_address_after));
-	// 	console.log(chalk.blue("eth_usd_pricer_after: ",eth_usd_pricer_after));
-	// 	console.log(chalk.blue("eth_usd_pricer_decimals_after: ",eth_usd_pricer_decimals_after));
+		console.log(chalk.blue("eth_usd_consumer_address_after: ",eth_usd_consumer_address_after));
+		console.log(chalk.blue("eth_usd_pricer_after: ",eth_usd_pricer_after));
+		console.log(chalk.blue("eth_usd_pricer_decimals_after: ",eth_usd_pricer_decimals_after));
 
-	// 	// Assert
-	// 	assert.notEqual(eth_usd_consumer_address_before.toString(),eth_usd_consumer_address_after.toString());
-	// 	assert.notEqual(eth_usd_pricer_before.toString(),eth_usd_pricer_after.toString());
-	// 	assert.equal(eth_usd_pricer_decimals_before.toString(),eth_usd_pricer_decimals_after.toString());
-	// });
+		// Assert
+		assert.notEqual(eth_usd_consumer_address_before.toString(),eth_usd_consumer_address_after.toString());
+		assert.notEqual(eth_usd_pricer_before.toString(),eth_usd_pricer_after.toString());
+		assert.equal(eth_usd_pricer_decimals_before.toString(),eth_usd_pricer_decimals_after.toString());
+	});
 
 
 
