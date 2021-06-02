@@ -173,7 +173,7 @@ contract('CERES', async (accounts) => {
 	
 
     beforeEach(async() => {
-		console.log(chalk.red.bgBlue.bold("====================== BEFORE EACH TEST CASE ======================"));
+		console.log(chalk.white.bgRed.bold("====================== BEFORE EACH TEST CASE ======================"));
 
 		// set the deploy address
 		
@@ -703,71 +703,98 @@ contract('CERES', async (accounts) => {
 
 	// });
 
-	it("test scripts for ceresInstance.setETHUSDOracle()  ", async () => {
-		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
-		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
-		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
+	// it("test scripts for ceresInstance.setETHUSDOracle()  ", async () => {
+	// 	console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
+	// 	console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
+	// 	console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));		
 		
+	// 	// Before
+	// 	const eth_usd_consumer_address_before = await ceresInstance.eth_usd_consumer_address.call();
+	// 	const eth_usd_pricer_before = await ceresInstance.eth_usd_pricer.call();
+	// 	const eth_usd_pricer_decimals_before = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
 		
-		// Before
-		const eth_usd_consumer_address_before = await ceresInstance.eth_usd_consumer_address.call();
-		const eth_usd_pricer_before = await ceresInstance.eth_usd_pricer.call();
-		const eth_usd_pricer_decimals_before = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
+	// 	console.log(chalk.blue("eth_usd_consumer_address_before: ",eth_usd_consumer_address_before));
+	// 	console.log(chalk.blue("eth_usd_pricer_before: ",eth_usd_pricer_before));
+	// 	console.log(chalk.blue("eth_usd_pricer_decimals_before: ",eth_usd_pricer_decimals_before));
+
+	// 	// Action
+	// 	let oracle_chainlink_ETH_USD_after = await ChainlinkETHUSDPriceConsumerTest2.deployed();
+	// 	await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD_after.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 		
-		console.log(chalk.blue("eth_usd_consumer_address_before: ",eth_usd_consumer_address_before));
-		console.log(chalk.blue("eth_usd_pricer_before: ",eth_usd_pricer_before));
-		console.log(chalk.blue("eth_usd_pricer_decimals_before: ",eth_usd_pricer_decimals_before));
-
-		// Action
-		let oracle_chainlink_ETH_USD_after = await ChainlinkETHUSDPriceConsumerTest2.deployed();
-		await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD_after.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	// 	// After
+	// 	const eth_usd_consumer_address_after = await ceresInstance.eth_usd_consumer_address.call();
+	// 	const eth_usd_pricer_after = await ceresInstance.eth_usd_pricer.call();
+	// 	const eth_usd_pricer_decimals_after = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
 		
-		// After
-		const eth_usd_consumer_address_after = await ceresInstance.eth_usd_consumer_address.call();
-		const eth_usd_pricer_after = await ceresInstance.eth_usd_pricer.call();
-		const eth_usd_pricer_decimals_after = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
+	// 	console.log(chalk.blue("eth_usd_consumer_address_after: ",eth_usd_consumer_address_after));
+	// 	console.log(chalk.blue("eth_usd_pricer_after: ",eth_usd_pricer_after));
+	// 	console.log(chalk.blue("eth_usd_pricer_decimals_after: ",eth_usd_pricer_decimals_after));
+
+	// 	// Assert
+	// 	assert.notEqual(eth_usd_consumer_address_before.toString(),eth_usd_consumer_address_after.toString());
+	// 	assert.notEqual(eth_usd_pricer_before.toString(),eth_usd_pricer_after.toString());
+	// 	assert.equal(eth_usd_pricer_decimals_before.toString(),eth_usd_pricer_decimals_after.toString());
+	// });
+
+	// it("test scripts for ceresInstance.setTimelock()  ", async () => {
+	// 	console.log(chalk.red("============ ceresInstance.setTimelock() ============"));
+	// 	console.log(chalk.red("============ ceresInstance.setTimelock() ============"));
+	// 	console.log(chalk.red("============ ceresInstance.setTimelock() ============"));
+	// 	const TIMELOCK = await Timelock.deployed();
+	// 	const TIMELOCK_TEST = await TimelockTest.deployed();
+	// 	console.log(chalk.blue("Expected Result: TIMELOCK ",TIMELOCK.address));
+	// 	console.log(chalk.blue("Expected Result: TIMELOCK_TEST ",TIMELOCK_TEST.address));
+				
+	// 	// Before
+	// 	const timelock_address_before = await ceresInstance.timelock_address.call();
 		
-		console.log(chalk.blue("eth_usd_consumer_address_after: ",eth_usd_consumer_address_after));
-		console.log(chalk.blue("eth_usd_pricer_after: ",eth_usd_pricer_after));
-		console.log(chalk.blue("eth_usd_pricer_decimals_after: ",eth_usd_pricer_decimals_after));
+	// 	// Action
+	// 	await ceresInstance.setTimelock(TIMELOCK_TEST.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		
+	// 	// After
+	// 	const timelock_address_after = await ceresInstance.timelock_address.call();
+		
+	// 	// Assert
+	// 	assert.notEqual(timelock_address_before.toString(),timelock_address_after.toString());
 
-		// Assert
-		assert.notEqual(eth_usd_consumer_address_before.toString(),eth_usd_consumer_address_after.toString());
-		assert.notEqual(eth_usd_pricer_before.toString(),eth_usd_pricer_after.toString());
-		assert.equal(eth_usd_pricer_decimals_before.toString(),eth_usd_pricer_decimals_after.toString());
-	});
-
-
-
-
-
-
+	// 	// Print
+	// 	console.log(chalk.yellow("Actual Result: timelock_address_before: ",timelock_address_before));
+	// 	console.log(chalk.yellow("Actual Result: timelock_address_after: ",timelock_address_after));
+	// });
 
 
-	it("test scripts for ceresInstance.setTimelock()  ", async () => {
-		console.log(chalk.red("============ ceresInstance.setTimelock() ============"));
-		console.log(chalk.red("============ ceresInstance.setTimelock() ============"));
-		console.log(chalk.red("============ ceresInstance.setTimelock() ============"));
-		const TIMELOCK = await Timelock.deployed();
-		const TIMELOCK_TEST = await TimelockTest.deployed();
-		console.log(chalk.blue("Expected Result: TIMELOCK ",TIMELOCK.address));
-		console.log(chalk.blue("Expected Result: TIMELOCK_TEST ",TIMELOCK_TEST.address));
+
+
+
+
+
+
+
+	it("test scripts for ceresInstance.setController()  ", async () => {
+		console.log(chalk.red("============ ceresInstance.setController() ============"));
+		console.log(chalk.red("============ ceresInstance.setController() ============"));
+		console.log(chalk.red("============ ceresInstance.setController() ============"));
+
+		const CONTROLLER_ADDRESS_BEFORE = await ceresInstance.controller_address.call();
+		const CONTROLLER_ADDRESS_AFTER = await accounts[3];
+		console.log(chalk.blue("Expected Result: CONTROLLER_ADDRESS_BEFORE ",CONTROLLER_ADDRESS_BEFORE));
+		console.log(chalk.blue("Expected Result: CONTROLLER_ADDRESS_AFTER ",CONTROLLER_ADDRESS_AFTER));
 				
 		// Before
-		const timelock_address_before = await ceresInstance.timelock_address.call();
+		const controller_address_before = await ceresInstance.controller_address.call();
 		
 		// Action
-		await ceresInstance.setTimelock(TIMELOCK_TEST.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		await ceresInstance.setController(CONTROLLER_ADDRESS_AFTER, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 		
 		// After
-		const timelock_address_after = await ceresInstance.timelock_address.call();
+		const controller_address_after = await ceresInstance.controller_address.call();
 		
 		// Assert
-		assert.notEqual(timelock_address_before.toString(),timelock_address_after.toString());
+		assert.notEqual(controller_address_before.toString(),controller_address_after.toString());
 
 		// Print
-		console.log(chalk.yellow("Actual Result: timelock_address_before: ",timelock_address_before));
-		console.log(chalk.yellow("Actual Result: timelock_address_after: ",timelock_address_after));
+		console.log(chalk.yellow("Actual Result: controller_address_before: ",controller_address_before));
+		console.log(chalk.yellow("Actual Result: controller_address_after: ",controller_address_after));
 	});
 
 
