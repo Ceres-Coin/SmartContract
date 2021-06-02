@@ -22,6 +22,7 @@ const DUMP_ADDRESS = "0x1111111111111111111111111111111111111111";
 // Chainlink Price Consumer
 const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumer");
 const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest");
+const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest2");
 
 
 
@@ -41,6 +42,7 @@ module.exports = async function(deployer, network, accounts) {
 
     await deployer.deploy(ChainlinkETHUSDPriceConsumer);
 	await deployer.deploy(ChainlinkETHUSDPriceConsumerTest);
+    await deployer.deploy(ChainlinkETHUSDPriceConsumerTest2);
 
 
 

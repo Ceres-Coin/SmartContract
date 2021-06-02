@@ -56,6 +56,11 @@ const UniswapPairOracle_CERES_USDC = artifacts.require("Oracle/Fakes/UniswapPair
 const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_WETH");
 const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_USDC");
 
+// ChainlinkETHUSD Contract
+const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest2");
+
+
+
 
 
 contract('CERES', async (accounts) => {
@@ -660,28 +665,38 @@ contract('CERES', async (accounts) => {
 
 	// });
 
-	it("test scripts for ceresInstance.setCSSAddress()  ", async () => {
-		console.log(chalk.red("============ ceresInstance.setCSSAddress() ============"));
-		console.log(chalk.red("============ ceresInstance.setCSSAddress() ============"));
-		console.log(chalk.red("============ ceresInstance.setCSSAddress() ============"));
+	it("test scripts for ceresInstance.setETHUSDOracle()  ", async () => {
+		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
+		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
+		console.log(chalk.red("============ ceresInstance.setETHUSDOracle() ============"));
 		
-		console.log(chalk.blue("scenario: CSS_ADDRESS_BEFORE: ",CSS_ADDRESS_BEFORE));
-		console.log(chalk.blue("scenario: CSS_ADDRESS_AFTER: ", CSS_ADDRESS_AFTER));
 		
 		// Before
-		const css_address_before = new BN(await ceresInstance.css_address.call());
-		assert.equal(css_address_before,CSS_ADDRESS_BEFORE);
+		const eth_usd_consumer_address_before = await ceresInstance.eth_usd_consumer_address.call();
+		const eth_usd_pricer_before = await ceresInstance.eth_usd_pricer.call();
+		const eth_usd_pricer_decimals_before = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
 		
+		console.log(chalk.blue("eth_usd_consumer_address_before: ",eth_usd_consumer_address_before));
+		console.log(chalk.blue("eth_usd_pricer_before: ",eth_usd_pricer_before));
+		console.log(chalk.blue("eth_usd_pricer_decimals_before: ",eth_usd_pricer_decimals_before));
 
 		// Action
-		await Promise.all([
-			ceresInstance.setCSSAddress(CSS_ADDRESS_AFTER, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
-		]);
-
+		let oracle_chainlink_ETH_USD_after = await ChainlinkETHUSDPriceConsumerTest2.deployed();
+		await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD_after.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		
 		// After
-		const css_address_after = await ceresInstance.css_address.call();
-		assert.equal(css_address_after,CSS_ADDRESS_AFTER);
+		const eth_usd_consumer_address_after = await ceresInstance.eth_usd_consumer_address.call();
+		const eth_usd_pricer_after = await ceresInstance.eth_usd_pricer.call();
+		const eth_usd_pricer_decimals_after = new BN(await ceresInstance.eth_usd_pricer_decimals.call());
+		
+		console.log(chalk.blue("eth_usd_consumer_address_after: ",eth_usd_consumer_address_after));
+		console.log(chalk.blue("eth_usd_pricer_after: ",eth_usd_pricer_after));
+		console.log(chalk.blue("eth_usd_pricer_decimals_after: ",eth_usd_pricer_decimals_after));
 
+		// Assert
+		assert.notEqual(eth_usd_consumer_address_before.toString(),eth_usd_consumer_address_after.toString());
+		assert.notEqual(eth_usd_pricer_before.toString(),eth_usd_pricer_after.toString());
+		assert.equal(eth_usd_pricer_decimals_before.toString(),eth_usd_pricer_decimals_after.toString());
 	});
 
 
