@@ -1066,7 +1066,7 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
 		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
 		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
-		
+
 
 
 	});
