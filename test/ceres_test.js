@@ -1135,20 +1135,20 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 	});
 
 	it("test scripts for Ceres_USDC_Pool redemption_delay", async () => {
-		console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
-		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
-		console.log(chalk.blue("ER: REDEMPTION_DELAY",REDEMPTION_DELAY.toString()));
+		// console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
+		// console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+		// console.log(chalk.blue("ER: REDEMPTION_DELAY",REDEMPTION_DELAY.toString()));
 		
-		// Action
-		redemption_delay = await pool_instance_USDC.redemption_delay.call();
+		// // Action
+		// redemption_delay = await pool_instance_USDC.redemption_delay.call();
 		
-		// ASSERT
-		assert.equal(redemption_delay.toString(),REDEMPTION_DELAY.toString());
+		// // ASSERT
+		// assert.equal(redemption_delay.toString(),REDEMPTION_DELAY.toString());
 
-		// Print
-		console.log(chalk.yellow("AR: redemption_delay: ",redemption_delay.toString()));
+		// // Print
+		// console.log(chalk.yellow("AR: redemption_delay: ",redemption_delay.toString()));
 	});
 
 
