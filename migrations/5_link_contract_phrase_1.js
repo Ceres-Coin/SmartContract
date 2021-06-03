@@ -34,6 +34,10 @@ const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 
 const DUMP_ADDRESS = "0x1111111111111111111111111111111111111111";
 
+// CeresPool
+const CeresPoolLibrary = artifacts.require("Ceres/Pools/CERESPoolLibrary");
+const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
+
 
 
 // Make sure Ganache is running beforehand
@@ -62,6 +66,9 @@ module.exports = async function(deployer, network, accounts) {
 
     console.log("link UniswapV2Pair, [UniswapV2Factory]");
     await deployer.link(UniswapV2Pair, [UniswapV2Factory]);
+
+    await deployer.deploy(CeresPoolLibrary);
+    await deployer.link(CeresPoolLibrary, [Pool_USDC]);
 
 
 }
