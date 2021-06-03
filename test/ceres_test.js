@@ -892,7 +892,14 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 	const RECOLLAT_FEE = 100; //0.01%
 
 	
+	// USDC_Pool Constants
+	const PRICE_PRECISION = new BigNumber(1e6);
+	const COLLATERAL_RATIO_PRECISION = new BigNumber(1e6);
+	const COLLATERAL_RATIO_MAX = new BigNumber(1e6);
 
+	let price_precision;
+	let collateral_ratio_precision;
+	let collateral_ratio_max;
 
 	
 
@@ -950,56 +957,87 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 
 
 	it("test scripts for Ceres_USDC_Pool Parameters P1", async () => {
-		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
-		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool ============"));
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool ============"));
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool ============"));
+	// 	console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
 
-		// Action
-		collateral_token = await pool_instance_USDC.collateral_token.call();
-		collateral_address = await pool_instance_USDC.collateral_address.call();
-		owner_address = await pool_instance_USDC.owner_address.call();
-		ceres_contract_address = await pool_instance_USDC.ceres_contract_address.call();
-		css_contract_address = await pool_instance_USDC.css_contract_address.call();
-		timelock_address = await pool_instance_USDC.timelock_address.call();
+	// 	// Action
+	// 	collateral_token = await pool_instance_USDC.collateral_token.call();
+	// 	collateral_address = await pool_instance_USDC.collateral_address.call();
+	// 	owner_address = await pool_instance_USDC.owner_address.call();
+	// 	ceres_contract_address = await pool_instance_USDC.ceres_contract_address.call();
+	// 	css_contract_address = await pool_instance_USDC.css_contract_address.call();
+	// 	timelock_address = await pool_instance_USDC.timelock_address.call();
 
-		// Print Result
-		console.log(chalk.blue("collateral_token: ",collateral_token.toString()));
-		console.log(chalk.blue("collateral_address: ",collateral_address.toString()));
-		console.log(chalk.blue("owner_address: ",owner_address.toString()));
-		console.log(chalk.blue("ceres_contract_address: ",ceres_contract_address.toString()));
-		console.log(chalk.blue("css_contract_address: ",css_contract_address.toString()));
-		console.log(chalk.blue("timelock_address: ",timelock_address.toString()));
+	// 	// Print Result
+	// 	console.log(chalk.blue("collateral_token: ",collateral_token.toString()));
+	// 	console.log(chalk.blue("collateral_address: ",collateral_address.toString()));
+	// 	console.log(chalk.blue("owner_address: ",owner_address.toString()));
+	// 	console.log(chalk.blue("ceres_contract_address: ",ceres_contract_address.toString()));
+	// 	console.log(chalk.blue("css_contract_address: ",css_contract_address.toString()));
+	// 	console.log(chalk.blue("timelock_address: ",timelock_address.toString()));
 	});
 
 	it("test scripts for Ceres_USDC_Pool Parameters P2", async () => {
-		console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
+	// 	console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+
+	// 	console.log(chalk.blue("ER: MINTING_FEE",MINTING_FEE));
+	// 	console.log(chalk.blue("ER: REDEMPTION_FEE",REDEMPTION_FEE));
+	// 	console.log(chalk.blue("ER: BUYBACK_FEE",BUYBACK_FEE));
+	// 	console.log(chalk.blue("ER: RECOLLAT_FEE",RECOLLAT_FEE));
+
+	// 	// Action
+	// 	minting_fee = await pool_instance_USDC.minting_fee.call();
+	// 	redemption_fee = await pool_instance_USDC.redemption_fee.call();
+	// 	buyback_fee = await pool_instance_USDC.buyback_fee.call();
+	// 	recollat_fee = await pool_instance_USDC.recollat_fee.call();
+
+	// 	// ASSERT
+	// 	assert.equal(minting_fee,MINTING_FEE);
+	// 	assert.equal(redemption_fee,REDEMPTION_FEE);
+	// 	assert.equal(buyback_fee,BUYBACK_FEE);
+	// 	assert.equal(recollat_fee,RECOLLAT_FEE);
+
+	// 	// Print Result
+	// 	console.log(chalk.yellow("AR: minting_fee: ",minting_fee.toString()));
+	// 	console.log(chalk.yellow("AR: redemption_fee: ",redemption_fee.toString()));
+	// 	console.log(chalk.yellow("AR: buyback_fee: ",buyback_fee.toString()));
+	// 	console.log(chalk.yellow("AR: recollat_fee: ",recollat_fee.toString()));
+
+	});
+
+	it("test scripts for Ceres_USDC_Pool Constant", async () => {
+		console.log(chalk.red("============ Ceres_USDC_Pool Constant============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool Constant============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool Constant============"));
 		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
 
-		console.log(chalk.blue("ER: MINTING_FEE",MINTING_FEE));
-		console.log(chalk.blue("ER: REDEMPTION_FEE",REDEMPTION_FEE));
-		console.log(chalk.blue("ER: BUYBACK_FEE",BUYBACK_FEE));
-		console.log(chalk.blue("ER: RECOLLAT_FEE",RECOLLAT_FEE));
+		console.log(chalk.blue("ER: PRICE_PRECISION",PRICE_PRECISION.toString()));
+		console.log(chalk.blue("ER: COLLATERAL_RATIO_PRECISION",COLLATERAL_RATIO_PRECISION.toString()));
+		console.log(chalk.blue("ER: COLLATERAL_RATIO_MAX",COLLATERAL_RATIO_MAX.toString()));
+		
 
 		// Action
-		minting_fee = await pool_instance_USDC.minting_fee.call();
-		redemption_fee = await pool_instance_USDC.redemption_fee.call();
-		buyback_fee = await pool_instance_USDC.buyback_fee.call();
-		recollat_fee = await pool_instance_USDC.recollat_fee.call();
+		price_precision = await pool_instance_USDC.PRICE_PRECISION.call();
+		collateral_ratio_precision = await pool_instance_USDC.COLLATERAL_RATIO_PRECISION.call();
+		collateral_ratio_max = await pool_instance_USDC.COLLATERAL_RATIO_MAX.call();
+	
 
 		// ASSERT
-		assert.equal(minting_fee,MINTING_FEE);
-		assert.equal(redemption_fee,REDEMPTION_FEE);
-		assert.equal(buyback_fee,BUYBACK_FEE);
-		assert.equal(recollat_fee,RECOLLAT_FEE);
+		assert.equal(price_precision.toString(),PRICE_PRECISION.toString());
+		assert.equal(collateral_ratio_precision.toString(),COLLATERAL_RATIO_PRECISION.toString());
+		assert.equal(collateral_ratio_max.toString(),COLLATERAL_RATIO_MAX.toString());
+		
 
 		// Print Result
-		console.log(chalk.yellow("AR: minting_fee: ",minting_fee.toString()));
-		console.log(chalk.yellow("AR: redemption_fee: ",redemption_fee.toString()));
-		console.log(chalk.yellow("AR: buyback_fee: ",buyback_fee.toString()));
-		console.log(chalk.yellow("AR: recollat_fee: ",recollat_fee.toString()));
+		console.log(chalk.yellow("AR: price_precision: ",price_precision.toString()));
+		console.log(chalk.yellow("AR: collateral_ratio_precision: ",collateral_ratio_precision.toString()));
+		console.log(chalk.yellow("AR: collateral_ratio_max: ",collateral_ratio_max.toString()));
+		
 
 	});
 

@@ -42,12 +42,12 @@ contract CeresPool is AccessControl {
     mapping (address => uint256) public lastRedeemed;
 
     // Constants for various precisions
-    uint256 private constant PRICE_PRECISION = 1e6;
-    uint256 private constant COLLATERAL_RATIO_PRECISION = 1e6;
-    uint256 private constant COLLATERAL_RATIO_MAX = 1e6;
+    uint256 public constant PRICE_PRECISION = 1e6;
+    uint256 public constant COLLATERAL_RATIO_PRECISION = 1e6;
+    uint256 public constant COLLATERAL_RATIO_MAX = 1e6;
 
     // Number of decimals needed to get to 18
-    uint256 private immutable missing_decimals;
+    uint256 public immutable missing_decimals;
     
     // Pool_ceiling is the total units of collateral that a pool contract can hold
     uint256 public pool_ceiling = 0;
