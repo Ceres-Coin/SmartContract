@@ -871,59 +871,8 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 	let first_CSS_WETH;
 	let first_CSS_USDC;
 
-	// CERES Constants
-	let totalSupplyCERES;
-	let totalSupplyCSS;
-	let globalCollateralRatio;
-	let globalCollateralValue;
-	// CERES public constants
-	let global_collateral_ratio;
-	let redemption_fee;
-	let minting_fee;
-	let ceres_step;
-	let refresh_cooldown;
-	let price_target;
-	let price_band;
-	let DEFAULT_ADMIN_ADDRESS;
-	let COLLATERAL_RATIO_PAUSER;
-	let collateral_ratio_paused;
-
-	// CERES ERC20 info
-
-
-	// CERES Other Info
-	let ceres_pools_array_length;
-	let ceres_pools_length;
-	let PRICE_PRECISION;
-
-	// CERES Price Functions
-	let ceres_price;
-	let css_price;
-	let eth_usd_price;
-
-	let last_call_time;
-
-	// ceres Minting Parameters
-	const REDEMPTION_FEE = 400; // 0.04%
-	const MINTING_FEE = 300; // 0.03%
-	const BUYBACK_FEE = 100; //0.01%
-	const RECOLLAT_FEE = 100; //0.01%
-	const CERES_STEP = 7890; //0.789%
-	const PRICE_TARGET_AFTER = 1500000;
-	const PRICE_TARGET_BEFORE = 1000000;
-
-	const REFRESH_COOLDOWN_BEFORE = 60;
-	const REFRESH_COOLDOWN_AFTER = 300;
-
-	let CSS_ADDRESS_BEFORE = 0;
-	let CSS_ADDRESS_AFTER = "0x1111111111111111111111111111111111111111"
-
-	// price_band
-	PRICE_BAND_BEFORE = 5000;
-	PRICE_BAND_AFTER = 10000;
-
+	// USDC_Pool Parameter
 	let pool_instance_USDC;
-
 	// USDC_Pool Public Variants
 	let collateral_token;
 	let collateral_address;
@@ -941,73 +890,37 @@ contract('Ceres_USDC_Pool', async (accounts) => {
     beforeEach(async() => {
 		console.log(chalk.white.bgRed.bold("====================== BEFORE EACH TEST CASE ======================"));
 
-		// set the deploy address
-		
 		ADMIN = accounts[0];
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
 
-		
 		ceresInstance = await CEREStable.deployed();
 		cssInstance = await CEREShares.deployed();
-
 		wethInstance = await WETH.deployed();
+
 		col_instance_USDC = await FakeCollateral_USDC.deployed(); 
 		col_instance_USDT = await FakeCollateral_USDT.deployed(); 
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
 
-
-
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
-
-
-
 		timelockInstance = await Timelock.deployed(); 
-
-
-
 		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
-
-
-		// Initialize the Uniswap Libraries
 		uniswapLibraryInstance = await UniswapV2Library.deployed(); 
 		uniswapOracleLibraryInstance = await UniswapV2OracleLibrary.deployed(); 
-		// Initialize the swap to price contract
 		swapToPriceInstance = await SwapToPrice.deployed(); 
 
-
 		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		// ceres_usdc
 		pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-
-
-
-		// Get the addresses of the pairs
-		
-		// css_weth
 		pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		// ceres_usdc
 		pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		// console.log(chalk.red('======= get uniswap pair css_xxxx addresses ====='));
-		// console.log("pair_addr_CSS_WETH: ",pair_addr_CSS_WETH);
-		// console.log("pair_addr_CSS_USDC: ",pair_addr_CSS_USDC);
 
-		// Fill oracle instances
 		oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
 		oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed();
-		// console.log("oracle_instance_CERES_WETH",oracle_instance_CERES_WETH.address);
-		// console.log("oracle_instance_CERES_USDC",oracle_instance_CERES_USDC.address);
 
-		// Fill oracle instances
 		oracle_instance_CSS_WETH = await UniswapPairOracle_CSS_WETH.deployed();
 		oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
-		// console.log("oracle_instance_CSS_WETH",oracle_instance_CSS_WETH.address);
-		// console.log("oracle_instance_CSS_USDC",oracle_instance_CSS_USDC.address);
 
-		// Get the pair order results
 		first_CERES_WETH = await oracle_instance_CERES_WETH.token0();
 		first_CERES_USDC = await oracle_instance_CERES_USDC.token0();
-
-
 		first_CSS_WETH = await oracle_instance_CSS_WETH.token0();
 		first_CSS_USDC = await oracle_instance_CSS_USDC.token0();
 
@@ -1017,10 +930,6 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 		first_CSS_WETH = cssInstance.address == first_CSS_WETH;
 		first_CSS_USDC = cssInstance.address == first_CSS_USDC;
 
-		// console.log("first_CERES_WETH: ",first_CERES_WETH);
-		// console.log("first_CERES_USDC: ",first_CERES_USDC);
-		// console.log("first_CSS_WETH: ",first_CSS_WETH);
-		// console.log("first_CSS_USDC: ",first_CSS_USDC);
 
 		pool_instance_USDC = await Pool_USDC.deployed();
 		
