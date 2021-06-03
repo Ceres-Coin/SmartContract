@@ -58,6 +58,11 @@ const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHU
 const StringHelpers = artifacts.require("Utils/StringHelpers");
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
+const REDEMPTION_FEE = 400; // 0.04%
+const MINTING_FEE = 300; // 0.03%
+const BUYBACK_FEE = 100; //0.01%
+const RECOLLAT_FEE = 100; //0.01%
+
 
 
 
@@ -111,6 +116,24 @@ module.exports = async function(deployer, network, accounts) {
 	await deployer.link(StringHelpers, [Pool_USDC]);
 	await Promise.all([
 		deployer.deploy(Pool_USDC, ceresInstance.address, cssInstance.address, col_instance_USDC.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address, FIVE_MILLION_DEC6),
+	]);
+
+	// ============= Get the pool instances ========
+	console.log(chalk.yellow('========== POOL INSTANCES =========='));
+	const pool_instance_USDC = await Pool_USDC.deployed();
+	console.log("pool_instance_USDC: ",pool_instance_USDC.address);
+
+	// Set the redemption fee to 0.04%
+	// Set the minting fee to 0.03%
+	await Promise.all([
+		ceresInstance.setRedemptionFee(REDEMPTION_FEE, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		ceresInstance.setMintingFee(MINTING_FEE, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
+	]);
+
+	// ============= Set the pool parameters so the minting and redemption fees get set ========
+	console.log(chalk.yellow('========== REFRESH POOL PARAMETERS =========='));
+	await Promise.all([
+		await pool_instance_USDC.setPoolParameters(FIVE_MILLION_DEC6, 7500, 1, MINTING_FEE, REDEMPTION_FEE, BUYBACK_FEE, RECOLLAT_FEE, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),	
 	]);
 
 
