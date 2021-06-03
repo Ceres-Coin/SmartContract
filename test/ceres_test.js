@@ -917,6 +917,9 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 	let pool_ceiling;
 	const POOL_CEILING = FIVE_MILLION_DEC6;
 
+	let pausedPrice;
+	const PAUSEDPRICE = 0;
+
 	
 
     beforeEach(async() => {
@@ -1090,6 +1093,24 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		// // Print Result
 		// console.log(chalk.yellow("AR: pool_ceiling: ",pool_ceiling.toString()));
 	});
+
+	it("test scripts for Ceres_USDC_Pool pausedPrice", async () => {
+		console.log(chalk.red("============ Ceres_USDC_Pool pausedPrice============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool pausedPrice============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool pausedPrice============"));
+		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+		console.log(chalk.blue("ER: PAUSEDPRICE",PAUSEDPRICE.toString()));
+		
+		// Action
+		pausedPrice = await pool_instance_USDC.pausedPrice.call();
+		
+		// ASSERT
+		assert.equal(pausedPrice.toString(),PAUSEDPRICE.toString());
+
+		// Print Result
+		console.log(chalk.yellow("AR: pausedPrice: ",pausedPrice.toString()));
+	});
+
 
 });
 
