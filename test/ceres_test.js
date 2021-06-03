@@ -920,6 +920,12 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 	let pausedPrice;
 	const PAUSEDPRICE = 0;
 
+	let bonus_rate;
+	const BONUS_RATE = 7500;
+
+	let redemption_delay;
+	const REDEMPTION_DELAY = 1;
+
 	
 
     beforeEach(async() => {
@@ -1095,20 +1101,54 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 	});
 
 	it("test scripts for Ceres_USDC_Pool pausedPrice", async () => {
-		console.log(chalk.red("============ Ceres_USDC_Pool pausedPrice============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool pausedPrice============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool pausedPrice============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool pausedPrice============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool pausedPrice============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool pausedPrice============"));
+		// console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+		// console.log(chalk.blue("ER: PAUSEDPRICE",PAUSEDPRICE.toString()));
+		
+		// // Action
+		// pausedPrice = await pool_instance_USDC.pausedPrice.call();
+		
+		// // ASSERT
+		// assert.equal(pausedPrice.toString(),PAUSEDPRICE.toString());
+
+		// // Print Result
+		// console.log(chalk.yellow("AR: pausedPrice: ",pausedPrice.toString()));
+	});
+
+	it("test scripts for Ceres_USDC_Pool bonus_rate", async () => {
+		// console.log(chalk.red("============ Ceres_USDC_Pool bonus_rate============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool bonus_rate============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool bonus_rate============"));
+		// console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+		// console.log(chalk.blue("ER: BONUS_RATE",BONUS_RATE.toString()));
+		
+		// // Action
+		// bonus_rate = await pool_instance_USDC.bonus_rate.call();
+		
+		// // ASSERT
+		// assert.equal(bonus_rate.toString(),BONUS_RATE.toString());
+
+		// // Print
+		// console.log(chalk.yellow("AR: bonus_rate: ",bonus_rate.toString()));
+	});
+
+	it("test scripts for Ceres_USDC_Pool redemption_delay", async () => {
+		console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
 		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
-		console.log(chalk.blue("ER: PAUSEDPRICE",PAUSEDPRICE.toString()));
+		console.log(chalk.blue("ER: REDEMPTION_DELAY",REDEMPTION_DELAY.toString()));
 		
 		// Action
-		pausedPrice = await pool_instance_USDC.pausedPrice.call();
+		redemption_delay = await pool_instance_USDC.redemption_delay.call();
 		
 		// ASSERT
-		assert.equal(pausedPrice.toString(),PAUSEDPRICE.toString());
+		assert.equal(redemption_delay.toString(),REDEMPTION_DELAY.toString());
 
-		// Print Result
-		console.log(chalk.yellow("AR: pausedPrice: ",pausedPrice.toString()));
+		// Print
+		console.log(chalk.yellow("AR: redemption_delay: ",redemption_delay.toString()));
 	});
 
 
