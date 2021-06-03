@@ -892,9 +892,7 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 	let symbol;
 	let name;
 	let decimals;
-	let owner_address;
 	let creator_address;
-	let timelock_address;
 	let controller_address;
 	let css_address;
 	let ceres_eth_oracle_address;
@@ -938,6 +936,12 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 
 	// USDC_Pool Public Variants
 	let collateral_token;
+	let collateral_address;
+	let owner_address;
+	let ceres_contract_address;
+	let css_contract_address;
+	let timelock_address;
+
 
 	
 
@@ -1072,9 +1076,19 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 
 		// Action
 		collateral_token = await pool_instance_USDC.collateral_token.call();
+		collateral_address = await pool_instance_USDC.collateral_address.call();
+		owner_address = await pool_instance_USDC.owner_address.call();
+		ceres_contract_address = await pool_instance_USDC.ceres_contract_address.call();
+		css_contract_address = await pool_instance_USDC.css_contract_address.call();
+		timelock_address = await pool_instance_USDC.timelock_address.call();
 
 		// Print Result
 		console.log(chalk.blue("collateral_token: ",collateral_token.toString()));
+		console.log(chalk.blue("collateral_address: ",collateral_address.toString()));
+		console.log(chalk.blue("owner_address: ",owner_address.toString()));
+		console.log(chalk.blue("ceres_contract_address: ",ceres_contract_address.toString()));
+		console.log(chalk.blue("css_contract_address: ",css_contract_address.toString()));
+		console.log(chalk.blue("timelock_address: ",timelock_address.toString()));
 
 
 
