@@ -16,19 +16,19 @@ contract CeresPool is AccessControl {
 
     /* ========== STATE VARIABLES ========== */
 
-    ERC20 private collateral_token;
-    address private collateral_address;
-    address private owner_address;
+    ERC20 public collateral_token;
+    address public collateral_address;
+    address public owner_address;
 
-    address private ceres_contract_address;
-    address private css_contract_address;
-    address private timelock_address;
-    CEREShares private CSS;
-    CEREStable private CERES;
+    address public ceres_contract_address;
+    address public css_contract_address;
+    address public timelock_address;
+    CEREShares public CSS;
+    CEREStable public CERES;
 
-    UniswapPairOracle private collatEthOracle;
+    UniswapPairOracle public collatEthOracle;
     address public collat_eth_oracle_address;
-    address private weth_address;
+    address public weth_address;
 
     uint256 public minting_fee;
     uint256 public redemption_fee;
