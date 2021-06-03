@@ -829,7 +829,7 @@ contract('CERES', async (accounts) => {
 
 
 
-contract('Ceres_USDC_Pool', async (accounts) => {
+contract('CERES_USDC_Pool_D6', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
@@ -896,10 +896,12 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 	const PRICE_PRECISION = new BigNumber(1e6);
 	const COLLATERAL_RATIO_PRECISION = new BigNumber(1e6);
 	const COLLATERAL_RATIO_MAX = new BigNumber(1e6);
+	const MISSING_DECIMALS = 12;
 
 	let price_precision;
 	let collateral_ratio_precision;
 	let collateral_ratio_max;
+	let missing_decimals;
 
 	
 
@@ -1011,34 +1013,51 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 	});
 
 	it("test scripts for Ceres_USDC_Pool Constant", async () => {
-		console.log(chalk.red("============ Ceres_USDC_Pool Constant============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool Constant============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool Constant============"));
-		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+		// console.log(chalk.red("============ Ceres_USDC_Pool Constant============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool Constant============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool Constant============"));
+		// console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
 
-		console.log(chalk.blue("ER: PRICE_PRECISION",PRICE_PRECISION.toString()));
-		console.log(chalk.blue("ER: COLLATERAL_RATIO_PRECISION",COLLATERAL_RATIO_PRECISION.toString()));
-		console.log(chalk.blue("ER: COLLATERAL_RATIO_MAX",COLLATERAL_RATIO_MAX.toString()));
+		// console.log(chalk.blue("ER: PRICE_PRECISION",PRICE_PRECISION.toString()));
+		// console.log(chalk.blue("ER: COLLATERAL_RATIO_PRECISION",COLLATERAL_RATIO_PRECISION.toString()));
+		// console.log(chalk.blue("ER: COLLATERAL_RATIO_MAX",COLLATERAL_RATIO_MAX.toString()));
 		
 
-		// Action
-		price_precision = await pool_instance_USDC.PRICE_PRECISION.call();
-		collateral_ratio_precision = await pool_instance_USDC.COLLATERAL_RATIO_PRECISION.call();
-		collateral_ratio_max = await pool_instance_USDC.COLLATERAL_RATIO_MAX.call();
+		// // Action
+		// price_precision = await pool_instance_USDC.PRICE_PRECISION.call();
+		// collateral_ratio_precision = await pool_instance_USDC.COLLATERAL_RATIO_PRECISION.call();
+		// collateral_ratio_max = await pool_instance_USDC.COLLATERAL_RATIO_MAX.call();
 	
 
-		// ASSERT
-		assert.equal(price_precision.toString(),PRICE_PRECISION.toString());
-		assert.equal(collateral_ratio_precision.toString(),COLLATERAL_RATIO_PRECISION.toString());
-		assert.equal(collateral_ratio_max.toString(),COLLATERAL_RATIO_MAX.toString());
+		// // ASSERT
+		// assert.equal(price_precision.toString(),PRICE_PRECISION.toString());
+		// assert.equal(collateral_ratio_precision.toString(),COLLATERAL_RATIO_PRECISION.toString());
+		// assert.equal(collateral_ratio_max.toString(),COLLATERAL_RATIO_MAX.toString());
 		
+
+		// // Print Result
+		// console.log(chalk.yellow("AR: price_precision: ",price_precision.toString()));
+		// console.log(chalk.yellow("AR: collateral_ratio_precision: ",collateral_ratio_precision.toString()));
+		// console.log(chalk.yellow("AR: collateral_ratio_max: ",collateral_ratio_max.toString()));
+		
+
+	});
+
+	it("test scripts for Ceres_USDC_Pool missing_decimals", async () => {
+		console.log(chalk.red("============ Ceres_USDC_Pool missing_decimals============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool missing_decimals============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool missing_decimals============"));
+		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+		console.log(chalk.blue("ER: MISSING_DECIMALS",MISSING_DECIMALS.toString()));
+		
+		// Action
+		missing_decimals = await pool_instance_USDC.missing_decimals.call();
+		
+		// ASSERT
+		assert.equal(missing_decimals.toString(),MISSING_DECIMALS.toString());
 
 		// Print Result
-		console.log(chalk.yellow("AR: price_precision: ",price_precision.toString()));
-		console.log(chalk.yellow("AR: collateral_ratio_precision: ",collateral_ratio_precision.toString()));
-		console.log(chalk.yellow("AR: collateral_ratio_max: ",collateral_ratio_max.toString()));
-		
-
+		console.log(chalk.yellow("AR: missing_decimals: ",missing_decimals.toString()));
 	});
 
 
