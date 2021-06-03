@@ -27,6 +27,17 @@ const ERC20 = artifacts.require("ERC20/ERC20");
 const ERC20Custom = artifacts.require("ERC20/ERC20Custom");
 const SafeERC20 = artifacts.require("ERC20/SafeERC20");
 
+// set constants
+console.log(chalk.yellow('===== SET CONSTANTS ====='));
+const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
+const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
+const FIVE_MILLION_DEC6 = new BigNumber("5000000e6");
+const TEN_MILLION_DEC18 = new BigNumber("10000000e18");
+const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
+const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
+const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
+const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
+
 // Uniswap related
 const TransferHelper = artifacts.require("Uniswap/TransferHelper");
 const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
@@ -903,6 +914,9 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 	let collateral_ratio_max;
 	let missing_decimals;
 
+	let pool_ceiling;
+	const POOL_CEILING = FIVE_MILLION_DEC6;
+
 	
 
     beforeEach(async() => {
@@ -982,33 +996,33 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 	});
 
 	it("test scripts for Ceres_USDC_Pool Parameters P2", async () => {
-	// 	console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
-	// 	console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
-	// 	console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
-	// 	console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+		// console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
+		// console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
 
-	// 	console.log(chalk.blue("ER: MINTING_FEE",MINTING_FEE));
-	// 	console.log(chalk.blue("ER: REDEMPTION_FEE",REDEMPTION_FEE));
-	// 	console.log(chalk.blue("ER: BUYBACK_FEE",BUYBACK_FEE));
-	// 	console.log(chalk.blue("ER: RECOLLAT_FEE",RECOLLAT_FEE));
+		// console.log(chalk.blue("ER: MINTING_FEE",MINTING_FEE));
+		// console.log(chalk.blue("ER: REDEMPTION_FEE",REDEMPTION_FEE));
+		// console.log(chalk.blue("ER: BUYBACK_FEE",BUYBACK_FEE));
+		// console.log(chalk.blue("ER: RECOLLAT_FEE",RECOLLAT_FEE));
 
-	// 	// Action
-	// 	minting_fee = await pool_instance_USDC.minting_fee.call();
-	// 	redemption_fee = await pool_instance_USDC.redemption_fee.call();
-	// 	buyback_fee = await pool_instance_USDC.buyback_fee.call();
-	// 	recollat_fee = await pool_instance_USDC.recollat_fee.call();
+		// // Action
+		// minting_fee = await pool_instance_USDC.minting_fee.call();
+		// redemption_fee = await pool_instance_USDC.redemption_fee.call();
+		// buyback_fee = await pool_instance_USDC.buyback_fee.call();
+		// recollat_fee = await pool_instance_USDC.recollat_fee.call();
 
-	// 	// ASSERT
-	// 	assert.equal(minting_fee,MINTING_FEE);
-	// 	assert.equal(redemption_fee,REDEMPTION_FEE);
-	// 	assert.equal(buyback_fee,BUYBACK_FEE);
-	// 	assert.equal(recollat_fee,RECOLLAT_FEE);
+		// // ASSERT
+		// assert.equal(minting_fee,MINTING_FEE);
+		// assert.equal(redemption_fee,REDEMPTION_FEE);
+		// assert.equal(buyback_fee,BUYBACK_FEE);
+		// assert.equal(recollat_fee,RECOLLAT_FEE);
 
-	// 	// Print Result
-	// 	console.log(chalk.yellow("AR: minting_fee: ",minting_fee.toString()));
-	// 	console.log(chalk.yellow("AR: redemption_fee: ",redemption_fee.toString()));
-	// 	console.log(chalk.yellow("AR: buyback_fee: ",buyback_fee.toString()));
-	// 	console.log(chalk.yellow("AR: recollat_fee: ",recollat_fee.toString()));
+		// // Print Result
+		// console.log(chalk.yellow("AR: minting_fee: ",minting_fee.toString()));
+		// console.log(chalk.yellow("AR: redemption_fee: ",redemption_fee.toString()));
+		// console.log(chalk.yellow("AR: buyback_fee: ",buyback_fee.toString()));
+		// console.log(chalk.yellow("AR: recollat_fee: ",recollat_fee.toString()));
 
 	});
 
@@ -1060,6 +1074,22 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		// console.log(chalk.yellow("AR: missing_decimals: ",missing_decimals.toString()));
 	});
 
+	it("test scripts for Ceres_USDC_Pool pool_ceiling", async () => {
+		// console.log(chalk.red("============ Ceres_USDC_Pool pool_ceiling============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool pool_ceiling============"));
+		// console.log(chalk.red("============ Ceres_USDC_Pool pool_ceiling============"));
+		// console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+		// console.log(chalk.blue("ER: POOL_CEILING",POOL_CEILING.toString()));
+		
+		// // Action
+		// pool_ceiling = await pool_instance_USDC.pool_ceiling.call();
+		
+		// // ASSERT
+		// assert.equal(pool_ceiling.toString(),POOL_CEILING.toString());
+
+		// // Print Result
+		// console.log(chalk.yellow("AR: pool_ceiling: ",pool_ceiling.toString()));
+	});
 
 });
 

@@ -58,8 +58,8 @@ const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHU
 const StringHelpers = artifacts.require("Utils/StringHelpers");
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
-const REDEMPTION_FEE = 400; // 0.04%
 const MINTING_FEE = 300; // 0.03%
+const REDEMPTION_FEE = 400; // 0.04%
 const BUYBACK_FEE = 100; //0.01%
 const RECOLLAT_FEE = 100; //0.01%
 
