@@ -98,9 +98,12 @@ module.exports = {
     development: {
 			host: "127.0.0.1",
 			port: 8545,
-			network_id: "31337"
-			// confirmations: 1,
-			// gas: 0x1ffffffffffffe
+			network_id: "31337",
+			blockGasLimit: 7500000,
+      gas: 7200000,
+      gasPrice: 20000000000,
+      gasLimit: 7200000
+      // confirmations: 1,
 			// websockets: true,        // Enable EventEmitter interface for web3 (default: false)
 		}
   },
@@ -117,19 +120,30 @@ module.exports = {
   },
 
   // Configure your compilers
+  // compilers: {
+  //   solc: {
+  //     version: '0.6.12+commit.27d51765',    // Fetch exact version from solc-bin (default: truffle's version)
+  //     // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+  //     // settings: {          // See the solidity docs for advice about optimization and evmVersion
+  //     //  optimizer: {
+  //     //    enabled: false,
+  //     //    runs: 200
+  //     //  },
+  //     //  evmVersion: "byzantium"
+  //     // }
+  //   }
+  // },
   compilers: {
-    solc: {
-      version: '0.6.12+commit.27d51765',    // Fetch exact version from solc-bin (default: truffle's version)
-      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      // settings: {          // See the solidity docs for advice about optimization and evmVersion
-      //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
-      //  evmVersion: "byzantium"
-      // }
-    }
-  },
+		solc: {
+			version: "0.6.12",
+			settings: {
+				optimizer: {
+					enabled: true,
+					runs: 100000
+				}
+			}
+		}
+	},
 
   // Truffle DB is currently disabled by default; to enable it, change enabled: false to enabled: true
   //

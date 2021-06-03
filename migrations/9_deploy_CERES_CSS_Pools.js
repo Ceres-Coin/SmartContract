@@ -26,11 +26,13 @@ const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DE
 console.log(chalk.yellow('===== SET CONSTANTS ====='));
 const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
 const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
+const FIVE_MILLION_DEC6 = new BigNumber("5000000e6");
 const TEN_MILLION_DEC18 = new BigNumber("10000000e18");
 const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
 const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
+
 
 const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 
@@ -53,6 +55,8 @@ const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHU
 
 // Core Pool
 // CERES_USDC Pool
+const StringHelpers = artifacts.require("Utils/StringHelpers");
+const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
 
 
@@ -102,7 +106,13 @@ module.exports = async function(deployer, network, accounts) {
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
 	}
 	
-	const Pool_USDC = artifacts.require("Frax/Pools/Pool_USDC");
+	// ============= Set the CERES Pools ========
+	console.log(chalk.yellow('========== CERES POOLS =========='));
+	await deployer.link(StringHelpers, [Pool_USDC]);
+	await Promise.all([
+		deployer.deploy(Pool_USDC, ceresInstance.address, cssInstance.address, col_instance_USDC.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address, FIVE_MILLION_DEC6),
+	]);
+
 
 	
 }

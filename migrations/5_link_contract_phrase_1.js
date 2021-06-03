@@ -67,6 +67,11 @@ module.exports = async function(deployer, network, accounts) {
     console.log("link UniswapV2Pair, [UniswapV2Factory]");
     await deployer.link(UniswapV2Pair, [UniswapV2Factory]);
 
+
+
+    await deployer.link(SafeMath, [Pool_USDC]);
+    await deployer.link(TransferHelper, [Pool_USDC]);
+    await deployer.link(SafeERC20, [Pool_USDC]);
     await deployer.deploy(CeresPoolLibrary);
     await deployer.link(CeresPoolLibrary, [Pool_USDC]);
 
