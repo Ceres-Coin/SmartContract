@@ -60,6 +60,10 @@ const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOr
 // ChainlinkETHUSD Contract
 const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest2");
 
+const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
+
+
+
 
 
 
@@ -825,7 +829,7 @@ contract('CERES', async (accounts) => {
 
 
 
-contract('CeresInstance Advanced Func Test Scripts', async (accounts) => {
+contract('Ceres_USDC_Pool', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
@@ -929,6 +933,10 @@ contract('CeresInstance Advanced Func Test Scripts', async (accounts) => {
 	// price_band
 	PRICE_BAND_BEFORE = 5000;
 	PRICE_BAND_AFTER = 10000;
+
+	let pool_instance_USDC;
+
+	
 
 
 	
@@ -1044,16 +1052,20 @@ contract('CeresInstance Advanced Func Test Scripts', async (accounts) => {
 		// console.log("first_CSS_WETH: ",first_CSS_WETH);
 		// console.log("first_CSS_USDC: ",first_CSS_USDC);
 
+		pool_instance_USDC = await Pool_USDC.deployed();
+		
+
 
 		
 
     });
 
 
-	it("test scripts for ceresInstance.mint()  ", async () => {
-		console.log(chalk.red("============ ceresInstance.mint() ============"));
-		console.log(chalk.red("============ ceresInstance.mint() ============"));
-		console.log(chalk.red("============ ceresInstance.mint() ============"));
+	it("test scripts for Ceres_USDC_Pool  ", async () => {
+		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
+		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
 		
 
 
