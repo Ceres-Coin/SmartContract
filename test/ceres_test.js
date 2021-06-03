@@ -889,17 +889,7 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 	let collateral_ratio_paused;
 
 	// CERES ERC20 info
-	let symbol;
-	let name;
-	let decimals;
-	let creator_address;
-	let controller_address;
-	let css_address;
-	let ceres_eth_oracle_address;
-	let css_eth_oracle_address;
-	let weth_address;
-	let eth_usd_consumer_address;
-	let genesis_supply;
+
 
 	// CERES Other Info
 	let ceres_pools_array_length;
@@ -955,44 +945,28 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 		
 		ADMIN = accounts[0];
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
-		// console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
-		// console.log("ADMIN: ",ADMIN.address);
-		// console.log("COLLATERAL_CERES_AND_CERESHARES_OWNER: ",COLLATERAL_CERES_AND_CERESHARES_OWNER.address);
 
-		// CERES Core  Contract instances
 		
 		ceresInstance = await CEREStable.deployed();
 		cssInstance = await CEREShares.deployed();
-		// console.log(chalk.red('===== GET THE CORE ADDRESSES ====='));
-		// console.log(chalk.yellow("ceresInstance: ",ceresInstance.address));
-		// console.log(chalk.yellow("cssInstance: ",cssInstance.address));
 
-
-		// Fill collateral instances
 		wethInstance = await WETH.deployed();
 		col_instance_USDC = await FakeCollateral_USDC.deployed(); 
 		col_instance_USDT = await FakeCollateral_USDT.deployed(); 
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
-		// console.log(chalk.red('====== Get Fake WETH & USDC & USDT ======='));
-		// console.log("wethInstance: ",wethInstance.address);
-		// console.log("col_instance_USDC: ",col_instance_USDC.address);
-		// console.log("col_instance_USDT: ",col_instance_USDT.address);
-		// console.log("col_instance_6DEC: ",col_instance_6DEC.address);
 
-		// Fill the Uniswap Router Instance		
+
+
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
-		// console.log(chalk.red('====== UniswapV2Router02_Modified ======='));		
-		// console.log("routerInstance: ",routerInstance.address);
 
-		// Fill the Timelock instance
+
+
 		timelockInstance = await Timelock.deployed(); 
-		// console.log(chalk.red('====== timelockInstance ======='));	
-		// console.log("timelockInstance: ",timelockInstance.address);
 
-		// Initialize the Uniswap Factory Instance
+
+
 		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
-		// console.log(chalk.red('====== uniswapFactoryInstance ======='));	
-		// console.log("uniswapFactoryInstance: ",uniswapFactoryInstance.address);
+
 
 		// Initialize the Uniswap Libraries
 		uniswapLibraryInstance = await UniswapV2Library.deployed(); 
@@ -1000,22 +974,11 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 		// Initialize the swap to price contract
 		swapToPriceInstance = await SwapToPrice.deployed(); 
 
-		// console.log(chalk.red('====== uniswap Libraries & swapToPrice ======='));	
-		// console.log("uniswapLibraryInstance: ",uniswapLibraryInstance.address);
-		// console.log("uniswapOracleLibraryInstance: ",uniswapOracleLibraryInstance.address);
-		// console.log("swapToPriceInstance: ",swapToPriceInstance.address);
 
-
-		// Get the addresses of the pairs
-		
-		// ceres_weth
 		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 		// ceres_usdc
 		pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
-		// console.log(chalk.red('======= get uniswap pair ceres_xxxx addresses ====='));
-		// console.log("pair_addr_CERES_WETH: ",pair_addr_CERES_WETH);
-		// console.log("pair_addr_CERES_USDC: ",pair_addr_CERES_USDC);
 
 
 		// Get the addresses of the pairs
