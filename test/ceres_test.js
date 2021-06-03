@@ -881,6 +881,15 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 	let css_contract_address;
 	let timelock_address;
 
+	let minting_fee;
+	let redemption_fee;
+	let buyback_fee;
+	let recollat_fee;
+
+	const MINTING_FEE = 300; // 0.03%
+	const REDEMPTION_FEE = 400; // 0.04%
+	const BUYBACK_FEE = 100; //0.01%
+	const RECOLLAT_FEE = 100; //0.01%
 
 	
 
@@ -940,7 +949,7 @@ contract('Ceres_USDC_Pool', async (accounts) => {
     });
 
 
-	it("test scripts for Ceres_USDC_Pool  ", async () => {
+	it("test scripts for Ceres_USDC_Pool Parameters P1", async () => {
 		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
 		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
 		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
@@ -961,10 +970,39 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 		console.log(chalk.blue("ceres_contract_address: ",ceres_contract_address.toString()));
 		console.log(chalk.blue("css_contract_address: ",css_contract_address.toString()));
 		console.log(chalk.blue("timelock_address: ",timelock_address.toString()));
+	});
 
+	it("test scripts for Ceres_USDC_Pool Parameters P2", async () => {
+		console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
+		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
 
+		console.log(chalk.blue("ER: MINTING_FEE",MINTING_FEE));
+		console.log(chalk.blue("ER: REDEMPTION_FEE",REDEMPTION_FEE));
+		console.log(chalk.blue("ER: BUYBACK_FEE",BUYBACK_FEE));
+		console.log(chalk.blue("ER: RECOLLAT_FEE",RECOLLAT_FEE));
+
+		// Action
+		minting_fee = await pool_instance_USDC.minting_fee.call();
+		redemption_fee = await pool_instance_USDC.redemption_fee.call();
+		buyback_fee = await pool_instance_USDC.buyback_fee.call();
+		recollat_fee = await pool_instance_USDC.recollat_fee.call();
+
+		// ASSERT
+		assert.equal(minting_fee,MINTING_FEE);
+		assert.equal(redemption_fee,REDEMPTION_FEE);
+		assert.equal(buyback_fee,BUYBACK_FEE);
+		assert.equal(recollat_fee,RECOLLAT_FEE);
+
+		// Print Result
+		console.log(chalk.yellow("AR: minting_fee: ",minting_fee.toString()));
+		console.log(chalk.yellow("AR: redemption_fee: ",redemption_fee.toString()));
+		console.log(chalk.yellow("AR: buyback_fee: ",buyback_fee.toString()));
+		console.log(chalk.yellow("AR: recollat_fee: ",recollat_fee.toString()));
 
 	});
+
 
 });
 
