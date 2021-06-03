@@ -936,6 +936,9 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 
 	let pool_instance_USDC;
 
+	// USDC_Pool Public Variants
+	let collateral_token;
+
 	
 
 
@@ -1066,6 +1069,12 @@ contract('Ceres_USDC_Pool', async (accounts) => {
 		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
 		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
 		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+
+		// Action
+		collateral_token = await pool_instance_USDC.collateral_token.call();
+
+		// Print Result
+		console.log(chalk.blue("collateral_token: ",collateral_token.toString()));
 
 
 
