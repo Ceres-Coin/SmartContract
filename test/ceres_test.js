@@ -926,6 +926,20 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 	let redemption_delay;
 	const REDEMPTION_DELAY = 1;
 
+	// AccessControl state variables
+	const er_mintPaused = false;
+	const er_redeemPaused = false;
+	const er_recollateralizePaused = false;
+	const er_buyBackPaused = false;
+	const er_collateralPricePaused = false;
+
+	// AccessControl state variables
+	let ar_mintPaused;
+	let ar_redeemPaused;
+	let ar_recollateralizePaused;
+	let ar_buyBackPaused;
+	let ar_collateralPricePaused;
+
 	
 
     beforeEach(async() => {
@@ -1149,6 +1163,39 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 
 		// // Print
 		// console.log(chalk.yellow("AR: redemption_delay: ",redemption_delay.toString()));
+	});
+
+	it("test scripts for Ceres_USDC_Pool er_mintPaused & ", async () => {
+		console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool redemption_delay============"));
+		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+		console.log(chalk.blue("ER: er_mintPaused",er_mintPaused.toString()));
+		console.log(chalk.blue("ER: er_redeemPaused",er_redeemPaused.toString()));
+		console.log(chalk.blue("ER: er_recollateralizePaused",er_recollateralizePaused.toString()));
+		console.log(chalk.blue("ER: er_buyBackPaused",er_buyBackPaused.toString()));
+		console.log(chalk.blue("ER: er_collateralPricePaused",er_collateralPricePaused.toString()));
+
+		// Action
+		ar_mintPaused = await pool_instance_USDC.mintPaused.call();
+		ar_redeemPaused = await pool_instance_USDC.redeemPaused.call();
+		ar_recollateralizePaused = await pool_instance_USDC.recollateralizePaused.call();
+		ar_buyBackPaused = await pool_instance_USDC.buyBackPaused.call();
+		ar_collateralPricePaused = await pool_instance_USDC.collateralPricePaused.call();
+		
+		// ASSERT
+		assert.equal(er_mintPaused.toString(),ar_mintPaused.toString());
+		assert.equal(er_redeemPaused.toString(),ar_redeemPaused.toString());
+		assert.equal(er_recollateralizePaused.toString(),ar_recollateralizePaused.toString());
+		assert.equal(er_buyBackPaused.toString(),ar_buyBackPaused.toString());
+		assert.equal(er_collateralPricePaused.toString(),ar_collateralPricePaused.toString());
+
+		// Print
+		console.log(chalk.yellow("AR: ar_mintPaused: ",ar_mintPaused.toString()));
+		console.log(chalk.yellow("AR: ar_redeemPaused: ",ar_redeemPaused.toString()));
+		console.log(chalk.yellow("AR: ar_recollateralizePaused: ",ar_recollateralizePaused.toString()));
+		console.log(chalk.yellow("AR: ar_buyBackPaused: ",ar_buyBackPaused.toString()));
+		console.log(chalk.yellow("AR: ar_collateralPricePaused: ",ar_collateralPricePaused.toString()));
 	});
 
 
