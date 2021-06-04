@@ -46,6 +46,8 @@ const UniswapPairOracle_CERES_USDC = artifacts.require("Oracle/Variants/UniswapP
 const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_CSS_WETH");
 const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Variants/UniswapPairOracle_CSS_USDC");
 
+const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
+
 // Uniswap Contract
 const Timelock = artifacts.require("Governance/Timelock");
 
@@ -62,6 +64,8 @@ const MINTING_FEE = 300; // 0.03%
 const REDEMPTION_FEE = 400; // 0.04%
 const BUYBACK_FEE = 100; //0.01%
 const RECOLLAT_FEE = 100; //0.01%
+
+
 
 
 
@@ -134,6 +138,12 @@ module.exports = async function(deployer, network, accounts) {
 	console.log(chalk.yellow('========== REFRESH POOL PARAMETERS =========='));
 	await Promise.all([
 		await pool_instance_USDC.setPoolParameters(FIVE_MILLION_DEC6, 7500, 1, MINTING_FEE, REDEMPTION_FEE, BUYBACK_FEE, RECOLLAT_FEE, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),	
+	]);
+
+	const oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
+
+	await Promise.all([
+		pool_instance_USDC.setCollatETHOracle(oracle_instance_USDC_WETH.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
 	]);
 
 

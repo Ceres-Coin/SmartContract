@@ -1233,18 +1233,29 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
 		
 		const ceres_eth_usd_price = await pool_instance_USDC.ceres_eth_usd_price();
-		console.log(chalk.blue("ceres_eth_usd_price: ",ceres_eth_usd_price.toString()));
+		console.log(chalk.yellow("ceres_eth_usd_price: ",ceres_eth_usd_price.toString()));
 	});
 
-	it("test scripts for Ceres_USDC_Pool CERES.getCollateralPrice", async () => {
-		console.log(chalk.red("============ Ceres_USDC_Pool CERES.getCollateralPrice============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool CERES.getCollateralPrice============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool CERES.getCollateralPrice============"));
+	it("test scripts for Ceres_USDC_Pool collatEthOracle_eth_collat_price", async () => {
+		console.log(chalk.red("============ Ceres_USDC_Pool collatEthOracle_eth_collat_price ============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool collatEthOracle_eth_collat_price ============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool collatEthOracle_eth_collat_price ============"));
 		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
 		
 		// There are some error as below:
-		// const getCollateralPrice = await pool_instance_USDC.getCollateralPrice();
-		// console.log(chalk.blue("getCollateralPrice: ",getCollateralPrice.toString()));
+		const collatEthOracle_eth_collat_price = await pool_instance_USDC.collatEthOracle_eth_collat_price();
+		console.log(chalk.yellow("collatEthOracle_eth_collat_price: ",collatEthOracle_eth_collat_price.toString()));
+	});
+
+	it("test scripts for Ceres_USDC_Pool collatDollarBalance", async () => {
+		console.log(chalk.red("============ Ceres_USDC_Pool collatDollarBalance ============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool collatDollarBalance ============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool collatDollarBalance ============"));
+		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+		
+		// There are some error as below:
+		const collatDollarBalance = await pool_instance_USDC.collatDollarBalance();
+		console.log(chalk.yellow("collatDollarBalance: ",collatDollarBalance.toString()));
 	});
 
 });

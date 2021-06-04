@@ -38,6 +38,9 @@ const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 const CEREStable = artifacts.require("Ceres/CEREStable");
 const CEREShares = artifacts.require("CSS/CEREShares");
 
+const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
+const Timelock = artifacts.require("Governance/Timelock");
+
 
 
 // Make sure Ganache is running beforehand
@@ -61,6 +64,8 @@ module.exports = async function(deployer, network, accounts) {
 	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
 	console.log("IS_RINKEBY: ",IS_RINKEBY);
 	console.log("IS_DEV: ",IS_DEV);
+
+	const timelockInstance = await Timelock.deployed();
 
 	// ======== Deploy WETH & USDC & USDT ========
 	console.log(chalk.yellow('===== DEPLOY OR LINK THE ROUTER AND SWAP_TO_PRICE ====='));
@@ -196,6 +201,27 @@ module.exports = async function(deployer, network, accounts) {
 		col_instance_USDT.approve(routerInstance.address, new BigNumber(2000000e6), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
 		ceresInstance.approve(routerInstance.address, new BigNumber(1000000e18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
 		cssInstance.approve(routerInstance.address, new BigNumber(5000000e18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
+	]);
+
+	// These are already liquid on mainnet so no need to seed unless you are in the fake / test environment
+	if (!IS_MAINNET) {
+		// Handle USDC / WETH
+		await routerInstance.addLiquidity(
+			col_instance_USDC.address, 
+			wethInstance.address,
+			new BigNumber(600000e6), 
+			new BigNumber(1000e18), 
+			new BigNumber(600000e6), 
+			new BigNumber(1000e18), 
+			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
+			new BigNumber(2105300114), 
+			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
+		);
+	}
+
+	console.log(chalk.blue('=== COLLATERAL ORACLES ==='));
+	await Promise.all([
+		deployer.deploy(UniswapPairOracle_USDC_WETH, uniswapFactoryInstance.address, col_instance_USDC.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
 	]);
 	
 }

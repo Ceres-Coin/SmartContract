@@ -126,6 +126,11 @@ contract CeresPool is AccessControl {
         return eth_usd_price;
     }
 
+    function collatEthOracle_eth_collat_price() public view returns(uint256) {
+        uint256 eth_collat_price = collatEthOracle.consult(weth_address, (PRICE_PRECISION * (10 ** missing_decimals)));
+        return eth_collat_price;
+    }
+
     /* ========== VIEWS ========== */
 
     function collatDollarBalance() public view returns (uint256) {
