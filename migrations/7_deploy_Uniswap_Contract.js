@@ -209,10 +209,10 @@ module.exports = async function(deployer, network, accounts) {
 		await routerInstance.addLiquidity(
 			col_instance_USDC.address, 
 			wethInstance.address,
-			new BigNumber(600000e6), 
-			new BigNumber(1000e18), 
-			new BigNumber(600000e6), 
-			new BigNumber(1000e18), 
+			new BigNumber(600e6), 
+			new BigNumber(1e18), 
+			new BigNumber(600e6), 
+			new BigNumber(1e18), 
 			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
 			new BigNumber(2105300114), 
 			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
