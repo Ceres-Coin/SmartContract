@@ -995,28 +995,28 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
     });
 
 
-	// it("test scripts for Ceres_USDC_Pool Parameters P1", async () => {
-	// // 	console.log(chalk.red("============ Ceres_USDC_Pool ============"));
-	// // 	console.log(chalk.red("============ Ceres_USDC_Pool ============"));
-	// // 	console.log(chalk.red("============ Ceres_USDC_Pool ============"));
-	// // 	console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+	it("test scripts for Ceres_USDC_Pool Parameters P1", async () => {
+		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool ============"));
+		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
 
-	// // 	// Action
-	// // 	collateral_token = await pool_instance_USDC.collateral_token.call();
-	// // 	collateral_address = await pool_instance_USDC.collateral_address.call();
-	// // 	owner_address = await pool_instance_USDC.owner_address.call();
-	// // 	ceres_contract_address = await pool_instance_USDC.ceres_contract_address.call();
-	// // 	css_contract_address = await pool_instance_USDC.css_contract_address.call();
-	// // 	timelock_address = await pool_instance_USDC.timelock_address.call();
+		// Action
+		collateral_token = await pool_instance_USDC.collateral_token.call();
+		collateral_address = await pool_instance_USDC.collateral_address.call();
+		owner_address = await pool_instance_USDC.owner_address.call();
+		ceres_contract_address = await pool_instance_USDC.ceres_contract_address.call();
+		css_contract_address = await pool_instance_USDC.css_contract_address.call();
+		timelock_address = await pool_instance_USDC.timelock_address.call();
 
-	// // 	// Print Result
-	// // 	console.log(chalk.blue("collateral_token: ",collateral_token.toString()));
-	// // 	console.log(chalk.blue("collateral_address: ",collateral_address.toString()));
-	// // 	console.log(chalk.blue("owner_address: ",owner_address.toString()));
-	// // 	console.log(chalk.blue("ceres_contract_address: ",ceres_contract_address.toString()));
-	// // 	console.log(chalk.blue("css_contract_address: ",css_contract_address.toString()));
-	// // 	console.log(chalk.blue("timelock_address: ",timelock_address.toString()));
-	// });
+		// Print Result
+		console.log(chalk.blue("collateral_token: ",collateral_token.toString()));
+		console.log(chalk.blue("collateral_address: ",collateral_address.toString()));
+		console.log(chalk.blue("owner_address: ",owner_address.toString()));
+		console.log(chalk.blue("ceres_contract_address: ",ceres_contract_address.toString()));
+		console.log(chalk.blue("css_contract_address: ",css_contract_address.toString()));
+		console.log(chalk.blue("timelock_address: ",timelock_address.toString()));
+	});
 
 	// it("test scripts for Ceres_USDC_Pool Parameters P2", async () => {
 	// 	// console.log(chalk.red("============ Ceres_USDC_Pool Parameters P2 ============"));
@@ -1198,21 +1198,49 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		// console.log(chalk.yellow("AR: ar_collateralPricePaused: ",ar_collateralPricePaused.toString()));
 	// });
 
-	it("test scripts for Ceres_USDC_Pool collatDollarBalance", async () => {
-		console.log(chalk.red("============ Ceres_USDC_Pool collatDollarBalance============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool collatDollarBalance============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool collatDollarBalance============"));
+	it("test scripts for Ceres_USDC_Pool CERES", async () => {
+		console.log(chalk.red("============ Ceres_USDC_Pool CERES============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool CERES============"));
+		console.log(chalk.red("============ Ceres_USDC_Pool CERES============"));
 		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
 		
-		// // Action
-		// const ar_collatDollarBalance = await pool_instance_USDC.collatDollarBalance.call();
-		
-		// // ASSERT
-		// assert.equal(redemption_delay.toString(),REDEMPTION_DELAY.toString());
+		// First Check the CeresInstance address = pool_instance_usdc.ceres_contract_address
 
-		// // Print
-		// console.log(chalk.yellow("AR: ar_collatDollarBalance: ",ar_collatDollarBalance.toString()));
+		// BEFORE
+		const er_ceresInstance_address = ceresInstance.address;
+		const er_cssInstance_address = cssInstance.address;
+		console.log(chalk.blue("ER: er_ceresInstance_address: ",er_ceresInstance_address.toString()));
+		console.log(chalk.blue("ER: er_cssInstance_address: ",er_cssInstance_address.toString()));
+
+		// ACTION
+		const ar_pool_instance_USDC_ceresContractAddress = await pool_instance_USDC.ceres_contract_address.call();
+		const ar_pool_instance_USDC_cssContractAddress = await pool_instance_USDC.css_contract_address.call();
+
+		// ASSERT
+		assert.equal(er_ceresInstance_address,ar_pool_instance_USDC_ceresContractAddress);
+		assert.equal(er_cssInstance_address,ar_pool_instance_USDC_cssContractAddress);
+
+		// Print
+		console.log("AR: ar_pool_instance_USDC_ceresContractAddress: ",ar_pool_instance_USDC_ceresContractAddress.toString());
+		console.log("AR: ar_pool_instance_USDC_cssContractAddress: ",ar_pool_instance_USDC_cssContractAddress.toString());
 	});
+
+
+	// it("test scripts for Ceres_USDC_Pool collatDollarBalance", async () => {
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool collatDollarBalance============"));
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool collatDollarBalance============"));
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool collatDollarBalance============"));
+	// 	console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+		
+	// 	// // Action
+	// 	// const ar_collatDollarBalance = await pool_instance_USDC.collatDollarBalance.call();
+		
+	// 	// // ASSERT
+	// 	// assert.equal(redemption_delay.toString(),REDEMPTION_DELAY.toString());
+
+	// 	// // Print
+	// 	// console.log(chalk.yellow("AR: ar_collatDollarBalance: ",ar_collatDollarBalance.toString()));
+	// });
 
 });
 
