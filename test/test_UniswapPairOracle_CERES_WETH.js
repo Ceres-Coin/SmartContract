@@ -365,11 +365,36 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		console.log(chalk.red("============ oracle_instance_CERES_WETH owner_address ============"));
 		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 
+		// Before
+		const er_owner_address = COLLATERAL_CERES_AND_CERESHARES_OWNER;
+		
 		// Action
 		const ar_owner_address = await oracle_instance_CERES_WETH.owner_address.call();
 
+		// Assert
+		assert.equal(er_owner_address,ar_owner_address);
+
 		// Print
+		console.log(chalk.blue("er_owner_address: ",er_owner_address));
 		console.log(chalk.yellow("ar_owner_address: ",ar_owner_address.toString()));
+	});
+
+	it("oracle_instance_CERES_WETH timelock_address", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH timelock_address ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+
+		// Before
+		const er_timelock_address = timelockInstance.address;
+		
+		// Action
+		const ar_timelock_address = await oracle_instance_CERES_WETH.timelock_address.call();
+
+		// Assert
+		assert.equal(er_timelock_address,ar_timelock_address);
+
+		// Print
+		console.log(chalk.blue("er_timelock_address: ",er_timelock_address));
+		console.log(chalk.yellow("ar_timelock_address: ",ar_timelock_address.toString()));
 	});
 
 
