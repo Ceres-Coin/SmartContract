@@ -72,6 +72,7 @@ const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOr
 const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest2");
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
+const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
 
 
 
@@ -229,15 +230,11 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 
     });
 
-	it("TEST", async () => {
-		console.log(chalk.red("============ Ceres_USDC_Pool collatEthOracle_eth_collat_price ============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool collatEthOracle_eth_collat_price ============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool collatEthOracle_eth_collat_price ============"));
-		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
-		
-		// There are some error as below:
-		const collatEthOracle_eth_collat_price = await pool_instance_USDC.collatEthOracle_eth_collat_price();
-		console.log(chalk.yellow("collatEthOracle_eth_collat_price: ",collatEthOracle_eth_collat_price.toString()));
+	it("UniswapPairOracle_USDC_WETH Initialize", async () => {
+		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH Initialize ============"));
+
+		const address_UniswapPairOracle_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
+		console.log(chalk.yellow("address_UniswapPairOracle_USDC_WETH: ",address_UniswapPairOracle_USDC_WETH.address));
 	});
 });
 
