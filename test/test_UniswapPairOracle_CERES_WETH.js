@@ -246,6 +246,16 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		const ar_token0 = await oracle_instance_CERES_WETH.token0();
 		const ar_token1 = await oracle_instance_CERES_WETH.token1();
 
+		// Assert
+		console.log(chalk.blue("first_CERES_WETH: ",first_CERES_WETH));
+		if (first_CERES_WETH) {
+			assert.equal(ceresInstance.address,ar_token0);
+			assert.equal(wethInstance.address,ar_token1);
+		} else {
+			assert.equal(ceresInstance.address,ar_token1);
+			assert.equal(wethInstance.address,ar_token0);
+		}
+
 		// Print AR
 		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
 		console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
