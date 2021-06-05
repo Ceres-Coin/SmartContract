@@ -228,12 +228,13 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 
     });
 
+	// Always Passed
+	// No Assertion
 	it("oracle_instance_CERES_WETH Initialize", async () => {
 		console.log(chalk.red("============ oracle_instance_CERES_WETH Initialize ============"));
+		// Print oracle_instance_CERES_WETH.address
 		console.log(chalk.yellow("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 	});
-
-
 
 	it("oracle_instance_CERES_WETH token0 & token1", async () => {
 		console.log(chalk.red("============ oracle_instance_CERES_WETH token0 & token1 ============"));
