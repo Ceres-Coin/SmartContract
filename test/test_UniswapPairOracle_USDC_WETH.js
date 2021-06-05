@@ -232,26 +232,26 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 
     });
 
-	// it("UniswapPairOracle_USDC_WETH Initialize", async () => {
-	// 	console.log(chalk.red("============ UniswapPairOracle_USDC_WETH Initialize ============"));
-	// 	console.log(chalk.yellow("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
-	// });
+	it("UniswapPairOracle_USDC_WETH Initialize", async () => {
+		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH Initialize ============"));
+		console.log(chalk.yellow("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
+	});
 
-	// it("UniswapPairOracle_USDC_WETH token0 & token1", async () => {
-	// 	console.log(chalk.red("============ UniswapPairOracle_USDC_WETH token0 & token1 ============"));
-	// 	console.log(chalk.blue("ER: col_instance_USDC: ",col_instance_USDC.address));
-	// 	console.log(chalk.blue("ER: wethInstance: ",wethInstance.address));
+	it("UniswapPairOracle_USDC_WETH token0 & token1", async () => {
+		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH token0 & token1 ============"));
+		console.log(chalk.blue("ER: col_instance_USDC: ",col_instance_USDC.address));
+		console.log(chalk.blue("ER: wethInstance: ",wethInstance.address));
 
-	// 	// Action
-	// 	const ar_token0 = await instantce_UniswapPairOracle_USDC_WETH.token0();
-	// 	const ar_token1 = await instantce_UniswapPairOracle_USDC_WETH.token1();
+		// Action
+		const ar_token0 = await instantce_UniswapPairOracle_USDC_WETH.token0();
+		const ar_token1 = await instantce_UniswapPairOracle_USDC_WETH.token1();
 
-	// 	// Print
-	// 	console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
-	// 	console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
+		// Print
+		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
+		console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
 		
-	// });
-	
+	});
+
 	it("instantce_UniswapPairOracle_USDC_WETH consult", async () => {
 		console.log(chalk.red("============ instantce_UniswapPairOracle_USDC_WETH consult ============"));
 		console.log(chalk.blue("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));

@@ -38,7 +38,6 @@ const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 const CEREStable = artifacts.require("Ceres/CEREStable");
 const CEREShares = artifacts.require("CSS/CEREShares");
 
-const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
 const Timelock = artifacts.require("Governance/Timelock");
 
 
@@ -204,23 +203,23 @@ module.exports = async function(deployer, network, accounts) {
 	]);
 
 	// These are already liquid on mainnet so no need to seed unless you are in the fake / test environment
-	if (!IS_MAINNET) {
-		await routerInstance.addLiquidity(
-			col_instance_USDC.address, 
-			wethInstance.address,
-			new BigNumber(600000e6), 
-			new BigNumber(1000e18), 
-			new BigNumber(600000e6), 
-			new BigNumber(1000e18), 
-			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
-			new BigNumber(2105300114), 
-			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
-		);
-	}
+	// if (!IS_MAINNET) {
+	// 	await routerInstance.addLiquidity(
+	// 		col_instance_USDC.address, 
+	// 		wethInstance.address,
+	// 		new BigNumber(600000e6), 
+	// 		new BigNumber(1000e18), 
+	// 		new BigNumber(600000e6), 
+	// 		new BigNumber(1000e18), 
+	// 		COLLATERAL_CERES_AND_CERESHARES_OWNER, 
+	// 		new BigNumber(2105300114), 
+	// 		{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
+	// 	);
+	// }
 
-	console.log(chalk.blue('=== COLLATERAL ORACLES ==='));
-	await Promise.all([
-		deployer.deploy(UniswapPairOracle_USDC_WETH, uniswapFactoryInstance.address, col_instance_USDC.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
-	]);
+	// console.log(chalk.blue('=== COLLATERAL ORACLES ==='));
+	// await Promise.all([
+	// 	deployer.deploy(UniswapPairOracle_USDC_WETH, uniswapFactoryInstance.address, col_instance_USDC.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
+	// ]);
 	
 }

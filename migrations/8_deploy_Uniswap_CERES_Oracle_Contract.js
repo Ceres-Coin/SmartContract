@@ -51,6 +51,7 @@ const Timelock = artifacts.require("Governance/Timelock");
 const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumer");
 const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest");
 
+const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
 
 
 
@@ -148,7 +149,23 @@ module.exports = async function(deployer, network, accounts) {
 			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
 			new BigNumber(2105300114), 
 			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
+		),
+		routerInstance.addLiquidity(
+			col_instance_USDC.address, 
+			wethInstance.address,
+			new BigNumber(600e6), 
+			new BigNumber(100e18), 
+			new BigNumber(600e6), 
+			new BigNumber(100e18), 
+			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
+			new BigNumber(2105300114), 
+			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
 		)
+	]);
+
+	console.log(chalk.blue('=== COLLATERAL ORACLES ==='));
+	await Promise.all([
+		deployer.deploy(UniswapPairOracle_USDC_WETH, uniswapFactoryInstance.address, col_instance_USDC.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
 	]);
 
 
