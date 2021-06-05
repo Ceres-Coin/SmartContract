@@ -201,12 +201,7 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		uniswapLibraryInstance = await UniswapV2Library.deployed(); 
 		uniswapOracleLibraryInstance = await UniswapV2OracleLibrary.deployed(); 
 		swapToPriceInstance = await SwapToPrice.deployed(); 
-
-		// pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		// pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		// pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		// pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-
+		
 		oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
 		oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed();
 
