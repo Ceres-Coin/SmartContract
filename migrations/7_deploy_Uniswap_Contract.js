@@ -147,23 +147,28 @@ module.exports = async function(deployer, network, accounts) {
 	console.log("CERES - USDC");
 	await Promise.all([
 		uniswapFactoryInstance.createPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
-		uniswapFactoryInstance.createPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
+		uniswapFactoryInstance.createPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		uniswapFactoryInstance.createPair(col_instance_USDC.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
 	]);
 
 	// ======== Get the addresses of the pairs CERES_WETH & CERES_USDC ========
 	console.log(chalk.yellow('===== GET THE ADDRESSES OF THE PAIRS ====='));
 	const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 	const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	const pair_addr_USDC_WETH = await uniswapFactoryInstance.getPair(col_instance_USDC.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
 	console.log("pair_addr_CERES_WETH: ",pair_addr_CERES_WETH);
 	console.log("pair_addr_CERES_USDC: ",pair_addr_CERES_USDC);
+	console.log("pair_addr_USDC_WETH: ",pair_addr_USDC_WETH);
 
 	console.log(chalk.yellow('===== GET VARIOUS PAIR INSTANCES ====='));
 	const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
 	const pair_instance_CERES_USDC = await UniswapV2Pair.at(pair_addr_CERES_USDC);
+	const pair_instance_USDC_WETH = await UniswapV2Pair.at(pair_addr_USDC_WETH);
 
 	console.log("pair_instance_CERES_WETH: ",pair_instance_CERES_WETH.address);
 	console.log("pair_instance_CERES_USDC: ",pair_instance_CERES_USDC.address);
+	console.log("pair_instance_USDC_WETH: ",pair_instance_USDC_WETH.address);
 
 
 	// ======== Set the Uniswap pairs CSS_WETH & CSS_USDC ========
@@ -200,26 +205,5 @@ module.exports = async function(deployer, network, accounts) {
 		col_instance_USDT.approve(routerInstance.address, new BigNumber(2000000e6), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
 		ceresInstance.approve(routerInstance.address, new BigNumber(1000000e18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
 		cssInstance.approve(routerInstance.address, new BigNumber(5000000e18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
-	]);
-
-	// These are already liquid on mainnet so no need to seed unless you are in the fake / test environment
-	// if (!IS_MAINNET) {
-	// 	await routerInstance.addLiquidity(
-	// 		col_instance_USDC.address, 
-	// 		wethInstance.address,
-	// 		new BigNumber(600000e6), 
-	// 		new BigNumber(1000e18), 
-	// 		new BigNumber(600000e6), 
-	// 		new BigNumber(1000e18), 
-	// 		COLLATERAL_CERES_AND_CERESHARES_OWNER, 
-	// 		new BigNumber(2105300114), 
-	// 		{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
-	// 	);
-	// }
-
-	// console.log(chalk.blue('=== COLLATERAL ORACLES ==='));
-	// await Promise.all([
-	// 	deployer.deploy(UniswapPairOracle_USDC_WETH, uniswapFactoryInstance.address, col_instance_USDC.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
-	// ]);
-	
+	]);	
 }
