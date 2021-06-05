@@ -75,6 +75,8 @@ const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
 
 
+
+
 contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 	// deploy address;
 	let ADMIN;
@@ -200,10 +202,10 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		uniswapOracleLibraryInstance = await UniswapV2OracleLibrary.deployed(); 
 		swapToPriceInstance = await SwapToPrice.deployed(); 
 
-		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		// pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		// pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		// pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		// pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
 		oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
 		oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed();
@@ -224,6 +226,7 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 
 
 		pool_instance_USDC = await Pool_USDC.deployed();
+		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 		
 
 		
@@ -353,14 +356,25 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
 		// Before
-		// const er_pair_address = await pair_addr_CERES_WETH.address;
-		// console.log(chalk.blue("er_pair_address: ",er_pair_address.toString()));
+		
+		console.log(chalk.blue("er: pair_addr_CERES_WETH: ",pair_addr_CERES_WETH.toString()));
 
 		// Action
 		const ar_pair_address = await oracle_instance_CERES_WETH.pair_address.call();
 
 		// Print
 		console.log(chalk.yellow("ar_pair_address: ",ar_pair_address.toString()));
+	});
+
+	it("oracle_instance_CERES_WETH owner_address", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH owner_address ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+
+		// Action
+		const ar_owner_address = await oracle_instance_CERES_WETH.owner_address.call();
+
+		// Print
+		console.log(chalk.yellow("ar_owner_address: ",ar_owner_address.toString()));
 	});
 
 

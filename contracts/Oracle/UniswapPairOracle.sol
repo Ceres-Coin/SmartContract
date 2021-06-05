@@ -13,8 +13,8 @@ import '../Uniswap/UniswapV2Library.sol';
 contract UniswapPairOracle {
     using FixedPoint for *;
     
-    address owner_address;
-    address timelock_address;
+    address public owner_address;
+    address public timelock_address;
 
     uint public PERIOD = 3600; // 1 hour TWAP (time-weighted average price)
     uint public CONSULT_LENIENCY = 120; // Used for being able to consult past the period end
