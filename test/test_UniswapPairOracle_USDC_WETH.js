@@ -275,20 +275,6 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.yellow("AR: ar_usdc_price_after: ",ar_usdc_price_after.toString()));		
 	});
 
-	// it("instantce_UniswapPairOracle_USDC_WETH Price0 & Price1", async () => {
-	// 	console.log(chalk.red("============ instantce_UniswapPairOracle_USDC_WETH Price0 & Price1 ============"));
-		
-
-	// 	// Action
-	// 	const ar_price0CumulativeLast_before = await instantce_UniswapPairOracle_USDC_WETH.price0CumulativeLast.call();
-	// 	const ar_price1CumulativeLast_before = await instantce_UniswapPairOracle_USDC_WETH.price1CumulativeLast.call();
-
-	// 	// Print
-	// 	console.log(chalk.yellow("AR: ar_price0CumulativeLast_before: ",ar_price0CumulativeLast_before.toString()));
-	// 	console.log(chalk.yellow("AR: ar_price1CumulativeLast_before: ",ar_price1CumulativeLast_before.toString()));
-		
-	// });
-
 });
 
 

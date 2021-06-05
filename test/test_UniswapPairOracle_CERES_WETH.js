@@ -272,7 +272,6 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.red("============ oracle_instance_CERES_WETH consult ============"));
 		console.log(chalk.blue("ER: oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
-
 		// BEFORE
 		// const ar_ceres_price = await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6);
 		const ar_ceres_price_before = (new BigNumber(await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
