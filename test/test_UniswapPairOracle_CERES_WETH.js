@@ -258,13 +258,28 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		console.log(chalk.blue("ER: oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
 
-		// Action
-		const ar_price0CumulativeLast = await oracle_instance_CERES_WETH.price0CumulativeLast.call();
-		const ar_price1CumulativeLast = await oracle_instance_CERES_WETH.price1CumulativeLast.call();
+		// Before
+		const ar_price0CumulativeLast_before = await oracle_instance_CERES_WETH.price0CumulativeLast.call();
+		const ar_price1CumulativeLast_before = await oracle_instance_CERES_WETH.price1CumulativeLast.call();
+
+		// ACTION
+		// time.increase 1 day & update oracle_instance_CERES_WETH;
+		console.log(chalk.yellow("Time.increase 1 day"));
+		await time.increase(86400 + 1);
+		await time.advanceBlock();
+		await oracle_instance_CERES_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+
+		// AFTER
+		const ar_price0CumulativeLast_after = await oracle_instance_CERES_WETH.price0CumulativeLast.call();
+		const ar_price1CumulativeLast_after = await oracle_instance_CERES_WETH.price1CumulativeLast.call();
+
 
 		// Print
-		console.log(chalk.yellow("AR: ar_price0CumulativeLast: ",ar_price0CumulativeLast.toString()));
-		console.log(chalk.yellow("AR: ar_price1CumulativeLast: ",ar_price1CumulativeLast.toString()));
+		console.log(chalk.yellow("AR: ar_price0CumulativeLast_before: ",ar_price0CumulativeLast_before.toString()));
+		console.log(chalk.yellow("AR: ar_price1CumulativeLast_before: ",ar_price1CumulativeLast_before.toString()));
+
+		console.log(chalk.yellow("AR: ar_price0CumulativeLast_after: ",ar_price0CumulativeLast_after.toString()));
+		console.log(chalk.yellow("AR: ar_price1CumulativeLast_after: ",ar_price1CumulativeLast_after.toString()));
 		
 	});
 
