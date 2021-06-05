@@ -251,21 +251,44 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 	// 	console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
 		
 	// });
+	
+	it("instantce_UniswapPairOracle_USDC_WETH consult", async () => {
+		console.log(chalk.red("============ instantce_UniswapPairOracle_USDC_WETH consult ============"));
+		console.log(chalk.blue("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
+		
+		// BEFORE
+		// const ar_ceres_price = await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6);
+		const ar_usdc_price_before = (new BigNumber(await instantce_UniswapPairOracle_USDC_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
 
-	it("UniswapPairOracle_USDC_WETH Price0 & Price1", async () => {
-		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH Price0 & Price1 ============"));
-		// console.log(chalk.blue("ER: col_instance_USDC: ",col_instance_USDC.address));
-		// console.log(chalk.blue("ER: wethInstance: ",wethInstance.address));
+		// ACTION
+		// time.increase 1 day & update oracle_instance_CERES_WETH;
+		console.log(chalk.yellow("Time.increase 1 day"));
+		await time.increase(86400 + 1);
+		await time.advanceBlock();
+		await instantce_UniswapPairOracle_USDC_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
-		// Action
-		const ar_price0CumulativeLast = await instantce_UniswapPairOracle_USDC_WETH.price0CumulativeLast.call();
-		const ar_price1CumulativeLast = await instantce_UniswapPairOracle_USDC_WETH.price1CumulativeLast.call();
+		// AFTER
+		const ar_usdc_price_after = (new BigNumber(await instantce_UniswapPairOracle_USDC_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
 
 		// Print
-		console.log(chalk.yellow("AR: ar_price0CumulativeLast: ",ar_price0CumulativeLast.toString()));
-		console.log(chalk.yellow("AR: ar_price1CumulativeLast: ",ar_price1CumulativeLast.toString()));
-		
+		console.log(chalk.yellow("AR: ar_usdc_price_before: ",ar_usdc_price_before.toString()));	
+		console.log(chalk.yellow("AR: ar_usdc_price_after: ",ar_usdc_price_after.toString()));		
 	});
+
+	// it("instantce_UniswapPairOracle_USDC_WETH Price0 & Price1", async () => {
+	// 	console.log(chalk.red("============ instantce_UniswapPairOracle_USDC_WETH Price0 & Price1 ============"));
+		
+
+	// 	// Action
+	// 	const ar_price0CumulativeLast_before = await instantce_UniswapPairOracle_USDC_WETH.price0CumulativeLast.call();
+	// 	const ar_price1CumulativeLast_before = await instantce_UniswapPairOracle_USDC_WETH.price1CumulativeLast.call();
+
+	// 	// Print
+	// 	console.log(chalk.yellow("AR: ar_price0CumulativeLast_before: ",ar_price0CumulativeLast_before.toString()));
+	// 	console.log(chalk.yellow("AR: ar_price1CumulativeLast_before: ",ar_price1CumulativeLast_before.toString()));
+		
+	// });
+
 });
 
 

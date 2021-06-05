@@ -72,7 +72,6 @@ const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOr
 const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest2");
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
-const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
 
 
 
@@ -177,7 +176,7 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 	let ar_collateralPricePaused;
 
 	// Core
-	let instantce_UniswapPairOracle_USDC_WETH;
+	
 	
 
     beforeEach(async() => {
@@ -226,7 +225,6 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 
 		pool_instance_USDC = await Pool_USDC.deployed();
 		
-		instantce_UniswapPairOracle_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
 
 		
 

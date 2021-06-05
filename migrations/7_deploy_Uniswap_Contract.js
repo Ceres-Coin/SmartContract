@@ -205,14 +205,13 @@ module.exports = async function(deployer, network, accounts) {
 
 	// These are already liquid on mainnet so no need to seed unless you are in the fake / test environment
 	if (!IS_MAINNET) {
-		// Handle USDC / WETH
 		await routerInstance.addLiquidity(
 			col_instance_USDC.address, 
 			wethInstance.address,
-			new BigNumber(600e6), 
-			new BigNumber(1e18), 
-			new BigNumber(600e6), 
-			new BigNumber(1e18), 
+			new BigNumber(600000e6), 
+			new BigNumber(1000e18), 
+			new BigNumber(600000e6), 
+			new BigNumber(1000e18), 
 			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
 			new BigNumber(2105300114), 
 			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
