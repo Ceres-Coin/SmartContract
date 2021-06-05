@@ -275,6 +275,26 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.yellow("AR: ar_usdc_price_after: ",ar_usdc_price_after.toString()));		
 	});
 
+	it("instantce_UniswapPairOracle_USDC_WETH blockTimestampLast", async () => {
+		console.log(chalk.red("============ instantce_UniswapPairOracle_USDC_WETH blockTimestampLast ============"));
+		console.log(chalk.blue("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
+		
+		// BEFORE
+		// const ar_ceres_price = await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6);
+		const ar_blockTimestampLast = await instantce_UniswapPairOracle_USDC_WETH.blockTimestampLast.call();
+		console.log(chalk.yellow("ar_blockTimestampLast: ",ar_blockTimestampLast.toString()));
+
+	});
+
+	it("instantce_UniswapPairOracle_USDC_WETH canUpdate", async () => {
+		console.log(chalk.red("============ instantce_UniswapPairOracle_USDC_WETH canUpdate ============"));
+		console.log(chalk.blue("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
+		
+		const ar_canUpdate = await instantce_UniswapPairOracle_USDC_WETH.canUpdate();
+		console.log(chalk.yellow("ar_canUpdate: ",ar_canUpdate.toString()));
+
+	});
+
 });
 
 

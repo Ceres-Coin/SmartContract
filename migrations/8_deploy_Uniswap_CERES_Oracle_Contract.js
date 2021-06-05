@@ -150,6 +150,7 @@ module.exports = async function(deployer, network, accounts) {
 			new BigNumber(2105300114), 
 			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
 		),
+		// USDC/WETH
 		routerInstance.addLiquidity(
 			col_instance_USDC.address, 
 			wethInstance.address,
