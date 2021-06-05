@@ -1226,15 +1226,15 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 	// });
 
 
-	it("test scripts for Ceres_USDC_Pool CERES.ceres_eth_usd_price", async () => {
-		console.log(chalk.red("============ Ceres_USDC_Pool CERES.ceres_eth_usd_price============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool CERES.ceres_eth_usd_price============"));
-		console.log(chalk.red("============ Ceres_USDC_Pool CERES.ceres_eth_usd_price============"));
-		console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
+	// it("test scripts for Ceres_USDC_Pool CERES.ceres_eth_usd_price", async () => {
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool CERES.ceres_eth_usd_price============"));
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool CERES.ceres_eth_usd_price============"));
+	// 	console.log(chalk.red("============ Ceres_USDC_Pool CERES.ceres_eth_usd_price============"));
+	// 	console.log(chalk.blue("pool_instance_USDC: ",pool_instance_USDC.address));
 		
-		const ceres_eth_usd_price = await pool_instance_USDC.ceres_eth_usd_price();
-		console.log(chalk.yellow("ceres_eth_usd_price: ",ceres_eth_usd_price.toString()));
-	});
+	// 	const ceres_eth_usd_price = await pool_instance_USDC.ceres_eth_usd_price();
+	// 	console.log(chalk.yellow("ceres_eth_usd_price: ",ceres_eth_usd_price.toString()));
+	// });
 
 	it("test scripts for Ceres_USDC_Pool collatEthOracle_eth_collat_price", async () => {
 		console.log(chalk.red("============ Ceres_USDC_Pool collatEthOracle_eth_collat_price ============"));
