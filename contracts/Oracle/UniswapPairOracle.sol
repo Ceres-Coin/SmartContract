@@ -74,6 +74,10 @@ contract UniswapPairOracle {
         ALLOW_STALE_CONSULTS = _allow_stale_consults;
     }
 
+    function pair_address() public view returns(address) {
+        return address(pair);
+    }
+
     // Check if update() can be called instead of wasting gas calling it
     function canUpdate() public view returns (bool) {
         uint32 blockTimestamp = UniswapV2OracleLibrary.currentBlockTimestamp();

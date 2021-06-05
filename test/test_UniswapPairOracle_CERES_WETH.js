@@ -348,6 +348,21 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		console.log(chalk.yellow("ar_price1Average: ",ar_price1Average.toString()));
 	});
 
+	it("oracle_instance_CERES_WETH pair_address", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH pair_address ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+		
+		// Before
+		// const er_pair_address = await pair_addr_CERES_WETH.address;
+		// console.log(chalk.blue("er_pair_address: ",er_pair_address.toString()));
+
+		// Action
+		const ar_pair_address = await oracle_instance_CERES_WETH.pair_address.call();
+
+		// Print
+		console.log(chalk.yellow("ar_pair_address: ",ar_pair_address.toString()));
+	});
+
 
 	
 });
