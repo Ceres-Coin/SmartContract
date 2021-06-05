@@ -75,7 +75,7 @@ const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
 
 
-contract('Oracle_Instance_USDC_WETH', async (accounts) => {
+contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
@@ -230,43 +230,43 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 
     });
 
-	// it("oracle_instance_CERES_WETH Initialize", async () => {
-	// 	console.log(chalk.red("============ oracle_instance_CERES_WETH Initialize ============"));
-	// 	console.log(chalk.yellow("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
-	// });
+	it("oracle_instance_CERES_WETH Initialize", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH Initialize ============"));
+		console.log(chalk.yellow("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+	});
 
 
 
-	// it("oracle_instance_CERES_WETH token0 & token1", async () => {
-	// 	console.log(chalk.red("============ oracle_instance_CERES_WETH token0 & token1 ============"));
-	// 	console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
-	// 	// Print ER
-	// 	console.log(chalk.blue("ER: ceresInstance: ",ceresInstance.address));
-	// 	console.log(chalk.blue("ER: wethInstance: ",wethInstance.address));
+	it("oracle_instance_CERES_WETH token0 & token1", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH token0 & token1 ============"));
+		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
+		// Print ER
+		console.log(chalk.blue("ER: ceresInstance: ",ceresInstance.address));
+		console.log(chalk.blue("ER: wethInstance: ",wethInstance.address));
 
-	// 	// Action
-	// 	const ar_token0 = await oracle_instance_CERES_WETH.token0();
-	// 	const ar_token1 = await oracle_instance_CERES_WETH.token1();
+		// Action
+		const ar_token0 = await oracle_instance_CERES_WETH.token0();
+		const ar_token1 = await oracle_instance_CERES_WETH.token1();
 
-	// 	// Print AR
-	// 	console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
-	// 	console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
-	// });
+		// Print AR
+		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
+		console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
+	});
 
-	// it("oracle_instance_CERES_WETH Price0 & Price1", async () => {
-	// 	console.log(chalk.red("============ oracle_instance_CERES_WETH Price0 & Price1 ============"));
-	// 	console.log(chalk.blue("ER: oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+	it("oracle_instance_CERES_WETH Price0 & Price1", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH Price0 & Price1 ============"));
+		console.log(chalk.blue("ER: oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
 
-	// 	// Action
-	// 	const ar_price0CumulativeLast = await oracle_instance_CERES_WETH.price0CumulativeLast.call();
-	// 	const ar_price1CumulativeLast = await oracle_instance_CERES_WETH.price1CumulativeLast.call();
+		// Action
+		const ar_price0CumulativeLast = await oracle_instance_CERES_WETH.price0CumulativeLast.call();
+		const ar_price1CumulativeLast = await oracle_instance_CERES_WETH.price1CumulativeLast.call();
 
-	// 	// Print
-	// 	console.log(chalk.yellow("AR: ar_price0CumulativeLast: ",ar_price0CumulativeLast.toString()));
-	// 	console.log(chalk.yellow("AR: ar_price1CumulativeLast: ",ar_price1CumulativeLast.toString()));
+		// Print
+		console.log(chalk.yellow("AR: ar_price0CumulativeLast: ",ar_price0CumulativeLast.toString()));
+		console.log(chalk.yellow("AR: ar_price1CumulativeLast: ",ar_price1CumulativeLast.toString()));
 		
-	// });
+	});
 
 	it("oracle_instance_CERES_WETH consult", async () => {
 		console.log(chalk.red("============ oracle_instance_CERES_WETH consult ============"));
@@ -305,6 +305,19 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 		
 		const ar_canUpdate = await oracle_instance_CERES_WETH.canUpdate();
 		console.log(chalk.yellow("ar_canUpdate: ",ar_canUpdate.toString()));
+	});
+
+	it("oracle_instance_CERES_WETH reserve0 & reserve1", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH reserve0 & reserve1 ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+		
+		// Action
+		const ar_reserve0 = await oracle_instance_CERES_WETH.reserve0.call();
+		const ar_reserve1 = await oracle_instance_CERES_WETH.reserve1.call();
+
+		// Print
+		console.log(chalk.yellow("ar_reserve0: ",ar_reserve0.toString()));
+		console.log(chalk.yellow("ar_reserve1: ",ar_reserve1.toString()));
 	});
 
 

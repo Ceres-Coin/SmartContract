@@ -26,9 +26,13 @@ contract UniswapPairOracle {
 
     uint    public price0CumulativeLast;
     uint    public price1CumulativeLast;
-    uint32  public blockTimestampLast;
+    
     FixedPoint.uq112x112 public price0Average;
     FixedPoint.uq112x112 public price1Average;
+    
+    uint112 public reserve0;
+    uint112 public reserve1;
+    uint32  public blockTimestampLast;
 
     modifier onlyByOwnerOrGovernance() {
         require(msg.sender == owner_address || msg.sender == timelock_address, "You are not an owner or the governance timelock");
@@ -42,8 +46,7 @@ contract UniswapPairOracle {
         token1 = _pair.token1();
         price0CumulativeLast = _pair.price0CumulativeLast(); // Fetch the current accumulated price value (1 / 0)
         price1CumulativeLast = _pair.price1CumulativeLast(); // Fetch the current accumulated price value (0 / 1)
-        uint112 reserve0;
-        uint112 reserve1;
+
         (reserve0, reserve1, blockTimestampLast) = _pair.getReserves();
         require(reserve0 != 0 && reserve1 != 0, 'UniswapPairOracle: NO_RESERVES'); // Ensure that there's liquidity in the pair
 
