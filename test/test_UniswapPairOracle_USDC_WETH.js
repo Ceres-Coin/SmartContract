@@ -268,7 +268,8 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 		await instantce_UniswapPairOracle_USDC_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
 		// AFTER
-		const ar_usdc_price_after = (new BigNumber(await instantce_UniswapPairOracle_USDC_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		// const ar_usdc_price_after = (new BigNumber(await instantce_UniswapPairOracle_USDC_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		const ar_usdc_price_after = await instantce_UniswapPairOracle_USDC_WETH.consult(wethInstance.address, 1e6);
 
 		// Print
 		console.log(chalk.yellow("AR: ar_usdc_price_before: ",ar_usdc_price_before.toString()));	

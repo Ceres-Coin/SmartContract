@@ -299,6 +299,15 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.yellow("ar_blockTimestampLast: ",ar_blockTimestampLast.toString()));
 	});
 
+	it("oracle_instance_CERES_WETH canUpdate", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH canUpdate ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+		
+		const ar_canUpdate = await oracle_instance_CERES_WETH.canUpdate();
+		console.log(chalk.yellow("ar_canUpdate: ",ar_canUpdate.toString()));
+	});
+
+
 	
 });
 
