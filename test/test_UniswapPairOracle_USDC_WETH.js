@@ -178,8 +178,6 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 
 	// Core
 	let instantce_UniswapPairOracle_USDC_WETH;
-	let ar_token0;
-	let ar_token1;
 	
 
     beforeEach(async() => {
@@ -234,22 +232,32 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 
     });
 
-	it("UniswapPairOracle_USDC_WETH Initialize", async () => {
-		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH Initialize ============"));
-		console.log(chalk.yellow("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
-	});
+	// it("UniswapPairOracle_USDC_WETH Initialize", async () => {
+	// 	console.log(chalk.red("============ UniswapPairOracle_USDC_WETH Initialize ============"));
+	// 	console.log(chalk.yellow("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
+	// });
 
 	it("UniswapPairOracle_USDC_WETH token0 & token1", async () => {
 		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH token0 & token1 ============"));
 
-		ar_token0 = await instantce_UniswapPairOracle_USDC_WETH.token0.call();
-		ar_token1 = await instantce_UniswapPairOracle_USDC_WETH.token1.call();
+		const ar_token0 = await instantce_UniswapPairOracle_USDC_WETH.token0();
+		const ar_token1 = await instantce_UniswapPairOracle_USDC_WETH.token1();
 
-		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.address));
-		console.log(chalk.yellow("AR: ar_token1: ",ar_token1.address));
+		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
+		console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
 		
-
 	});
+
+	// it("oracle_instance_CERES_WETH token0 & token1", async () => {
+	// 	console.log(chalk.red("============ oracle_instance_CERES_WETH token0 & token1 ============"));
+	// 	console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
+
+	// 	const ar_token0 = await oracle_instance_CERES_WETH.token0();
+	// 	const ar_token1 = await oracle_instance_CERES_WETH.token1();
+
+	// 	console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
+	// 	console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
+	// });
 });
 
 
