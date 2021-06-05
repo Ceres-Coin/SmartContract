@@ -232,24 +232,27 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 
     });
 
-	it("UniswapPairOracle_USDC_WETH Initialize", async () => {
-		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH Initialize ============"));
-		console.log(chalk.yellow("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
+	it("oracle_instance_CERES_WETH Initialize", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH Initialize ============"));
+		console.log(chalk.yellow("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 	});
 
-	it("UniswapPairOracle_USDC_WETH token0 & token1", async () => {
-		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH token0 & token1 ============"));
-		console.log(chalk.blue("ER: col_instance_USDC: ",col_instance_USDC.address));
+
+
+	it("oracle_instance_CERES_WETH token0 & token1", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH token0 & token1 ============"));
+		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
+		// Print ER
+		console.log(chalk.blue("ER: ceresInstance: ",ceresInstance.address));
 		console.log(chalk.blue("ER: wethInstance: ",wethInstance.address));
 
 		// Action
-		const ar_token0 = await instantce_UniswapPairOracle_USDC_WETH.token0();
-		const ar_token1 = await instantce_UniswapPairOracle_USDC_WETH.token1();
+		const ar_token0 = await oracle_instance_CERES_WETH.token0();
+		const ar_token1 = await oracle_instance_CERES_WETH.token1();
 
-		// Print
+		// Print AR
 		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
 		console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
-		
 	});
 });
 
