@@ -176,6 +176,8 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 	let ar_buyBackPaused;
 	let ar_collateralPricePaused;
 
+	// Core
+	let instantce_UniswapPairOracle_USDC_WETH;
 	
 
     beforeEach(async() => {
@@ -224,7 +226,7 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 
 		pool_instance_USDC = await Pool_USDC.deployed();
 		
-
+		instantce_UniswapPairOracle_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
 
 		
 
@@ -232,9 +234,12 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 
 	it("UniswapPairOracle_USDC_WETH Initialize", async () => {
 		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH Initialize ============"));
+		console.log(chalk.yellow("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
+	});
 
-		const address_UniswapPairOracle_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
-		console.log(chalk.yellow("address_UniswapPairOracle_USDC_WETH: ",address_UniswapPairOracle_USDC_WETH.address));
+	it("UniswapPairOracle_USDC_WETH token0 & token1", async () => {
+		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH token0 & token1 ============"));
+
 	});
 });
 
