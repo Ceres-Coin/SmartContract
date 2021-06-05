@@ -37,6 +37,8 @@ const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
 const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
+const SIX_HUNDRED_DEC18 = new BigNumber(600e18);
+const ONE_DEC18 = new BigNumber(1e18);
 
 // Uniswap related
 const TransferHelper = artifacts.require("Uniswap/TransferHelper");
@@ -233,6 +235,7 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 	it("oracle_instance_CERES_WETH Initialize", async () => {
 		console.log(chalk.red("============ oracle_instance_CERES_WETH Initialize ============"));
 		// Print oracle_instance_CERES_WETH.address
+		console.log(chalk.green.bold("NO ASSERTION"));
 		console.log(chalk.yellow("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 	});
 
@@ -256,6 +259,7 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 			assert.equal(ceresInstance.address,ar_token1);
 			assert.equal(wethInstance.address,ar_token0);
 		}
+		console.log(chalk.green.bold("ASSERTION PASSED"));
 
 		// Print AR
 		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
@@ -281,6 +285,8 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		const ar_price0CumulativeLast_after = await oracle_instance_CERES_WETH.price0CumulativeLast.call();
 		const ar_price1CumulativeLast_after = await oracle_instance_CERES_WETH.price1CumulativeLast.call();
 
+		// Assert
+		console.log(chalk.green.bold("NO ASSERTION"));
 
 		// Print
 		console.log(chalk.yellow("AR: ar_price0CumulativeLast_before: ",ar_price0CumulativeLast_before.toString()));
@@ -312,6 +318,7 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 
 		// Assert
 		assert.equal(ar_ceres_price_after,CERES_PRICE_AFTER);
+		console.log(chalk.green.bold("ASSERTION PASSED"));
 
 		// Print
 		console.log(chalk.yellow("AR: ar_ceres_price_before: ",ar_ceres_price_before.toString()));	
@@ -322,7 +329,13 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		console.log(chalk.red("============ oracle_instance_CERES_WETH blockTimestampLast ============"));
 		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
+		// ACTION
 		const ar_blockTimestampLast = await oracle_instance_CERES_WETH.blockTimestampLast.call();
+
+		// ASSERT
+		console.log(chalk.green.bold("NO ASSERTION"));
+
+		// PRINT
 		console.log(chalk.yellow("ar_blockTimestampLast: ",ar_blockTimestampLast.toString()));
 	});
 
@@ -330,7 +343,14 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		console.log(chalk.red("============ oracle_instance_CERES_WETH canUpdate ============"));
 		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
+		// ACTION
 		const ar_canUpdate = await oracle_instance_CERES_WETH.canUpdate();
+
+		// ASSERT
+		const ER_CANUPDATE = false;
+		assert.equal(ar_canUpdate,ER_CANUPDATE);
+		console.log(chalk.green.bold("ASSERTION PASSED"));
+
 		console.log(chalk.yellow("ar_canUpdate: ",ar_canUpdate.toString()));
 	});
 
@@ -339,10 +359,27 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
 		// Action
-		const ar_reserve0 = await oracle_instance_CERES_WETH.reserve0.call();
-		const ar_reserve1 = await oracle_instance_CERES_WETH.reserve1.call();
+		const ar_reserve0 = (await oracle_instance_CERES_WETH.reserve0.call()).toString();
+		const ar_reserve1 = (await oracle_instance_CERES_WETH.reserve1.call()).toString();
 
+		let ER_reserve0;
+		let ER_reserve1;
+
+		console.log(chalk.blue.bold("===== first_CERES_WETH: ",first_CERES_WETH));
+		// ASSERT
+		if (first_CERES_WETH) {
+			ER_reserve0 = SIX_HUNDRED_DEC18.toString();
+			ER_reserve1 = ONE_DEC18.toString();
+		} else {
+			ER_reserve0 = ONE_DEC18.toString();
+			ER_reserve1 = SIX_HUNDRED_DEC18.toString();
+		}
+		assert.equal(ar_reserve0,ER_reserve0,chalk.red.bold("ASSERTION FAILED"));
+		assert.equal(ar_reserve1,ER_reserve1,chalk.red.bold("ASSERTION FAILED"));
+		
 		// Print
+		console.log(chalk.blue("ER_reserve0: ",ER_reserve0.toString()));
+		console.log(chalk.blue("ER_reserve1: ",ER_reserve1.toString()));
 		console.log(chalk.yellow("ar_reserve0: ",ar_reserve0.toString()));
 		console.log(chalk.yellow("ar_reserve1: ",ar_reserve1.toString()));
 	});

@@ -31,6 +31,8 @@ const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
 const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
+const SIX_HUNDRED_DEC18 = new BigNumber(600e18);
+const ONE_DEC18 = new BigNumber(1e18);
 
 const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 
@@ -106,10 +108,10 @@ module.exports = async function(deployer, network, accounts) {
 		routerInstance.addLiquidity(
 			ceresInstance.address, 
 			wethInstance.address,
-			new BigNumber(600e18), 
-			new BigNumber(1e18), 
-			new BigNumber(600e18), 
-			new BigNumber(1e18), 
+			new BigNumber(SIX_HUNDRED_DEC18), 
+			new BigNumber(ONE_DEC18), 
+			new BigNumber(SIX_HUNDRED_DEC18), 
+			new BigNumber(SIX_HUNDRED_DEC18), 
 			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
 			new BigNumber(2105300114), 
 			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
