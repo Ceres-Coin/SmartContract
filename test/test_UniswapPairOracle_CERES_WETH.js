@@ -224,14 +224,11 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 
 		pool_instance_USDC = await Pool_USDC.deployed();
 		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		
-
-		
 
     });
 
-	// Always Passed
-	// No Assertion
+	// // Always Passed
+	// // No Assertion
 	it("oracle_instance_CERES_WETH Initialize", async () => {
 		console.log(chalk.red("============ oracle_instance_CERES_WETH Initialize ============"));
 		// Print oracle_instance_CERES_WETH.address
@@ -385,12 +382,15 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 	});
 
 	it("oracle_instance_CERES_WETH price0Average & price1Average", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_WETH reserve0 & reserve1 ============"));
+		console.log(chalk.red("============ oracle_instance_CERES_WETH price0Average & price0Average ============"));
 		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
 		// Action
 		const ar_price0Average = await oracle_instance_CERES_WETH.price0Average.call();
 		const ar_price1Average = await oracle_instance_CERES_WETH.price1Average.call();
+
+		// ASSERT
+		console.log(chalk.green.bold("NO ASSERTION"));
 
 		// Print
 		console.log(chalk.yellow("ar_price0Average: ",ar_price0Average.toString()));
@@ -402,11 +402,13 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
 		// Before
-		
 		console.log(chalk.blue("er: pair_addr_CERES_WETH: ",pair_addr_CERES_WETH.toString()));
 
 		// Action
-		const ar_pair_address = await oracle_instance_CERES_WETH.pair_address.call();
+		const ar_pair_address = (await oracle_instance_CERES_WETH.pair_address.call()).toString();
+
+		// ASSERT
+		assert.equal(pair_addr_CERES_WETH.toString(),ar_pair_address,chalk.red.bold("ASSERTION FAILED"));
 
 		// Print
 		console.log(chalk.yellow("ar_pair_address: ",ar_pair_address.toString()));
@@ -423,7 +425,7 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		const ar_owner_address = await oracle_instance_CERES_WETH.owner_address.call();
 
 		// Assert
-		assert.equal(er_owner_address,ar_owner_address);
+		assert.equal(er_owner_address,ar_owner_address,chalk.red.bold("ASSERTION FAILED"));
 
 		// Print
 		console.log(chalk.blue("er_owner_address: ",er_owner_address));
@@ -441,7 +443,7 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		const ar_timelock_address = await oracle_instance_CERES_WETH.timelock_address.call();
 
 		// Assert
-		assert.equal(er_timelock_address,ar_timelock_address);
+		assert.equal(er_timelock_address,ar_timelock_address,chalk.red.bold("ASSERTION FAILED"));
 
 		// Print
 		console.log(chalk.blue("er_timelock_address: ",er_timelock_address));
