@@ -266,7 +266,6 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		console.log(chalk.red("============ oracle_instance_CERES_WETH Price0 & Price1 ============"));
 		console.log(chalk.blue("ER: oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
-
 		// Before
 		const ar_price0CumulativeLast_before = await oracle_instance_CERES_WETH.price0CumulativeLast.call();
 		const ar_price1CumulativeLast_before = await oracle_instance_CERES_WETH.price1CumulativeLast.call();
@@ -309,6 +308,10 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 
 		// AFTER
 		const ar_ceres_price_after = (new BigNumber(await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		const CERES_PRICE_AFTER = 600;
+
+		// Assert
+		assert.equal(ar_ceres_price_after,CERES_PRICE_AFTER);
 
 		// Print
 		console.log(chalk.yellow("AR: ar_ceres_price_before: ",ar_ceres_price_before.toString()));	
