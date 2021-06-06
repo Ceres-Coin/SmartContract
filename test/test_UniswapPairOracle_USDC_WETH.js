@@ -294,15 +294,6 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 
 	it("oracle_instance_USDC_WETH consult", async () => {
 		console.log(chalk.red("============ oracle_instance_USDC_WETH consult ============"));
-		console.log(chalk.red.bold("============ ASSERTION FAILED ============"));
-		console.log(chalk.red.bold("============ ASSERTION FAILED ============"));
-		console.log(chalk.red.bold("============ ASSERTION FAILED ============"));
-		console.log(chalk.red.bold("============ ASSERTION FAILED ============"));
-		console.log(chalk.red.bold("============ ASSERTION FAILED ============"));
-		console.log(chalk.red.bold("============ ASSERTION FAILED ============"));
-		console.log(chalk.red.bold("============ ASSERTION FAILED ============"));
-		console.log(chalk.red.bold("============ ASSERTION FAILED ============"));
-		console.log(chalk.red.bold("============ ASSERTION FAILED ============"));
 		console.log(chalk.blue("ER: oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 		
 		// BEFORE
@@ -319,7 +310,6 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		// AFTER
 		const ar_ceres_price_after = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, 1e12))).toNumber();
 		
-
 		// Assert
 		// const CERES_PRICE_AFTER = 600;
 		// assert.equal(ar_ceres_price_after,CERES_PRICE_AFTER);
@@ -343,21 +333,6 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		// PRINT
 		console.log(chalk.yellow("ar_blockTimestampLast: ",ar_blockTimestampLast.toString()));
 	});
-
-	// it("oracle_instance_CERES_WETH canUpdate", async () => {
-	// 	console.log(chalk.red("============ oracle_instance_CERES_WETH canUpdate ============"));
-	// 	console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
-		
-	// 	// ACTION
-	// 	const ar_canUpdate = await oracle_instance_CERES_WETH.canUpdate();
-
-	// 	// ASSERT
-	// 	const ER_CANUPDATE = false;
-	// 	assert.equal(ar_canUpdate,ER_CANUPDATE);
-	// 	console.log(chalk.green.bold("ASSERTION PASSED"));
-
-	// 	console.log(chalk.yellow("ar_canUpdate: ",ar_canUpdate.toString()));
-	// });
 
 	it("oracle_instance_USDC_WETH reserve0 & reserve1", async () => {
 		console.log(chalk.red("============ oracle_instance_USDC_WETH reserve0 & reserve1 ============"));
@@ -390,13 +365,13 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.yellow("ar_reserve1: ",ar_reserve1.toString()));
 	});
 
-	it("oracle_instance_CERES_WETH price0Average & price1Average", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_WETH price0Average & price0Average ============"));
-		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+	it("oracle_instance_USDC_WETH price0Average & price1Average", async () => {
+		console.log(chalk.red("============ oracle_instance_USDC_WETH price0Average & price0Average ============"));
+		console.log(chalk.blue("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 		
 		// Action
-		const ar_price0Average = await oracle_instance_CERES_WETH.price0Average.call();
-		const ar_price1Average = await oracle_instance_CERES_WETH.price1Average.call();
+		const ar_price0Average = await oracle_instance_USDC_WETH.price0Average.call();
+		const ar_price1Average = await oracle_instance_USDC_WETH.price1Average.call();
 
 		// ASSERT
 		console.log(chalk.green.bold("NO ASSERTION"));
@@ -406,18 +381,18 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.yellow("ar_price1Average: ",ar_price1Average.toString()));
 	});
 
-	it("oracle_instance_CERES_WETH pair_address", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_WETH pair_address ============"));
-		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+	it("oracle_instance_USDC_WETH pair_address", async () => {
+		console.log(chalk.red("============ oracle_instance_USDC_WETH pair_address ============"));
+		console.log(chalk.blue("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 		
 		// Before
-		console.log(chalk.blue("er: pair_addr_CERES_WETH: ",pair_addr_CERES_WETH.toString()));
+		console.log(chalk.blue("er: pair_addr_USDC_WETH: ",pair_addr_USDC_WETH.toString()));
 
 		// Action
-		const ar_pair_address = (await oracle_instance_CERES_WETH.pair_address.call()).toString();
+		const ar_pair_address = (await oracle_instance_USDC_WETH.pair_address.call()).toString();
 
 		// ASSERT
-		assert.equal(pair_addr_CERES_WETH.toString(),ar_pair_address,chalk.red.bold("ASSERTION FAILED"));
+		assert.equal(pair_addr_USDC_WETH.toString(),ar_pair_address,chalk.red.bold("ASSERTION FAILED"));
 
 		// Print
 		console.log(chalk.yellow("ar_pair_address: ",ar_pair_address.toString()));
