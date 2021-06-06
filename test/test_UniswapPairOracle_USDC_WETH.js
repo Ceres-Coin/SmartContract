@@ -358,32 +358,33 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 	// 	console.log(chalk.yellow("ar_canUpdate: ",ar_canUpdate.toString()));
 	// });
 
-	it("oracle_instance_CERES_WETH reserve0 & reserve1", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_WETH reserve0 & reserve1 ============"));
-		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+	it("oracle_instance_USDC_WETH reserve0 & reserve1", async () => {
+		console.log(chalk.red("============ oracle_instance_USDC_WETH reserve0 & reserve1 ============"));
+		console.log(chalk.blue("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 		
 		// Action
-		const ar_reserve0 = (await oracle_instance_CERES_WETH.reserve0.call()).toString();
-		const ar_reserve1 = (await oracle_instance_CERES_WETH.reserve1.call()).toString();
+		const ar_reserve0 = (await oracle_instance_USDC_WETH.reserve0.call()).toString();
+		const ar_reserve1 = (await oracle_instance_USDC_WETH.reserve1.call()).toString();
 
 		let ER_reserve0;
 		let ER_reserve1;
 
-		console.log(chalk.blue.bold("===== first_CERES_WETH: ",first_CERES_WETH));
 		// ASSERT
-		if (first_CERES_WETH) {
-			ER_reserve0 = SIX_HUNDRED_DEC18.toString();
-			ER_reserve1 = ONE_DEC18.toString();
-		} else {
-			ER_reserve0 = ONE_DEC18.toString();
-			ER_reserve1 = SIX_HUNDRED_DEC18.toString();
-		}
-		assert.equal(ar_reserve0,ER_reserve0,chalk.red.bold("ASSERTION FAILED"));
-		assert.equal(ar_reserve1,ER_reserve1,chalk.red.bold("ASSERTION FAILED"));
+		// console.log(chalk.blue.bold("===== first_CERES_WETH: ",first_CERES_WETH));
+		// if (first_CERES_WETH) {
+		// 	ER_reserve0 = SIX_HUNDRED_DEC18.toString();
+		// 	ER_reserve1 = ONE_DEC18.toString();
+		// } else {
+		// 	ER_reserve0 = ONE_DEC18.toString();
+		// 	ER_reserve1 = SIX_HUNDRED_DEC18.toString();
+		// }
+		// assert.equal(ar_reserve0,ER_reserve0,chalk.red.bold("ASSERTION FAILED"));
+		// assert.equal(ar_reserve1,ER_reserve1,chalk.red.bold("ASSERTION FAILED"));
+
 		
 		// Print
-		console.log(chalk.blue("ER_reserve0: ",ER_reserve0.toString()));
-		console.log(chalk.blue("ER_reserve1: ",ER_reserve1.toString()));
+		// console.log(chalk.blue("ER_reserve0: ",ER_reserve0.toString()));
+		// console.log(chalk.blue("ER_reserve1: ",ER_reserve1.toString()));
 		console.log(chalk.yellow("ar_reserve0: ",ar_reserve0.toString()));
 		console.log(chalk.yellow("ar_reserve1: ",ar_reserve1.toString()));
 	});
