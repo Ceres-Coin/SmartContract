@@ -70,6 +70,8 @@ const UniswapPairOracle_CERES_USDC = artifacts.require("Oracle/Fakes/UniswapPair
 const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_WETH");
 const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_USDC");
 
+const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
+
 // ChainlinkETHUSD Contract
 const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest2");
 
@@ -79,7 +81,7 @@ const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
 
 
-contract('Oracle_Instance_CERES_WETH', async (accounts) => {
+contract('oracle_instance_USDC_WETH', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
@@ -110,11 +112,14 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 	let pair_addr_CSS_WETH;
 	let pair_addr_CSS_USDC;
 
+	let pair_addr_USDC_WETH;
+
 	// uniswap oracle price
 	let oracle_instance_CERES_WETH;
 	let oracle_instance_CERES_USDC;
 	let oracle_instance_CSS_WETH;
 	let oracle_instance_CSS_USDC;
+	let oracle_instance_USDC_WETH;
 
 	let first_CERES_WETH;
 	let first_CERES_USDC;
@@ -224,16 +229,19 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 
 		pool_instance_USDC = await Pool_USDC.deployed();
 		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		
+		oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
+		pair_addr_USDC_WETH = await uniswapFactoryInstance.getPair(col_instance_USDC.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
     });
 
 	// // Always Passed
 	// // No Assertion
-	it("oracle_instance_CERES_WETH Initialize", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_WETH Initialize ============"));
+	it("oracle_instance_USDC_WETH Initialize", async () => {
+		console.log(chalk.red("============ oracle_instance_USDC_WETH Initialize ============"));
 		// Print oracle_instance_CERES_WETH.address
 		console.log(chalk.green.bold("NO ASSERTION"));
-		console.log(chalk.yellow("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+		console.log(chalk.yellow("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 	});
 
 	it("oracle_instance_CERES_WETH token0 & token1", async () => {
