@@ -73,9 +73,7 @@ const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOr
 const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
 
 // ChainlinkETHUSD Contract
-const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest2");
 
-const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
 
 
@@ -126,8 +124,6 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 	let first_CSS_WETH;
 	let first_CSS_USDC;
 
-	// USDC_Pool Parameter
-	let pool_instance_USDC;
 	// USDC_Pool Public Variants
 	let collateral_token;
 	let collateral_address;
@@ -227,7 +223,7 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		first_CSS_USDC = cssInstance.address == first_CSS_USDC;
 
 
-		pool_instance_USDC = await Pool_USDC.deployed();
+		
 		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 		
 		oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
