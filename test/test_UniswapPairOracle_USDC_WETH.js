@@ -38,6 +38,7 @@ const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
 const SIX_HUNDRED_DEC18 = new BigNumber(600e18);
+const SIX_HUNDRED_DEC6 = new BigNumber(600e6);
 const ONE_DEC18 = new BigNumber(1e18);
 
 // Uniswap related
@@ -306,7 +307,7 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		
 		// BEFORE
 		// const ar_ceres_price = await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6);
-		const ar_ceres_price_before = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		const ar_ceres_price_before = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, 1e12))).toNumber();
 
 		// ACTION
 		// time.increase 1 day & update oracle_instance_CERES_WETH;
@@ -316,7 +317,7 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		await oracle_instance_USDC_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
 		// AFTER
-		const ar_ceres_price_after = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		const ar_ceres_price_after = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, 1e12))).toNumber();
 		
 
 		// Assert

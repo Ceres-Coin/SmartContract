@@ -32,6 +32,7 @@ const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
 const SIX_HUNDRED_DEC18 = new BigNumber(600e18);
+const SIX_HUNDRED_DEC6 = new BigNumber(600e6);
 const ONE_DEC18 = new BigNumber(1e18);
 
 const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
@@ -111,7 +112,7 @@ module.exports = async function(deployer, network, accounts) {
 			new BigNumber(SIX_HUNDRED_DEC18), 
 			new BigNumber(ONE_DEC18), 
 			new BigNumber(SIX_HUNDRED_DEC18), 
-			new BigNumber(SIX_HUNDRED_DEC18), 
+			new BigNumber(ONE_DEC18), 
 			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
 			new BigNumber(2105300114), 
 			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
@@ -153,13 +154,24 @@ module.exports = async function(deployer, network, accounts) {
 			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
 		),
 		// USDC/WETH
+		// routerInstance.addLiquidity(
+		// 	col_instance_USDC.address, 
+		// 	wethInstance.address,
+		// 	new BigNumber(600e6), 
+		// 	new BigNumber(100e18), 
+		// 	new BigNumber(600e6), 
+		// 	new BigNumber(100e18), 
+		// 	COLLATERAL_CERES_AND_CERESHARES_OWNER, 
+		// 	new BigNumber(2105300114), 
+		// 	{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
+		// )
 		routerInstance.addLiquidity(
 			col_instance_USDC.address, 
 			wethInstance.address,
-			new BigNumber(600e6), 
-			new BigNumber(100e18), 
-			new BigNumber(600e6), 
-			new BigNumber(100e18), 
+			new BigNumber(SIX_HUNDRED_DEC6), 
+			new BigNumber(ONE_DEC18), 
+			new BigNumber(SIX_HUNDRED_DEC6), 
+			new BigNumber(ONE_DEC18), 
 			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
 			new BigNumber(2105300114), 
 			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
