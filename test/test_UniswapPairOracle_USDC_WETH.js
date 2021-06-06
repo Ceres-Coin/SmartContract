@@ -329,12 +329,12 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.yellow("AR: ar_ceres_price_after: ",ar_ceres_price_after.toString()));		
 	});
 
-	it("oracle_instance_CERES_WETH blockTimestampLast", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_WETH blockTimestampLast ============"));
-		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+	it("oracle_instance_USDC_WETH blockTimestampLast", async () => {
+		console.log(chalk.red("============ oracle_instance_USDC_WETH blockTimestampLast ============"));
+		console.log(chalk.blue("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 		
 		// ACTION
-		const ar_blockTimestampLast = await oracle_instance_CERES_WETH.blockTimestampLast.call();
+		const ar_blockTimestampLast = await oracle_instance_USDC_WETH.blockTimestampLast.call();
 
 		// ASSERT
 		console.log(chalk.green.bold("NO ASSERTION"));
@@ -343,20 +343,20 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.yellow("ar_blockTimestampLast: ",ar_blockTimestampLast.toString()));
 	});
 
-	it("oracle_instance_CERES_WETH canUpdate", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_WETH canUpdate ============"));
-		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+	// it("oracle_instance_CERES_WETH canUpdate", async () => {
+	// 	console.log(chalk.red("============ oracle_instance_CERES_WETH canUpdate ============"));
+	// 	console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
-		// ACTION
-		const ar_canUpdate = await oracle_instance_CERES_WETH.canUpdate();
+	// 	// ACTION
+	// 	const ar_canUpdate = await oracle_instance_CERES_WETH.canUpdate();
 
-		// ASSERT
-		const ER_CANUPDATE = false;
-		assert.equal(ar_canUpdate,ER_CANUPDATE);
-		console.log(chalk.green.bold("ASSERTION PASSED"));
+	// 	// ASSERT
+	// 	const ER_CANUPDATE = false;
+	// 	assert.equal(ar_canUpdate,ER_CANUPDATE);
+	// 	console.log(chalk.green.bold("ASSERTION PASSED"));
 
-		console.log(chalk.yellow("ar_canUpdate: ",ar_canUpdate.toString()));
-	});
+	// 	console.log(chalk.yellow("ar_canUpdate: ",ar_canUpdate.toString()));
+	// });
 
 	it("oracle_instance_CERES_WETH reserve0 & reserve1", async () => {
 		console.log(chalk.red("============ oracle_instance_CERES_WETH reserve0 & reserve1 ============"));
