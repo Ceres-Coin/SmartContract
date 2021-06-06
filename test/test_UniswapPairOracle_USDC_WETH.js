@@ -201,26 +201,24 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		
 		oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
 		oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed();
-
 		oracle_instance_CSS_WETH = await UniswapPairOracle_CSS_WETH.deployed();
 		oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
+		oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
 
 		first_CERES_WETH = await oracle_instance_CERES_WETH.token0();
 		first_CERES_USDC = await oracle_instance_CERES_USDC.token0();
 		first_CSS_WETH = await oracle_instance_CSS_WETH.token0();
 		first_CSS_USDC = await oracle_instance_CSS_USDC.token0();
+		fisrt_USDC_WETH = await oracle_instance_USDC_WETH.token0();
 
 
 		first_CERES_WETH = ceresInstance.address == first_CERES_WETH;
 		first_CERES_USDC = ceresInstance.address == first_CERES_USDC;
 		first_CSS_WETH = cssInstance.address == first_CSS_WETH;
 		first_CSS_USDC = cssInstance.address == first_CSS_USDC;
+		fisrt_USDC_WETH = col_instance_USDC == fisrt_USDC_WETH;
 
-
-		
 		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		
-		oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
 		pair_addr_USDC_WETH = await uniswapFactoryInstance.getPair(col_instance_USDC.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
     });
@@ -231,7 +229,10 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.red("============ oracle_instance_USDC_WETH Initialize ============"));
 		// Print oracle_instance_USDC_WETH.address
 		console.log(chalk.green.bold("NO ASSERTION"));
+		console.log(chalk.green.bold("fisrt_USDC_WETH: ",fisrt_USDC_WETH));
+
 		console.log(chalk.yellow("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
+		
 	});
 
 	it("oracle_instance_USDC_WETH token0 & token1", async () => {
