@@ -37,6 +37,8 @@ const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
 const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
+const SIX_HUNDRED_DEC18 = new BigNumber(600e18);
+const ONE_DEC18 = new BigNumber(1e18);
 
 // Uniswap related
 const TransferHelper = artifacts.require("Uniswap/TransferHelper");
@@ -72,11 +74,12 @@ const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOr
 const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest2");
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
-const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
 
 
 
-contract('Oracle_Instance_USDC_WETH', async (accounts) => {
+
+
+contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
@@ -177,7 +180,7 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 	let ar_collateralPricePaused;
 
 	// Core
-	let instantce_UniswapPairOracle_USDC_WETH;
+	
 	
 
     beforeEach(async() => {
@@ -200,12 +203,7 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 		uniswapLibraryInstance = await UniswapV2Library.deployed(); 
 		uniswapOracleLibraryInstance = await UniswapV2OracleLibrary.deployed(); 
 		swapToPriceInstance = await SwapToPrice.deployed(); 
-
-		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-
+		
 		oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
 		oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed();
 
@@ -225,77 +223,264 @@ contract('Oracle_Instance_USDC_WETH', async (accounts) => {
 
 
 		pool_instance_USDC = await Pool_USDC.deployed();
-		
-		instantce_UniswapPairOracle_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
-
-		
+		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
     });
 
-	it("UniswapPairOracle_USDC_WETH Initialize", async () => {
-		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH Initialize ============"));
-		console.log(chalk.yellow("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
+	// // Always Passed
+	// // No Assertion
+	it("oracle_instance_CERES_WETH Initialize", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH Initialize ============"));
+		// Print oracle_instance_CERES_WETH.address
+		console.log(chalk.green.bold("NO ASSERTION"));
+		console.log(chalk.yellow("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 	});
 
-	it("UniswapPairOracle_USDC_WETH token0 & token1", async () => {
-		console.log(chalk.red("============ UniswapPairOracle_USDC_WETH token0 & token1 ============"));
-		console.log(chalk.blue("ER: col_instance_USDC: ",col_instance_USDC.address));
+	it("oracle_instance_CERES_WETH token0 & token1", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH token0 & token1 ============"));
+		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
+		// Print ER
+		console.log(chalk.blue("ER: ceresInstance: ",ceresInstance.address));
 		console.log(chalk.blue("ER: wethInstance: ",wethInstance.address));
 
 		// Action
-		const ar_token0 = await instantce_UniswapPairOracle_USDC_WETH.token0();
-		const ar_token1 = await instantce_UniswapPairOracle_USDC_WETH.token1();
+		const ar_token0 = await oracle_instance_CERES_WETH.token0();
+		const ar_token1 = await oracle_instance_CERES_WETH.token1();
 
-		// Print
+		// Assert
+		console.log(chalk.blue("first_CERES_WETH: ",first_CERES_WETH));
+		if (first_CERES_WETH) {
+			assert.equal(ceresInstance.address,ar_token0);
+			assert.equal(wethInstance.address,ar_token1);
+		} else {
+			assert.equal(ceresInstance.address,ar_token1);
+			assert.equal(wethInstance.address,ar_token0);
+		}
+		console.log(chalk.green.bold("ASSERTION PASSED"));
+
+		// Print AR
 		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
 		console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
-		
 	});
 
-	it("instantce_UniswapPairOracle_USDC_WETH consult", async () => {
-		console.log(chalk.red("============ instantce_UniswapPairOracle_USDC_WETH consult ============"));
-		console.log(chalk.blue("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
+	it("oracle_instance_CERES_WETH Price0 & Price1", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH Price0 & Price1 ============"));
+		console.log(chalk.blue("ER: oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
-		// BEFORE
-		// const ar_ceres_price = await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6);
-		const ar_usdc_price_before = (new BigNumber(await instantce_UniswapPairOracle_USDC_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		// Before
+		const ar_price0CumulativeLast_before = await oracle_instance_CERES_WETH.price0CumulativeLast.call();
+		const ar_price1CumulativeLast_before = await oracle_instance_CERES_WETH.price1CumulativeLast.call();
 
 		// ACTION
 		// time.increase 1 day & update oracle_instance_CERES_WETH;
 		console.log(chalk.yellow("Time.increase 1 day"));
 		await time.increase(86400 + 1);
 		await time.advanceBlock();
-		await instantce_UniswapPairOracle_USDC_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		await oracle_instance_CERES_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
 		// AFTER
-		// const ar_usdc_price_after = (new BigNumber(await instantce_UniswapPairOracle_USDC_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
-		const ar_usdc_price_after = await instantce_UniswapPairOracle_USDC_WETH.consult(wethInstance.address, 1e6);
+		const ar_price0CumulativeLast_after = await oracle_instance_CERES_WETH.price0CumulativeLast.call();
+		const ar_price1CumulativeLast_after = await oracle_instance_CERES_WETH.price1CumulativeLast.call();
+
+		// Assert
+		console.log(chalk.green.bold("NO ASSERTION"));
 
 		// Print
-		console.log(chalk.yellow("AR: ar_usdc_price_before: ",ar_usdc_price_before.toString()));	
-		console.log(chalk.yellow("AR: ar_usdc_price_after: ",ar_usdc_price_after.toString()));		
+		console.log(chalk.yellow("AR: ar_price0CumulativeLast_before: ",ar_price0CumulativeLast_before.toString()));
+		console.log(chalk.yellow("AR: ar_price1CumulativeLast_before: ",ar_price1CumulativeLast_before.toString()));
+
+		console.log(chalk.yellow("AR: ar_price0CumulativeLast_after: ",ar_price0CumulativeLast_after.toString()));
+		console.log(chalk.yellow("AR: ar_price1CumulativeLast_after: ",ar_price1CumulativeLast_after.toString()));
+		
 	});
 
-	it("instantce_UniswapPairOracle_USDC_WETH blockTimestampLast", async () => {
-		console.log(chalk.red("============ instantce_UniswapPairOracle_USDC_WETH blockTimestampLast ============"));
-		console.log(chalk.blue("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
+	it("oracle_instance_CERES_WETH consult", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH consult ============"));
+		console.log(chalk.blue("ER: oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
 		// BEFORE
 		// const ar_ceres_price = await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6);
-		const ar_blockTimestampLast = await instantce_UniswapPairOracle_USDC_WETH.blockTimestampLast.call();
-		console.log(chalk.yellow("ar_blockTimestampLast: ",ar_blockTimestampLast.toString()));
+		const ar_ceres_price_before = (new BigNumber(await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
 
+		// ACTION
+		// time.increase 1 day & update oracle_instance_CERES_WETH;
+		console.log(chalk.yellow("Time.increase 1 day"));
+		await time.increase(86400 + 1);
+		await time.advanceBlock();
+		await oracle_instance_CERES_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+
+		// AFTER
+		const ar_ceres_price_after = (new BigNumber(await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		const CERES_PRICE_AFTER = 600;
+
+		// Assert
+		assert.equal(ar_ceres_price_after,CERES_PRICE_AFTER);
+		console.log(chalk.green.bold("ASSERTION PASSED"));
+
+		// Print
+		console.log(chalk.yellow("AR: ar_ceres_price_before: ",ar_ceres_price_before.toString()));	
+		console.log(chalk.yellow("AR: ar_ceres_price_after: ",ar_ceres_price_after.toString()));		
 	});
 
-	it("instantce_UniswapPairOracle_USDC_WETH canUpdate", async () => {
-		console.log(chalk.red("============ instantce_UniswapPairOracle_USDC_WETH canUpdate ============"));
-		console.log(chalk.blue("instantce_UniswapPairOracle_USDC_WETH: ",instantce_UniswapPairOracle_USDC_WETH.address));
+	it("oracle_instance_CERES_WETH blockTimestampLast", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH blockTimestampLast ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 		
-		const ar_canUpdate = await instantce_UniswapPairOracle_USDC_WETH.canUpdate();
-		console.log(chalk.yellow("ar_canUpdate: ",ar_canUpdate.toString()));
+		// ACTION
+		const ar_blockTimestampLast = await oracle_instance_CERES_WETH.blockTimestampLast.call();
 
+		// ASSERT
+		console.log(chalk.green.bold("NO ASSERTION"));
+
+		// PRINT
+		console.log(chalk.yellow("ar_blockTimestampLast: ",ar_blockTimestampLast.toString()));
 	});
 
+	it("oracle_instance_CERES_WETH canUpdate", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH canUpdate ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+		
+		// ACTION
+		const ar_canUpdate = await oracle_instance_CERES_WETH.canUpdate();
+
+		// ASSERT
+		const ER_CANUPDATE = false;
+		assert.equal(ar_canUpdate,ER_CANUPDATE);
+		console.log(chalk.green.bold("ASSERTION PASSED"));
+
+		console.log(chalk.yellow("ar_canUpdate: ",ar_canUpdate.toString()));
+	});
+
+	it("oracle_instance_CERES_WETH reserve0 & reserve1", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH reserve0 & reserve1 ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+		
+		// Action
+		const ar_reserve0 = (await oracle_instance_CERES_WETH.reserve0.call()).toString();
+		const ar_reserve1 = (await oracle_instance_CERES_WETH.reserve1.call()).toString();
+
+		let ER_reserve0;
+		let ER_reserve1;
+
+		console.log(chalk.blue.bold("===== first_CERES_WETH: ",first_CERES_WETH));
+		// ASSERT
+		if (first_CERES_WETH) {
+			ER_reserve0 = SIX_HUNDRED_DEC18.toString();
+			ER_reserve1 = ONE_DEC18.toString();
+		} else {
+			ER_reserve0 = ONE_DEC18.toString();
+			ER_reserve1 = SIX_HUNDRED_DEC18.toString();
+		}
+		assert.equal(ar_reserve0,ER_reserve0,chalk.red.bold("ASSERTION FAILED"));
+		assert.equal(ar_reserve1,ER_reserve1,chalk.red.bold("ASSERTION FAILED"));
+		
+		// Print
+		console.log(chalk.blue("ER_reserve0: ",ER_reserve0.toString()));
+		console.log(chalk.blue("ER_reserve1: ",ER_reserve1.toString()));
+		console.log(chalk.yellow("ar_reserve0: ",ar_reserve0.toString()));
+		console.log(chalk.yellow("ar_reserve1: ",ar_reserve1.toString()));
+	});
+
+	it("oracle_instance_CERES_WETH price0Average & price1Average", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH price0Average & price0Average ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+		
+		// Action
+		const ar_price0Average = await oracle_instance_CERES_WETH.price0Average.call();
+		const ar_price1Average = await oracle_instance_CERES_WETH.price1Average.call();
+
+		// ASSERT
+		console.log(chalk.green.bold("NO ASSERTION"));
+
+		// Print
+		console.log(chalk.yellow("ar_price0Average: ",ar_price0Average.toString()));
+		console.log(chalk.yellow("ar_price1Average: ",ar_price1Average.toString()));
+	});
+
+	it("oracle_instance_CERES_WETH pair_address", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH pair_address ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+		
+		// Before
+		console.log(chalk.blue("er: pair_addr_CERES_WETH: ",pair_addr_CERES_WETH.toString()));
+
+		// Action
+		const ar_pair_address = (await oracle_instance_CERES_WETH.pair_address.call()).toString();
+
+		// ASSERT
+		assert.equal(pair_addr_CERES_WETH.toString(),ar_pair_address,chalk.red.bold("ASSERTION FAILED"));
+
+		// Print
+		console.log(chalk.yellow("ar_pair_address: ",ar_pair_address.toString()));
+	});
+
+	it("oracle_instance_CERES_WETH owner_address", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH owner_address ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+
+		// Before
+		const er_owner_address = COLLATERAL_CERES_AND_CERESHARES_OWNER;
+		
+		// Action
+		const ar_owner_address = await oracle_instance_CERES_WETH.owner_address.call();
+
+		// Assert
+		assert.equal(er_owner_address,ar_owner_address,chalk.red.bold("ASSERTION FAILED"));
+
+		// Print
+		console.log(chalk.blue("er_owner_address: ",er_owner_address));
+		console.log(chalk.yellow("ar_owner_address: ",ar_owner_address.toString()));
+	});
+
+	it("oracle_instance_CERES_WETH timelock_address", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH timelock_address ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+
+		// Before
+		const er_timelock_address = timelockInstance.address;
+		
+		// Action
+		const ar_timelock_address = await oracle_instance_CERES_WETH.timelock_address.call();
+
+		// Assert
+		assert.equal(er_timelock_address,ar_timelock_address,chalk.red.bold("ASSERTION FAILED"));
+
+		// Print
+		console.log(chalk.blue("er_timelock_address: ",er_timelock_address));
+		console.log(chalk.yellow("ar_timelock_address: ",ar_timelock_address.toString()));
+	});
+
+	it("oracle_instance_CERES_WETH Constants ", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_WETH timelock_address ============"));
+		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+
+		// Before
+		const er_PERIOD = 3600; // 1 hour TWAP (time-weighted average price)
+		const er_CONSULT_LENIENCY = 120; // Used for being able to consult past the period end
+		const er_ALLOW_STALE_CONSULTS = true; // If false, consult() will fail if the TWAP is stale
+		
+		// Action
+		const ar_PERIOD = await oracle_instance_CERES_WETH.PERIOD.call();
+		const ar_CONSULT_LENIENCY = await oracle_instance_CERES_WETH.CONSULT_LENIENCY.call();
+		const ar_ALLOW_STALE_CONSULTS = await oracle_instance_CERES_WETH.ALLOW_STALE_CONSULTS.call();
+
+		// Assert
+		assert.equal(er_PERIOD,ar_PERIOD);
+		assert.equal(er_CONSULT_LENIENCY,ar_CONSULT_LENIENCY);
+		assert.equal(er_ALLOW_STALE_CONSULTS,ar_ALLOW_STALE_CONSULTS);
+
+		// Print
+		console.log(chalk.blue("er_PERIOD: ",er_PERIOD));
+		console.log(chalk.blue("er_Per_CONSULT_LENIENCYERIOD: ",er_CONSULT_LENIENCY));
+		console.log(chalk.blue("er_ALLOW_STALE_CONSULTS: ",er_ALLOW_STALE_CONSULTS));
+
+		console.log(chalk.yellow("ar_PERIOD: ",ar_PERIOD.toString()));
+		console.log(chalk.yellow("ar_CONSULT_LENIENCY: ",ar_CONSULT_LENIENCY.toString()));
+		console.log(chalk.yellow("ar_ALLOW_STALE_CONSULTS: ",ar_ALLOW_STALE_CONSULTS.toString()));
+	});
+
+
+	
 });
 
 
