@@ -229,7 +229,7 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 	// // No Assertion
 	it("oracle_instance_USDC_WETH Initialize", async () => {
 		console.log(chalk.red("============ oracle_instance_USDC_WETH Initialize ============"));
-		// Print oracle_instance_CERES_WETH.address
+		// Print oracle_instance_USDC_WETH.address
 		console.log(chalk.green.bold("NO ASSERTION"));
 		console.log(chalk.yellow("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 	});
@@ -270,7 +270,7 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		const ar_price1CumulativeLast_before = await oracle_instance_USDC_WETH.price1CumulativeLast.call();
 
 		// ACTION
-		// time.increase 1 day & update oracle_instance_CERES_WETH;
+		// time.increase 1 day & update oracle_instance_USDC_WETH;
 		console.log(chalk.yellow("Time.increase 1 day"));
 		await time.increase(86400 + 1);
 		await time.advanceBlock();
@@ -297,11 +297,11 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.blue("ER: oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 		
 		// BEFORE
-		// const ar_ceres_price = await oracle_instance_CERES_WETH.consult.call(wethInstance.address, 1e6);
+		// const ar_ceres_price = await oracle_instance_USDC_WETH.consult.call(wethInstance.address, 1e6);
 		const ar_ceres_price_before = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, 1e12))).toNumber();
 
 		// ACTION
-		// time.increase 1 day & update oracle_instance_CERES_WETH;
+		// time.increase 1 day & update oracle_instance_USDC_WETH;
 		console.log(chalk.yellow("Time.increase 1 day"));
 		await time.increase(86400 + 1);
 		await time.advanceBlock();
@@ -398,15 +398,15 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.yellow("ar_pair_address: ",ar_pair_address.toString()));
 	});
 
-	it("oracle_instance_CERES_WETH owner_address", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_WETH owner_address ============"));
-		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+	it("oracle_instance_USDC_WETH owner_address", async () => {
+		console.log(chalk.red("============ oracle_instance_USDC_WETH owner_address ============"));
+		console.log(chalk.blue("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 
 		// Before
 		const er_owner_address = COLLATERAL_CERES_AND_CERESHARES_OWNER;
 		
 		// Action
-		const ar_owner_address = await oracle_instance_CERES_WETH.owner_address.call();
+		const ar_owner_address = await oracle_instance_USDC_WETH.owner_address.call();
 
 		// Assert
 		assert.equal(er_owner_address,ar_owner_address,chalk.red.bold("ASSERTION FAILED"));
@@ -416,15 +416,15 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.yellow("ar_owner_address: ",ar_owner_address.toString()));
 	});
 
-	it("oracle_instance_CERES_WETH timelock_address", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_WETH timelock_address ============"));
-		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+	it("oracle_instance_USDC_WETH timelock_address", async () => {
+		console.log(chalk.red("============ oracle_instance_USDC_WETH timelock_address ============"));
+		console.log(chalk.blue("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 
 		// Before
 		const er_timelock_address = timelockInstance.address;
 		
 		// Action
-		const ar_timelock_address = await oracle_instance_CERES_WETH.timelock_address.call();
+		const ar_timelock_address = await oracle_instance_USDC_WETH.timelock_address.call();
 
 		// Assert
 		assert.equal(er_timelock_address,ar_timelock_address,chalk.red.bold("ASSERTION FAILED"));
