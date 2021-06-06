@@ -72,13 +72,6 @@ const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOr
 
 const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Fakes/UniswapPairOracle_USDC_WETH");
 
-// ChainlinkETHUSD Contract
-
-
-
-
-
-
 contract('oracle_instance_USDC_WETH', async (accounts) => {
 	// deploy address;
 	let ADMIN;
@@ -240,51 +233,51 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.yellow("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 	});
 
-	it("oracle_instance_CERES_WETH token0 & token1", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_WETH token0 & token1 ============"));
-		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
+	it("oracle_instance_USDC_WETH token0 & token1", async () => {
+		console.log(chalk.red("============ oracle_instance_USDC_WETH token0 & token1 ============"));
+		console.log(chalk.blue("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 		// Print ER
-		console.log(chalk.blue("ER: ceresInstance: ",ceresInstance.address));
+		console.log(chalk.blue("ER: ceresInstance: ",col_instance_USDC.address));
 		console.log(chalk.blue("ER: wethInstance: ",wethInstance.address));
 
 		// Action
-		const ar_token0 = await oracle_instance_CERES_WETH.token0();
-		const ar_token1 = await oracle_instance_CERES_WETH.token1();
+		const ar_token0 = await oracle_instance_USDC_WETH.token0();
+		const ar_token1 = await oracle_instance_USDC_WETH.token1();
 
 		// Assert
-		console.log(chalk.blue("first_CERES_WETH: ",first_CERES_WETH));
-		if (first_CERES_WETH) {
-			assert.equal(ceresInstance.address,ar_token0);
-			assert.equal(wethInstance.address,ar_token1);
-		} else {
-			assert.equal(ceresInstance.address,ar_token1);
-			assert.equal(wethInstance.address,ar_token0);
-		}
-		console.log(chalk.green.bold("ASSERTION PASSED"));
+		// console.log(chalk.blue("first_CERES_WETH: ",first_CERES_WETH));
+		// if (first_CERES_WETH) {
+		// 	assert.equal(ceresInstance.address,ar_token0);
+		// 	assert.equal(wethInstance.address,ar_token1);
+		// } else {
+		// 	assert.equal(ceresInstance.address,ar_token1);
+		// 	assert.equal(wethInstance.address,ar_token0);
+		// }
+		// console.log(chalk.green.bold("ASSERTION PASSED"));
 
 		// Print AR
 		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
 		console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
 	});
 
-	it("oracle_instance_CERES_WETH Price0 & Price1", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_WETH Price0 & Price1 ============"));
-		console.log(chalk.blue("ER: oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
+	it("oracle_instance_USDC_WETH Price0 & Price1", async () => {
+		console.log(chalk.red("============ oracle_instance_USDC_WETH Price0 & Price1 ============"));
+		console.log(chalk.blue("ER: oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
 		
 		// Before
-		const ar_price0CumulativeLast_before = await oracle_instance_CERES_WETH.price0CumulativeLast.call();
-		const ar_price1CumulativeLast_before = await oracle_instance_CERES_WETH.price1CumulativeLast.call();
+		const ar_price0CumulativeLast_before = await oracle_instance_USDC_WETH.price0CumulativeLast.call();
+		const ar_price1CumulativeLast_before = await oracle_instance_USDC_WETH.price1CumulativeLast.call();
 
 		// ACTION
 		// time.increase 1 day & update oracle_instance_CERES_WETH;
 		console.log(chalk.yellow("Time.increase 1 day"));
 		await time.increase(86400 + 1);
 		await time.advanceBlock();
-		await oracle_instance_CERES_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		await oracle_instance_USDC_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
 		// AFTER
-		const ar_price0CumulativeLast_after = await oracle_instance_CERES_WETH.price0CumulativeLast.call();
-		const ar_price1CumulativeLast_after = await oracle_instance_CERES_WETH.price1CumulativeLast.call();
+		const ar_price0CumulativeLast_after = await oracle_instance_USDC_WETH.price0CumulativeLast.call();
+		const ar_price1CumulativeLast_after = await oracle_instance_USDC_WETH.price1CumulativeLast.call();
 
 		// Assert
 		console.log(chalk.green.bold("NO ASSERTION"));
