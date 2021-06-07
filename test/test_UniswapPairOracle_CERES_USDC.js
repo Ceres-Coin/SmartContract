@@ -73,7 +73,7 @@ const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOr
 
 const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Fakes/UniswapPairOracle_USDC_WETH");
 
-contract('oracle_instance_USDC_WETH', async (accounts) => {
+contract('oracle_instance_CERES_USDC', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
@@ -226,41 +226,39 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 
 	// // Always Passed
 	// // No Assertion
-	it("oracle_instance_USDC_WETH Initialize", async () => {
-		console.log(chalk.red("============ oracle_instance_USDC_WETH Initialize ============"));
-		// Print oracle_instance_USDC_WETH.address
+	it("oracle_instance_CERES_USDC Initialize", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_USDC Initialize ============"));
 		console.log(chalk.green.bold("NO ASSERTION"));
-		console.log(chalk.green.bold("first_USDC_WETH: ",first_USDC_WETH));
+		console.log(chalk.green.bold("first_CERES_USDC: ",first_CERES_USDC));
 
-		console.log(chalk.yellow("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
+		console.log(chalk.yellow("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
 		
 	});
 
-	it("oracle_instance_USDC_WETH token0 & token1", async () => {
-		console.log(chalk.red("============ oracle_instance_USDC_WETH token0 & token1 ============"));
-		console.log(chalk.blue("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
+	it("oracle_instance_CERES_USDC token0 & token1", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_USDC token0 & token1 ============"));
+		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
 		// Print ER
+		console.log(chalk.blue("ER: ceresInstance: ",ceresInstance.address));
 		console.log(chalk.blue("ER: col_instance_USDC: ",col_instance_USDC.address));
-		console.log(chalk.blue("ER: wethInstance: ",wethInstance.address));
 
 		// Action
-		const ar_token0 = await oracle_instance_USDC_WETH.token0();
-		const ar_token1 = await oracle_instance_USDC_WETH.token1();
+		const ar_token0 = await oracle_instance_CERES_USDC.token0();
+		const ar_token1 = await oracle_instance_CERES_USDC.token1();
 		
 		// Print
 		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
 		console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
 
 		// Assert
-		console.log(chalk.green.bold("first_USDC_WETH: ",first_USDC_WETH));
-		if (first_USDC_WETH) {
-			assert.equal(col_instance_USDC.address,ar_token0);
-			assert.equal(wethInstance.address,ar_token1);
-		} else {
+		console.log(chalk.green.bold("first_CERES_USDC: ",first_CERES_USDC));
+		if (first_CERES_USDC) {
+			assert.equal(ceresInstance.address,ar_token0);
 			assert.equal(col_instance_USDC.address,ar_token1);
-			assert.equal(wethInstance.address,ar_token0);
+		} else {
+			assert.equal(ceresInstance.address,ar_token1);
+			assert.equal(col_instance_USDC.address,ar_token0);
 		}
-
 	});
 
 
