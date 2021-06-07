@@ -40,6 +40,8 @@ const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
 const SIX_HUNDRED_DEC18 = new BigNumber(600e18);
 const SIX_HUNDRED_DEC6 = new BigNumber(600e6);
 const ONE_DEC18 = new BigNumber(1e18);
+const ONE_HUNDRED_DEC18 = new BigNumber(100e18);
+const ONE_HUNDRED_DEC6 = new BigNumber(100e6);
 
 // Uniswap related
 const TransferHelper = artifacts.require("Uniswap/TransferHelper");
@@ -341,43 +343,45 @@ contract('oracle_instance_CERES_USDC', async (accounts) => {
 		console.log(chalk.yellow("ar_blockTimestampLast: ",ar_blockTimestampLast.toString()));
 	});
 
-	it("oracle_instance_USDC_WETH reserve0 & reserve1", async () => {
-		console.log(chalk.red("============ oracle_instance_USDC_WETH reserve0 & reserve1 ============"));
-		console.log(chalk.blue("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
+	it("oracle_instance_CERES_USDC reserve0 & reserve1", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_USDC reserve0 & reserve1 ============"));
+		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
 		
 		// Action
-		const ar_reserve0 = (await oracle_instance_USDC_WETH.reserve0.call()).toString();
-		const ar_reserve1 = (await oracle_instance_USDC_WETH.reserve1.call()).toString();
+		const ar_reserve0 = (await oracle_instance_CERES_USDC.reserve0.call()).toString();
+		const ar_reserve1 = (await oracle_instance_CERES_USDC.reserve1.call()).toString();
 
 		// Print
 		console.log(chalk.yellow("ar_reserve0: ",ar_reserve0.toString()));
 		console.log(chalk.yellow("ar_reserve1: ",ar_reserve1.toString()));
 
-		console.log(chalk.green.bold("first_USDC_WETH: ",first_USDC_WETH));
+		console.log(chalk.green.bold("first_CERES_USDC: ",first_CERES_USDC));
 
+		// ASSERT
 		let ER_reserve0;
 		let ER_reserve1;
-		// ASSERT
-		if (first_USDC_WETH) {
-			ER_reserve0 = SIX_HUNDRED_DEC6.toString();
-			ER_reserve1 = ONE_DEC18.toString();
+		if (first_CERES_USDC) {
+			ER_reserve0 = ONE_HUNDRED_DEC18.toString();
+			ER_reserve1 = ONE_HUNDRED_DEC6.toString();
 		} else {
-			ER_reserve0 = ONE_DEC18.toString();
-			ER_reserve1 = SIX_HUNDRED_DEC6.toString();
+			ER_reserve0 = ONE_HUNDRED_DEC6.toString();
+			ER_reserve1 = ONE_HUNDRED_DEC18.toString();
 		}
+
+		console.log(chalk.blue("ER_reserve0: ",ER_reserve0));
+		console.log(chalk.blue("ER_reserve1: ",ER_reserve1));
+
 		assert.equal(ar_reserve0,ER_reserve0,chalk.red.bold("ASSERTION FAILED"));
 		assert.equal(ar_reserve1,ER_reserve1,chalk.red.bold("ASSERTION FAILED"));
-		
-
 	});
 
-	it("oracle_instance_USDC_WETH price0Average & price1Average", async () => {
-		console.log(chalk.red("============ oracle_instance_USDC_WETH price0Average & price0Average ============"));
-		console.log(chalk.blue("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
+	it("oracle_instance_CERES_USDC price0Average & price1Average", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_USDC price0Average & price0Average ============"));
+		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
 		
 		// Action
-		const ar_price0Average = await oracle_instance_USDC_WETH.price0Average.call();
-		const ar_price1Average = await oracle_instance_USDC_WETH.price1Average.call();
+		const ar_price0Average = await oracle_instance_CERES_USDC.price0Average.call();
+		const ar_price1Average = await oracle_instance_CERES_USDC.price1Average.call();
 
 		// ASSERT
 		console.log(chalk.green.bold("NO ASSERTION"));
