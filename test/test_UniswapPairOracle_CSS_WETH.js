@@ -448,15 +448,15 @@ contract('oracle_instance_CSS_WETH', async (accounts) => {
 		console.log(chalk.yellow("ar_owner_address: ",ar_owner_address.toString()));
 	});
 
-	it("oracle_instance_CSS_USDC timelock_address", async () => {
-		console.log(chalk.red("============ oracle_instance_CSS_USDC timelock_address ============"));
-		console.log(chalk.blue("oracle_instance_CSS_USDC: ",oracle_instance_CSS_USDC.address));
+	it("oracle_instance_CSS_WETH timelock_address", async () => {
+		console.log(chalk.red("============ oracle_instance_CSS_WETH timelock_address ============"));
+		console.log(chalk.blue("oracle_instance_CSS_WETH: ",oracle_instance_CSS_WETH.address));
 
 		// Before
 		const er_timelock_address = timelockInstance.address;
 		
 		// Action
-		const ar_timelock_address = await oracle_instance_CSS_USDC.timelock_address.call();
+		const ar_timelock_address = await oracle_instance_CSS_WETH.timelock_address.call();
 
 		// Assert
 		assert.equal(er_timelock_address,ar_timelock_address,chalk.red.bold("ASSERTION FAILED"));
