@@ -336,22 +336,22 @@ contract('oracle_instance_CSS_USDC', async (accounts) => {
 		
 	});
 
-	it("oracle_instance_CERES_USDC consult", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_USDC consult ============"));
-		console.log(chalk.blue("ER: oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
+	it("oracle_instance_CSS_USDC consult", async () => {
+		console.log(chalk.red("============ oracle_instance_CSS_USDC consult ============"));
+		console.log(chalk.blue("ER: oracle_instance_CSS_USDC: ",oracle_instance_CERES_USDC.address));
 		
 		// BEFORE
-		const ar_ceres_price_before = (new BigNumber(await oracle_instance_CERES_USDC.consult.call(col_instance_USDC.address, BIG6))).div(BIG18).toNumber();
+		const ar_ceres_price_before = (new BigNumber(await oracle_instance_CSS_USDC.consult.call(col_instance_USDC.address, BIG6))).div(BIG18).toNumber();
 
 		// ACTION
 		// time.increase 1 day
 		console.log(chalk.yellow("Time.increase 1 day"));
 		await time.increase(86400 + 1);
 		await time.advanceBlock();
-		await oracle_instance_CERES_USDC.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		await oracle_instance_CSS_USDC.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
 		// AFTER
-		const ar_ceres_price_after = (new BigNumber(await oracle_instance_CERES_USDC.consult.call(col_instance_USDC.address, BIG6))).div(BIG18).toNumber();
+		const ar_ceres_price_after = (new BigNumber(await oracle_instance_CSS_USDC.consult.call(col_instance_USDC.address, BIG6))).div(BIG18).toNumber();
 		
 		// Assert
 		console.log(chalk.green.bold("NO ASSERTION"));
@@ -361,12 +361,12 @@ contract('oracle_instance_CSS_USDC', async (accounts) => {
 		console.log(chalk.yellow("AR: ar_ceres_price_after: ",ar_ceres_price_after.toString()));		
 	});
 
-	it("oracle_instance_CERES_USDC blockTimestampLast", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_USDC blockTimestampLast ============"));
-		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
+	it("oracle_instance_CSS_USDC blockTimestampLast", async () => {
+		console.log(chalk.red("============ oracle_instance_CSS_USDC blockTimestampLast ============"));
+		console.log(chalk.blue("oracle_instance_CSS_USDC: ",oracle_instance_CSS_USDC.address));
 		
 		// ACTION
-		const ar_blockTimestampLast = await oracle_instance_CERES_USDC.blockTimestampLast.call();
+		const ar_blockTimestampLast = await oracle_instance_CSS_USDC.blockTimestampLast.call();
 
 		// ASSERT
 		console.log(chalk.green.bold("NO ASSERTION"));
