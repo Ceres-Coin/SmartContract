@@ -466,9 +466,9 @@ contract('oracle_instance_CSS_WETH', async (accounts) => {
 		console.log(chalk.yellow("ar_timelock_address: ",ar_timelock_address.toString()));
 	});
 
-	it("oracle_instance_CSS_USDC Constants ", async () => {
-		console.log(chalk.red("============ oracle_instance_CSS_USDC timelock_address ============"));
-		console.log(chalk.blue("oracle_instance_CSS_USDC: ",oracle_instance_CSS_USDC.address));
+	it("oracle_instance_CSS_WETH Constants ", async () => {
+		console.log(chalk.red("============ oracle_instance_CSS_WETH timelock_address ============"));
+		console.log(chalk.blue("oracle_instance_CSS_WETH: ",oracle_instance_CSS_WETH.address));
 
 		// Before
 		const er_PERIOD = 3600; // 1 hour TWAP (time-weighted average price)
@@ -476,9 +476,9 @@ contract('oracle_instance_CSS_WETH', async (accounts) => {
 		const er_ALLOW_STALE_CONSULTS = true; // If false, consult() will fail if the TWAP is stale
 		
 		// Action
-		const ar_PERIOD = await oracle_instance_CSS_USDC.PERIOD.call();
-		const ar_CONSULT_LENIENCY = await oracle_instance_CSS_USDC.CONSULT_LENIENCY.call();
-		const ar_ALLOW_STALE_CONSULTS = await oracle_instance_CSS_USDC.ALLOW_STALE_CONSULTS.call();
+		const ar_PERIOD = await oracle_instance_CSS_WETH.PERIOD.call();
+		const ar_CONSULT_LENIENCY = await oracle_instance_CSS_WETH.CONSULT_LENIENCY.call();
+		const ar_ALLOW_STALE_CONSULTS = await oracle_instance_CSS_WETH.ALLOW_STALE_CONSULTS.call();
 
 		// Assert
 		assert.equal(er_PERIOD,ar_PERIOD);
