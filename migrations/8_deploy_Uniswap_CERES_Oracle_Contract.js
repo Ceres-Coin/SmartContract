@@ -137,10 +137,10 @@ module.exports = async function(deployer, network, accounts) {
 		routerInstance.addLiquidity(
 			cssInstance.address, 
 			wethInstance.address,
-			new BigNumber(800e18), 
-			new BigNumber(1e18), 
-			new BigNumber(800e18), 
-			new BigNumber(1e18), 
+			new BigNumber(EIGHT_HUNDRED_DEC18), 
+			new BigNumber(ONE_DEC18), 
+			new BigNumber(EIGHT_HUNDRED_DEC18), 
+			new BigNumber(ONE_DEC18), 
 			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
 			new BigNumber(2105300114), 
 			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
