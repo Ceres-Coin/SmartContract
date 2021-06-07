@@ -430,15 +430,15 @@ contract('oracle_instance_CSS_WETH', async (accounts) => {
 		console.log(chalk.yellow("ar_pair_address: ",ar_pair_address.toString()));
 	});
 
-	it("oracle_instance_CSS_USDC owner_address", async () => {
-		console.log(chalk.red("============ oracle_instance_CSS_USDC owner_address ============"));
-		console.log(chalk.blue("oracle_instance_CSS_USDC: ",oracle_instance_CSS_USDC.address));
+	it("oracle_instance_CSS_WETH owner_address", async () => {
+		console.log(chalk.red("============ oracle_instance_CSS_WETH owner_address ============"));
+		console.log(chalk.blue("oracle_instance_CSS_WETH: ",oracle_instance_CSS_WETH.address));
 
 		// Before
 		const er_owner_address = COLLATERAL_CERES_AND_CERESHARES_OWNER;
 		
 		// Action
-		const ar_owner_address = await oracle_instance_CSS_USDC.owner_address.call();
+		const ar_owner_address = await oracle_instance_CSS_WETH.owner_address.call();
 
 		// Assert
 		assert.equal(er_owner_address,ar_owner_address,chalk.red.bold("ASSERTION FAILED"));
