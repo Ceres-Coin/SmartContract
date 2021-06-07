@@ -222,6 +222,7 @@ contract('oracle_instance_CERES_USDC', async (accounts) => {
 		first_USDC_WETH = col_instance_USDC.address == first_USDC_WETH;
 
 		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 		pair_addr_USDC_WETH = await uniswapFactoryInstance.getPair(col_instance_USDC.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
     });
@@ -391,18 +392,18 @@ contract('oracle_instance_CERES_USDC', async (accounts) => {
 		console.log(chalk.yellow("ar_price1Average: ",ar_price1Average.toString()));
 	});
 
-	it("oracle_instance_USDC_WETH pair_address", async () => {
-		console.log(chalk.red("============ oracle_instance_USDC_WETH pair_address ============"));
-		console.log(chalk.blue("oracle_instance_USDC_WETH: ",oracle_instance_USDC_WETH.address));
+	it("oracle_instance_CERES_USDC pair_address", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_USDC pair_address ============"));
+		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
 		
 		// Before
-		console.log(chalk.blue("er: pair_addr_USDC_WETH: ",pair_addr_USDC_WETH.toString()));
+		console.log(chalk.blue("er: pair_addr_CERES_USDC: ",pair_addr_CERES_USDC.toString()));
 
 		// Action
-		const ar_pair_address = (await oracle_instance_USDC_WETH.pair_address.call()).toString();
+		const ar_pair_address = (await oracle_instance_CERES_USDC.pair_address.call()).toString();
 
 		// ASSERT
-		assert.equal(pair_addr_USDC_WETH.toString(),ar_pair_address,chalk.red.bold("ASSERTION FAILED"));
+		assert.equal(pair_addr_CERES_USDC.toString(),ar_pair_address,chalk.red.bold("ASSERTION FAILED"));
 
 		// Print
 		console.log(chalk.yellow("ar_pair_address: ",ar_pair_address.toString()));
