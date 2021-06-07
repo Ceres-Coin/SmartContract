@@ -308,24 +308,24 @@ contract('oracle_instance_CSS_WETH', async (accounts) => {
 	});
 
 
-	it("oracle_instance_CSS_USDC Price0 & Price1", async () => {
-		console.log(chalk.red("============ oracle_instance_CSS_USDC Price0 & Price1 ============"));
-		console.log(chalk.blue("ER: oracle_instance_CSS_USDC: ",oracle_instance_CSS_USDC.address));
+	it("oracle_instance_CSS_WETH Price0 & Price1", async () => {
+		console.log(chalk.red("============ oracle_instance_CSS_WETH Price0 & Price1 ============"));
+		console.log(chalk.blue("ER: oracle_instance_CSS_WETH: ",oracle_instance_CSS_WETH.address));
 		
 		// Before
-		const ar_price0CumulativeLast_before = await oracle_instance_CSS_USDC.price0CumulativeLast.call();
-		const ar_price1CumulativeLast_before = await oracle_instance_CSS_USDC.price1CumulativeLast.call();
+		const ar_price0CumulativeLast_before = await oracle_instance_CSS_WETH.price0CumulativeLast.call();
+		const ar_price1CumulativeLast_before = await oracle_instance_CSS_WETH.price1CumulativeLast.call();
 
 		// ACTION
 		// time.increase 1 day 
 		console.log(chalk.yellow("Time.increase 1 day"));
 		await time.increase(86400 + 1);
 		await time.advanceBlock();
-		await oracle_instance_CSS_USDC.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		await oracle_instance_CSS_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
 		// AFTER
-		const ar_price0CumulativeLast_after = await oracle_instance_CSS_USDC.price0CumulativeLast.call();
-		const ar_price1CumulativeLast_after = await oracle_instance_CSS_USDC.price1CumulativeLast.call();
+		const ar_price0CumulativeLast_after = await oracle_instance_CSS_WETH.price0CumulativeLast.call();
+		const ar_price1CumulativeLast_after = await oracle_instance_CSS_WETH.price1CumulativeLast.call();
 
 		// Assert
 		console.log(chalk.green.bold("NO ASSERTION"));
