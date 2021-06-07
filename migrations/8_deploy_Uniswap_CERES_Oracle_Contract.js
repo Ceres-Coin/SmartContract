@@ -36,6 +36,7 @@ const SIX_HUNDRED_DEC6 = new BigNumber(600e6);
 const ONE_DEC18 = new BigNumber(1e18);
 const ONE_HUNDRED_DEC18 = new BigNumber(100e18);
 const ONE_HUNDRED_DEC6 = new BigNumber(100e6);
+const Number133_DEC18 = new BigNumber(133e18);
 
 const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 
@@ -147,10 +148,10 @@ module.exports = async function(deployer, network, accounts) {
 		routerInstance.addLiquidity(
 			cssInstance.address, 
 			col_instance_USDC.address,
-			new BigNumber(133333e15), 
-			new BigNumber(100e6), 
-			new BigNumber(133333e15), 
-			new BigNumber(100e6), 
+			new BigNumber(Number133_DEC18), 
+			new BigNumber(ONE_HUNDRED_DEC6), 
+			new BigNumber(Number133_DEC18), 
+			new BigNumber(ONE_HUNDRED_DEC6), 
 			COLLATERAL_CERES_AND_CERESHARES_OWNER, 
 			new BigNumber(2105300114), 
 			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }

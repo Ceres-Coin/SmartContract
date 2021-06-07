@@ -42,6 +42,7 @@ const ONE_DEC18 = new BigNumber(1e18);
 const ONE_HUNDRED_DEC18 = new BigNumber(100e18);
 const ONE_HUNDRED_DEC6 = new BigNumber(100e6);
 const MISSING_DECIMALS_DEC12 = new BigNumber(1e12);
+const Number133_DEC18 = new BigNumber(133e18);
 const BIG6 = new BigNumber("1e6");
 const BIG18 = new BigNumber("1e18");
 
@@ -271,6 +272,38 @@ contract('oracle_instance_CSS_USDC', async (accounts) => {
 		}
 	});
 
+	it("oracle_instance_CSS_USDC reserve0 & reserve1", async () => {
+		console.log(chalk.red("============ oracle_instance_CSS_USDC reserve0 & reserve1 ============"));
+		console.log(chalk.blue("oracle_instance_CSS_USDC: ",oracle_instance_CSS_USDC.address));
+		
+		// Action
+		const ar_reserve0 = (await oracle_instance_CSS_USDC.reserve0.call()).toString();
+		const ar_reserve1 = (await oracle_instance_CSS_USDC.reserve1.call()).toString();
+
+		// Print
+		console.log(chalk.yellow("ar_reserve0: ",ar_reserve0.toString()));
+		console.log(chalk.yellow("ar_reserve1: ",ar_reserve1.toString()));
+
+		console.log(chalk.green.bold("first_CSS_USDC: ",first_CSS_USDC));
+
+		// ASSERT
+		let ER_reserve0;
+		let ER_reserve1;
+		if (first_CSS_USDC) {
+			ER_reserve0 = Number133_DEC18.toString();
+			ER_reserve1 = ONE_HUNDRED_DEC6.toString();
+		} else {
+			ER_reserve0 = ONE_HUNDRED_DEC6.toString();
+			ER_reserve1 = Number133_DEC18.toString();
+		}
+
+		console.log(chalk.blue("ER_reserve0: ",ER_reserve0));
+		console.log(chalk.blue("ER_reserve1: ",ER_reserve1));
+
+		assert.equal(ar_reserve0,ER_reserve0,chalk.red.bold("ASSERTION FAILED"));
+		assert.equal(ar_reserve1,ER_reserve1,chalk.red.bold("ASSERTION FAILED"));
+	});
+
 
 	it("oracle_instance_CERES_USDC Price0 & Price1", async () => {
 		console.log(chalk.red("============ oracle_instance_CERES_USDC Price0 & Price1 ============"));
@@ -342,37 +375,7 @@ contract('oracle_instance_CSS_USDC', async (accounts) => {
 		console.log(chalk.yellow("ar_blockTimestampLast: ",ar_blockTimestampLast.toString()));
 	});
 
-	it("oracle_instance_CERES_USDC reserve0 & reserve1", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_USDC reserve0 & reserve1 ============"));
-		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
-		
-		// Action
-		const ar_reserve0 = (await oracle_instance_CERES_USDC.reserve0.call()).toString();
-		const ar_reserve1 = (await oracle_instance_CERES_USDC.reserve1.call()).toString();
 
-		// Print
-		console.log(chalk.yellow("ar_reserve0: ",ar_reserve0.toString()));
-		console.log(chalk.yellow("ar_reserve1: ",ar_reserve1.toString()));
-
-		console.log(chalk.green.bold("first_CERES_USDC: ",first_CERES_USDC));
-
-		// ASSERT
-		let ER_reserve0;
-		let ER_reserve1;
-		if (first_CERES_USDC) {
-			ER_reserve0 = ONE_HUNDRED_DEC18.toString();
-			ER_reserve1 = ONE_HUNDRED_DEC6.toString();
-		} else {
-			ER_reserve0 = ONE_HUNDRED_DEC6.toString();
-			ER_reserve1 = ONE_HUNDRED_DEC18.toString();
-		}
-
-		console.log(chalk.blue("ER_reserve0: ",ER_reserve0));
-		console.log(chalk.blue("ER_reserve1: ",ER_reserve1));
-
-		assert.equal(ar_reserve0,ER_reserve0,chalk.red.bold("ASSERTION FAILED"));
-		assert.equal(ar_reserve1,ER_reserve1,chalk.red.bold("ASSERTION FAILED"));
-	});
 
 	it("oracle_instance_CERES_USDC price0Average & price1Average", async () => {
 		console.log(chalk.red("============ oracle_instance_CERES_USDC price0Average & price0Average ============"));
