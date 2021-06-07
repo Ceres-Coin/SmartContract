@@ -240,29 +240,34 @@ contract('oracle_instance_CSS_USDC', async (accounts) => {
 		
 	});
 
-	it("oracle_instance_CERES_USDC token0 & token1", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_USDC token0 & token1 ============"));
-		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
+	it("oracle_instance_CSS_USDC token0 & token1", async () => {
+		console.log(chalk.red("============ oracle_instance_CSS_USDC token0 & token1 ============"));
+		console.log(chalk.blue("oracle_instance_CSS_USDC: ",oracle_instance_CSS_USDC.address));
+
+		// Before
+		const er_token0 = cssInstance.address;
+		const er_token1 = col_instance_USDC.address;
+
 		// Print ER
-		console.log(chalk.blue("ER: ceresInstance: ",ceresInstance.address));
-		console.log(chalk.blue("ER: col_instance_USDC: ",col_instance_USDC.address));
+		console.log(chalk.blue("ER: cssInstance: ",er_token0));
+		console.log(chalk.blue("ER: col_instance_USDC: ",er_token1));
 
 		// Action
-		const ar_token0 = await oracle_instance_CERES_USDC.token0();
-		const ar_token1 = await oracle_instance_CERES_USDC.token1();
+		const ar_token0 = await oracle_instance_CSS_USDC.token0();
+		const ar_token1 = await oracle_instance_CSS_USDC.token1();
 		
 		// Print
 		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
 		console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
 
 		// Assert
-		console.log(chalk.green.bold("first_CERES_USDC: ",first_CERES_USDC));
-		if (first_CERES_USDC) {
-			assert.equal(ceresInstance.address,ar_token0);
-			assert.equal(col_instance_USDC.address,ar_token1);
+		console.log(chalk.green.bold("first_CSS_USDC: ",first_CSS_USDC));
+		if (first_CSS_USDC) {
+			assert.equal(er_token0,ar_token0);
+			assert.equal(er_token1,ar_token1);
 		} else {
-			assert.equal(ceresInstance.address,ar_token1);
-			assert.equal(col_instance_USDC.address,ar_token0);
+			assert.equal(er_token0,ar_token1);
+			assert.equal(er_token1,ar_token0);
 		}
 	});
 
