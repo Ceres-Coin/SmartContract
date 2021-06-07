@@ -276,14 +276,6 @@ contract('oracle_instance_CERES_USDC', async (accounts) => {
 		// ACTION
 		// time.increase 1 day & update oracle_instance_CERES_USDC;
 		console.log(chalk.yellow("Time.increase 1 day"));
-		console.log(chalk.red.bold("================= ASSERTION FAILED ===================="));
-		console.log(chalk.red.bold("================= ASSERTION FAILED ===================="));
-		console.log(chalk.red.bold("================= ASSERTION FAILED ===================="));
-		console.log(chalk.red.bold("================= ASSERTION FAILED ===================="));
-		console.log(chalk.red.bold("================= ASSERTION FAILED ===================="));
-		console.log(chalk.red.bold("================= ASSERTION FAILED ===================="));
-		console.log(chalk.red.bold("================= ASSERTION FAILED ===================="));
-		console.log(chalk.red.bold("================= ASSERTION FAILED ===================="));
 		await time.increase(86400 + 1);
 		await time.advanceBlock();
 		await oracle_instance_CERES_USDC.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
