@@ -251,11 +251,8 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		console.log(chalk.yellow("AR: ar_token0: ",ar_token0.toString()));
 		console.log(chalk.yellow("AR: ar_token1: ",ar_token1.toString()));
 
-
-
-		
 		// Assert
-		console.log(chalk.blue("first_USDC_WETH: ",first_USDC_WETH));
+		console.log(chalk.green.bold("first_USDC_WETH: ",first_USDC_WETH));
 		if (first_USDC_WETH) {
 			assert.equal(col_instance_USDC.address,ar_token0);
 			assert.equal(wethInstance.address,ar_token1);
@@ -346,11 +343,26 @@ contract('oracle_instance_USDC_WETH', async (accounts) => {
 		const ar_reserve0 = (await oracle_instance_USDC_WETH.reserve0.call()).toString();
 		const ar_reserve1 = (await oracle_instance_USDC_WETH.reserve1.call()).toString();
 
-		console.log(chalk.green.bold("first_USDC_WETH: ",first_USDC_WETH));
-		
 		// Print
 		console.log(chalk.yellow("ar_reserve0: ",ar_reserve0.toString()));
 		console.log(chalk.yellow("ar_reserve1: ",ar_reserve1.toString()));
+
+		console.log(chalk.green.bold("first_USDC_WETH: ",first_USDC_WETH));
+
+		let ER_reserve0;
+		let ER_reserve1;
+		// ASSERT
+		if (first_USDC_WETH) {
+			ER_reserve0 = SIX_HUNDRED_DEC6.toString();
+			ER_reserve1 = ONE_DEC18.toString();
+		} else {
+			ER_reserve0 = ONE_DEC18.toString();
+			ER_reserve1 = SIX_HUNDRED_DEC6.toString();
+		}
+		assert.equal(ar_reserve0,ER_reserve0,chalk.red.bold("ASSERTION FAILED"));
+		assert.equal(ar_reserve1,ER_reserve1,chalk.red.bold("ASSERTION FAILED"));
+		
+
 	});
 
 	it("oracle_instance_USDC_WETH price0Average & price1Average", async () => {
