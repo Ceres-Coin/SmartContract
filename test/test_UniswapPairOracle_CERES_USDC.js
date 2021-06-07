@@ -12,8 +12,7 @@ Contract.setProvider('http://127.0.0.1:8545');
 global.artifacts = artifacts;
 global.web3 = web3;
 
-const BIG6 = new BigNumber("1e6");
-const BIG18 = new BigNumber("1e18");
+
 
 const Address = artifacts.require("Utils/Address");
 const BlockMiner = artifacts.require("Utils/BlockMiner");
@@ -42,6 +41,9 @@ const SIX_HUNDRED_DEC6 = new BigNumber(600e6);
 const ONE_DEC18 = new BigNumber(1e18);
 const ONE_HUNDRED_DEC18 = new BigNumber(100e18);
 const ONE_HUNDRED_DEC6 = new BigNumber(100e6);
+const MISSING_DECIMALS_DEC12 = new BigNumber(1e12);
+const BIG6 = new BigNumber("1e6");
+const BIG18 = new BigNumber("1e18");
 
 // Uniswap related
 const TransferHelper = artifacts.require("Uniswap/TransferHelper");
@@ -296,31 +298,30 @@ contract('oracle_instance_CERES_USDC', async (accounts) => {
 		
 	});
 
-	// it("oracle_instance_CERES_USDC consult", async () => {
-	// 	console.log(chalk.red("============ oracle_instance_CERES_USDC consult ============"));
-	// 	console.log(chalk.blue("ER: oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
+	it("oracle_instance_CERES_USDC consult", async () => {
+		console.log(chalk.red("============ oracle_instance_CERES_USDC consult ============"));
+		console.log(chalk.blue("ER: oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
 		
-	// 	// BEFORE
-	// 	// const ar_ceres_price = await oracle_instance_USDC_WETH.consult.call(wethInstance.address, 1e6);
-	// 	const ar_ceres_price_before = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, 1e12))).toNumber();
+		// BEFORE
+		const ar_ceres_price_before = (new BigNumber(await oracle_instance_CERES_USDC.consult.call(col_instance_USDC.address, BIG6))).div(BIG18).toNumber();
 
-	// 	// ACTION
-	// 	// time.increase 1 day & update oracle_instance_USDC_WETH;
-	// 	console.log(chalk.yellow("Time.increase 1 day"));
-	// 	await time.increase(86400 + 1);
-	// 	await time.advanceBlock();
-	// 	await oracle_instance_USDC_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		// ACTION
+		// time.increase 1 day
+		console.log(chalk.yellow("Time.increase 1 day"));
+		await time.increase(86400 + 1);
+		await time.advanceBlock();
+		await oracle_instance_CERES_USDC.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
-	// 	// AFTER
-	// 	const ar_ceres_price_after = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, 1e12))).toNumber();
+		// AFTER
+		const ar_ceres_price_after = (new BigNumber(await oracle_instance_CERES_USDC.consult.call(col_instance_USDC.address, BIG6))).div(BIG18).toNumber();
 		
-	// 	// Assert
-	// 	console.log(chalk.green.bold("NO ASSERTION"));
+		// Assert
+		console.log(chalk.green.bold("NO ASSERTION"));
 
-	// 	// Print
-	// 	console.log(chalk.yellow("AR: ar_ceres_price_before: ",ar_ceres_price_before.toString()));	
-	// 	console.log(chalk.yellow("AR: ar_ceres_price_after: ",ar_ceres_price_after.toString()));		
-	// });
+		// Print
+		console.log(chalk.yellow("AR: ar_ceres_price_before: ",ar_ceres_price_before.toString()));	
+		console.log(chalk.yellow("AR: ar_ceres_price_after: ",ar_ceres_price_after.toString()));		
+	});
 
 	it("oracle_instance_CERES_USDC blockTimestampLast", async () => {
 		console.log(chalk.red("============ oracle_instance_CERES_USDC blockTimestampLast ============"));
