@@ -37,6 +37,7 @@ const ONE_DEC18 = new BigNumber(1e18);
 const ONE_HUNDRED_DEC18 = new BigNumber(100e18);
 const ONE_HUNDRED_DEC6 = new BigNumber(100e6);
 const Number133_DEC18 = new BigNumber(133e18);
+const EIGHT_HUNDRED_DEC18 = new BigNumber(800e18);
 
 const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 
