@@ -527,6 +527,26 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		console.log(chalk.yellow("ar_pausedPrice: ",ar_pausedPrice.toString()));
     });
 
+    it("pool_instance_USDC bonus_rate", async () => {
+		console.log(chalk.red("============ pool_instance_USDC bonus_rate ============"));
+		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+		
+		// Before
+		const er_bonus_rate = BONUS_RATE.toString();
+		
+		// Action
+		const ar_bonus_rate = await pool_instance_USDC.bonus_rate.call();
+
+		// Assert
+		assert.equal(ar_bonus_rate.toString(),er_bonus_rate.toString(),chalk.red.bold("ASSERTION FAILED"));
+
+		// Print ER
+        console.log(chalk.blue("er_bonus_rate: ",er_bonus_rate.toString()));
+        
+        // Print AR
+		console.log(chalk.yellow("ar_bonus_rate: ",ar_bonus_rate.toString()));
+    });
+
 
 
     
