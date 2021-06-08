@@ -337,11 +337,7 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
     it("pool_instance_USDC minting_fee & other 3 constants", async () => {
 		console.log(chalk.red("============ pool_instance_USDC minting_fee & other 3 constants ============"));
         console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
-        console.log(chalk.red.bold("============ to do: add test scripts of expected result code ===================="));
-        console.log(chalk.red.bold("============ to do: add test scripts of expected result code ===================="));
-        console.log(chalk.red.bold("============ to do: add test scripts of expected result code ===================="));
-        console.log(chalk.red.bold("============ to do: add test scripts of expected result code ===================="));
-		
+
 		// Before
         const er_minting_fee = MINTING_FEE;
         const er_redemption_fee = REDEMPTION_FEE;
@@ -371,6 +367,26 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
         console.log(chalk.yellow("ar_redemption_fee: ",ar_redemption_fee.toString()));
         console.log(chalk.yellow("ar_buyback_fee: ",ar_buyback_fee.toString()));
         console.log(chalk.yellow("ar_recollat_fee: ",ar_recollat_fee.toString()));
+    });
+
+    it("pool_instance_USDC CERES", async () => {
+		console.log(chalk.red("============ pool_instance_USDC CERES ============"));
+		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+		
+		// Action
+        const ar_ceres_contract_address = await pool_instance_USDC.ceres_contract_address.call();
+        const instance_pool_instance_USDC_CERES = await CEREStable.at(ar_ceres_contract_address);
+
+        const symbol = await instance_pool_instance_USDC_CERES.symbol.call();
+        const name = await instance_pool_instance_USDC_CERES.name.call();
+        const decimals = await instance_pool_instance_USDC_CERES.decimals.call();
+
+
+        // Print AR
+        console.log(chalk.yellow("ar_ceres_contract_address: ",ar_ceres_contract_address.toString()));
+        console.log(chalk.yellow("symbol: ",symbol.toString()));
+        console.log(chalk.yellow("name: ",name.toString()));
+        console.log(chalk.yellow("decimals: ",decimals.toString()));
     });
 
 

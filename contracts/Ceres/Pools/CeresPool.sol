@@ -23,8 +23,8 @@ contract CeresPool is AccessControl {
     address public ceres_contract_address; // test scripts done
     address public css_contract_address; // test scripts done
     address public timelock_address; // test scripts done
-    CEREShares public CSS;
-    CEREStable public CERES;
+    CEREShares public CSS; 
+    CEREStable public CERES; //test scripts done
 
     UniswapPairOracle public collatEthOracle;
     address public collat_eth_oracle_address;
