@@ -262,23 +262,23 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 	// 	console.log(chalk.yellow("ar_owner_address: ",ar_owner_address.toString()));
     // });
 
-    it("pool_instance_USDC ceres_contract_address", async () => {
-		console.log(chalk.red("============ pool_instance_USDC ceres_contract_address ============"));
-		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+    // it("pool_instance_USDC ceres_contract_address", async () => {
+	// 	console.log(chalk.red("============ pool_instance_USDC ceres_contract_address ============"));
+	// 	console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
 		
-		// Before
-		const er_ceres_contract_address = ceresInstance.address;
+	// 	// Before
+	// 	const er_ceres_contract_address = ceresInstance.address;
 		
-		// Action
-		const ar_ceres_contract_address = await pool_instance_USDC.ceres_contract_address.call();
+	// 	// Action
+	// 	const ar_ceres_contract_address = await pool_instance_USDC.ceres_contract_address.call();
 
-		// Assert
-		assert.equal(er_owner_address,ar_owner_address,chalk.red.bold("ASSERTION FAILED"));
+	// 	// Assert
+	// 	assert.equal(er_ceres_contract_address,ar_ceres_contract_address,chalk.red.bold("ASSERTION FAILED"));
 
-		// Print
-		console.log(chalk.blue("er_ceres_contract_address: ",er_ceres_contract_address.toString()));
-		console.log(chalk.yellow("ar_ceres_contract_address: ",ar_ceres_contract_address.toString()));
-    });
+	// 	// Print
+	// 	console.log(chalk.blue("er_ceres_contract_address: ",er_ceres_contract_address.toString()));
+	// 	console.log(chalk.yellow("ar_ceres_contract_address: ",ar_ceres_contract_address.toString()));
+    // });
     
 
     
