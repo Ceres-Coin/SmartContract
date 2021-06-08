@@ -333,6 +333,35 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		console.log(chalk.blue("er_weth_address: ",er_weth_address.toString()));
 		console.log(chalk.yellow("ar_weth_address: ",ar_weth_address.toString()));
     });
+
+    it("pool_instance_USDC minting_fee & other 3 constants", async () => {
+		console.log(chalk.red("============ pool_instance_USDC minting_fee & other 3 constants ============"));
+		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+		
+		// Before
+		// const er_weth_address = wethInstance.address;
+		
+		// Action
+        const ar_minting_fee = await pool_instance_USDC.minting_fee.call();
+        const ar_redemption_fee = await pool_instance_USDC.redemption_fee.call();
+        const ar_buyback_fee = await pool_instance_USDC.buyback_fee.call();
+        const ar_recollat_fee = await pool_instance_USDC.recollat_fee.call();
+
+        
+
+		// Assert
+		// assert.equal(er_weth_address,ar_weth_address,chalk.red.bold("ASSERTION FAILED"));
+
+		// Print
+		// console.log(chalk.blue("er_weth_address: ",er_weth_address.toString()));
+        console.log(chalk.yellow("ar_minting_fee: ",ar_minting_fee.toString()));
+        console.log(chalk.yellow("ar_redemption_fee: ",ar_redemption_fee.toString()));
+        console.log(chalk.yellow("ar_buyback_fee: ",ar_buyback_fee.toString()));
+        console.log(chalk.yellow("ar_recollat_fee: ",ar_recollat_fee.toString()));
+    });
+
+
+
     
 
     

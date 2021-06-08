@@ -28,9 +28,10 @@ contract CeresPool is AccessControl {
 
     UniswapPairOracle public collatEthOracle;
     address public collat_eth_oracle_address;
-    address public weth_address;
+    address public weth_address; //test scripts done
 
-    uint256 public minting_fee;
+    // added test scripts for below 4 constants
+    uint256 public minting_fee; 
     uint256 public redemption_fee;
     uint256 public buyback_fee;
     uint256 public recollat_fee;
