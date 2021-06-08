@@ -343,7 +343,10 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
         console.log(chalk.red.bold("============ to do: add test scripts of expected result code ===================="));
 		
 		// Before
-		// const er_weth_address = wethInstance.address;
+        const er_minting_fee = MINTING_FEE;
+        const er_redemption_fee = REDEMPTION_FEE;
+        const er_buyback_fee = BUYBACK_FEE;
+        const er_recollat_fee = RECOLLAT_FEE;
 		
 		// Action
         const ar_minting_fee = await pool_instance_USDC.minting_fee.call();
@@ -351,13 +354,19 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
         const ar_buyback_fee = await pool_instance_USDC.buyback_fee.call();
         const ar_recollat_fee = await pool_instance_USDC.recollat_fee.call();
 
+        // Assert
+        assert.equal(ar_minting_fee,er_minting_fee);
+        assert.equal(ar_redemption_fee,er_redemption_fee);
+        assert.equal(ar_buyback_fee,er_buyback_fee);
+        assert.equal(ar_recollat_fee,er_recollat_fee);
 
+        // Print ER
+        console.log(chalk.blue("er_minting_fee: ",er_minting_fee));
+        console.log(chalk.blue("er_redemption_fee: ",er_redemption_fee));
+        console.log(chalk.blue("er_buyback_fee: ",er_buyback_fee));
+        console.log(chalk.blue("er_recollat_fee: ",er_recollat_fee));
 
-		// Assert
-		// assert.equal(er_weth_address,ar_weth_address,chalk.red.bold("ASSERTION FAILED"));
-
-		// Print
-		// console.log(chalk.blue("er_weth_address: ",er_weth_address.toString()));
+		// Print AR
         console.log(chalk.yellow("ar_minting_fee: ",ar_minting_fee.toString()));
         console.log(chalk.yellow("ar_redemption_fee: ",ar_redemption_fee.toString()));
         console.log(chalk.yellow("ar_buyback_fee: ",ar_buyback_fee.toString()));
