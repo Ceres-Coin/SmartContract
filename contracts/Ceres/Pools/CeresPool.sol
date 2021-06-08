@@ -18,11 +18,11 @@ contract CeresPool is AccessControl {
 
     ERC20 public collateral_token;
     address public collateral_address;
-    address public owner_address;
+    address public owner_address; // test scripts done
 
-    address public ceres_contract_address;
-    address public css_contract_address;
-    address public timelock_address;
+    address public ceres_contract_address; // test scripts done
+    address public css_contract_address; // test scripts done
+    address public timelock_address; // test scripts done
     CEREShares public CSS;
     CEREStable public CERES;
 

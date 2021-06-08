@@ -315,6 +315,24 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		console.log(chalk.blue("er_timelock_address: ",er_timelock_address.toString()));
 		console.log(chalk.yellow("ar_timelock_address: ",ar_timelock_address.toString()));
     });
+
+    it("pool_instance_USDC weth_address", async () => {
+		console.log(chalk.red("============ pool_instance_USDC weth_address ============"));
+		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+		
+		// Before
+		const er_weth_address = wethInstance.address;
+		
+		// Action
+		const ar_weth_address = await pool_instance_USDC.weth_address.call();
+
+		// Assert
+		assert.equal(er_weth_address,ar_weth_address,chalk.red.bold("ASSERTION FAILED"));
+
+		// Print
+		console.log(chalk.blue("er_weth_address: ",er_weth_address.toString()));
+		console.log(chalk.yellow("ar_weth_address: ",ar_weth_address.toString()));
+    });
     
 
     
