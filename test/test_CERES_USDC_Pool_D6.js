@@ -297,6 +297,24 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		console.log(chalk.blue("er_css_contract_address: ",er_css_contract_address.toString()));
 		console.log(chalk.yellow("ar_css_contract_address: ",ar_css_contract_address.toString()));
     });
+
+    it("pool_instance_USDC timelock_address", async () => {
+		console.log(chalk.red("============ pool_instance_USDC timelock_address ============"));
+		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+		
+		// Before
+		const er_timelock_address = timelockInstance.address;
+		
+		// Action
+		const ar_timelock_address = await pool_instance_USDC.timelock_address.call();
+
+		// Assert
+		assert.equal(er_timelock_address,ar_timelock_address,chalk.red.bold("ASSERTION FAILED"));
+
+		// Print
+		console.log(chalk.blue("er_timelock_address: ",er_timelock_address.toString()));
+		console.log(chalk.yellow("ar_timelock_address: ",ar_timelock_address.toString()));
+    });
     
 
     
