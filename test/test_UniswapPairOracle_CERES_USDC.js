@@ -36,12 +36,14 @@ const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
 const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
+// constants for addLiquidility
 const SIX_HUNDRED_DEC18 = new BigNumber(600e18);
 const SIX_HUNDRED_DEC6 = new BigNumber(600e6);
 const ONE_DEC18 = new BigNumber(1e18);
 const ONE_HUNDRED_DEC18 = new BigNumber(100e18);
 const ONE_HUNDRED_DEC6 = new BigNumber(100e6);
 const MISSING_DECIMALS_DEC12 = new BigNumber(1e12);
+// BIG6 & BIG18 
 const BIG6 = new BigNumber("1e6");
 const BIG18 = new BigNumber("1e18");
 
