@@ -31,10 +31,10 @@ contract CeresPool is AccessControl {
     address public weth_address; //test scripts done
 
     // added test scripts for below 4 constants
-    uint256 public minting_fee; 
-    uint256 public redemption_fee;
-    uint256 public buyback_fee;
-    uint256 public recollat_fee;
+    uint256 public minting_fee; // test scripts done
+    uint256 public redemption_fee; // test scripts done
+    uint256 public buyback_fee; // test scripts done
+    uint256 public recollat_fee; // test scripts done
 
     mapping (address => uint256) public redeemCSSBalances;
     mapping (address => uint256) public redeemCollateralBalances;
