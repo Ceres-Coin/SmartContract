@@ -492,19 +492,39 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
 		
 		// Before
-		const er_pool_ceiling = POOL_CEILING;
+		const er_pool_ceiling = POOL_CEILING.toString();
 		
 		// Action
 		const ar_pool_ceiling = await pool_instance_USDC.pool_ceiling.call();
 
 		// Assert
-		assert.equal(ar_pool_ceiling,er_pool_ceiling,chalk.red.bold("ASSERTION FAILED"));
+		assert.equal(ar_pool_ceiling.toString(),er_pool_ceiling.toString(),chalk.red.bold("ASSERTION FAILED"));
 
 		// Print ER
         console.log(chalk.blue("er_pool_ceiling: ",er_pool_ceiling.toString()));
         
         // Print AR
 		console.log(chalk.yellow("ar_pool_ceiling: ",ar_pool_ceiling.toString()));
+    });
+
+    it("pool_instance_USDC pausedPrice", async () => {
+		console.log(chalk.red("============ pool_instance_USDC pausedPrice ============"));
+		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+		
+		// Before
+		const er_pausedPrice = PAUSEDPRICE.toString();
+		
+		// Action
+		const ar_pausedPrice = await pool_instance_USDC.pausedPrice.call();
+
+		// Assert
+		assert.equal(ar_pausedPrice.toString(),er_pausedPrice.toString(),chalk.red.bold("ASSERTION FAILED"));
+
+		// Print ER
+        console.log(chalk.blue("er_pausedPrice: ",er_pausedPrice.toString()));
+        
+        // Print AR
+		console.log(chalk.yellow("ar_pausedPrice: ",ar_pausedPrice.toString()));
     });
 
 
