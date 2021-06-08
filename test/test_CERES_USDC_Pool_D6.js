@@ -487,6 +487,26 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		console.log(chalk.yellow("ar_missing_decimals: ",ar_missing_decimals.toString()));
     });
 
+    it("pool_instance_USDC pool_ceiling", async () => {
+		console.log(chalk.red("============ pool_instance_USDC pool_ceiling ============"));
+		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+		
+		// Before
+		// const er_missing_decimals = MISSING_DECIMALS;
+		
+		// Action
+		const ar_pool_ceiling = await pool_instance_USDC.pool_ceiling.call();
+
+		// Assert
+		// assert.equal(ar_missing_decimals,er_missing_decimals,chalk.red.bold("ASSERTION FAILED"));
+
+		// Print ER
+        // console.log(chalk.blue("er_missing_decimals: ",er_missing_decimals.toString()));
+        
+        // Print AR
+		console.log(chalk.yellow("ar_pool_ceiling: ",ar_pool_ceiling.toString()));
+    });
+
 
 
     

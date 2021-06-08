@@ -51,7 +51,7 @@ contract CeresPool is AccessControl {
     uint256 public immutable missing_decimals; //test scripts done
     
     // Pool_ceiling is the total units of collateral that a pool contract can hold
-    uint256 public pool_ceiling = 0;
+    uint256 public pool_ceiling = 0; //test scripts done
 
     // Stores price of the collateral, if price is paused
     uint256 public pausedPrice = 0;
