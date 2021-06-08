@@ -389,6 +389,26 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
         console.log(chalk.yellow("decimals: ",decimals.toString()));
     });
 
+    it("pool_instance_USDC CSS", async () => {
+		console.log(chalk.red("============ pool_instance_USDC CSS ============"));
+		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+		
+		// Action
+        const ar_css_contract_address = await pool_instance_USDC.css_contract_address.call();
+        const instance_pool_instance_USDC_CSS = await CEREStable.at(ar_css_contract_address);
+
+        const symbol = await instance_pool_instance_USDC_CSS.symbol.call();
+        const name = await instance_pool_instance_USDC_CSS.name.call();
+        const decimals = await instance_pool_instance_USDC_CSS.decimals.call();
+
+
+        // Print AR
+        console.log(chalk.yellow("ar_css_contract_address: ",ar_css_contract_address.toString()));
+        console.log(chalk.yellow("symbol: ",symbol.toString()));
+        console.log(chalk.yellow("name: ",name.toString()));
+        console.log(chalk.yellow("decimals: ",decimals.toString()));
+    });
+
 
 
     
