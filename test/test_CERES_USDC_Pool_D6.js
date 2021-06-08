@@ -244,92 +244,25 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		console.log(chalk.yellow("pool_instance_USDC: ",pool_instance_USDC.address));
     });
     
-    it("oracle_instance_CERES_USDC consult", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_USDC consult ============"));
-		console.log(chalk.blue("ER: oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
+    it("pool_instance_USDC owner_address", async () => {
+		console.log(chalk.red("============ pool_instance_USDC owner_address ============"));
+		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
 		
-		// BEFORE
-		const ar_ceres_price_before = (new BigNumber(await oracle_instance_CERES_USDC.consult.call(col_instance_USDC.address, BIG6))).div(BIG18).toNumber();
-
-		// ACTION
-		// time.increase 1 day
-		console.log(chalk.yellow("Time.increase 1 day"));
-		await time.increase(86400 + 1);
-		await time.advanceBlock();
-		await oracle_instance_CERES_USDC.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-
-		// AFTER
-		const ar_ceres_price_after = (new BigNumber(await oracle_instance_CERES_USDC.consult.call(col_instance_USDC.address, BIG6))).div(BIG18).toNumber();
+		// Before
+		const er_owner_address = COLLATERAL_CERES_AND_CERESHARES_OWNER;
 		
+		// Action
+		const ar_owner_address = await pool_instance_USDC.owner_address.call();
+
 		// Assert
-		console.log(chalk.green.bold("NO ASSERTION"));
+		assert.equal(er_owner_address,ar_owner_address,chalk.red.bold("ASSERTION FAILED"));
 
 		// Print
-		console.log(chalk.yellow("AR: ar_ceres_price_before: ",ar_ceres_price_before.toString()));	
-		console.log(chalk.yellow("AR: ar_ceres_price_after: ",ar_ceres_price_after.toString()));		
-	});
-
-	it("oracle_instance_CERES_USDC blockTimestampLast", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_USDC blockTimestampLast ============"));
-		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
-		
-		// ACTION
-		const ar_blockTimestampLast = await oracle_instance_CERES_USDC.blockTimestampLast.call();
-
-		// ASSERT
-		console.log(chalk.green.bold("NO ASSERTION"));
-
-		// PRINT
-		console.log(chalk.yellow("ar_blockTimestampLast: ",ar_blockTimestampLast.toString()));
-	});
-
-	it("oracle_instance_CERES_USDC reserve0 & reserve1", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_USDC reserve0 & reserve1 ============"));
-		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
-		
-		// Action
-		const ar_reserve0 = (await oracle_instance_CERES_USDC.reserve0.call()).toString();
-		const ar_reserve1 = (await oracle_instance_CERES_USDC.reserve1.call()).toString();
-
-		// Print
-		console.log(chalk.yellow("ar_reserve0: ",ar_reserve0.toString()));
-		console.log(chalk.yellow("ar_reserve1: ",ar_reserve1.toString()));
-
-		console.log(chalk.green.bold("first_CERES_USDC: ",first_CERES_USDC));
-
-		// ASSERT
-		let ER_reserve0;
-		let ER_reserve1;
-		if (first_CERES_USDC) {
-			ER_reserve0 = ONE_HUNDRED_DEC18.toString();
-			ER_reserve1 = ONE_HUNDRED_DEC6.toString();
-		} else {
-			ER_reserve0 = ONE_HUNDRED_DEC6.toString();
-			ER_reserve1 = ONE_HUNDRED_DEC18.toString();
-		}
-
-		console.log(chalk.blue("ER_reserve0: ",ER_reserve0));
-		console.log(chalk.blue("ER_reserve1: ",ER_reserve1));
-
-		assert.equal(ar_reserve0,ER_reserve0,chalk.red.bold("ASSERTION FAILED"));
-		assert.equal(ar_reserve1,ER_reserve1,chalk.red.bold("ASSERTION FAILED"));
-	});
-
-	it("oracle_instance_CERES_USDC price0Average & price1Average", async () => {
-		console.log(chalk.red("============ oracle_instance_CERES_USDC price0Average & price0Average ============"));
-		console.log(chalk.blue("oracle_instance_CERES_USDC: ",oracle_instance_CERES_USDC.address));
-		
-		// Action
-		const ar_price0Average = await oracle_instance_CERES_USDC.price0Average.call();
-		const ar_price1Average = await oracle_instance_CERES_USDC.price1Average.call();
-
-		// ASSERT
-		console.log(chalk.green.bold("NO ASSERTION"));
-
-		// Print
-		console.log(chalk.yellow("ar_price0Average: ",ar_price0Average.toString()));
-		console.log(chalk.yellow("ar_price1Average: ",ar_price1Average.toString()));
-	});
+		console.log(chalk.blue("er_owner_address: ",er_owner_address));
+		console.log(chalk.yellow("ar_owner_address: ",ar_owner_address.toString()));
+    });
+    
+    
 
 });
 
