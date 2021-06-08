@@ -336,7 +336,11 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 
     it("pool_instance_USDC minting_fee & other 3 constants", async () => {
 		console.log(chalk.red("============ pool_instance_USDC minting_fee & other 3 constants ============"));
-		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+        console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+        console.log(chalk.red.bold("============ to do: add test scripts of expected result code ===================="));
+        console.log(chalk.red.bold("============ to do: add test scripts of expected result code ===================="));
+        console.log(chalk.red.bold("============ to do: add test scripts of expected result code ===================="));
+        console.log(chalk.red.bold("============ to do: add test scripts of expected result code ===================="));
 		
 		// Before
 		// const er_weth_address = wethInstance.address;
@@ -347,7 +351,7 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
         const ar_buyback_fee = await pool_instance_USDC.buyback_fee.call();
         const ar_recollat_fee = await pool_instance_USDC.recollat_fee.call();
 
-        
+
 
 		// Assert
 		// assert.equal(er_weth_address,ar_weth_address,chalk.red.bold("ASSERTION FAILED"));
