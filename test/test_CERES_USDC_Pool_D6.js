@@ -273,7 +273,7 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		const ar_ceres_contract_address = await pool_instance_USDC.ceres_contract_address.call();
 
 		// Assert
-		// assert.equal(er_owner_address,ar_owner_address,chalk.red.bold("ASSERTION FAILED"));
+		assert.equal(er_owner_address,ar_owner_address,chalk.red.bold("ASSERTION FAILED"));
 
 		// Print
 		console.log(chalk.blue("er_ceres_contract_address: ",er_ceres_contract_address.toString()));
