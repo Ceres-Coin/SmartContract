@@ -54,14 +54,19 @@ module.exports = async function(deployer, network, accounts) {
 	console.log("COLLATERAL_CERES_AND_CERESHARES_OWNER is: ",COLLATERAL_CERES_AND_CERESHARES_OWNER);
 
 	// Set the Network Settings
-	const IS_MAINNET = (process.env.MIGRATION_MODE == 'mainnet');
-	const IS_ROPSTEN = (process.env.MIGRATION_MODE == 'ropsten');
-	const IS_RINKEBY = (process.env.MIGRATION_MODE == 'rinkeby');
-	const IS_DEV = (process.env.MIGRATION_MODE == 'dev');
+	// const IS_MAINNET = (process.env.MIGRATION_MODE == 'mainnet');
+	// const IS_ROPSTEN = (process.env.MIGRATION_MODE == 'ropsten');
+	// const IS_RINKEBY = (process.env.MIGRATION_MODE == 'rinkeby');
+	// const IS_DEV = (process.env.MIGRATION_MODE == 'dev');
+	const IS_MAINNET = (network == 'mainnet');
+	const IS_ROPSTEN = (network == 'ropsten');
+	const IS_DEV = (network == 'development');
+    const IS_BSC_TESTNET = (network == 'testnet');
+	const IS_RINKEBY = (network == 'rinkeby');
 
 	console.log("IS_MAINNET: ",IS_MAINNET);
 	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
-	console.log("IS_RINKEBY: ",IS_RINKEBY);
+	console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
 	console.log("IS_DEV: ",IS_DEV);
 
 	const timelockInstance = await Timelock.deployed();

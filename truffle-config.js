@@ -80,32 +80,49 @@ module.exports = {
     // network_id: 2111,   // This network is yours, in the cloud.
     // production: true    // Treats this network as if it was a public net. (default: false)
     // }
-    ropsten: {
-      provider: function() {
-        return new HDWalletProvider(mnemonic, "wss://ropsten.infura.io/ws/v3/"+INFURA_API_KEY)
-      },
-      blockGasLimit: 7612388,
-      network_id: 3,
-      gas: 7500000,
-      gasPrice: 20000000000,
-      gasLimit: 7500000,
-      networkCheckTimeout: 1000000,
-      timeoutBlocks: 200,
-      confirmations: 1,
-      websockets: true,
-      from: MMaddress
-    },
+    // ropsten: {
+    //   provider: function() {
+    //     return new HDWalletProvider(mnemonic, "wss://ropsten.infura.io/ws/v3/"+INFURA_API_KEY)
+    //   },
+    //   blockGasLimit: 7612388,
+    //   network_id: 3,
+    //   gas: 7500000,
+    //   gasPrice: 20000000000,
+    //   gasLimit: 7500000,
+    //   networkCheckTimeout: 1000000,
+    //   timeoutBlocks: 200,
+    //   confirmations: 1,
+    //   websockets: true,
+    //   from: MMaddress
+    // },
+    // development: {
+		// 	host: "127.0.0.1",
+		// 	port: 8545,
+		// 	network_id: "31337",
+		// 	blockGasLimit: 7500000,
+    //   gas: 7200000,
+    //   gasPrice: 20000000000,
+    //   gasLimit: 7200000
+    //   // confirmations: 1,
+		// 	// websockets: true,        // Enable EventEmitter interface for web3 (default: false)
+		// }
     development: {
-			host: "127.0.0.1",
-			port: 8545,
-			network_id: "31337",
-			blockGasLimit: 7500000,
-      gas: 7200000,
-      gasPrice: 20000000000,
-      gasLimit: 7200000
-      // confirmations: 1,
-			// websockets: true,        // Enable EventEmitter interface for web3 (default: false)
-		}
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 8545,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+      gas: 7500000,
+       gasPrice: 20000000000,
+       gasLimit: 7500000,
+     },
+     testnet: {
+       // provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s3.binance.org:8545/'),
+       provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s1.binance.org:8545/'),
+       network_id: 97,
+       confirmations: 1,
+       timeoutBlocks: 200,
+       skipDryRun: true,
+       gas: 27492052
+     }
   },
 
   // Set default mocha options here, use special reporters etc.
