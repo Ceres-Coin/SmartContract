@@ -66,8 +66,10 @@ module.exports = async function(deployer, network, accounts) {
 
 	console.log("IS_MAINNET: ",IS_MAINNET);
 	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
-	console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
 	console.log("IS_DEV: ",IS_DEV);
+	console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
+	console.log("IS_RINKEBY: ",IS_RINKEBY);
+	
 
 	const timelockInstance = await Timelock.deployed();
 
@@ -113,7 +115,7 @@ module.exports = async function(deployer, network, accounts) {
 		routerInstance = await UniswapV2Router02.at("0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"); 
 		uniswapFactoryInstance = await UniswapV2Factory.at("0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"); 
 	}
-	else if (IS_DEV){
+	else if (IS_DEV || IS_BSC_TESTNET){
 		await deployer.deploy(UniswapV2Router02_Modified, UniswapV2Factory.address, wethInstance.address);
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
 		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
