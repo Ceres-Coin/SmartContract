@@ -404,6 +404,7 @@ contract CeresPool is AccessControl {
 
     /* ========== RESTRICTED FUNCTIONS ========== */
 
+    // [func][toggleMinting] test scripts
     function toggleMinting() external onlyByOwnerOrGovernance {
         // require(hasRole(MINT_PAUSER, msg.sender));
         mintPaused = !mintPaused;

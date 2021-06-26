@@ -1246,6 +1246,10 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 		const collatEthOracle_eth_collat_price = await pool_instance_USDC.collatEthOracle_eth_collat_price();
 		console.log(chalk.yellow("collatEthOracle_eth_collat_price: ",collatEthOracle_eth_collat_price.toString()));
 	});
+
+	it ("[func][toggleMinting] test scripts", async() => {
+		console.log(chalk.yellow("start testing for toggleMinting() func"));
+	})
 });
 
 
