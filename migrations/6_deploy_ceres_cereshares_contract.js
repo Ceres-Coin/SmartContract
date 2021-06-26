@@ -19,13 +19,18 @@ const CEREShares = artifacts.require("CSS/CEREShares");
 
 // Make sure Ganache is running beforehand
 module.exports = async function(deployer, network, accounts) {
-	const IS_MAINNET = (process.env.MIGRATION_MODE == 'mainnet');
-	const IS_ROPSTEN = (process.env.MIGRATION_MODE == 'ropsten');
-	const IS_DEV = (process.env.MIGRATION_MODE == 'dev');
+	// Set the Network Settings
+	const IS_MAINNET = (network == 'mainnet');
+	const IS_ROPSTEN = (network == 'ropsten');
+	const IS_DEV = (network == 'development');
+    const IS_BSC_TESTNET = (network == 'testnet');
+	const IS_RINKEBY = (network == 'rinkeby');
 
 	console.log("IS_MAINNET: ",IS_MAINNET);
 	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
 	console.log("IS_DEV: ",IS_DEV);
+	console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
+	console.log("IS_RINKEBY: ",IS_RINKEBY);
 
 	// set the deploy address
 	console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
@@ -45,7 +50,7 @@ module.exports = async function(deployer, network, accounts) {
 	console.log(chalk.red("======== deploy contracts TIMELOCK ==========="));
 	await deployer.deploy(Timelock, ADMIN, TIMELOCK_DELAY);
 	// For Test Setting 
-	if (IS_DEV) {
+	if (IS_DEV || IS_BSC_TESTNET) {
 		const TimelockTest = artifacts.require("Governance/TimelockTest");
 		await deployer.deploy(TimelockTest,ADMIN,TIMELOCK_DELAY);
 	}

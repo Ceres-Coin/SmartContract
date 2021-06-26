@@ -54,10 +54,6 @@ module.exports = async function(deployer, network, accounts) {
 	console.log("COLLATERAL_CERES_AND_CERESHARES_OWNER is: ",COLLATERAL_CERES_AND_CERESHARES_OWNER);
 
 	// Set the Network Settings
-	// const IS_MAINNET = (process.env.MIGRATION_MODE == 'mainnet');
-	// const IS_ROPSTEN = (process.env.MIGRATION_MODE == 'ropsten');
-	// const IS_RINKEBY = (process.env.MIGRATION_MODE == 'rinkeby');
-	// const IS_DEV = (process.env.MIGRATION_MODE == 'dev');
 	const IS_MAINNET = (network == 'mainnet');
 	const IS_ROPSTEN = (network == 'ropsten');
 	const IS_DEV = (network == 'development');
