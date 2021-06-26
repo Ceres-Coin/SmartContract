@@ -409,143 +409,143 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
     //     console.log(chalk.yellow("decimals: ",decimals.toString()));
     // });
 
-    it("pool_instance_USDC unclaimedPoolCollateral & unclaimedPoolCSS", async () => {
-		console.log(chalk.red("============ pool_instance_USDC unclaimedPoolCollateral & unclaimedPoolCSS ============"));
-		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+    // it("pool_instance_USDC unclaimedPoolCollateral & unclaimedPoolCSS", async () => {
+	// 	console.log(chalk.red("============ pool_instance_USDC unclaimedPoolCollateral & unclaimedPoolCSS ============"));
+	// 	console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
         
-        // Before
-        const er_unclaimedPoolCSS = 0;
-        const er_unclaimedPoolCollateral = 0;
+    //     // Before
+    //     const er_unclaimedPoolCSS = 0;
+    //     const er_unclaimedPoolCollateral = 0;
         
-		// Action
-        const ar_unclaimedPoolCSS = await pool_instance_USDC.unclaimedPoolCSS.call();
-        const ar_unclaimedPoolCollateral = await pool_instance_USDC.unclaimedPoolCollateral.call();
+	// 	// Action
+    //     const ar_unclaimedPoolCSS = await pool_instance_USDC.unclaimedPoolCSS.call();
+    //     const ar_unclaimedPoolCollateral = await pool_instance_USDC.unclaimedPoolCollateral.call();
 
-        // Assert
-        assert.equal(ar_unclaimedPoolCSS,er_unclaimedPoolCSS)
-        assert.equal(ar_unclaimedPoolCollateral,er_unclaimedPoolCollateral)
+    //     // Assert
+    //     assert.equal(ar_unclaimedPoolCSS,er_unclaimedPoolCSS)
+    //     assert.equal(ar_unclaimedPoolCollateral,er_unclaimedPoolCollateral)
 
-        // Print ER
-        console.log(chalk.blue("er_unclaimedPoolCSS: ",er_unclaimedPoolCSS.toString()));
-        console.log(chalk.blue("er_unclaimedPoolCollateral: ",er_unclaimedPoolCollateral.toString()));
+    //     // Print ER
+    //     console.log(chalk.blue("er_unclaimedPoolCSS: ",er_unclaimedPoolCSS.toString()));
+    //     console.log(chalk.blue("er_unclaimedPoolCollateral: ",er_unclaimedPoolCollateral.toString()));
         
-        // Print AR
-        console.log(chalk.yellow("ar_unclaimedPoolCSS: ",ar_unclaimedPoolCSS.toString()));
-        console.log(chalk.yellow("ar_unclaimedPoolCollateral: ",ar_unclaimedPoolCollateral.toString()));
+    //     // Print AR
+    //     console.log(chalk.yellow("ar_unclaimedPoolCSS: ",ar_unclaimedPoolCSS.toString()));
+    //     console.log(chalk.yellow("ar_unclaimedPoolCollateral: ",ar_unclaimedPoolCollateral.toString()));
 
-    });
+    // });
 
-    // Constants for various precisions
-    it("pool_instance_USDC Constants for various precisions", async () => {
-		console.log(chalk.red("============ pool_instance_USDC Constants for various precisions ============"));
-		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+    // // Constants for various precisions
+    // it("pool_instance_USDC Constants for various precisions", async () => {
+	// 	console.log(chalk.red("============ pool_instance_USDC Constants for various precisions ============"));
+	// 	console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
         
-        // Before
-        const er_PRICE_PRECISION = 1e6; 
-        const er_COLLATERAL_RATIO_PRECISION = 1e6; 
-        const er_COLLATERAL_RATIO_MAX = 1e6; 
+    //     // Before
+    //     const er_PRICE_PRECISION = 1e6; 
+    //     const er_COLLATERAL_RATIO_PRECISION = 1e6; 
+    //     const er_COLLATERAL_RATIO_MAX = 1e6; 
         
-		// Action
-        const ar_PRICE_PRECISION = await pool_instance_USDC.PRICE_PRECISION.call();
-        const ar_COLLATERAL_RATIO_PRECISION = await pool_instance_USDC.COLLATERAL_RATIO_PRECISION.call();
-        const ar_COLLATERAL_RATIO_MAX = await pool_instance_USDC.COLLATERAL_RATIO_MAX.call();
+	// 	// Action
+    //     const ar_PRICE_PRECISION = await pool_instance_USDC.PRICE_PRECISION.call();
+    //     const ar_COLLATERAL_RATIO_PRECISION = await pool_instance_USDC.COLLATERAL_RATIO_PRECISION.call();
+    //     const ar_COLLATERAL_RATIO_MAX = await pool_instance_USDC.COLLATERAL_RATIO_MAX.call();
 
-        // Assert
-        assert.equal(ar_PRICE_PRECISION,er_PRICE_PRECISION);
-        assert.equal(ar_COLLATERAL_RATIO_PRECISION,er_COLLATERAL_RATIO_PRECISION);
-        assert.equal(ar_COLLATERAL_RATIO_MAX,er_COLLATERAL_RATIO_MAX);
+    //     // Assert
+    //     assert.equal(ar_PRICE_PRECISION,er_PRICE_PRECISION);
+    //     assert.equal(ar_COLLATERAL_RATIO_PRECISION,er_COLLATERAL_RATIO_PRECISION);
+    //     assert.equal(ar_COLLATERAL_RATIO_MAX,er_COLLATERAL_RATIO_MAX);
         
 
-        // Print ER
-        console.log(chalk.blue("er_PRICE_PRECISION: ",er_PRICE_PRECISION.toString()));
-        console.log(chalk.blue("er_COLLATERAL_RATIO_PRECISION: ",er_COLLATERAL_RATIO_PRECISION.toString()));
-        console.log(chalk.blue("er_COLLATERAL_RATIO_MAX: ",er_COLLATERAL_RATIO_MAX.toString()));
+    //     // Print ER
+    //     console.log(chalk.blue("er_PRICE_PRECISION: ",er_PRICE_PRECISION.toString()));
+    //     console.log(chalk.blue("er_COLLATERAL_RATIO_PRECISION: ",er_COLLATERAL_RATIO_PRECISION.toString()));
+    //     console.log(chalk.blue("er_COLLATERAL_RATIO_MAX: ",er_COLLATERAL_RATIO_MAX.toString()));
         
-        // Print AR
-        console.log(chalk.yellow("ar_PRICE_PRECISION: ",ar_PRICE_PRECISION.toString()));
-        console.log(chalk.yellow("ar_COLLATERAL_RATIO_PRECISION: ",ar_COLLATERAL_RATIO_PRECISION.toString()));
-        console.log(chalk.yellow("ar_COLLATERAL_RATIO_MAX: ",ar_COLLATERAL_RATIO_MAX.toString()));
-    });
+    //     // Print AR
+    //     console.log(chalk.yellow("ar_PRICE_PRECISION: ",ar_PRICE_PRECISION.toString()));
+    //     console.log(chalk.yellow("ar_COLLATERAL_RATIO_PRECISION: ",ar_COLLATERAL_RATIO_PRECISION.toString()));
+    //     console.log(chalk.yellow("ar_COLLATERAL_RATIO_MAX: ",ar_COLLATERAL_RATIO_MAX.toString()));
+    // });
 
-    it("pool_instance_USDC missing_decimals", async () => {
-		console.log(chalk.red("============ pool_instance_USDC missing_decimals ============"));
-		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+    // it("pool_instance_USDC missing_decimals", async () => {
+	// 	console.log(chalk.red("============ pool_instance_USDC missing_decimals ============"));
+	// 	console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
 		
-		// Before
-		const er_missing_decimals = MISSING_DECIMALS;
+	// 	// Before
+	// 	const er_missing_decimals = MISSING_DECIMALS;
 		
-		// Action
-		const ar_missing_decimals = await pool_instance_USDC.missing_decimals.call();
+	// 	// Action
+	// 	const ar_missing_decimals = await pool_instance_USDC.missing_decimals.call();
 
-		// Assert
-		assert.equal(ar_missing_decimals,er_missing_decimals,chalk.red.bold("ASSERTION FAILED"));
+	// 	// Assert
+	// 	assert.equal(ar_missing_decimals,er_missing_decimals,chalk.red.bold("ASSERTION FAILED"));
 
-		// Print ER
-        console.log(chalk.blue("er_missing_decimals: ",er_missing_decimals.toString()));
+	// 	// Print ER
+    //     console.log(chalk.blue("er_missing_decimals: ",er_missing_decimals.toString()));
         
-        // Print AR
-		console.log(chalk.yellow("ar_missing_decimals: ",ar_missing_decimals.toString()));
-    });
+    //     // Print AR
+	// 	console.log(chalk.yellow("ar_missing_decimals: ",ar_missing_decimals.toString()));
+    // });
 
-    it("pool_instance_USDC pool_ceiling", async () => {
-		console.log(chalk.red("============ pool_instance_USDC pool_ceiling ============"));
-		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+    // it("pool_instance_USDC pool_ceiling", async () => {
+	// 	console.log(chalk.red("============ pool_instance_USDC pool_ceiling ============"));
+	// 	console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
 		
-		// Before
-		const er_pool_ceiling = POOL_CEILING.toString();
+	// 	// Before
+	// 	const er_pool_ceiling = POOL_CEILING.toString();
 		
-		// Action
-		const ar_pool_ceiling = await pool_instance_USDC.pool_ceiling.call();
+	// 	// Action
+	// 	const ar_pool_ceiling = await pool_instance_USDC.pool_ceiling.call();
 
-		// Assert
-		assert.equal(ar_pool_ceiling.toString(),er_pool_ceiling.toString(),chalk.red.bold("ASSERTION FAILED"));
+	// 	// Assert
+	// 	assert.equal(ar_pool_ceiling.toString(),er_pool_ceiling.toString(),chalk.red.bold("ASSERTION FAILED"));
 
-		// Print ER
-        console.log(chalk.blue("er_pool_ceiling: ",er_pool_ceiling.toString()));
+	// 	// Print ER
+    //     console.log(chalk.blue("er_pool_ceiling: ",er_pool_ceiling.toString()));
         
-        // Print AR
-		console.log(chalk.yellow("ar_pool_ceiling: ",ar_pool_ceiling.toString()));
-    });
+    //     // Print AR
+	// 	console.log(chalk.yellow("ar_pool_ceiling: ",ar_pool_ceiling.toString()));
+    // });
 
-    it("pool_instance_USDC pausedPrice", async () => {
-		console.log(chalk.red("============ pool_instance_USDC pausedPrice ============"));
-		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+    // it("pool_instance_USDC pausedPrice", async () => {
+	// 	console.log(chalk.red("============ pool_instance_USDC pausedPrice ============"));
+	// 	console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
 		
-		// Before
-		const er_pausedPrice = PAUSEDPRICE.toString();
+	// 	// Before
+	// 	const er_pausedPrice = PAUSEDPRICE.toString();
 		
-		// Action
-		const ar_pausedPrice = await pool_instance_USDC.pausedPrice.call();
+	// 	// Action
+	// 	const ar_pausedPrice = await pool_instance_USDC.pausedPrice.call();
 
-		// Assert
-		assert.equal(ar_pausedPrice.toString(),er_pausedPrice.toString(),chalk.red.bold("ASSERTION FAILED"));
+	// 	// Assert
+	// 	assert.equal(ar_pausedPrice.toString(),er_pausedPrice.toString(),chalk.red.bold("ASSERTION FAILED"));
 
-		// Print ER
-        console.log(chalk.blue("er_pausedPrice: ",er_pausedPrice.toString()));
+	// 	// Print ER
+    //     console.log(chalk.blue("er_pausedPrice: ",er_pausedPrice.toString()));
         
-        // Print AR
-		console.log(chalk.yellow("ar_pausedPrice: ",ar_pausedPrice.toString()));
-    });
+    //     // Print AR
+	// 	console.log(chalk.yellow("ar_pausedPrice: ",ar_pausedPrice.toString()));
+    // });
 
-    it("pool_instance_USDC bonus_rate", async () => {
-		console.log(chalk.red("============ pool_instance_USDC bonus_rate ============"));
-		console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
+    // it("pool_instance_USDC bonus_rate", async () => {
+	// 	console.log(chalk.red("============ pool_instance_USDC bonus_rate ============"));
+	// 	console.log(chalk.blue("ER: pool_instance_USDC: ",pool_instance_USDC.address));
 		
-		// Before
-		const er_bonus_rate = BONUS_RATE.toString();
+	// 	// Before
+	// 	const er_bonus_rate = BONUS_RATE.toString();
 		
-		// Action
-		const ar_bonus_rate = await pool_instance_USDC.bonus_rate.call();
+	// 	// Action
+	// 	const ar_bonus_rate = await pool_instance_USDC.bonus_rate.call();
 
-		// Assert
-		assert.equal(ar_bonus_rate.toString(),er_bonus_rate.toString(),chalk.red.bold("ASSERTION FAILED"));
+	// 	// Assert
+	// 	assert.equal(ar_bonus_rate.toString(),er_bonus_rate.toString(),chalk.red.bold("ASSERTION FAILED"));
 
-		// Print ER
-        console.log(chalk.blue("er_bonus_rate: ",er_bonus_rate.toString()));
+	// 	// Print ER
+    //     console.log(chalk.blue("er_bonus_rate: ",er_bonus_rate.toString()));
         
-        // Print AR
-		console.log(chalk.yellow("ar_bonus_rate: ",ar_bonus_rate.toString()));
-    });
+    //     // Print AR
+	// 	console.log(chalk.yellow("ar_bonus_rate: ",ar_bonus_rate.toString()));
+    // });
 
 
 
