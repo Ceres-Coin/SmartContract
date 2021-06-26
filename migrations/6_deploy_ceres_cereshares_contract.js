@@ -50,7 +50,7 @@ module.exports = async function(deployer, network, accounts) {
 	console.log(chalk.red("======== deploy contracts TIMELOCK ==========="));
 	await deployer.deploy(Timelock, ADMIN, TIMELOCK_DELAY);
 	// For Test Setting 
-	if (IS_DEV || IS_BSC_TESTNET) {
+	if (IS_DEV || IS_BSC_TESTNET || IS_ROPSTEN) {
 		const TimelockTest = artifacts.require("Governance/TimelockTest");
 		await deployer.deploy(TimelockTest,ADMIN,TIMELOCK_DELAY);
 	}

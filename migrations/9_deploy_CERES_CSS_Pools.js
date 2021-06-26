@@ -105,6 +105,19 @@ module.exports = async function(deployer, network, accounts) {
 	console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
 	console.log("IS_RINKEBY: ",IS_RINKEBY);
 
+	if (IS_ROPSTEN || IS_RINKEBY){
+		// Note UniswapV2Router02 vs UniswapV2Router02_Modified
+		routerInstance = await UniswapV2Router02.at("0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"); 
+		uniswapFactoryInstance = await UniswapV2Factory.at("0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"); 
+		ceresInstance = await CEREStable.deployed();
+		cssInstance = await CEREShares.deployed();
+		wethInstance = await WETH.deployed();
+		col_instance_USDC = await FakeCollateral_USDC.deployed(); 
+		col_instance_USDT = await FakeCollateral_USDT.deployed(); 
+		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
+		timelockInstance = await Timelock.deployed();
+	}
+	
 	if (IS_DEV || IS_BSC_TESTNET) {
 		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
 		ceresInstance = await CEREStable.deployed();

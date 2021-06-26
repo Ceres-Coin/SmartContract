@@ -80,21 +80,21 @@ module.exports = {
     // network_id: 2111,   // This network is yours, in the cloud.
     // production: true    // Treats this network as if it was a public net. (default: false)
     // }
-    // ropsten: {
-    //   provider: function() {
-    //     return new HDWalletProvider(mnemonic, "wss://ropsten.infura.io/ws/v3/"+INFURA_API_KEY)
-    //   },
-    //   blockGasLimit: 7612388,
-    //   network_id: 3,
-    //   gas: 7500000,
-    //   gasPrice: 20000000000,
-    //   gasLimit: 7500000,
-    //   networkCheckTimeout: 1000000,
-    //   timeoutBlocks: 200,
-    //   confirmations: 1,
-    //   websockets: true,
-    //   from: MMaddress
-    // },
+    ropsten: {
+      provider: function() {
+        // return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/"+INFURA_API_KEY)
+        return new HDWalletProvider(mnemonic, "wss://ropsten.infura.io/ws/v3/"+INFURA_API_KEY)
+      },
+      blockGasLimit: 7612388,
+      network_id: 3,
+      gas: 7500000,
+      gasPrice: 80000000000,
+      gasLimit: 7500000,
+      networkCheckTimeout: 1000000,
+      timeoutBlocks: 200,
+      confirmations: 1,
+      websockets: true
+    },
     // development: {
 		// 	host: "127.0.0.1",
 		// 	port: 8545,
