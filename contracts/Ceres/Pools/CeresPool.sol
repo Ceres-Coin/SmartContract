@@ -482,7 +482,7 @@ contract CeresPool is AccessControl {
         timelock_address = new_timelock;
     }
 
-    // TODO: [FUNC][setOwner]
+    // [FUNC][setOwner]
     function setOwner(address _owner_address) external onlyByOwnerOrGovernance {
         owner_address = _owner_address;
     }
