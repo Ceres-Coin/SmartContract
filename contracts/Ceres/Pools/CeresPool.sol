@@ -447,7 +447,7 @@ contract CeresPool is AccessControl {
         recollateralizePaused = !recollateralizePaused;
     }
     
-    // TODO: [FUNC][toggleBuyBack]
+    // [FUNC][toggleBuyBack]
     function toggleBuyBack() external onlyByOwnerOrGovernance{
         // require(hasRole(BUYBACK_PAUSER, msg.sender));
         buyBackPaused = !buyBackPaused;

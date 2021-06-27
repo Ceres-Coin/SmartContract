@@ -280,6 +280,17 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		expect(await pool_instance_USDC.timelock_address()).to.equal(instanceTimelockTest.address);
 		// Roll Back
 		await pool_instance_USDC.setTimelock(instanceTimelock.address,{from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
+	});
+
+	it ("[FUNC][toggleBuyBack] test scripts ", async() => {
+		// console.log(chalk.yellow(await pool_instance_USDC.buyBackPaused()));
+		expect(await pool_instance_USDC.buyBackPaused()).to.equal(false);
+		await pool_instance_USDC.toggleBuyBack();
+		expect(await pool_instance_USDC.buyBackPaused()).to.equal(true);
+
+		// roll back code
+		await pool_instance_USDC.toggleBuyBack();
+		expect(await pool_instance_USDC.buyBackPaused()).to.equal(false);
 	})
 });
 
