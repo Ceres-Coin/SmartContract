@@ -477,7 +477,7 @@ contract CeresPool is AccessControl {
         recollat_fee = new_recollat_fee;
     }
 
-    // TODO: [FUNC][setTimelock]
+    // [FUNC][setTimelock] test scripts
     function setTimelock(address new_timelock) external onlyByOwnerOrGovernance {
         timelock_address = new_timelock;
     }

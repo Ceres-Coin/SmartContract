@@ -146,6 +146,7 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	const COLLATERAL_RATIO_PRECISION = new BigNumber(1e6);
 	const COLLATERAL_RATIO_MAX = new BigNumber(1e6);
 	const MISSING_DECIMALS = 12;
+	const TIMELOCK_DELAY = 300
 
 	let price_precision;
 	let collateral_ratio_precision;
@@ -266,6 +267,20 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		expect((new BigNumber(await pool_instance_USDC.redemption_fee())).toNumber()).to.equal(REDEMPTION_FEE);
 		expect((new BigNumber(await pool_instance_USDC.buyback_fee())).toNumber()).to.equal(BUYBACK_FEE);
 		expect((new BigNumber(await pool_instance_USDC.recollat_fee())).toNumber()).to.equal(RECOLLAT_FEE);
+	});
+
+	it ("[FUNC][setTimelock] test scripts ",async() => {
+		const instanceTimelock = await Timelock.deployed();
+		const instanceTimelockTest = await TimelockTest.deployed();
+		// Before
+		expect(await pool_instance_USDC.timelock_address()).to.equal(instanceTimelock.address);
+		// Action
+		await pool_instance_USDC.setTimelock(instanceTimelockTest.address,{from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
+		// Assertion
+		expect(await pool_instance_USDC.timelock_address()).to.equal(instanceTimelockTest.address);
+		
+		// Roll Back
+		await pool_instance_USDC.setTimelock(instanceTimelock.address,{from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
 	})
 });
 
