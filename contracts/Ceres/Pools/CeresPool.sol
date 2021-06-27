@@ -127,6 +127,7 @@ contract CeresPool is AccessControl {
         return eth_usd_price;
     }
 
+    // TODO: [FUNC][collatEthOracle_eth_collat_price]
     function collatEthOracle_eth_collat_price() public view returns(uint256) {
         // uint256 eth_collat_price = collatEthOracle.consult(weth_address, (PRICE_PRECISION * (10 ** missing_decimals)));
         uint256 eth_collat_price = collatEthOracle.consult(weth_address, PRICE_PRECISION);
@@ -134,7 +135,7 @@ contract CeresPool is AccessControl {
     }
 
     /* ========== VIEWS ========== */
-
+    // TODO: [FUNC][collatDollarBalance]
     function collatDollarBalance() public view returns (uint256) {
         if(collateralPricePaused == true){
             return (collateral_token.balanceOf(address(this)).sub(unclaimedPoolCollateral)).mul(10 ** missing_decimals).mul(pausedPrice).div(PRICE_PRECISION);
@@ -148,6 +149,7 @@ contract CeresPool is AccessControl {
     }
 
     // Returns the value of excess collateral held in this CERES pool, compared to what is needed to maintain the global collateral ratio
+    // TODO: [FUNC][availableExcessCollatDV]
     function availableExcessCollatDV() public view returns (uint256) {
         uint256 total_supply = CERES.totalSupply();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();
@@ -162,6 +164,7 @@ contract CeresPool is AccessControl {
     /* ========== PUBLIC FUNCTIONS ========== */
     
     // Returns the price of the pool collateral in USD
+    // TODO: [FUNC][getCollateralPrice]
     function getCollateralPrice() public view returns (uint256) {
         if(collateralPricePaused == true){
             return pausedPrice;
@@ -171,6 +174,7 @@ contract CeresPool is AccessControl {
         }
     }
 
+    // TODO: [FUNC][setCollatETHOracle]
     function setCollatETHOracle(address _collateral_weth_oracle_address, address _weth_address) external onlyByOwnerOrGovernance {
         collat_eth_oracle_address = _collateral_weth_oracle_address;
         collatEthOracle = UniswapPairOracle(_collateral_weth_oracle_address);
@@ -178,6 +182,7 @@ contract CeresPool is AccessControl {
     }
 
     // We separate out the 1t1, fractional and algorithmic minting functions for gas efficiency 
+    // TODO: [FUNC][mint1t1CERES]
     function mint1t1CERES(uint256 collateral_amount, uint256 CERES_out_min) external notMintPaused {
         uint256 collateral_amount_d18 = collateral_amount * (10 ** missing_decimals);
 
@@ -197,6 +202,7 @@ contract CeresPool is AccessControl {
     }
 
     // 0% collateral-backed
+    // TODO: [FUNC][mintAlgorithmicCERES]
     function mintAlgorithmicCERES(uint256 css_amount_d18, uint256 CERES_out_min) external notMintPaused {
         uint256 css_price = CERES.css_price();
         require(CERES.global_collateral_ratio() == 0, "Collateral ratio must be 0");
@@ -215,6 +221,7 @@ contract CeresPool is AccessControl {
 
     // Will fail if fully collateralized or fully algorithmic
     // > 0% and < 100% collateral-backed
+    // TODO: [FUNC][mintFractionalCERES]
     function mintFractionalCERES(uint256 collateral_amount, uint256 css_amount, uint256 CERES_out_min) external notMintPaused {
         uint256 css_price = CERES.css_price();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();
@@ -243,6 +250,7 @@ contract CeresPool is AccessControl {
     }
 
     // Redeem collateral. 100% collateral-backed
+    // TODO: [FUNC][redeem1t1CERES]
     function redeem1t1CERES(uint256 CERES_amount, uint256 COLLATERAL_out_min) external notRedeemPaused {
         require(CERES.global_collateral_ratio() == COLLATERAL_RATIO_MAX, "Collateral ratio must be == 1");
 
@@ -267,6 +275,7 @@ contract CeresPool is AccessControl {
 
     // Will fail if fully collateralized or algorithmic
     // Redeem CERES for collateral and CSS. > 0% and < 100% collateral-backed
+    // TODO: [FUNC][redeemFractionalCERES]
     function redeemFractionalCERES(uint256 CERES_amount, uint256 CSS_out_min, uint256 COLLATERAL_out_min) external notRedeemPaused {
         uint256 css_price = CERES.css_price();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();
@@ -303,6 +312,7 @@ contract CeresPool is AccessControl {
         CSS.pool_mint(address(this), css_amount);
     }
 
+    // TODO: [FUNC][redeemAlgorithmicCERES]
     function redeemAlgorithmicCERES(uint256 CERES_amount, uint256 CSS_out_min) external notRedeemPaused {
         uint256 css_price = CERES.css_price();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();
@@ -324,6 +334,8 @@ contract CeresPool is AccessControl {
         CERES.pool_burn_from(msg.sender, CERES_amount);
         CSS.pool_mint(address(this), css_amount);
     }
+
+    // TODO: [FUNC][collectRedemption]
     function collectRedemption() external {
         require((lastRedeemed[msg.sender].add(redemption_delay)) <= block.number, "Must wait for redemption_delay blocks before collecting redemption");
         bool sendCSS = false;
@@ -356,7 +368,8 @@ contract CeresPool is AccessControl {
         }
     }
 
-   function recollateralizeCERES(uint256 collateral_amount, uint256 CSS_out_min) external {
+    // TODO: [FUNC][recollateralizeCERES]
+    function recollateralizeCERES(uint256 collateral_amount, uint256 CSS_out_min) external {
         require(recollateralizePaused == false, "Recollateralize is paused");
         uint256 collateral_amount_d18 = collateral_amount * (10 ** missing_decimals);
         uint256 css_price = CERES.css_price();
@@ -382,6 +395,7 @@ contract CeresPool is AccessControl {
         
     }
 
+    // TODO: [FUNC][buyBackCSS]
     function buyBackCSS(uint256 CSS_amount, uint256 COLLATERAL_out_min) external {
         require(buyBackPaused == false, "Buyback is paused");
         uint256 css_price = CERES.css_price();
@@ -410,21 +424,25 @@ contract CeresPool is AccessControl {
         mintPaused = !mintPaused;
     }
 
+    // TODO: [func][toggleRedeeming] add test scritps
     function toggleRedeeming() external onlyByOwnerOrGovernance {
         // require(hasRole(REDEEM_PAUSER, msg.sender));
         redeemPaused = !redeemPaused;
     }
 
+    // TODO: [FUNC][toggleRecollateralize]
     function toggleRecollateralize() external onlyByOwnerOrGovernance {
         // require(hasRole(RECOLLATERALIZE_PAUSER, msg.sender));
         recollateralizePaused = !recollateralizePaused;
     }
     
+    // TODO: [FUNC][toggleBuyBack]
     function toggleBuyBack() external onlyByOwnerOrGovernance{
         // require(hasRole(BUYBACK_PAUSER, msg.sender));
         buyBackPaused = !buyBackPaused;
     }
 
+    // TODO: [FUNC][toggleCollateralPrice]
     function toggleCollateralPrice(uint256 _new_price) external onlyByOwnerOrGovernance{
         // require(hasRole(COLLATERAL_PRICE_PAUSER, msg.sender));
         // If pausing, set paused price; else if unpausing, clear pausedPrice
@@ -437,6 +455,7 @@ contract CeresPool is AccessControl {
     }
 
     // Combined into one function due to 24KiB contract memory limit
+    // TODO: [FUNC][setPoolParameters]
     function setPoolParameters(uint256 new_ceiling, uint256 new_bonus_rate, uint256 new_redemption_delay, uint256 new_mint_fee, uint256 new_redeem_fee, uint256 new_buyback_fee, uint256 new_recollat_fee) external onlyByOwnerOrGovernance {
         pool_ceiling = new_ceiling;
         bonus_rate = new_bonus_rate;
@@ -447,10 +466,12 @@ contract CeresPool is AccessControl {
         recollat_fee = new_recollat_fee;
     }
 
+    // TODO: [FUNC][setTimelock]
     function setTimelock(address new_timelock) external onlyByOwnerOrGovernance {
         timelock_address = new_timelock;
     }
 
+    // TODO: [FUNC][setOwner]
     function setOwner(address _owner_address) external onlyByOwnerOrGovernance {
         owner_address = _owner_address;
     }
