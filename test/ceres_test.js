@@ -1249,6 +1249,8 @@ contract('CERES_USDC_Pool_D6', async (accounts) => {
 
 	it ("[func][toggleMinting] test scripts", async() => {
 		console.log(chalk.yellow("start testing for toggleMinting() func"));
+		console.log(chalk.yellow("mintPaused: ", await pool_instance_USDC.mintPaused()));
+		await pool_instance_USDC.toggleMinting({from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
 	})
 });
 
