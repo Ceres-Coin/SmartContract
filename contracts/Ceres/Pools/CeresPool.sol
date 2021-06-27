@@ -132,7 +132,7 @@ contract CeresPool is AccessControl {
         grantRole(COLLATERAL_PRICE_PAUSER, timelock_address);
     }
 
-    // TODO [FUNC][ceres_eth_usd_price]
+    // TODO: [FUNC][ceres_eth_usd_price]
     function ceres_eth_usd_price() public view returns(uint256) {
         uint256 eth_usd_price = CERES.eth_usd_price();
         return eth_usd_price;
@@ -429,13 +429,13 @@ contract CeresPool is AccessControl {
 
     /* ========== RESTRICTED FUNCTIONS ========== */
 
-    // [func][toggleMinting] test scripts
+    // [FUNC][toggleMinting] test scripts
     function toggleMinting() external onlyByOwnerOrGovernance {
         // require(hasRole(MINT_PAUSER, msg.sender));
         mintPaused = !mintPaused;
     }
 
-    // TODO: [func][toggleRedeeming] add test scritps
+    // TODO: [FUNC][toggleRedeeming] add test scritps
     function toggleRedeeming() external onlyByOwnerOrGovernance {
         // require(hasRole(REDEEM_PAUSER, msg.sender));
         redeemPaused = !redeemPaused;
