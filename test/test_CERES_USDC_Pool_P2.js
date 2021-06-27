@@ -135,6 +135,11 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	const BUYBACK_FEE = 100; //0.01%
 	const RECOLLAT_FEE = 100; //0.01%
 
+	const MINTING_FEE_MODIFIED = 600; // 0.06%
+	const REDEMPTION_FEE_MODIFIED = 800; // 0.08%
+	const BUYBACK_FEE_MODIFIED = 200; //0.02%
+	const RECOLLAT_FEE_MODIFIED = 200; //0.02%
+
 	
 	// USDC_Pool Constants
 	const PRICE_PRECISION = new BigNumber(1e6);
@@ -243,6 +248,24 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		// Roll back
 		await pool_instance_USDC.setOwner(COLLATERAL_CERES_AND_CERESHARES_OWNER,{from: ADMIN});
 		expect(await pool_instance_USDC.owner_address()).to.equal(COLLATERAL_CERES_AND_CERESHARES_OWNER);
+	});
+
+	it ("[FUNC][setPoolParameters] test scripts ",async() => {
+		// ACTION
+		await pool_instance_USDC.setPoolParameters(FIVE_MILLION_DEC6, 7500, 1, MINTING_FEE_MODIFIED, REDEMPTION_FEE_MODIFIED, BUYBACK_FEE_MODIFIED, RECOLLAT_FEE_MODIFIED, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		// ASSERTION
+		// console.log(chalk.yellow((new BigNumber(await pool_instance_USDC.minting_fee())).toNumber()));
+		expect((new BigNumber(await pool_instance_USDC.minting_fee())).toNumber()).to.equal(MINTING_FEE_MODIFIED);
+		expect((new BigNumber(await pool_instance_USDC.redemption_fee())).toNumber()).to.equal(REDEMPTION_FEE_MODIFIED);
+		expect((new BigNumber(await pool_instance_USDC.buyback_fee())).toNumber()).to.equal(BUYBACK_FEE_MODIFIED);
+		expect((new BigNumber(await pool_instance_USDC.recollat_fee())).toNumber()).to.equal(RECOLLAT_FEE_MODIFIED);
+
+		// ROLLBACK
+		await pool_instance_USDC.setPoolParameters(FIVE_MILLION_DEC6, 7500, 1, MINTING_FEE, REDEMPTION_FEE, BUYBACK_FEE, RECOLLAT_FEE, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+		expect((new BigNumber(await pool_instance_USDC.minting_fee())).toNumber()).to.equal(MINTING_FEE);
+		expect((new BigNumber(await pool_instance_USDC.redemption_fee())).toNumber()).to.equal(REDEMPTION_FEE);
+		expect((new BigNumber(await pool_instance_USDC.buyback_fee())).toNumber()).to.equal(BUYBACK_FEE);
+		expect((new BigNumber(await pool_instance_USDC.recollat_fee())).toNumber()).to.equal(RECOLLAT_FEE);
 	})
 });
 

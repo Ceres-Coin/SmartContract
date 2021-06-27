@@ -466,7 +466,7 @@ contract CeresPool is AccessControl {
     }
 
     // Combined into one function due to 24KiB contract memory limit
-    // TODO: [FUNC][setPoolParameters]
+    // [FUNC][setPoolParameters]
     function setPoolParameters(uint256 new_ceiling, uint256 new_bonus_rate, uint256 new_redemption_delay, uint256 new_mint_fee, uint256 new_redeem_fee, uint256 new_buyback_fee, uint256 new_recollat_fee) external onlyByOwnerOrGovernance {
         pool_ceiling = new_ceiling;
         bonus_rate = new_bonus_rate;
