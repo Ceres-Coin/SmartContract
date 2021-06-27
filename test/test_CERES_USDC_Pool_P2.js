@@ -293,9 +293,10 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		expect(await pool_instance_USDC.buyBackPaused()).to.equal(false);
 	});
 
-	it ("[FUNC][getCollateralPrice] test scripts", async() => {
+	it ("[FUNC][collatEthOracle_eth_collat_price] test scripts", async() => {
 		console.log(chalk.yellow(`collateralPricePaused: ${await pool_instance_USDC.collateralPricePaused()}`));
 		console.log(chalk.yellow(`collateralPricePaused: ${await pool_instance_USDC.pausedPrice()}`));
+		console.log(chalk.red(`collatEthOracle_eth_collat_price: ${await pool_instance_USDC.collatEthOracle_eth_collat_price()}`));
 	});
 });
 
