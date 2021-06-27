@@ -175,7 +175,7 @@ contract CeresPool is AccessControl {
     /* ========== PUBLIC FUNCTIONS ========== */
     
     // Returns the price of the pool collateral in USD
-    // TODO: [FUNC][getCollateralPrice]
+    // [FUNC][getCollateralPrice]
     function getCollateralPrice() public view returns (uint256) {
         if(collateralPricePaused == true){
             return pausedPrice;
