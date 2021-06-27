@@ -15,50 +15,59 @@ contract CeresPool is AccessControl {
     using SafeMath for uint256;
 
     /* ========== STATE VARIABLES ========== */
+ 
+    ERC20 public collateral_token; //TEST CASE DONE
+    address public collateral_address; //TEST CASE DONE
+    address public owner_address; //TEST CASE DONE
 
-    ERC20 public collateral_token;
-    address public collateral_address;
-    address public owner_address; // test scripts done
+    address public ceres_contract_address; //TEST CASE DONE
+    address public css_contract_address; //TEST CASE DONE
+    address public timelock_address; //TEST CASE DONE
+    CEREShares public CSS; //TEST CASE DONE
+    CEREStable public CERES; //TEST CASE DONE
 
-    address public ceres_contract_address; // test scripts done
-    address public css_contract_address; // test scripts done
-    address public timelock_address; // test scripts done
-    CEREShares public CSS; //test scripts done
-    CEREStable public CERES; //test scripts done
-
-    UniswapPairOracle public collatEthOracle;
+    UniswapPairOracle public collatEthOracle; //TEST CASE DONE
+    // TODO: [PARAMETER][collat_eth_oracle_address]
     address public collat_eth_oracle_address;
-    address public weth_address; //test scripts done
+    address public weth_address; //TEST CASE DONE
 
     // added test scripts for below 4 constants
+    // TEST CASE DONE
     uint256 public minting_fee; // test scripts done
     uint256 public redemption_fee; // test scripts done
     uint256 public buyback_fee; // test scripts done
     uint256 public recollat_fee; // test scripts done
 
+    // TODO: [PARAMETER][redeemCSSBalances]
     mapping (address => uint256) public redeemCSSBalances;
+    // TODO: [PARAMETER][redeemCollateralBalances]
     mapping (address => uint256) public redeemCollateralBalances;
-    uint256 public unclaimedPoolCollateral; //test scripts done
-    uint256 public unclaimedPoolCSS; //test scripts done
+    uint256 public unclaimedPoolCollateral; // TEST CASE DONE
+    uint256 public unclaimedPoolCSS; // TEST CASE DONE
+    // TODO: [PARAMETER][lastRedeemed]
     mapping (address => uint256) public lastRedeemed;
 
     // Constants for various precisions
+    // TEST CASE DONE
     uint256 public constant PRICE_PRECISION = 1e6; //test scripts done
     uint256 public constant COLLATERAL_RATIO_PRECISION = 1e6; //test scripts done
     uint256 public constant COLLATERAL_RATIO_MAX = 1e6; //test scripts done
 
     // Number of decimals needed to get to 18
+    // TEST CASE DONE
     uint256 public immutable missing_decimals; //test scripts done
     
     // Pool_ceiling is the total units of collateral that a pool contract can hold
+    // TEST CASE DONE
     uint256 public pool_ceiling = 0; //test scripts done
 
     // Stores price of the collateral, if price is paused
+    // TEST CASE DONE
     uint256 public pausedPrice = 0;
-
     uint256 public bonus_rate = 7500;
 
     // Number of blocks to wait before being able to collectRedemption()
+    // TEST CASE DONE
     uint256 public redemption_delay = 1;
 
     // AccessControl Roles
@@ -69,6 +78,7 @@ contract CeresPool is AccessControl {
     bytes32 private constant COLLATERAL_PRICE_PAUSER = keccak256("COLLATERAL_PRICE_PAUSER");
     
     // AccessControl state variables
+    // TEST CASE DONE
     bool public mintPaused = false;
     bool public redeemPaused = false;
     bool public recollateralizePaused = false;
@@ -122,6 +132,7 @@ contract CeresPool is AccessControl {
         grantRole(COLLATERAL_PRICE_PAUSER, timelock_address);
     }
 
+    // TODO [FUNC][ceres_eth_usd_price]
     function ceres_eth_usd_price() public view returns(uint256) {
         uint256 eth_usd_price = CERES.eth_usd_price();
         return eth_usd_price;
