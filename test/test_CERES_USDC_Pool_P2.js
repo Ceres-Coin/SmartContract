@@ -285,11 +285,11 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	it ("[FUNC][toggleBuyBack] test scripts ", async() => {
 		// console.log(chalk.yellow(await pool_instance_USDC.buyBackPaused()));
 		expect(await pool_instance_USDC.buyBackPaused()).to.equal(false);
-		await pool_instance_USDC.toggleBuyBack();
+		await pool_instance_USDC.toggleBuyBack({from:COLLATERAL_CERES_AND_CERESHARES_OWNER});
 		expect(await pool_instance_USDC.buyBackPaused()).to.equal(true);
 
 		// roll back code
-		await pool_instance_USDC.toggleBuyBack();
+		await pool_instance_USDC.toggleBuyBack({from:COLLATERAL_CERES_AND_CERESHARES_OWNER});
 		expect(await pool_instance_USDC.buyBackPaused()).to.equal(false);
 	})
 });
