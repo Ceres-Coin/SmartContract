@@ -278,7 +278,6 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		await pool_instance_USDC.setTimelock(instanceTimelockTest.address,{from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
 		// Assertion
 		expect(await pool_instance_USDC.timelock_address()).to.equal(instanceTimelockTest.address);
-		
 		// Roll Back
 		await pool_instance_USDC.setTimelock(instanceTimelock.address,{from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
 	})
