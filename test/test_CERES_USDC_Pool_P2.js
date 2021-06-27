@@ -4,7 +4,7 @@ const util = require('util');
 const chalk = require('chalk');
 const Contract = require('web3-eth-contract');
 const { expectRevert, time } = require('@openzeppelin/test-helpers');
-const { assert } = require('chai');
+const { assert, expect } = require('chai');
 
 // Set provider for all later instances to use
 Contract.setProvider('http://127.0.0.1:8545');
@@ -221,9 +221,10 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
     });
 
 	it ("[func][toggleMinting] test scripts", async() => {
-		console.log(chalk.yellow("start testing for toggleMinting() func"));
 		console.log(chalk.yellow("mintPaused: ", await pool_instance_USDC.mintPaused()));
+		expect(await pool_instance_USDC.mintPaused()).to.equal(false);
 		await pool_instance_USDC.toggleMinting({from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
+		expect(await pool_instance_USDC.mintPaused()).to.equal(true);
 	});
 });
 
