@@ -21,20 +21,20 @@ const Owned = artifacts.require("Staking/Owned");
 module.exports = async function(deployer, network, accounts) {
 	const USE_MAINNET_EXISTING = true;
 
-		// Set the Network Settings
-		const IS_MAINNET = (network == 'mainnet');
-		const IS_ROPSTEN = (network == 'ropsten');
-		const IS_DEV = (network == 'development');
-		const IS_DEVHARDHAT = (network == 'devhardhat');
-		const IS_BSC_TESTNET = (network == 'testnet');
-		const IS_RINKEBY = (network == 'rinkeby');
-	
-		console.log("IS_MAINNET: ",IS_MAINNET);
-		console.log("IS_ROPSTEN: ",IS_ROPSTEN);
-		console.log("IS_DEV: ",IS_DEV);
-		console.log("IS_DEVHARDHAT: ",IS_DEVHARDHAT);
-		console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
-		console.log("IS_RINKEBY: ",IS_RINKEBY);
+	// Set the Network Settings
+	const IS_MAINNET = (network == 'mainnet');
+	const IS_ROPSTEN = (network == 'ropsten');
+	const IS_DEV = (network == 'development');
+	const IS_DEVHARDHAT = (network == 'devhardhat');
+	const IS_BSC_TESTNET = (network == 'testnet');
+	const IS_RINKEBY = (network == 'rinkeby');
+
+	console.log("IS_MAINNET: ",IS_MAINNET);
+	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
+	console.log("IS_DEV: ",IS_DEV);
+	console.log("IS_DEVHARDHAT: ",IS_DEVHARDHAT);
+	console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
+	console.log("IS_RINKEBY: ",IS_RINKEBY);
 
 	// set the deploy address
 	console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
