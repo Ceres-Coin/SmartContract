@@ -39,25 +39,21 @@ const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 const Timelock = artifacts.require("Governance/Timelock");
 
 module.exports = async function(deployer, network, accounts) {
-
-	// set the deploy address
-	console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
-	const ADMIN = accounts[0];
-	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
-
-	console.log("ADMIN is: ",ADMIN);
-	console.log("COLLATERAL_CERES_AND_CERESHARES_OWNER is: ",COLLATERAL_CERES_AND_CERESHARES_OWNER);
-
 	// Set the Network Settings
 	const IS_MAINNET = (network == 'mainnet');
 	const IS_ROPSTEN = (network == 'ropsten');
 	const IS_DEV = (network == 'development');
 	const IS_GANACHE = (network == 'devganache');
-    const IS_BSC_TESTNET = (network == 'testnet');
+	const IS_BSC_TESTNET = (network == 'testnet');
 	const IS_RINKEBY = (network == 'rinkeby');
 
-	
-
+	// set the deploy address
+	const ADMIN = accounts[0];
+	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
+	const account0 = accounts[0];
+	const account1 = accounts[1];
+	const account2 = accounts[2];
+	const account3 = accounts[3];
 	const timelockInstance = await Timelock.deployed();
 
 	// ======== Deploy WETH & USDC & USDT ========
@@ -102,7 +98,7 @@ module.exports = async function(deployer, network, accounts) {
 		routerInstance = await UniswapV2Router02.at("0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"); 
 		uniswapFactoryInstance = await UniswapV2Factory.at("0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"); 
 	}
-	else if (IS_DEV || IS_BSC_TESTNET){
+	else if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE){
 		await deployer.deploy(UniswapV2Router02_Modified, UniswapV2Factory.address, wethInstance.address);
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
 		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 

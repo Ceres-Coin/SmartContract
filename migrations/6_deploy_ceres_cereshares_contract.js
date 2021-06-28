@@ -38,7 +38,7 @@ module.exports = async function(deployer, network, accounts) {
 	const migrationHelperInstance = await MigrationHelper.deployed();
 	
 	// For Test USE 
-	if (IS_DEV || IS_BSC_TESTNET || IS_ROPSTEN) {
+	if (IS_DEV || IS_BSC_TESTNET || IS_ROPSTEN || IS_GANACHE) {
 		const TimelockTest = artifacts.require("Governance/TimelockTest");
 		await deployer.deploy(TimelockTest,ADMIN,TIMELOCK_DELAY);
 	}
