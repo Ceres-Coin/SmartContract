@@ -17,21 +17,24 @@ const UQ112x112 = artifacts.require("Math/UQ112x112");
 const StringHelpers = artifacts.require("Utils/StringHelpers");
 const Owned = artifacts.require("Staking/Owned");
 
-
-
-
-
-
 // Make sure Ganache is running beforehand
 module.exports = async function(deployer, network, accounts) {
 	const USE_MAINNET_EXISTING = true;
-	const IS_MAINNET = (process.env.MIGRATION_MODE == 'mainnet');
-	const IS_ROPSTEN = (process.env.MIGRATION_MODE == 'ropsten');
-	const IS_DEV = (process.env.MIGRATION_MODE == 'dev');
 
-	console.log("IS_MAINNET: ",IS_MAINNET);
-	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
-	console.log("IS_DEV: ",IS_DEV);
+		// Set the Network Settings
+		const IS_MAINNET = (network == 'mainnet');
+		const IS_ROPSTEN = (network == 'ropsten');
+		const IS_DEV = (network == 'development');
+		const IS_DEVHARDHAT = (network == 'devhardhat');
+		const IS_BSC_TESTNET = (network == 'testnet');
+		const IS_RINKEBY = (network == 'rinkeby');
+	
+		console.log("IS_MAINNET: ",IS_MAINNET);
+		console.log("IS_ROPSTEN: ",IS_ROPSTEN);
+		console.log("IS_DEV: ",IS_DEV);
+		console.log("IS_DEVHARDHAT: ",IS_DEVHARDHAT);
+		console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
+		console.log("IS_RINKEBY: ",IS_RINKEBY);
 
 	// set the deploy address
 	console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));

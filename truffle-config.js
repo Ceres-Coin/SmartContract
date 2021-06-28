@@ -108,12 +108,21 @@ module.exports = {
 		// }
     development: {
       host: "127.0.0.1",     // Localhost (default: none)
+      port: 7545,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+      gas: 7500000,
+       gasPrice: 20000000000,
+       gasLimit: 7500000,
+     },
+     devhardhat: {
+      host: "127.0.0.1",     // Localhost (default: none)
       port: 8545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
       gas: 7500000,
        gasPrice: 20000000000,
        gasLimit: 7500000,
      },
+
      testnet: {
        provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s1.binance.org:8545/'),
       //  provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s2.binance.org:8545/'),
