@@ -20,15 +20,21 @@ const FakeCollateral_USDT = artifacts.require("FakeCollateral/FakeCollateral_USD
 const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DEC");
 
 // set constants
-console.log(chalk.yellow('===== SET CONSTANTS ====='));
-const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
-const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
-const FIVE_MILLION_DEC6 = new BigNumber("5000000e6");
-const TEN_MILLION_DEC18 = new BigNumber("10000000e18");
-const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
-const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
-const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
-const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
+const ONE_MILLION_DEC18 = new BigNumber("1000000e18").toNumber();
+const FIVE_MILLION_DEC18 = new BigNumber("5000000e18").toNumber();
+const FIVE_MILLION_DEC6 = new BigNumber("5000000e6").toNumber();
+const TEN_MILLION_DEC18 = new BigNumber("10000000e18").toNumber();
+const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18").toNumber();
+const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6").toNumber();
+const ONE_BILLION_DEC18 = new BigNumber("1000000000e18").toNumber();
+const COLLATERAL_SEED_DEC18 = new BigNumber("508500e18").toNumber();
+const SIX_HUNDRED_DEC18 = new BigNumber("600e18").toNumber();
+const SIX_HUNDRED_DEC6 = new BigNumber("600e6").toNumber();
+const ONE_DEC18 = new BigNumber("1e18").toNumber();
+const ONE_HUNDRED_DEC18 = new BigNumber("100e18").toNumber();
+const ONE_HUNDRED_DEC6 = new BigNumber("100e6").toNumber();
+const Number133_DEC18 = new BigNumber("133e18").toNumber();
+const EIGHT_HUNDRED_DEC18 = new BigNumber("800e18").toNumber();
 
 
 const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
@@ -42,7 +48,6 @@ const UniswapPairOracle_CERES_WETH = artifacts.require("Oracle/Variants/UniswapP
 const UniswapPairOracle_CERES_USDC = artifacts.require("Oracle/Variants/UniswapPairOracle_CERES_USDC");
 const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_CSS_WETH");
 const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Variants/UniswapPairOracle_CSS_USDC");
-
 const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
 
 // Uniswap Contract
@@ -52,8 +57,6 @@ const Timelock = artifacts.require("Governance/Timelock");
 const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumer");
 const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest");
 
-// Core Pool
-// CERES_USDC Pool
 const StringHelpers = artifacts.require("Utils/StringHelpers");
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
@@ -62,14 +65,8 @@ const REDEMPTION_FEE = 400; // 0.04%
 const BUYBACK_FEE = 100; //0.01%
 const RECOLLAT_FEE = 100; //0.01%
 
-
-
-
-
-
 // Make sure Ganache is running beforehand
 module.exports = async function(deployer, network, accounts) {
-
 	// Uniswap Address
 	let uniswapFactoryInstance;
 	let ceresInstance;
@@ -81,28 +78,22 @@ module.exports = async function(deployer, network, accounts) {
 	let timelockInstance;
 	let routerInstance;
 
-	// set the deploy address
-	console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
-	const ADMIN = accounts[0];
-	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
-
-	console.log("ADMIN is: ",ADMIN);
-	console.log("COLLATERAL_CERES_AND_CERESHARES_OWNER is: ",COLLATERAL_CERES_AND_CERESHARES_OWNER);
-
 	// Set the Network Settings
 	const IS_MAINNET = (network == 'mainnet');
 	const IS_ROPSTEN = (network == 'ropsten');
 	const IS_DEV = (network == 'development');
 	const IS_GANACHE = (network == 'devganache');
-    const IS_BSC_TESTNET = (network == 'testnet');
+	const IS_BSC_TESTNET = (network == 'testnet');
 	const IS_RINKEBY = (network == 'rinkeby');
 
-	console.log("IS_MAINNET: ",IS_MAINNET);
-	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
-	console.log("IS_DEV: ",IS_DEV);
-	console.log("IS_GANACHE: ",IS_GANACHE);
-	console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
-	console.log("IS_RINKEBY: ",IS_RINKEBY);
+	// set the deploy address
+	console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
+	const ADMIN = accounts[0];
+	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
+	const account0 = accounts[0];
+	const account1 = accounts[1];
+	const account2 = accounts[2];
+	const account3 = accounts[3];
 
 	if (IS_ROPSTEN || IS_RINKEBY){
 		// Note UniswapV2Router02 vs UniswapV2Router02_Modified
@@ -116,8 +107,7 @@ module.exports = async function(deployer, network, accounts) {
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
 		timelockInstance = await Timelock.deployed();
 	}
-	
-	if (IS_DEV || IS_BSC_TESTNET) {
+	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE) {
 		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
 		ceresInstance = await CEREStable.deployed();
 		cssInstance = await CEREShares.deployed();
@@ -130,43 +120,34 @@ module.exports = async function(deployer, network, accounts) {
 	}
 	
 	// ============= Set the CERES Pools ========
-	console.log(chalk.yellow('========== CERES POOLS =========='));
 	await deployer.link(StringHelpers, [Pool_USDC]);
 	await Promise.all([
 		deployer.deploy(Pool_USDC, ceresInstance.address, cssInstance.address, col_instance_USDC.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address, FIVE_MILLION_DEC6),
 	]);
-
+	
 	// ============= Get the pool instances ========
-	console.log(chalk.yellow('========== POOL INSTANCES =========='));
 	const pool_instance_USDC = await Pool_USDC.deployed();
-	console.log("pool_instance_USDC: ",pool_instance_USDC.address);
-
-	// Set the redemption fee to 0.04%
-	// Set the minting fee to 0.03%
+	// Set the redemption fee to 0.04% & Set the minting fee to 0.03%
 	await Promise.all([
 		ceresInstance.setRedemptionFee(REDEMPTION_FEE, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
 		ceresInstance.setMintingFee(MINTING_FEE, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
 	]);
 
 	// ============= Set the pool parameters so the minting and redemption fees get set ========
-	console.log(chalk.yellow('========== REFRESH POOL PARAMETERS =========='));
 	await Promise.all([
 		await pool_instance_USDC.setPoolParameters(FIVE_MILLION_DEC6, 7500, 1, MINTING_FEE, REDEMPTION_FEE, BUYBACK_FEE, RECOLLAT_FEE, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),	
 	]);
 
 	const oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
-	console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.reserve0()));
-	console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.reserve1()));
-	console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.token0()));
-	console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.token1()));
-	console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.price0CumulativeLast()));
-	console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.price1CumulativeLast()));
-	console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.pair()));
+	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.reserve0()));
+	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.reserve1()));
+	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.token0()));
+	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.token1()));
+	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.price0CumulativeLast()));
+	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.price1CumulativeLast()));
+	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.pair()));
 
 	await Promise.all([
 		pool_instance_USDC.setCollatETHOracle(oracle_instance_USDC_WETH.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
 	]);
-
-
-	
 }
