@@ -142,13 +142,20 @@ module.exports = async function(deployer, network, accounts) {
 	]);
 
 	const oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
-	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.reserve0()));
-	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.reserve1()));
-	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.token0()));
-	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.token1()));
-	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.price0CumulativeLast()));
-	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.price1CumulativeLast()));
-	// console.log(chalk.red.bold("oracle_instance_USDC_WETH:", await oracle_instance_USDC_WETH.pair()));
+	await oracle_instance_USDC_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+
+	// console.log(chalk.red.bold(`wethInstance.address: ${wethInstance.address}`));
+	// console.log(chalk.red.bold(`col_instance_USDC.address: ${col_instance_USDC.address}`));
+	// console.log(chalk.red.bold("reserve0:", await oracle_instance_USDC_WETH.reserve0()));
+	// console.log(chalk.red.bold("reserve1:", await oracle_instance_USDC_WETH.reserve1()));
+	// console.log(chalk.red.bold("token0.address:", await oracle_instance_USDC_WETH.token0()));
+	// console.log(chalk.red.bold("token1.address:", await oracle_instance_USDC_WETH.token1()));
+	// console.log(chalk.red.bold("price0CumulativeLast:", await oracle_instance_USDC_WETH.price0CumulativeLast()));
+	// console.log(chalk.red.bold("price1CumulativeLast:", await oracle_instance_USDC_WETH.price1CumulativeLast()));
+	// console.log(chalk.red.bold("pair.address:", await oracle_instance_USDC_WETH.pair()));
+
+	// const tmpPrice = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, BIG18))).div(BIG6).toNumber();
+	// console.log(chalk.red.bold(`tmpPrice: ${tmpPrice}`));
 
 	await Promise.all([
 		pool_instance_USDC.setCollatETHOracle(oracle_instance_USDC_WETH.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })

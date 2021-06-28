@@ -308,8 +308,7 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 
 	it ("Test Scripts for CERES_USDC_POOL.ceres_eth_usd_price ",async() => {
 		const ceres_eth_usd_price = (new BigNumber(await pool_instance_USDC.ceres_eth_usd_price())).toNumber();
-		expect(ceres_eth_usd_price).to.be.ok;
-		// console.log(chalk.yellow(`ceres_eth_usd_price: ${ceres_eth_usd_price}`));
+		// console.log(chalk.yellow(`ceres_eth_usd_price: ${ceres_eth_usd_price}`));		
 	});
 	
 	it ("Test Scripts for CERES_USDC_POOL.collatEthOracle_eth_collat_price", async() => {

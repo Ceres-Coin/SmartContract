@@ -16,7 +16,7 @@ contract UniswapPairOracle {
     address public owner_address;
     address public timelock_address;
 
-    uint public PERIOD = 3600; // 1 hour TWAP (time-weighted average price)
+    uint public PERIOD = 5; // 1 hour TWAP (time-weighted average price)
     uint public CONSULT_LENIENCY = 120; // Used for being able to consult past the period end
     bool public ALLOW_STALE_CONSULTS = true; // If false, consult() will fail if the TWAP is stale
 
