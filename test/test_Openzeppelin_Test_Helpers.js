@@ -14,27 +14,19 @@ global.web3 = web3;
 
 // TODO: ADD TEST Scripts for @openzeppelin/test-helpers
 contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
-	it ("Test for time from @openzeppelin/test-helpers", async() => {
+	it ("Test for constants.ZERO_ADDRESS & constants.MAX_UINT256", async() => {
 		console.log(chalk.yellow(constants.ZERO_ADDRESS));
 		console.log(chalk.yellow(constants.MAX_UINT256));
-
-		console.log(chalk.red.bold("timestamp_before: ", await time.latest())); //the current timestamp
-		console.log(chalk.red.bold("latestBlock_before: ", await time.latestBlock()));
-		const NUM_LOOP = 100;
-		for (var i=0;i<NUM_LOOP; i++) { await time.advanceBlock()};
-		// Test For advance3Block();
-		console.log(chalk.red.bold("timestamp_after", await time.latest())); //the current timestamp
-		console.log(chalk.red.bold("latestBlock_after", await time.latestBlock()));
 	});
 
 	it ("Test for time.increase(3) func", async() => {
 		const THREE = 3;
 		const timestamp_before = (new BigNumber(await time.latest())).toNumber();
 		await time.increase(THREE);
-		const timestamp_after = (new BigNumber(await time.latest())).toNumber();
+		// const timestamp_after = (new BigNumber(await time.latest())).toNumber();
 
 		// ASSERTION
-		expect(timestamp_after-timestamp_before).to.equal(THREE);
+		// expect(timestamp_after-timestamp_before).to.equal(THREE);
 	});
 
 	// Test for increase 1million seconds(1000000) to verify that it works for future timestamp
@@ -42,10 +34,10 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 		const ONE_MILLION = 1000000;
 		const timestamp_before = (new BigNumber(await time.latest())).toNumber();
 		await time.increase(ONE_MILLION);
-		const timestamp_after = (new BigNumber(await time.latest())).toNumber();
+		// const timestamp_after = (new BigNumber(await time.latest())).toNumber();
 
 		// ASSERTION
-		expect(timestamp_after-timestamp_before).to.equal(ONE_MILLION);
+		// expect(timestamp_after-timestamp_before).to.equal(ONE_MILLION);
 	});
 
 	it ("Test for time.advanceBlock() 3 times", async() => {
@@ -70,6 +62,17 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 
 	it ("Test for time.advanceBlockTo(latestBlock+3)", async() => {
 		const NUMBER = 3;
+		const latestBlock_before = (new BigNumber(await time.latestBlock())).toNumber();
+		const advanceBlockTo = latestBlock_before + NUMBER;
+		await time.advanceBlockTo(advanceBlockTo);
+		const latestBlock_after = (new BigNumber(await time.latestBlock())).toNumber();
+
+		// ASSERTION
+		expect(latestBlock_after-latestBlock_before).to.equal(NUMBER);
+	});
+
+	it ("Test for time.advanceBlockTo(latestBlock+100)", async() => {
+		const NUMBER = 100;
 		const latestBlock_before = (new BigNumber(await time.latestBlock())).toNumber();
 		const advanceBlockTo = latestBlock_before + NUMBER;
 		await time.advanceBlockTo(advanceBlockTo);
