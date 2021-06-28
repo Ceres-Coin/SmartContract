@@ -87,7 +87,6 @@ module.exports = async function(deployer, network, accounts) {
 	const IS_RINKEBY = (network == 'rinkeby');
 
 	// set the deploy address
-	console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
 	const ADMIN = accounts[0];
 	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
 	const account0 = accounts[0];
