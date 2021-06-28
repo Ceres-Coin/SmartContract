@@ -1,14 +1,12 @@
 const path = require('path');
 const envPath = path.join(__dirname, '../../.env');
 require('dotenv').config({ path: envPath });
-
 const BigNumber = require('bignumber.js');
 
 const { expectEvent, send, shouldFail, time, constants } = require('@openzeppelin/test-helpers');
 const BIG6 = new BigNumber("1e6");
 const BIG18 = new BigNumber("1e18");
 const chalk = require('chalk');
-
 
 // Define UniswapV2Factory & Router
 const UniswapV2Router02 = artifacts.require("Uniswap/UniswapV2Router02");
@@ -32,17 +30,16 @@ const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
 
-const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 
-// Core Contract
+
+// Core 
 const CEREStable = artifacts.require("Ceres/CEREStable");
 const CEREShares = artifacts.require("CSS/CEREShares");
 
+// Other
+const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 const Timelock = artifacts.require("Governance/Timelock");
 
-
-
-// Make sure Ganache is running beforehand
 module.exports = async function(deployer, network, accounts) {
 
 	// set the deploy address
