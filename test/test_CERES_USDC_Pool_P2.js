@@ -290,14 +290,15 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	});
 
 	it ("[FUNC][collatEthOracle_eth_collat_price] test scripts", async() => {
-		console.log(chalk.yellow(`collateralPricePaused: ${await pool_instance_USDC.collateralPricePaused()}`));
-		console.log(chalk.yellow(`collateralPricePaused: ${await pool_instance_USDC.pausedPrice()}`));
-		console.log(chalk.red(`collatEthOracle_eth_collat_price: ${await pool_instance_USDC.collatEthOracle_eth_collat_price()}`));
+		// console.log(chalk.yellow(`collateralPricePaused: ${await pool_instance_USDC.collateralPricePaused()}`));
+		// console.log(chalk.yellow(`collateralPricePaused: ${await pool_instance_USDC.pausedPrice()}`));
+		// console.log(chalk.red(`collatEthOracle_eth_collat_price: ${await pool_instance_USDC.collatEthOracle_eth_collat_price()}`));
+		// TODO: tuning collatEthOracle_eth_collat_price and trouble shooting why the price is 0 
 	});
 
 	it ("Test Scripts for CERES_USDC_POOL.missing_decimals ", async() => {
 		const missing_decimals = (new BigNumber(await pool_instance_USDC.missing_decimals())).toNumber();
-		console.log(chalk.yellow(`missing_decimals: ${missing_decimals}`));
+		expect(missing_decimals).to.equal(12);
 	})
 });
 
