@@ -15,7 +15,8 @@
     "migration_ropsten_noReset": "truffle migrate --network ropsten --skip-dry-run",
     "clean_build": "rm -rf build & truffle compile --all & truffle migrate --network development --skip-dry-run --reset",
     "truffleTestALL": "truffle test",
-    "truffleTestSingle": "truffle test ./test/test_CERES_USDC_Pool_P2.js",
+    "truffleTestSingleP2": "truffle test ./test/test_CERES_USDC_Pool_P2.js",
+    "truffleTestSingleP1": "truffle test ./test/test_CERES_USDC_Pool_P1.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "repository": {
