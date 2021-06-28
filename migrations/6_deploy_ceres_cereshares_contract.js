@@ -23,12 +23,14 @@ module.exports = async function(deployer, network, accounts) {
 	const IS_MAINNET = (network == 'mainnet');
 	const IS_ROPSTEN = (network == 'ropsten');
 	const IS_DEV = (network == 'development');
+	const IS_GANACHE = (network == 'devganache');
     const IS_BSC_TESTNET = (network == 'testnet');
 	const IS_RINKEBY = (network == 'rinkeby');
 
 	console.log("IS_MAINNET: ",IS_MAINNET);
 	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
 	console.log("IS_DEV: ",IS_DEV);
+	console.log("IS_GANACHE: ",IS_GANACHE);
 	console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
 	console.log("IS_RINKEBY: ",IS_RINKEBY);
 
