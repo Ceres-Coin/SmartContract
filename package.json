@@ -26,6 +26,7 @@
     "truffleTestALL": "truffle test",
     "truffleTestSingleP2": "truffle test ./test/test_CERES_USDC_Pool_P2.js",
     "truffleTestSingleP1": "truffle test ./test/test_CERES_USDC_Pool_P1.js",
+    "truffleTestTestHelpers": "truffle test ./test/test_Openzeppelin_Test_Helpers.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "repository": {
