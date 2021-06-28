@@ -4,7 +4,7 @@ const util = require('util');
 const chalk = require('chalk');
 const Contract = require('web3-eth-contract');
 const { assert, expect } = require('chai');
-const { expectEvent, send, shouldFail, time, constants } = require('@openzeppelin/test-helpers');
+const { expectEvent, send, shouldFail, time, constants, balance} = require('@openzeppelin/test-helpers');
 
 // Set provider for all later instances to use
 Contract.setProvider('http://127.0.0.1:8545');
@@ -14,6 +14,9 @@ global.web3 = web3;
 
 // TODO: ADD TEST Scripts for @openzeppelin/test-helpers
 contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
+	const account0 = accounts[0];
+	const account1 = accounts[1];
+
 	it ("Test for constants.ZERO_ADDRESS & constants.MAX_UINT256", async() => {
 		console.log(chalk.yellow(constants.ZERO_ADDRESS));
 		console.log(chalk.yellow(constants.MAX_UINT256));
@@ -81,6 +84,7 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 		// ASSERTION
 		expect(latestBlock_after-latestBlock_before).to.equal(NUMBER);
 	});
+	
 });
 
 
