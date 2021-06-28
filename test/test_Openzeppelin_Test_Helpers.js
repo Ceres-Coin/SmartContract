@@ -27,23 +27,25 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 		console.log(chalk.red.bold("latestBlock_after", await time.latestBlock()));
 	});
 
-	it ("Test for time.increase(10) func", async() => {
-		console.log(chalk.red.bold("timestamp_before: ", await time.latest())); //the current timestamp
-		await time.increase(10);
-		console.log(chalk.red.bold("timestamp_after", await time.latest())); //the current timestamp
-	});
-
-	// Test for increase 10 million seconds(10000000) to verify that it works for future timestamp
-	it ("Test for time.increase(10 million ) func", async() => {
-		const ten_million = 10000000;
+	it ("Test for time.increase(3) func", async() => {
+		const THREE = 3;
 		const timestamp_before = (new BigNumber(await time.latest())).toNumber();
-		console.log(chalk.red.bold("timestamp_before: ", timestamp_before)); 
-		await time.increase(ten_million);
+		await time.increase(THREE);
 		const timestamp_after = (new BigNumber(await time.latest())).toNumber();
-		console.log(chalk.red.bold("timestamp_after", timestamp_after)); 
 
 		// ASSERTION
-		// expect(timestamp_after-timestamp_before).to.equal(ten_million);
+		expect(timestamp_after-timestamp_before).to.equal(THREE);
+	});
+
+	// Test for increase 1million seconds(1000000) to verify that it works for future timestamp
+	it ("Test for time.increase(1000000) func", async() => {
+		const ONE_MILLION = 1000000;
+		const timestamp_before = (new BigNumber(await time.latest())).toNumber();
+		await time.increase(ONE_MILLION);
+		const timestamp_after = (new BigNumber(await time.latest())).toNumber();
+
+		// ASSERTION
+		expect(timestamp_after-timestamp_before).to.equal(ONE_MILLION);
 	});
 });
 
