@@ -67,6 +67,17 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 		// ASSERTION
 		expect(latestBlock_after-latestBlock_before).to.equal(ONE_HUNDRED);
 	});
+
+	it ("Test for time.advanceBlockTo(latestBlock+3)", async() => {
+		const NUMBER = 3;
+		const latestBlock_before = (new BigNumber(await time.latestBlock())).toNumber();
+		const advanceBlockTo = latestBlock_before + NUMBER;
+		await time.advanceBlockTo(advanceBlockTo);
+		const latestBlock_after = (new BigNumber(await time.latestBlock())).toNumber();
+
+		// ASSERTION
+		expect(latestBlock_after-latestBlock_before).to.equal(NUMBER);
+	});
 });
 
 
