@@ -43,13 +43,10 @@ module.exports = async function(deployer, network, accounts) {
 		await deployer.deploy(TimelockTest,ADMIN,TIMELOCK_DELAY);
 	}
 
-	// CERES
+	// CERES DEPLOYMENT
 	await deployer.deploy(CEREStable, "CERES", "CERES", COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address);
 	const ceresInstance = await CEREStable.deployed();
-	console.log("ceresInstance: ",ceresInstance.address);
-
-	// CSS
+	// CSS DEPLOYMENT
 	await deployer.deploy(CEREShares, "CERES Share", "CSS", COLLATERAL_CERES_AND_CERESHARES_OWNER, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address);
 	const cssInstance = await CEREShares.deployed();
-	console.log("cssInstance: ",cssInstance.address);
 }
