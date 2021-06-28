@@ -178,8 +178,6 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	let ar_buyBackPaused;
 	let ar_collateralPricePaused;
 
-	
-
     beforeEach(async() => {
 		ADMIN = accounts[0];
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
@@ -296,6 +294,11 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		console.log(chalk.yellow(`collateralPricePaused: ${await pool_instance_USDC.pausedPrice()}`));
 		console.log(chalk.red(`collatEthOracle_eth_collat_price: ${await pool_instance_USDC.collatEthOracle_eth_collat_price()}`));
 	});
+
+	it ("Test Scripts for CERES_USDC_POOL.missing_decimals ", async() => {
+		const missing_decimals = (new BigNumber(await pool_instance_USDC.missing_decimals())).toNumber();
+		console.log(chalk.yellow(`missing_decimals: ${missing_decimals}`))
+	})
 });
 
 

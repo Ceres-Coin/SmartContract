@@ -114,14 +114,15 @@ contract CeresPool is AccessControl {
     ) public {
         CERES = CEREStable(_ceres_contract_address);
         CSS = CEREShares(_css_contract_address);
+
         ceres_contract_address = _ceres_contract_address;
         css_contract_address = _css_contract_address;
-
         collateral_address = _collateral_address;
-        timelock_address = _timelock_address;
         owner_address = _creator_address;
-        collateral_token = ERC20(_collateral_address);
+        timelock_address = _timelock_address;
         pool_ceiling = _pool_ceiling;
+        
+        collateral_token = ERC20(_collateral_address);
         missing_decimals = uint(18).sub(collateral_token.decimals());
 
         _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
