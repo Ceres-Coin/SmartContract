@@ -117,12 +117,12 @@ module.exports = async function(deployer, network, accounts) {
 	]);
 
 	// ======== Get the addresses of the pairs CERES_WETH & CERES_USDC ========
-	const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-	const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-	const pair_addr_USDC_WETH = await uniswapFactoryInstance.getPair(col_instance_USDC.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-	const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
-	const pair_instance_CERES_USDC = await UniswapV2Pair.at(pair_addr_CERES_USDC);
-	const pair_instance_USDC_WETH = await UniswapV2Pair.at(pair_addr_USDC_WETH);
+	// const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	// const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	// const pair_addr_USDC_WETH = await uniswapFactoryInstance.getPair(col_instance_USDC.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	// const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
+	// const pair_instance_CERES_USDC = await UniswapV2Pair.at(pair_addr_CERES_USDC);
+	// const pair_instance_USDC_WETH = await UniswapV2Pair.at(pair_addr_USDC_WETH);
 
 	// ======== Set the Uniswap pairs CSS_WETH & CSS_USDC ========
 	await Promise.all([
@@ -131,10 +131,10 @@ module.exports = async function(deployer, network, accounts) {
 	]);
 
 	// ======== Get the addresses of the pairs CSS_WETH & CSS_USDC ========
-	const pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-	const pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-	const pair_instance_CSS_WETH = await UniswapV2Pair.at(pair_addr_CSS_WETH);
-	const pair_instance_CSS_USDC = await UniswapV2Pair.at(pair_addr_CSS_USDC);
+	// const pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	// const pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	// const pair_instance_CSS_WETH = await UniswapV2Pair.at(pair_addr_CSS_WETH);
+	// const pair_instance_CSS_USDC = await UniswapV2Pair.at(pair_addr_CSS_USDC);
 
 	await Promise.all([
 		wethInstance.approve(routerInstance.address, new BigNumber(TWO_MILLION_DEC18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
