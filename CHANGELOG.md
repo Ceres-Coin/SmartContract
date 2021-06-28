@@ -1,3 +1,19 @@
+## [0.1.210629-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210629-a) (2021-06-28)
+1. Finish Tuning Deployment Scripts
+   1. FINISH migrations/9_deploy_CERES_CSS_Pools.js
+   2. FINISH migrations/8_deploy_Uniswap_CERES_Oracle_Contract.js
+   3. FINISH migrations/7_deploy_Uniswap_Contract.js
+   4. FINISH migrations/6_deploy_ceres_cereshares_contract.js
+   5. FINISH migrations/5_link_contract_phrase_1.js
+   6. FINISH migrations/4_deploy_contract_phase_3.js
+
+TODO: Debug the USDC_POOL contracts & Test Scripts
+   1. contracts/ceres/pools/Pool_USDC.sol
+   2. contracts/ceres/pools/CeresPool.sol
+   3. migrations/9_deploy_CERES_CSS_Pools.js
+   4. test/test_CERES_USDC_Pool_P2.js
+
+
 ## [0.1.210628-c](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210628-c) (2021-06-28)
 1. Finish Test Scripts test_Openzeppelin_Test_Helpers.js
    1. constants.ZERO_ADDRESS & constants.MAX_UINT256
@@ -8,10 +24,13 @@
    6. Test for time.advanceBlockTo(latestBlock+3)
    7. Test for time.advanceBlockTo(latestBlock+100)
 
-2. reduce unneccessary code from test/test_Openzeppelin_Test_Helpers.js
+2. remove unneccessary code from test/test_Openzeppelin_Test_Helpers.js
 3. tuning 3_deploy_contract_phase_2.js deployment scripts
+   1. FINISH migrations/1_initial_migration.js
+   2. FINISH migrations/2_deploy_contract_phase_1.js
+   3. FINISH migrations/3_deploy_contract_phase_2.js
 
-TODO: Continue to Tuning deployment scripts under MIGRATIONS folders
+Continue to Tuning deployment scripts under MIGRATIONS folders
 
 
 
