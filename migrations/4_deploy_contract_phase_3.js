@@ -16,7 +16,7 @@ const UniswapV2Pair = artifacts.require("Uniswap/UniswapV2Pair");
 const UniswapV2Factory = artifacts.require("Uniswap/UniswapV2Factory");
 const SafeERC20 = artifacts.require("ERC20/SafeERC20");
 
-const DUMP_ADDRESS = "0x1111111111111111111111111111111111111111";
+const DUMP_ADDRESS = constants.ZERO_ADDRESS;
 
 
 // Chainlink Price Consumer
