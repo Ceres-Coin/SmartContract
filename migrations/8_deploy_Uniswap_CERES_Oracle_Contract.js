@@ -22,7 +22,6 @@ const FakeCollateral_USDT = artifacts.require("FakeCollateral/FakeCollateral_USD
 const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DEC");
 
 // set constants
-console.log(chalk.yellow('===== SET CONSTANTS ====='));
 const ONE_MILLION_DEC18 = new BigNumber("1000000e18").toNumber();
 const FIVE_MILLION_DEC18 = new BigNumber("5000000e18").toNumber();
 const TEN_MILLION_DEC18 = new BigNumber("10000000e18").toNumber();
@@ -55,14 +54,10 @@ const Timelock = artifacts.require("Governance/Timelock");
 // Chainlink Price Consumer
 const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumer");
 const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest");
-
 const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
-
-
 
 // Make sure Ganache is running beforehand
 module.exports = async function(deployer, network, accounts) {
-
 	// Uniswap Address
 	let uniswapFactoryInstance;
 	let ceresInstance;
@@ -74,29 +69,22 @@ module.exports = async function(deployer, network, accounts) {
 	let timelockInstance;
 	let routerInstance;
 
-	// set the deploy address
-	console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
-	const ADMIN = accounts[0];
-	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
-
-	console.log("ADMIN is: ",ADMIN);
-	console.log("COLLATERAL_CERES_AND_CERESHARES_OWNER is: ",COLLATERAL_CERES_AND_CERESHARES_OWNER);
-
 	// Set the Network Settings
 	const IS_MAINNET = (network == 'mainnet');
 	const IS_ROPSTEN = (network == 'ropsten');
 	const IS_DEV = (network == 'development');
 	const IS_GANACHE = (network == 'devganache');
-    const IS_BSC_TESTNET = (network == 'testnet');
+	const IS_BSC_TESTNET = (network == 'testnet');
 	const IS_RINKEBY = (network == 'rinkeby');
 
-	console.log("IS_MAINNET: ",IS_MAINNET);
-	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
-	console.log("IS_DEV: ",IS_DEV);
-	console.log("IS_GANACHE: ",IS_GANACHE);
-	console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
-	console.log("IS_RINKEBY: ",IS_RINKEBY);
-	
+	// set the deploy address
+	const ADMIN = accounts[0];
+	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
+	const account0 = accounts[0];
+	const account1 = accounts[1];
+	const account2 = accounts[2];
+	const account3 = accounts[3];
+
 	if (IS_ROPSTEN || IS_RINKEBY){
 		// Note UniswapV2Router02 vs UniswapV2Router02_Modified
 		routerInstance = await UniswapV2Router02.at("0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"); 
@@ -110,7 +98,7 @@ module.exports = async function(deployer, network, accounts) {
 		timelockInstance = await Timelock.deployed();
 	}
 
-	if (IS_DEV || IS_BSC_TESTNET ) {
+	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE) {
 		routerInstance = await UniswapV2Router02_Modified.deployed();
 		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
 		ceresInstance = await CEREStable.deployed();
@@ -120,7 +108,6 @@ module.exports = async function(deployer, network, accounts) {
 		col_instance_USDT = await FakeCollateral_USDT.deployed(); 
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
 		timelockInstance = await Timelock.deployed();
-		 
 	}
 	
 	// add liquidility
@@ -173,18 +160,6 @@ module.exports = async function(deployer, network, accounts) {
 			new BigNumber(2105300114), 
 			{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
 		),
-		// USDC/WETH
-		// routerInstance.addLiquidity(
-		// 	col_instance_USDC.address, 
-		// 	wethInstance.address,
-		// 	new BigNumber(600e6), 
-		// 	new BigNumber(100e18), 
-		// 	new BigNumber(600e6), 
-		// 	new BigNumber(100e18), 
-		// 	COLLATERAL_CERES_AND_CERESHARES_OWNER, 
-		// 	new BigNumber(2105300114), 
-		// 	{ from: COLLATERAL_CERES_AND_CERESHARES_OWNER }
-		// )
 		routerInstance.addLiquidity(
 			col_instance_USDC.address, 
 			wethInstance.address,
@@ -198,18 +173,11 @@ module.exports = async function(deployer, network, accounts) {
 		)
 	]);
 
-	console.log(chalk.blue('=== COLLATERAL ORACLES ==='));
 	await Promise.all([
 		deployer.deploy(UniswapPairOracle_USDC_WETH, uniswapFactoryInstance.address, col_instance_USDC.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
 	]);
 
-
-	// get uniswapFactory Instance * ceres/css instance;
-
 	// ======== Set the Uniswap oracles ========
-	// set the uniswap ceres_weth & ceres_usdc
-	console.log(chalk.yellow('========== UNISWAP ORACLES =========='));
-	console.log(chalk.blue('=== CERES ORACLES ==='));
 	await Promise.all([
 		deployer.deploy(UniswapPairOracle_CERES_WETH, uniswapFactoryInstance.address, ceresInstance.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
 		deployer.deploy(UniswapPairOracle_CERES_USDC, uniswapFactoryInstance.address, ceresInstance.address, col_instance_USDC.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
@@ -217,8 +185,6 @@ module.exports = async function(deployer, network, accounts) {
 
 	// ======== Set the Uniswap oracles ========
 	// set the uniswap css_weth & css_usdc
-	console.log(chalk.yellow('========== UNISWAP ORACLES =========='));
-	console.log(chalk.blue('=== CSS ORACLES ==='));
 	await Promise.all([
 		deployer.deploy(UniswapPairOracle_CSS_WETH, uniswapFactoryInstance.address, cssInstance.address, wethInstance.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
 		deployer.deploy(UniswapPairOracle_CSS_USDC, uniswapFactoryInstance.address, cssInstance.address, col_instance_USDC.address, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address),
@@ -230,19 +196,14 @@ module.exports = async function(deployer, network, accounts) {
 	const oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
 
 	// set ceresInstance Price Oracle
-	
-	console.log(chalk.blue('=== LINK CERES_WETH & CSS_WETH Oracle to CeresInstance ==='));
+	// === LINK CERES_WETH & CSS_WETH Oracle to CeresInstance ===
 	await Promise.all([
 		ceresInstance.setCeresEthOracle(oracle_instance_CERES_WETH.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
 		ceresInstance.setCSSEthOracle(oracle_instance_CSS_WETH.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),		
 	]);
 
-	// ======== Set the Chainlink oracle ========
-	console.log(chalk.redBright('===== SET THE CHAINLINK ORACLE ====='));
-
 	// Initialize ETH-USD Chainlink Oracle too
 	let oracle_chainlink_ETH_USD;
-
 	// Add the ETH / USD Chainlink oracle
 	if (IS_MAINNET){
 		oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumer.at("0xBa6C6EaC41a24F9D39032513f66D738B3559f15a");
@@ -252,7 +213,4 @@ module.exports = async function(deployer, network, accounts) {
 		oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumerTest.deployed();
 		await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 	}
-
-
-	
 }
