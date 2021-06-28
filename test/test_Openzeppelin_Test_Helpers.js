@@ -15,20 +15,17 @@ global.web3 = web3;
 // TODO: ADD TEST Scripts for @openzeppelin/test-helpers
 contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 	it ("Test for time from @openzeppelin/test-helpers", async() => {
-		console.log(chalk.red.bold(constants.ZERO_ADDRESS));
-		console.log(chalk.red.bold(constants.MAX_UINT256));
+		console.log(chalk.yellow(constants.ZERO_ADDRESS));
+		console.log(chalk.yellow(constants.MAX_UINT256));
 
 		console.log(chalk.red.bold("timestamp_before: ", await time.latest())); //the current timestamp
 		console.log(chalk.red.bold("latestBlock_before: ", await time.latestBlock()));
-		await time.advanceBlock();
-		await time.advanceBlock();
-		await time.advanceBlock();
+		const NUM_LOOP = 100;
+		for (var i=0;i<NUM_LOOP; i++) { time.advanceBlock()};
 		// Test For advance3Block();
 		console.log(chalk.red.bold("timestamp_after", await time.latest())); //the current timestamp
 		console.log(chalk.red.bold("latestBlock_after", await time.latestBlock()));
 	})
-
-
 });
 
 
