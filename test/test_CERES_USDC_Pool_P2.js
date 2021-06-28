@@ -297,7 +297,7 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 
 	it ("Test Scripts for CERES_USDC_POOL.missing_decimals ", async() => {
 		const missing_decimals = (new BigNumber(await pool_instance_USDC.missing_decimals())).toNumber();
-		console.log(chalk.yellow(`missing_decimals: ${missing_decimals}`))
+		console.log(chalk.yellow(`missing_decimals: ${missing_decimals}`));
 	})
 });
 
