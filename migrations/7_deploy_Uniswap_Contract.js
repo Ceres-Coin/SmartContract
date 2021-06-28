@@ -24,6 +24,8 @@ const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DE
 const ONE_MILLION_DEC18 = (new BigNumber("1000000e18")).toNumber();
 const FIVE_MILLION_DEC18 = (new BigNumber("5000000e18")).toNumber();
 const TEN_MILLION_DEC18 = (new BigNumber("10000000e18")).toNumber();
+const TWO_MILLION_DEC18 = (new BigNumber("20000000e18")).toNumber();
+const TWO_MILLION_DEC6 = (new BigNumber("20000000e6")).toNumber();
 const ONE_HUNDRED_MILLION_DEC18 = (new BigNumber("100000000e18")).toNumber();
 const ONE_HUNDRED_MILLION_DEC6 = (new BigNumber("100000000e6")).toNumber();
 const ONE_BILLION_DEC18 = (new BigNumber("1000000000e18")).toNumber();
@@ -103,16 +105,11 @@ module.exports = async function(deployer, network, accounts) {
 		await deployer.deploy(SwapToPrice, uniswapFactoryInstance.address, routerInstance.address);
 		swapToPriceInstance = await SwapToPrice.deployed();
 	}
-
 	// Core CERES & CSS
 	const ceresInstance = await CEREStable.deployed();
 	const cssInstance = await CEREShares.deployed();
 	
 	// ======== Set the Uniswap pairs CERES_WETH & CERES_USDC ========
-	console.log(chalk.yellow('===== SET UNISWAP PAIRS ====='));
-	console.log(chalk.blue('=== CERES / XXXX ==='));
-	console.log("CERES - WETH");
-	console.log("CERES - USDC");
 	await Promise.all([
 		uniswapFactoryInstance.createPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
 		uniswapFactoryInstance.createPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
@@ -120,64 +117,30 @@ module.exports = async function(deployer, network, accounts) {
 	]);
 
 	// ======== Get the addresses of the pairs CERES_WETH & CERES_USDC ========
-	console.log(chalk.yellow('===== GET THE ADDRESSES OF THE PAIRS ====='));
 	const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 	const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 	const pair_addr_USDC_WETH = await uniswapFactoryInstance.getPair(col_instance_USDC.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-
-	console.log(chalk.red("=================== pair_addr_CERES_WETH ================="));
-	console.log(chalk.red("=================== pair_addr_CERES_WETH ================="))
-	console.log(chalk.red("=================== pair_addr_CERES_WETH ================="))
-	console.log(chalk.red("=================== pair_addr_CERES_WETH ================="))
-	console.log(chalk.red("=================== pair_addr_CERES_WETH ================="))
-	console.log("pair_addr_CERES_WETH: ",pair_addr_CERES_WETH);
-	console.log("pair_addr_CERES_USDC: ",pair_addr_CERES_USDC);
-	console.log("pair_addr_USDC_WETH: ",pair_addr_USDC_WETH);
-
-	console.log(chalk.yellow('===== GET VARIOUS PAIR INSTANCES ====='));
 	const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
 	const pair_instance_CERES_USDC = await UniswapV2Pair.at(pair_addr_CERES_USDC);
 	const pair_instance_USDC_WETH = await UniswapV2Pair.at(pair_addr_USDC_WETH);
 
-	console.log("pair_instance_CERES_WETH: ",pair_instance_CERES_WETH.address);
-	console.log("pair_instance_CERES_USDC: ",pair_instance_CERES_USDC.address);
-	console.log("pair_instance_USDC_WETH: ",pair_instance_USDC_WETH.address);
-
-
 	// ======== Set the Uniswap pairs CSS_WETH & CSS_USDC ========
-	console.log(chalk.yellow('===== SET UNISWAP PAIRS ====='));
-	console.log(chalk.blue('=== CSS / XXXX ==='));
-	console.log("CSS - WETH");
-	console.log("CSS - USDC");
 	await Promise.all([
 		uniswapFactoryInstance.createPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
 		uniswapFactoryInstance.createPair(cssInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
 	]);
 
 	// ======== Get the addresses of the pairs CSS_WETH & CSS_USDC ========
-	console.log(chalk.yellow('===== GET THE ADDRESSES OF THE PAIRS ====='));
 	const pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 	const pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-	
-	console.log("pair_addr_CSS_WETH: ",pair_addr_CSS_WETH);
-	console.log("pair_addr_CSS_USDC: ",pair_addr_CSS_USDC);
-
-	console.log(chalk.yellow('===== GET VARIOUS PAIR INSTANCES ====='));
 	const pair_instance_CSS_WETH = await UniswapV2Pair.at(pair_addr_CSS_WETH);
 	const pair_instance_CSS_USDC = await UniswapV2Pair.at(pair_addr_CSS_USDC);
-	
-	console.log("pair_instance_CSS_WETH: ",pair_instance_CSS_WETH.address);
-	console.log("pair_instance_CSS_USDC: ",pair_instance_CSS_USDC.address);
-	
-
-	// erc20 approve
-	console.log(chalk.red("============ approve weth/usdc/usdt/ceres/css ============="));
 
 	await Promise.all([
-		wethInstance.approve(routerInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
-		col_instance_USDC.approve(routerInstance.address, new BigNumber(2000000e6), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
-		col_instance_USDT.approve(routerInstance.address, new BigNumber(2000000e6), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
-		ceresInstance.approve(routerInstance.address, new BigNumber(1000000e18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
-		cssInstance.approve(routerInstance.address, new BigNumber(5000000e18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
+		wethInstance.approve(routerInstance.address, new BigNumber(TWO_MILLION_DEC18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		col_instance_USDC.approve(routerInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		col_instance_USDT.approve(routerInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		ceresInstance.approve(routerInstance.address, new BigNumber(ONE_MILLION_DEC18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER }),
+		cssInstance.approve(routerInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
 	]);	
 }
