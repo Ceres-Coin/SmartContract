@@ -36,32 +36,27 @@ module.exports = async function(deployer, network, accounts) {
 	console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
 	console.log("IS_RINKEBY: ",IS_RINKEBY);
 
-	// set the deploy address
-	console.log(chalk.yellow('===== SET THE DEPLOY ADDRESSES ====='));
 	const ADMIN = accounts[0];
 	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
-
-	console.log("ADMIN is: ",ADMIN);
-	console.log("COLLATERAL_CERES_AND_CERESHARES_OWNER is: ",COLLATERAL_CERES_AND_CERESHARES_OWNER);
+	console.log(chalk.red.bold("ADMIN is: ",ADMIN));
+	console.log(chalk.red.bold("COLLATERAL_CERES_AND_CERESHARES_OWNER is: ",COLLATERAL_CERES_AND_CERESHARES_OWNER));
+	const account0 = accounts[0];
+	const account1 = accounts[1];
+	const account2 = accounts[2];
+	const account3 = accounts[3];
+	const account4 = accounts[4];
+	const account5 = accounts[5];
+	const account6 = accounts[6];
+	const account7 = accounts[7];
 
 	// set constants
-	console.log(chalk.yellow('===== SET CONSTANTS ====='));
-	const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
-	const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
-	const TEN_MILLION_DEC18 = new BigNumber("10000000e18");
-	const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
-	const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
-	const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
-	const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
-
-	
-	console.log("ONE_MILLION_DEC18: ",ONE_MILLION_DEC18.toString());
-	console.log("FIVE_MILLION_DEC18: ",FIVE_MILLION_DEC18.toString());
-	console.log("TEN_MILLION_DEC18: ",TEN_MILLION_DEC18.toString());
-	console.log("ONE_HUNDRED_MILLION_DEC18: ",ONE_HUNDRED_MILLION_DEC18.toString());
-	console.log("ONE_HUNDRED_MILLION_DEC6: ",ONE_HUNDRED_MILLION_DEC6.toString());
-	console.log("ONE_BILLION_DEC18: ",ONE_BILLION_DEC18.toString());
-	console.log("COLLATERAL_SEED_DEC18: ",COLLATERAL_SEED_DEC18.toString());
+	const ONE_MILLION_DEC18 = (new BigNumber("1000000e18")).toNumber();
+	const FIVE_MILLION_DEC18 = (new BigNumber("5000000e18")).toNumber();
+	const TEN_MILLION_DEC18 = (new BigNumber("10000000e18")).toNumber();
+	const ONE_HUNDRED_MILLION_DEC18 = (new BigNumber("100000000e18")).toNumber();
+	const ONE_HUNDRED_MILLION_DEC6 = (new BigNumber("100000000e6")).toNumber();
+	const ONE_BILLION_DEC18 = (new BigNumber("1000000000e18")).toNumber();
+	const COLLATERAL_SEED_DEC18 = (new BigNumber("508500e18")).toNumber();
 
 	// Deploy Contracts P1 
 	console.log(chalk.red('====== Deploy Contracts P1 ======='));
@@ -71,8 +66,4 @@ module.exports = async function(deployer, network, accounts) {
 	await deployer.deploy(UQ112x112);
 	await deployer.deploy(StringHelpers);
 	await deployer.deploy(Owned, COLLATERAL_CERES_AND_CERESHARES_OWNER);
-
-	
-
-
 }
