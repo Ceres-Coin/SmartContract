@@ -23,22 +23,20 @@ const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DE
 
 // set constants
 console.log(chalk.yellow('===== SET CONSTANTS ====='));
-const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
-const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
-const TEN_MILLION_DEC18 = new BigNumber("10000000e18");
-const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
-const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
-const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
-const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
-const SIX_HUNDRED_DEC18 = new BigNumber(600e18);
-const SIX_HUNDRED_DEC6 = new BigNumber(600e6);
-const ONE_DEC18 = new BigNumber(1e18);
-const ONE_HUNDRED_DEC18 = new BigNumber(100e18);
-const ONE_HUNDRED_DEC6 = new BigNumber(100e6);
-const Number133_DEC18 = new BigNumber(133e18);
-const EIGHT_HUNDRED_DEC18 = new BigNumber(800e18);
-
-const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
+const ONE_MILLION_DEC18 = new BigNumber("1000000e18").toNumber();
+const FIVE_MILLION_DEC18 = new BigNumber("5000000e18").toNumber();
+const TEN_MILLION_DEC18 = new BigNumber("10000000e18").toNumber();
+const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18").toNumber();
+const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6").toNumber();
+const ONE_BILLION_DEC18 = new BigNumber("1000000000e18").toNumber();
+const COLLATERAL_SEED_DEC18 = new BigNumber("508500e18").toNumber();
+const SIX_HUNDRED_DEC18 = new BigNumber("600e18").toNumber();
+const SIX_HUNDRED_DEC6 = new BigNumber("600e6").toNumber();
+const ONE_DEC18 = new BigNumber("1e18").toNumber();
+const ONE_HUNDRED_DEC18 = new BigNumber("100e18").toNumber();
+const ONE_HUNDRED_DEC6 = new BigNumber("100e6").toNumber();
+const Number133_DEC18 = new BigNumber("133e18").toNumber();
+const EIGHT_HUNDRED_DEC18 = new BigNumber("800e18").toNumber();
 
 // Core Contract
 const CEREStable = artifacts.require("Ceres/CEREStable");
@@ -49,6 +47,7 @@ const UniswapPairOracle_CERES_WETH = artifacts.require("Oracle/Variants/UniswapP
 const UniswapPairOracle_CERES_USDC = artifacts.require("Oracle/Variants/UniswapPairOracle_CERES_USDC");
 const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_CSS_WETH");
 const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Variants/UniswapPairOracle_CSS_USDC");
+const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 
 // Uniswap Contract
 const Timelock = artifacts.require("Governance/Timelock");
