@@ -27,7 +27,6 @@ const ERC20Custom = artifacts.require("ERC20/ERC20Custom");
 const SafeERC20 = artifacts.require("ERC20/SafeERC20");
 
 // set constants
-console.log(chalk.yellow('===== SET CONSTANTS ====='));
 const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
 const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
 const FIVE_MILLION_DEC6 = new BigNumber("5000000e6");
@@ -186,7 +185,7 @@ contract('oracle_instance_CSS_WETH', async (accounts) => {
 	
 
     beforeEach(async() => {
-		console.log(chalk.white.bgRed.bold("====================== BEFORE EACH TEST CASE ======================"));
+		
 
 		ADMIN = accounts[0];
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
