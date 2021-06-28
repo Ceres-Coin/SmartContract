@@ -1,3 +1,19 @@
+## [0.1.210628-c](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210628-c) (2021-06-28)
+1. Finish Test Scripts test_Openzeppelin_Test_Helpers.js
+   1. constants.ZERO_ADDRESS & constants.MAX_UINT256
+   2. Test for time.increase(3) func
+   3. Test for time.increase(1000000) func
+   4. Test for time.advanceBlock() 3 times
+   5. Test for time.advanceBlock() 100 times
+   6. Test for time.advanceBlockTo(latestBlock+3)
+   7. Test for time.advanceBlockTo(latestBlock+100)
+
+2. reduce unneccessary code from test/test_Openzeppelin_Test_Helpers.js
+3. tuning 3_deploy_contract_phase_2.js deployment scripts
+
+TODO: Continue to Tuning deployment scripts under MIGRATIONS folders
+
+
 ## 0.1.210628-b (2021-06-28)
 1. add NPM run tasks
    1. migration_clean
@@ -15,7 +31,7 @@
    1. 1_initial_migration
    2. 2_deploy_contract_phase_1
    3. 3_deploy_contract_phase_2
-3. TODO: ADD Test Scritps for time & constants from @openzeppelin/test-helpers
+3. ADD Test Scritps for time & constants from @openzeppelin/test-helpers
 
 
 ## 0.1.210628-a (2021-06-28)

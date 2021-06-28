@@ -12,7 +12,7 @@ Contract.setProvider('http://127.0.0.1:8545');
 global.artifacts = artifacts;
 global.web3 = web3;
 
-// TODO: ADD TEST Scripts for @openzeppelin/test-helpers
+// ADD TEST Scripts for @openzeppelin/test-helpers
 contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 	const account0 = accounts[0];
 	const account1 = accounts[1];
