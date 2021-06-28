@@ -21,7 +21,6 @@ const FakeCollateral_USDT = artifacts.require("FakeCollateral/FakeCollateral_USD
 const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DEC");
 
 // set constants
-console.log(chalk.yellow('===== SET CONSTANTS ====='));
 const ONE_MILLION_DEC18 = (new BigNumber("1000000e18")).toNumber();
 const FIVE_MILLION_DEC18 = (new BigNumber("5000000e18")).toNumber();
 const TEN_MILLION_DEC18 = (new BigNumber("10000000e18")).toNumber();
@@ -57,20 +56,16 @@ module.exports = async function(deployer, network, accounts) {
 	const timelockInstance = await Timelock.deployed();
 
 	// ======== Deploy WETH & USDC & USDT ========
-	console.log(chalk.yellow('===== DEPLOY OR LINK THE ROUTER AND SWAP_TO_PRICE ====='));
 	let routerInstance;
 	let uniswapFactoryInstance;
-
 	if (IS_MAINNET){
 		console.log(chalk.yellow('===== REAL COLLATERAL ====='));
 		wethInstance = await WETH.at("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2");
 		col_instance_USDC = await FakeCollateral_USDC.at("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"); 
 		col_instance_USDT = await FakeCollateral_USDT.at("0xdac17f958d2ee523a2206206994597c13d831ec7"); 
-
 	}
 	else {
-		console.log(chalk.yellow('===== FAKE COLLATERAL ====='));
-
+		console.log(chalk.red.bold('===== FAKE COLLATERAL ====='));
 		await deployer.deploy(WETH, COLLATERAL_CERES_AND_CERESHARES_OWNER);
 		await deployer.deploy(FakeCollateral_USDC, COLLATERAL_CERES_AND_CERESHARES_OWNER, ONE_HUNDRED_MILLION_DEC6, "USDC", 6);
 		await deployer.deploy(FakeCollateral_USDT, COLLATERAL_CERES_AND_CERESHARES_OWNER, ONE_HUNDRED_MILLION_DEC6, "USDT", 6);
@@ -79,33 +74,25 @@ module.exports = async function(deployer, network, accounts) {
 		col_instance_USDC = await FakeCollateral_USDC.deployed(); 
 		col_instance_USDT = await FakeCollateral_USDT.deployed(); 
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed(); 
-
-		console.log("wethInstance: ",wethInstance.address);
-		console.log("col_instance_USDC: ",col_instance_USDC.address);
-		console.log("col_instance_USDT: ",col_instance_USDT.address);
-		console.log("col_instance_6DEC: ",col_instance_6DEC.address);
-
 	}
 
+	console.log(chalk.red.bold('===== Uniswap Factory & Uniswap Router ====='));
 	// Setting the router & uniswap factory in different network
 	if (IS_MAINNET){
 		// Note UniswapV2Router02 vs UniswapV2Router02_Modified
-		routerInstance = await UniswapV2Router02.at("0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"); 
 		uniswapFactoryInstance = await UniswapV2Factory.at("0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"); 
+		routerInstance = await UniswapV2Router02.at("0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"); 
 	}
 	else if (IS_ROPSTEN || IS_RINKEBY){
 		// Note UniswapV2Router02 vs UniswapV2Router02_Modified
-		routerInstance = await UniswapV2Router02.at("0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"); 
 		uniswapFactoryInstance = await UniswapV2Factory.at("0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"); 
+		routerInstance = await UniswapV2Router02.at("0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"); 
 	}
 	else if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE){
+		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
 		await deployer.deploy(UniswapV2Router02_Modified, UniswapV2Factory.address, wethInstance.address);
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
-		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
 	}
-	console.log(chalk.yellow('===== RouterInstantce & Uniswap Factor address ====='));
-	console.log("routerInstance: ",routerInstance.address);
-	console.log("uniswapFactoryInstance: ",uniswapFactoryInstance.address);
 
 	// Deploy SwapToPrice contract
 	let swapToPriceInstance;
@@ -117,19 +104,10 @@ module.exports = async function(deployer, network, accounts) {
 		swapToPriceInstance = await SwapToPrice.deployed();
 	}
 
-	console.log(chalk.yellow('===== swapToPriceInstance address ====='));
-	console.log("swapToPriceInstance: ",swapToPriceInstance.address);
-
-
-	// CERES
+	// Core CERES & CSS
 	const ceresInstance = await CEREStable.deployed();
-	console.log("ceresInstance: ",ceresInstance.address);
-
-	// CSS
 	const cssInstance = await CEREShares.deployed();
-	console.log("cssInstance: ",cssInstance.address);
-
-
+	
 	// ======== Set the Uniswap pairs CERES_WETH & CERES_USDC ========
 	console.log(chalk.yellow('===== SET UNISWAP PAIRS ====='));
 	console.log(chalk.blue('=== CERES / XXXX ==='));
