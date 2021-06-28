@@ -116,6 +116,10 @@ module.exports = async function(deployer, network, accounts) {
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
 		timelockInstance = await Timelock.deployed();
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
+
+		console.log(chalk.red(`ceresInstance: ${ceresInstance.address}`));
+		console.log(chalk.red(`cssInstance: ${cssInstance.address}`))
+		console.log(chalk.red(`col_instance_USDC: ${col_instance_USDC.address}`))
 	}
 	
 	// ============= Set the CERES Pools ========

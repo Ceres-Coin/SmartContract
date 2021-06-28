@@ -133,7 +133,7 @@ contract CeresPool is AccessControl {
         grantRole(COLLATERAL_PRICE_PAUSER, timelock_address);
     }
 
-    // TODO: [FUNC][ceres_eth_usd_price]
+    // [FUNC][ceres_eth_usd_price]
     function ceres_eth_usd_price() public view returns(uint256) {
         uint256 eth_usd_price = CERES.eth_usd_price();
         return eth_usd_price;

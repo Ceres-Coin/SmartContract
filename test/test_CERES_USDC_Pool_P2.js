@@ -300,6 +300,17 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		const missing_decimals = (new BigNumber(await pool_instance_USDC.missing_decimals())).toNumber();
 		expect(missing_decimals).to.equal(12);
 	})
+
+	it ("Test Scripts for CERES_USDC_POOL.collateral_token ",async() => {
+		const collateral_token = await pool_instance_USDC.collateral_token();
+		expect(collateral_token).not.to.be.empty;
+	});
+
+	it ("Test Scripts for CERES_USDC_POOL.ceres_eth_usd_price ",async() => {
+		const ceres_eth_usd_price = (new BigNumber(await pool_instance_USDC.ceres_eth_usd_price())).toNumber();
+		expect(ceres_eth_usd_price).to.be.ok;
+		// console.log(chalk.yellow(`ceres_eth_usd_price: ${ceres_eth_usd_price}`));
+	})
 });
 
 
