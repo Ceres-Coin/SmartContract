@@ -182,11 +182,9 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	
 
     beforeEach(async() => {
-		console.log(chalk.redBright.bold("====================== BEFORE EACH TEST CASE ======================"));
+		// console.log(chalk.redBright.bold("====================== BEFORE EACH TEST CASE ======================"));
 		ADMIN = accounts[0];
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
-		// console.log(chalk.yellow("ADMIN",ADMIN));
-		// console.log(chalk.yellow("COLLATERAL_CERES_AND_CERESHARES_OWNER",COLLATERAL_CERES_AND_CERESHARES_OWNER));
 		const account0 = accounts[0];
 		const account1 = accounts[1];
 		const account2 = accounts[2];
