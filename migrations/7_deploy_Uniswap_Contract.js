@@ -22,15 +22,13 @@ const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DE
 
 // set constants
 console.log(chalk.yellow('===== SET CONSTANTS ====='));
-const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
-const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
-const TEN_MILLION_DEC18 = new BigNumber("10000000e18");
-const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
-const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
-const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
-const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
-
-
+const ONE_MILLION_DEC18 = (new BigNumber("1000000e18")).toNumber();
+const FIVE_MILLION_DEC18 = (new BigNumber("5000000e18")).toNumber();
+const TEN_MILLION_DEC18 = (new BigNumber("10000000e18")).toNumber();
+const ONE_HUNDRED_MILLION_DEC18 = (new BigNumber("100000000e18")).toNumber();
+const ONE_HUNDRED_MILLION_DEC6 = (new BigNumber("100000000e6")).toNumber();
+const ONE_BILLION_DEC18 = (new BigNumber("1000000000e18")).toNumber();
+const COLLATERAL_SEED_DEC18 = (new BigNumber("508500e18")).toNumber();
 
 // Core 
 const CEREStable = artifacts.require("Ceres/CEREStable");
@@ -58,12 +56,6 @@ module.exports = async function(deployer, network, accounts) {
     const IS_BSC_TESTNET = (network == 'testnet');
 	const IS_RINKEBY = (network == 'rinkeby');
 
-	console.log("IS_MAINNET: ",IS_MAINNET);
-	console.log("IS_ROPSTEN: ",IS_ROPSTEN);
-	console.log("IS_DEV: ",IS_DEV);
-	console.log("IS_GANACHE: ",IS_GANACHE);
-	console.log("IS_BSC_TESTNET: ",IS_BSC_TESTNET);
-	console.log("IS_RINKEBY: ",IS_RINKEBY);
 	
 
 	const timelockInstance = await Timelock.deployed();
