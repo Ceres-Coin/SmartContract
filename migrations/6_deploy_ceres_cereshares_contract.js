@@ -1,7 +1,6 @@
 const path = require('path');
 const envPath = path.join(__dirname, '../../.env');
 require('dotenv').config({ path: envPath });
-
 const BigNumber = require('bignumber.js');
 
 const { expectEvent, send, shouldFail, time, constants } = require('@openzeppelin/test-helpers');
@@ -11,11 +10,8 @@ const chalk = require('chalk');
 
 const Timelock = artifacts.require("Governance/Timelock");
 const MigrationHelper = artifacts.require("Utils/MigrationHelper");
-
 const CEREStable = artifacts.require("Ceres/CEREStable");
 const CEREShares = artifacts.require("CSS/CEREShares");
-
-
 
 // Make sure Ganache is running beforehand
 module.exports = async function(deployer, network, accounts) {
