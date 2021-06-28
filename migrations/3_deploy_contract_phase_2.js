@@ -14,21 +14,6 @@ const SafeMath = artifacts.require("Math/SafeMath");
 const TransferHelper = artifacts.require("Uniswap/TransferHelper");
 // Make sure Ganache is running beforehand
 module.exports = async function(deployer, network, accounts) {
-	// Test Scripts for constants from '@openzeppelin/test-helpers'
-	// console.log(chalk.red.bold(constants.ZERO_ADDRESS));
-	// console.log(chalk.red.bold(constants.MAX_UINT256));
-
-	// Test Scripts for time from '@openzeppelin/test-helpers'
-	console.log(chalk.red.bold("timestamp_before: ", await time.latest())); //the current timestamp
-	console.log(chalk.red.bold("latestBlock_before: ", await time.latestBlock()));
-	await time.advanceBlock();
-	await time.advanceBlock();
-	await time.advanceBlock();
-	// Test For advance3Block();
-	console.log(chalk.red.bold("timestamp_after", await time.latest())); //the current timestamp
-	console.log(chalk.red.bold("latestBlock_after", await time.latestBlock()));
-
-	
 	// Deploy Contracts P2
 	console.log(chalk.red('====== Deploy Contracts P2 ======='));
 	await deployer.deploy(FixedPoint);

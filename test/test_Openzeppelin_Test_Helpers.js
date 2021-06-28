@@ -3,7 +3,6 @@ const BN = BigNumber.clone({ DECIMAL_PLACES: 9 })
 const util = require('util');
 const chalk = require('chalk');
 const Contract = require('web3-eth-contract');
-const { expectRevert, time } = require('@openzeppelin/test-helpers');
 const { assert, expect } = require('chai');
 const { expectEvent, send, shouldFail, time, constants } = require('@openzeppelin/test-helpers');
 
@@ -55,7 +54,7 @@ const FakeCollateral_USDC = artifacts.require("FakeCollateral/FakeCollateral_USD
 const FakeCollateral_USDT = artifacts.require("FakeCollateral/FakeCollateral_USDT");
 const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DEC");
 
-// Core Contract CERES & CSS
+// Core
 const CEREStable = artifacts.require("Ceres/CEREStable");
 const CEREShares = artifacts.require("CSS/CEREShares");
 
@@ -69,7 +68,7 @@ const UniswapPairOracle_CERES_USDC = artifacts.require("Oracle/Fakes/UniswapPair
 const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_WETH");
 const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_USDC");
 
-// ChainlinkETHUSD Contract
+// ChainlinkETHUSD 
 const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest2");
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
@@ -181,125 +180,22 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 	let ar_buyBackPaused;
 	let ar_collateralPricePaused;
 
-	
 
-    beforeEach(async() => {
-		console.log(chalk.redBright.bold("====================== BEFORE EACH TEST CASE ======================"));
-		ADMIN = accounts[0];
-		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
-		// console.log(chalk.yellow("ADMIN",ADMIN));
-		// console.log(chalk.yellow("COLLATERAL_CERES_AND_CERESHARES_OWNER",COLLATERAL_CERES_AND_CERESHARES_OWNER));
-		const account2 = accounts[2];
-		const account3 = accounts[3];
-		const account4 = accounts[4];
-		const account5 = accounts[5];
-		const account6 = accounts[6];
-		const account7 = accounts[7];
+	it ("Test for time from @openzeppelin/test-helpers", async() => {
+		console.log(chalk.red.bold(constants.ZERO_ADDRESS));
+		console.log(chalk.red.bold(constants.MAX_UINT256));
 
-		ceresInstance = await CEREStable.deployed();
-		cssInstance = await CEREShares.deployed();
-		wethInstance = await WETH.deployed();
+		console.log(chalk.red.bold("timestamp_before: ", await time.latest())); //the current timestamp
+		console.log(chalk.red.bold("latestBlock_before: ", await time.latestBlock()));
+		await time.advanceBlock();
+		await time.advanceBlock();
+		await time.advanceBlock();
+		// Test For advance3Block();
+		console.log(chalk.red.bold("timestamp_after", await time.latest())); //the current timestamp
+		console.log(chalk.red.bold("latestBlock_after", await time.latestBlock()));
+	})
 
-		col_instance_USDC = await FakeCollateral_USDC.deployed(); 
-		col_instance_USDT = await FakeCollateral_USDT.deployed(); 
-		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
 
-		routerInstance = await UniswapV2Router02_Modified.deployed(); 
-		timelockInstance = await Timelock.deployed(); 
-		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
-		uniswapLibraryInstance = await UniswapV2Library.deployed(); 
-		uniswapOracleLibraryInstance = await UniswapV2OracleLibrary.deployed(); 
-		swapToPriceInstance = await SwapToPrice.deployed(); 
-
-		pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		pair_addr_CSS_USDC = await uniswapFactoryInstance.getPair(cssInstance.address, FakeCollateral_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-
-		oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
-		oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed();
-
-		oracle_instance_CSS_WETH = await UniswapPairOracle_CSS_WETH.deployed();
-		oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
-
-		first_CERES_WETH = await oracle_instance_CERES_WETH.token0();
-		first_CERES_USDC = await oracle_instance_CERES_USDC.token0();
-		first_CSS_WETH = await oracle_instance_CSS_WETH.token0();
-		first_CSS_USDC = await oracle_instance_CSS_USDC.token0();
-
-		first_CERES_WETH = ceresInstance.address == first_CERES_WETH;
-		first_CERES_USDC = ceresInstance.address == first_CERES_USDC;
-		first_CSS_WETH = cssInstance.address == first_CSS_WETH;
-		first_CSS_USDC = cssInstance.address == first_CSS_USDC;
-
-		pool_instance_USDC = await Pool_USDC.deployed();
-    });
-
-	it ("[FUNC][toggleMinting] test scripts", async() => {
-		expect(await pool_instance_USDC.mintPaused()).to.equal(false);
-		await pool_instance_USDC.toggleMinting({from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
-		expect(await pool_instance_USDC.mintPaused()).to.equal(true);
-	});
-
-	it ("[FUNC][setOwner] test scripts", async() => {
-		// Before
-		expect(await pool_instance_USDC.owner_address()).to.equal(COLLATERAL_CERES_AND_CERESHARES_OWNER);
-		// Action
-		await pool_instance_USDC.setOwner(ADMIN,{from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
-		// Assetion
-		expect (await pool_instance_USDC.owner_address()).to.equal(ADMIN);
-		// Roll back
-		await pool_instance_USDC.setOwner(COLLATERAL_CERES_AND_CERESHARES_OWNER,{from: ADMIN});
-		expect(await pool_instance_USDC.owner_address()).to.equal(COLLATERAL_CERES_AND_CERESHARES_OWNER);
-	});
-
-	it ("[FUNC][setPoolParameters] test scripts ",async() => {
-		// ACTION
-		await pool_instance_USDC.setPoolParameters(FIVE_MILLION_DEC6, 7500, 1, MINTING_FEE_MODIFIED, REDEMPTION_FEE_MODIFIED, BUYBACK_FEE_MODIFIED, RECOLLAT_FEE_MODIFIED, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		// ASSERTION
-		// console.log(chalk.yellow((new BigNumber(await pool_instance_USDC.minting_fee())).toNumber()));
-		expect((new BigNumber(await pool_instance_USDC.minting_fee())).toNumber()).to.equal(MINTING_FEE_MODIFIED);
-		expect((new BigNumber(await pool_instance_USDC.redemption_fee())).toNumber()).to.equal(REDEMPTION_FEE_MODIFIED);
-		expect((new BigNumber(await pool_instance_USDC.buyback_fee())).toNumber()).to.equal(BUYBACK_FEE_MODIFIED);
-		expect((new BigNumber(await pool_instance_USDC.recollat_fee())).toNumber()).to.equal(RECOLLAT_FEE_MODIFIED);
-
-		// ROLLBACK
-		await pool_instance_USDC.setPoolParameters(FIVE_MILLION_DEC6, 7500, 1, MINTING_FEE, REDEMPTION_FEE, BUYBACK_FEE, RECOLLAT_FEE, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-		expect((new BigNumber(await pool_instance_USDC.minting_fee())).toNumber()).to.equal(MINTING_FEE);
-		expect((new BigNumber(await pool_instance_USDC.redemption_fee())).toNumber()).to.equal(REDEMPTION_FEE);
-		expect((new BigNumber(await pool_instance_USDC.buyback_fee())).toNumber()).to.equal(BUYBACK_FEE);
-		expect((new BigNumber(await pool_instance_USDC.recollat_fee())).toNumber()).to.equal(RECOLLAT_FEE);
-	});
-
-	it ("[FUNC][setTimelock] test scripts ",async() => {
-		const instanceTimelock = await Timelock.deployed();
-		const instanceTimelockTest = await TimelockTest.deployed();
-		// Before
-		expect(await pool_instance_USDC.timelock_address()).to.equal(instanceTimelock.address);
-		// Action
-		await pool_instance_USDC.setTimelock(instanceTimelockTest.address,{from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
-		// Assertion
-		expect(await pool_instance_USDC.timelock_address()).to.equal(instanceTimelockTest.address);
-		// Roll Back
-		await pool_instance_USDC.setTimelock(instanceTimelock.address,{from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
-	});
-
-	it ("[FUNC][toggleBuyBack] test scripts ", async() => {
-		// console.log(chalk.yellow(await pool_instance_USDC.buyBackPaused()));
-		expect(await pool_instance_USDC.buyBackPaused()).to.equal(false);
-		await pool_instance_USDC.toggleBuyBack({from:COLLATERAL_CERES_AND_CERESHARES_OWNER});
-		expect(await pool_instance_USDC.buyBackPaused()).to.equal(true);
-
-		// roll back code
-		await pool_instance_USDC.toggleBuyBack({from:COLLATERAL_CERES_AND_CERESHARES_OWNER});
-		expect(await pool_instance_USDC.buyBackPaused()).to.equal(false);
-	});
-
-	it ("[FUNC][collatEthOracle_eth_collat_price] test scripts", async() => {
-		console.log(chalk.yellow(`collateralPricePaused: ${await pool_instance_USDC.collateralPricePaused()}`));
-		console.log(chalk.yellow(`collateralPricePaused: ${await pool_instance_USDC.pausedPrice()}`));
-		console.log(chalk.red(`collatEthOracle_eth_collat_price: ${await pool_instance_USDC.collatEthOracle_eth_collat_price()}`));
-	});
 });
 
 
