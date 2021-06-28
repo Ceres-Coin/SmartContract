@@ -21,10 +21,16 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 		console.log(chalk.red.bold("timestamp_before: ", await time.latest())); //the current timestamp
 		console.log(chalk.red.bold("latestBlock_before: ", await time.latestBlock()));
 		const NUM_LOOP = 100;
-		for (var i=0;i<NUM_LOOP; i++) { time.advanceBlock()};
+		for (var i=0;i<NUM_LOOP; i++) { await time.advanceBlock()};
 		// Test For advance3Block();
 		console.log(chalk.red.bold("timestamp_after", await time.latest())); //the current timestamp
 		console.log(chalk.red.bold("latestBlock_after", await time.latestBlock()));
+	});
+
+	it ("Test for time.increase(10) func", async() => {
+		console.log(chalk.red.bold("timestamp_before: ", await time.latest())); //the current timestamp
+		await time.increase(10);
+		console.log(chalk.red.bold("timestamp_after", await time.latest())); //the current timestamp
 	})
 });
 
