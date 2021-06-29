@@ -331,6 +331,17 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		expect(instanceCERES_eth_usd_price).to.not.equal(0);
 	});
 
+	it ("Test Cases for CSS Invoke Func in CERES_USDC_POOL", async() => {
+		const instanceCSS = await CEREShares.at(await pool_instance_USDC.CSS());
+		const instanceCSS_name = await instanceCSS.name();
+		const instanceCSS_symbol = await instanceCSS.symbol();
+		const instanceCSS_decimals = (new BigNumber(await instanceCSS.decimals())).toNumber();
+
+		expect(instanceCSS_name).to.equal("CERES Share");
+		expect(instanceCSS_symbol).to.equal("CSS");
+		expect(instanceCSS_decimals).to.equal(18);
+	});
+
 
 
 });
