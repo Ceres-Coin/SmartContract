@@ -202,7 +202,7 @@ contract CeresPool is AccessControl {
     }
 
     // We separate out the 1t1, fractional and algorithmic minting functions for gas efficiency 
-    // TODO: [FUNC][mint1t1CERES]
+    // TODO: [LATER][FUNC][mint1t1CERES]
     function mint1t1CERES(uint256 collateral_amount, uint256 CERES_out_min) external notMintPaused {
         uint256 collateral_amount_d18 = collateral_amount * (10 ** missing_decimals);
 
@@ -222,7 +222,7 @@ contract CeresPool is AccessControl {
     }
 
     // 0% collateral-backed
-    // TODO: [FUNC][mintAlgorithmicCERES]
+    // TODO: [LATER][FUNC][mintAlgorithmicCERES]
     function mintAlgorithmicCERES(uint256 css_amount_d18, uint256 CERES_out_min) external notMintPaused {
         uint256 css_price = CERES.css_price();
         require(CERES.global_collateral_ratio() == 0, "Collateral ratio must be 0");
@@ -241,7 +241,7 @@ contract CeresPool is AccessControl {
 
     // Will fail if fully collateralized or fully algorithmic
     // > 0% and < 100% collateral-backed
-    // TODO: [FUNC][mintFractionalCERES]
+    // TODO: [LATER][FUNC][mintFractionalCERES]
     function mintFractionalCERES(uint256 collateral_amount, uint256 css_amount, uint256 CERES_out_min) external notMintPaused {
         uint256 css_price = CERES.css_price();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();
@@ -270,7 +270,7 @@ contract CeresPool is AccessControl {
     }
 
     // Redeem collateral. 100% collateral-backed
-    // TODO: [FUNC][redeem1t1CERES]
+    // TODO: [LATER][FUNC][redeem1t1CERES]
     function redeem1t1CERES(uint256 CERES_amount, uint256 COLLATERAL_out_min) external notRedeemPaused {
         require(CERES.global_collateral_ratio() == COLLATERAL_RATIO_MAX, "Collateral ratio must be == 1");
 
@@ -295,7 +295,7 @@ contract CeresPool is AccessControl {
 
     // Will fail if fully collateralized or algorithmic
     // Redeem CERES for collateral and CSS. > 0% and < 100% collateral-backed
-    // TODO: [FUNC][redeemFractionalCERES]
+    // TODO: [LATER][FUNC][redeemFractionalCERES]
     function redeemFractionalCERES(uint256 CERES_amount, uint256 CSS_out_min, uint256 COLLATERAL_out_min) external notRedeemPaused {
         uint256 css_price = CERES.css_price();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();
@@ -332,7 +332,7 @@ contract CeresPool is AccessControl {
         CSS.pool_mint(address(this), css_amount);
     }
 
-    // TODO: [FUNC][redeemAlgorithmicCERES]
+    // TODO: [LATER][FUNC][redeemAlgorithmicCERES]
     function redeemAlgorithmicCERES(uint256 CERES_amount, uint256 CSS_out_min) external notRedeemPaused {
         uint256 css_price = CERES.css_price();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();
@@ -355,7 +355,7 @@ contract CeresPool is AccessControl {
         CSS.pool_mint(address(this), css_amount);
     }
 
-    // TODO: [FUNC][collectRedemption]
+    // TODO: [LATER][FUNC][collectRedemption]
     function collectRedemption() external {
         require((lastRedeemed[msg.sender].add(redemption_delay)) <= block.number, "Must wait for redemption_delay blocks before collecting redemption");
         bool sendCSS = false;
