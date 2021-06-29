@@ -271,6 +271,12 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		expect(PRICE_PRECISION).to.equal(BIG6.toNumber());
 		expect(COLLATERAL_RATIO_PRECISION).to.equal(BIG6.toNumber());
 		expect(COLLATERAL_RATIO_MAX).to.equal(BIG6.toNumber());
+
+		// GET-2
+		const missing_decimals = (new BigNumber(await pool_instance_USDC.missing_decimals())).toNumber();
+		// ASSERTION-2
+		expect(missing_decimals).to.equal(12);
+
 	});
 
 
