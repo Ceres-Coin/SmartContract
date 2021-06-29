@@ -35,6 +35,8 @@
    17. added test cases for availableExcessCollatDV
    18. added test cases for getCollateralPrice() func
 
+TODO: Next TO: Continue to Investigate the Contract Code and Deployment Scripts
+
 
 ## [0.1.210629-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210629-b) (2021-06-29)
 1. ADDED test scripts in test/test_CERES_USDC_Pool_P2.js

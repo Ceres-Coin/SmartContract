@@ -38,13 +38,13 @@ contract CeresPool is AccessControl {
     uint256 public buyback_fee; // test scripts done
     uint256 public recollat_fee; // test scripts done
 
-    // TODO: [PARAMETER][redeemCSSBalances]
+    // TODO: [LATER][PARAMETER][redeemCSSBalances]
     mapping (address => uint256) public redeemCSSBalances;
-    // TODO: [PARAMETER][redeemCollateralBalances]
+    // TODO: [LATER][PARAMETER][redeemCollateralBalances]
     mapping (address => uint256) public redeemCollateralBalances;
     uint256 public unclaimedPoolCollateral; // TEST CASE DONE
     uint256 public unclaimedPoolCSS; // TEST CASE DONE
-    // TODO: [PARAMETER][lastRedeemed]
+    // TODO: [LATER][PARAMETER][lastRedeemed]
     mapping (address => uint256) public lastRedeemed;
 
     // Constants for various precisions
