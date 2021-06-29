@@ -283,6 +283,21 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		expect(redemption_delay).to.equal(1);
 		expect(bonus_rate).to.equal(7500);
 
+		// TEST CASE for AccessControl state variables
+		// GET-3
+		const mintPaused = await pool_instance_USDC.mintPaused();
+		const redeemPaused = await pool_instance_USDC.redeemPaused();
+		const recollateralizePaused = await pool_instance_USDC.recollateralizePaused();
+		const buyBackPaused = await pool_instance_USDC.buyBackPaused();
+		const collateralPricePaused = await pool_instance_USDC.collateralPricePaused();
+
+		expect(mintPaused).to.equal(false);
+		expect(redeemPaused).to.equal(false);
+		expect(recollateralizePaused).to.equal(false);
+		expect(buyBackPaused).to.equal(false);
+		expect(collateralPricePaused).to.equal(false);
+
+
 	});
 
 
