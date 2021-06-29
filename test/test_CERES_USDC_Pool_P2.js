@@ -360,16 +360,14 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	it ("Test Scripts for redeemPaused()", async() => {
 		// Before
 		const OLDVALUE = await pool_instance_USDC.redeemPaused();
-		console.log(chalk.yellow(`OLDVALUE: ${OLDVALUE}`));
 		// ACTION
-		await pool_instance_USDC.toggleRedeeming();
+		await pool_instance_USDC.toggleRedeeming({from: OWNER});
 		const NEWVALUE = await pool_instance_USDC.redeemPaused();
-		console.log(chalk.red(`NEWVALUE: ${NEWVALUE}`));
 		// ASSERTION
 		expect(NEWVALUE).to.equal(!OLDVALUE);
 
 		// ROLLBACK
-		await pool_instance_USDC.toggleRedeeming();
+		await pool_instance_USDC.toggleRedeeming({from: OWNER});
 		const ROLLBACKVALUE = await pool_instance_USDC.redeemPaused();
 		expect(ROLLBACKVALUE).to.equal(OLDVALUE);
 	})

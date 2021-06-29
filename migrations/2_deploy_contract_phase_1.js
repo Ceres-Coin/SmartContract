@@ -38,8 +38,9 @@ module.exports = async function(deployer, network, accounts) {
 
 	const ADMIN = accounts[0];
 	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
+	const OWNER = accounts[1];
 	console.log(chalk.red.bold("ADMIN is: ",ADMIN));
-	console.log(chalk.red.bold("COLLATERAL_CERES_AND_CERESHARES_OWNER is: ",COLLATERAL_CERES_AND_CERESHARES_OWNER));
+	console.log(chalk.red.bold("OWNER is: ",OWNER));
 	const account0 = accounts[0];
 	const account1 = accounts[1];
 	const account2 = accounts[2];
