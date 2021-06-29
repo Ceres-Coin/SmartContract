@@ -370,6 +370,21 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		await pool_instance_USDC.toggleRedeeming({from: OWNER});
 		const ROLLBACKVALUE = await pool_instance_USDC.redeemPaused();
 		expect(ROLLBACKVALUE).to.equal(OLDVALUE);
+	});
+
+	it ("Test Scripts for toggleRecollateralize()", async() => {
+		// Before
+		const OLDVALUE = await pool_instance_USDC.recollateralizePaused();
+		// ACTION
+		await pool_instance_USDC.toggleRecollateralize({from: OWNER});
+		const NEWVALUE = await pool_instance_USDC.recollateralizePaused();
+		// ASSERTION
+		expect(NEWVALUE).to.equal(!OLDVALUE);
+
+		// ROLLBACK
+		await pool_instance_USDC.toggleRecollateralize({from: OWNER});
+		const ROLLBACKVALUE = await pool_instance_USDC.recollateralizePaused();
+		expect(ROLLBACKVALUE).to.equal(OLDVALUE);
 	})
 
 });

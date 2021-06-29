@@ -450,7 +450,7 @@ contract CeresPool is AccessControl {
         redeemPaused = !redeemPaused;
     }
 
-    // TODO: [FUNC][toggleRecollateralize]
+    // [FUNC][toggleRecollateralize]
     function toggleRecollateralize() external onlyByOwnerOrGovernance {
         // require(hasRole(RECOLLATERALIZE_PAUSER, msg.sender));
         recollateralizePaused = !recollateralizePaused;
