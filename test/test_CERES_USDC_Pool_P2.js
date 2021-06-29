@@ -345,10 +345,20 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	});
 
 	it ("Test Scripts for toggleCollateralPrice()", async() => {
-		console.log(chalk.yellow(`pausedPrice_before is: ${await pool_instance_USDC.pausedPrice()}`));
+		// Before
+		const OLDVALUE = (new BigNumber(await pool_instance_USDC.pausedPrice())).toNumber();
+		console.log(chalk.yellow(`pausedPrice_before is: ${OLDVALUE}`));
+		// ACTION
 		const NEWVALUE = 1000000;
-		const toggleCollateralPrice = await pool_instance_USDC.toggleCollateralPrice(NEWVALUE,{from: OWNER});
-		console.log(chalk.yellow(`pausedPrice_after is: ${await pool_instance_USDC.pausedPrice()}`));
+		await pool_instance_USDC.toggleCollateralPrice(NEWVALUE,{from: OWNER});
+		const toggleCollateralPrice = (new BigNumber(await pool_instance_USDC.pausedPrice())).toNumber();
+		// ASSERTION
+		expect(toggleCollateralPrice).to.equal(NEWVALUE);
+		
+		// Roll back
+		await pool_instance_USDC.toggleCollateralPrice(OLDVALUE,{from: OWNER});
+
+		
 	})
 
 });
