@@ -118,7 +118,8 @@ module.exports = async function(deployer, network, accounts) {
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
 
 		console.log(chalk.red(`ceresInstance: ${ceresInstance.address}`));
-		console.log(chalk.red(`cssInstance: ${cssInstance.address}`))
+		console.log(chalk.red(`cssInstance: ${cssInstance.address}`));
+		console.log(chalk.red(`wethInstance: ${wethInstance.address}`))
 		console.log(chalk.red(`col_instance_USDC: ${col_instance_USDC.address}`))
 	}
 	
