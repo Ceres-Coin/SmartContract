@@ -314,6 +314,11 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	it ("Test Scripts for CERES_USDC_POOL.collatEthOracle_eth_collat_price", async() => {
 		const collatEthOracle_eth_collat_price = (new BigNumber(await pool_instance_USDC.collatEthOracle_eth_collat_price())).toNumber();
 		// console.log(chalk.yellow(`collatEthOracle_eth_collat_price: ${collatEthOracle_eth_collat_price}`));
+	});
+
+	it ("Test Scripts for CERES_USDC_POOL.collatDollarBalance()", async() => {
+		const collatDollarBalance = (new BigNumber(await pool_instance_USDC.collatDollarBalance())).toNumber();
+		console.log(chalk.yellow(`collatDollarBalance: ${collatDollarBalance}`));
 	})
 });
 
