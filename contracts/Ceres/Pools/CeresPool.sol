@@ -147,7 +147,7 @@ contract CeresPool is AccessControl {
     }
 
     /* ========== VIEWS ========== */
-    // TODO: [LATER][FUNC][collatDollarBalance]
+    // TODO: [LATER][FUNC][collatDollarBalance] & Investigate why the value is 0
     function collatDollarBalance() public view returns (uint256) {
         if(collateralPricePaused == true){
             return (collateral_token.balanceOf(address(this)).sub(unclaimedPoolCollateral)).mul(10 ** missing_decimals).mul(pausedPrice).div(PRICE_PRECISION);

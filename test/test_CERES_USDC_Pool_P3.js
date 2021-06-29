@@ -72,7 +72,7 @@ const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETH
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
-contract('test_CERES_USDC_Pool_P2', async (accounts) => {
+contract('test_CERES_USDC_Pool_P3', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
@@ -346,10 +346,21 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	});
 
 	it ("Test Cases for collatEthOracle_eth_collat_price()", async() => {
-		// console.log(chalk.yellow(`collatEthOracle_eth_collat_price: ${await pool_instance_USDC.collatEthOracle_eth_collat_price()}`));
 		expect(await pool_instance_USDC.collatEthOracle_eth_collat_price()).to.not.equal(new BigNumber(0));
 		expect((new BigNumber(await pool_instance_USDC.collatEthOracle_eth_collat_price())).toNumber()).to.gt(100000);
-	})
+	});
+
+	it ("Test Cases for collatDollarBalance", async() => {
+		// console.log(chalk.yellow(`collatDollarBalance: ${await pool_instance_USDC.collatDollarBalance()}`));
+		// console.log(chalk.yellow(`tmpValue: ${await pool_instance_USDC.tmpValue()}`));
+		// console.log(chalk.yellow(`tmpValue: ${await pool_instance_USDC.tmpValue2()}`));
+
+		expect((new BigNumber(await pool_instance_USDC.collatDollarBalance())).toNumber()).to.equal(0);
+		expect((new BigNumber(await pool_instance_USDC.tmpValue())).toNumber()).to.equal(0);
+		expect((new BigNumber(await pool_instance_USDC.tmpValue2())).toNumber()).to.equal(0);
+	});
+
+
 
 
 
