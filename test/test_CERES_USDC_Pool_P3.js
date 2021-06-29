@@ -300,7 +300,7 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 
 	});
 
-	it ("Test Cases for CeresPool Core", async() => {
+	it ("Test Cases for addresses of CERES & CSS", async() => {
 		// TESE CASE for CERES & CSS address, it should be equal to ceresInstance/cssInstance.address
 		// GET FOR CERES & CSS
 		const CERES = await pool_instance_USDC.CERES();
@@ -308,6 +308,17 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		// ASSERTION for address
 		expect(CERES).to.equal(ceresInstance.address);
 		expect(CSS).to.equal(cssInstance.address);
+
+		// const tmpCERES = await CEREStable.at(CERES);
+		// const tmpCSS = await CEREShares.at(CSS);
+	});
+
+	it ("Test Cases for CERES & CSS PART II", async() => {
+		const tmpCERES = await CEREStable.at(await pool_instance_USDC.CERES());
+		const tmpCSS = await CEREShares.at(await pool_instance_USDC.CSS());
+		// TODO: CERES.eth_usd_price() & name() & symbol() & decimals() & global_collateral_ratio()
+
+		console.log(chalk.yellow(`tmpCERES.name(): ${await tmpCERES.name()}`));
 	});
 
 
