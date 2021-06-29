@@ -238,10 +238,14 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	});
 
 	it ("Print Parameters", async() => {
+		// PRINT
 		console.log(chalk.yellow("=================== PRINT PARAMETERS for Contract================="));
 		console.log(chalk.yellow(`timelock_address: ${await pool_instance_USDC.timelock_address()}`));
 		console.log(chalk.yellow(`owner_address: ${await pool_instance_USDC.owner_address()}`));
 		console.log(chalk.yellow(`collat_eth_oracle_address: ${await pool_instance_USDC.collat_eth_oracle_address()}`));
+
+		// ASSERTION
+		expect(await pool_instance_USDC.owner_address()).to.equal(OWNER);
 		
 		console.log(chalk.yellow("=================== PRINT PARAMETERS for Token================="));
 		console.log(chalk.yellow(`ceres_contract_address: ${await pool_instance_USDC.ceres_contract_address()}`));
