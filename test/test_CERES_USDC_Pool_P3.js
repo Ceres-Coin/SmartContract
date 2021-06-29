@@ -246,6 +246,7 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 
 		// ASSERTION
 		expect(await pool_instance_USDC.owner_address()).to.equal(OWNER);
+		expect(await pool_instance_USDC.timelock_address()).to.equal(timelockInstance.address);
 		
 		console.log(chalk.yellow("=================== PRINT PARAMETERS for Token================="));
 		console.log(chalk.yellow(`ceres_contract_address: ${await pool_instance_USDC.ceres_contract_address()}`));
