@@ -161,4 +161,6 @@ module.exports = async function(deployer, network, accounts) {
 	await Promise.all([
 		pool_instance_USDC.setCollatETHOracle(oracle_instance_USDC_WETH.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER })
 	]);
+
+	console.log(chalk.red(`oracle_instance_USDC_WETH.address: ${oracle_instance_USDC_WETH.address}`));
 }
