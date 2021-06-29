@@ -27,7 +27,7 @@ contract CeresPool is AccessControl {
     CEREStable public CERES; //TEST CASE DONE
 
     UniswapPairOracle public collatEthOracle; //TEST CASE DONE
-    // TODO: [PARAMETER][collat_eth_oracle_address]
+    // [PARAMETER][collat_eth_oracle_address]
     address public collat_eth_oracle_address;
     address public weth_address; //TEST CASE DONE
 
