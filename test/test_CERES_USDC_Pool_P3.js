@@ -250,6 +250,9 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		console.log(chalk.yellow(`collateral_address: ${await pool_instance_USDC.collateral_address()}`));
 
 		expect(await pool_instance_USDC.ceres_contract_address()).to.equal(ceresInstance.address);
+		expect(await pool_instance_USDC.css_contract_address()).to.equal(cssInstance.address);
+		expect(await pool_instance_USDC.weth_address()).to.equal(wethInstance.address);
+		expect(await pool_instance_USDC.collateral_address()).to.equal(col_instance_USDC.address);
 		
 
 		
