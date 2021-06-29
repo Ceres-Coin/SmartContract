@@ -455,7 +455,7 @@ contract('Oracle_Instance_CERES_WETH', async (accounts) => {
 		console.log(chalk.blue("oracle_instance_CERES_WETH: ",oracle_instance_CERES_WETH.address));
 
 		// Before
-		const er_PERIOD = 3600; // 1 hour TWAP (time-weighted average price)
+		const er_PERIOD = 5; // 1 hour TWAP (time-weighted average price)
 		const er_CONSULT_LENIENCY = 120; // Used for being able to consult past the period end
 		const er_ALLOW_STALE_CONSULTS = true; // If false, consult() will fail if the TWAP is stale
 		
