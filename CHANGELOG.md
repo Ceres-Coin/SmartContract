@@ -1,3 +1,22 @@
+## [0.1.210629-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210629-b) (2021-06-29)
+1. ADDED test scripts in test/test_CERES_USDC_Pool_P2.js
+   1. availableExcessCollatDV
+   2. toggleRecollateralize
+   3. toggleRedeeming
+   4. toggleCollateralPrice
+   5. setCollatETHOracle
+   6. getCollateralPrice
+   7. ADD test scripts of pool_instance_USDC.ceres_eth_usd_price()
+   8. ADD test scripts of pool_instance_USDC.collatEthOracle_eth_collat_price()
+   9. add test scripts of pool_instance_USDC.collateral_token()
+   10. add test scripts of pool_instance_USDC.ceres_eth_usd_price()
+   11. missing_decimals
+2. UPDATE TODO Tasks
+3. Refactor CeresPool.sol
+4. Remove unused code "BEFORE EACH TEST CASE"
+5. Remove unused code "SET CONSTANTS"
+
+
 ## [0.1.210629-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210629-a) (2021-06-28)
 1. Finish Tuning Deployment Scripts
    1. FINISH migrations/9_deploy_CERES_CSS_Pools.js
@@ -7,7 +26,7 @@
    5. FINISH migrations/5_link_contract_phrase_1.js
    6. FINISH migrations/4_deploy_contract_phase_3.js
 
-TODO: Debug the USDC_POOL contracts & Test Scripts
+Debug the USDC_POOL contracts & Test Scripts
    1. contracts/ceres/pools/Pool_USDC.sol
    2. contracts/ceres/pools/CeresPool.sol
    3. migrations/9_deploy_CERES_CSS_Pools.js
