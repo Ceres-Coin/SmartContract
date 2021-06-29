@@ -388,7 +388,7 @@ contract CeresPool is AccessControl {
         }
     }
 
-    // TODO: [FUNC][recollateralizeCERES]
+    // TODO: [LATER][FUNC][recollateralizeCERES]
     function recollateralizeCERES(uint256 collateral_amount, uint256 CSS_out_min) external {
         require(recollateralizePaused == false, "Recollateralize is paused");
         uint256 collateral_amount_d18 = collateral_amount * (10 ** missing_decimals);
@@ -415,7 +415,7 @@ contract CeresPool is AccessControl {
         
     }
 
-    // TODO: [FUNC][buyBackCSS]
+    // TODO: [LATER][FUNC][buyBackCSS]
     function buyBackCSS(uint256 CSS_amount, uint256 COLLATERAL_out_min) external {
         require(buyBackPaused == false, "Buyback is paused");
         uint256 css_price = CERES.css_price();
