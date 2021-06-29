@@ -259,14 +259,19 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		expect(await pool_instance_USDC.css_contract_address()).to.equal(cssInstance.address);
 		expect(await pool_instance_USDC.weth_address()).to.equal(wethInstance.address);
 		expect(await pool_instance_USDC.collateral_address()).to.equal(col_instance_USDC.address);
-		
-
-		
-
-		
-		
-		
 	})
+
+	it ("Print Parameters P2", async() => {
+		console.log(chalk.yellow("=================== PRINT PARAMETER -- CONSTANTS ================="));
+		// GET
+		const PRICE_PRECISION = (new BigNumber(await pool_instance_USDC.PRICE_PRECISION())).toNumber();
+		const COLLATERAL_RATIO_PRECISION = (new BigNumber(await pool_instance_USDC.COLLATERAL_RATIO_PRECISION())).toNumber();
+		const COLLATERAL_RATIO_MAX = (new BigNumber(await pool_instance_USDC.COLLATERAL_RATIO_MAX())).toNumber();
+		// ASSERTION
+		expect(PRICE_PRECISION).to.equal(BIG6.toNumber());
+		expect(COLLATERAL_RATIO_PRECISION).to.equal(BIG6.toNumber());
+		expect(COLLATERAL_RATIO_MAX).to.equal(BIG6.toNumber());
+	});
 
 
 
