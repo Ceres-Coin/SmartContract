@@ -345,6 +345,12 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		expect(instanceCSS_decimals).to.equal(18);
 	});
 
+	it ("Test Cases for collatEthOracle_eth_collat_price()", async() => {
+		// console.log(chalk.yellow(`collatEthOracle_eth_collat_price: ${await pool_instance_USDC.collatEthOracle_eth_collat_price()}`));
+		expect(await pool_instance_USDC.collatEthOracle_eth_collat_price()).to.not.equal(new BigNumber(0));
+		expect((new BigNumber(await pool_instance_USDC.collatEthOracle_eth_collat_price())).toNumber()).to.gt(100000);
+	})
+
 
 
 });
