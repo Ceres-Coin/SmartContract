@@ -1,6 +1,6 @@
 {
   "name": "ceres",
-  "version": "0.1.210629b",
+  "version": "0.1.210629c",
   "description": "ceres",
   "main": "truffle-config.js",
   "directories": {
@@ -24,7 +24,7 @@
     "migration_ropsten_noReset": "truffle migrate --network ropsten --skip-dry-run",
     "clean_build_migrate_all": "rm -rf build & truffle compile --all & truffle migrate --network development --skip-dry-run --reset",
     "truffleTestALL": "truffle test",
-    "truffleTestSingleP2": "truffle test ./test/test_CERES_USDC_Pool_P2.js",
+    "truffleTestSingleP3": "truffle test ./test/test_CERES_USDC_Pool_P3.js",
     "truffleTestSingleP1": "truffle test ./test/test_CERES_USDC_Pool_P1.js",
     "truffleTestTestHelpers": "truffle test ./test/test_Openzeppelin_Test_Helpers.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
