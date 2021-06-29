@@ -291,9 +291,8 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 
 	it ("[FUNC][collatEthOracle_eth_collat_price] test scripts", async() => {
 		// console.log(chalk.yellow(`collateralPricePaused: ${await pool_instance_USDC.collateralPricePaused()}`));
-		// console.log(chalk.yellow(`collateralPricePaused: ${await pool_instance_USDC.pausedPrice()}`));
-		// console.log(chalk.red(`collatEthOracle_eth_collat_price: ${await pool_instance_USDC.collatEthOracle_eth_collat_price()}`));
-		// TODO: tuning collatEthOracle_eth_collat_price and trouble shooting why the price is 0 
+		// console.log(chalk.yellow(`pausedPrice: ${await pool_instance_USDC.pausedPrice()}`));
+		// console.log(chalk.yellow(`collatEthOracle_eth_collat_price: ${await pool_instance_USDC.collatEthOracle_eth_collat_price()}`));
 	});
 
 	it ("Test Scripts for CERES_USDC_POOL.missing_decimals ", async() => {
@@ -316,9 +315,28 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		// console.log(chalk.yellow(`collatEthOracle_eth_collat_price: ${collatEthOracle_eth_collat_price}`));
 	});
 
+	// TODO: To Tuning the test scripts of CERES_USDC_POOL.collatDollarBalance()
 	it ("Test Scripts for CERES_USDC_POOL.collatDollarBalance()", async() => {
+		const ceres_eth_usd_price = (new BigNumber(await pool_instance_USDC.ceres_eth_usd_price())).toNumber();
+		const collatEthOracle_eth_collat_price = (new BigNumber(await pool_instance_USDC.collatEthOracle_eth_collat_price())).toNumber();
+		
+		// console.log(ceres_eth_usd_price);
+		// console.log(collatEthOracle_eth_collat_price);
+
+		// const collat_usd_price = ceres_eth_usd_price.mul(1000000).div(collatEthOracle_eth_collat_price);
+		// console.log("collat_usd_price: ", collat_usd_price);
+
 		const collatDollarBalance = (new BigNumber(await pool_instance_USDC.collatDollarBalance())).toNumber();
-		console.log(chalk.yellow(`collatDollarBalance: ${collatDollarBalance}`));
+		// console.log(chalk.yellow(`collatDollarBalance: ${collatDollarBalance}`));
+	});
+
+	it ("Test Scripts for tmpValue() ", async() => {
+		console.log(`tmpValue: ${await pool_instance_USDC.tmpValue()}`);
+		console.log(`tmpValue2: ${await pool_instance_USDC.tmpValue2()}`);
+	});
+
+	it ("Test Scripts for getCollateralPrice()", async() => {
+		console.log(`getCollateralPrice: ${await pool_instance_USDC.getCollateralPrice()}`);
 	})
 });
 

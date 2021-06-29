@@ -160,6 +160,14 @@ contract CeresPool is AccessControl {
         }
     }
 
+    function tmpValue() public view returns(uint256) {
+        return (collateral_token.balanceOf(address(this)));
+    }
+
+    function tmpValue2() public view returns(uint256) {
+        return unclaimedPoolCollateral;
+    }
+
     // Returns the value of excess collateral held in this CERES pool, compared to what is needed to maintain the global collateral ratio
     // TODO: [FUNC][availableExcessCollatDV]
     function availableExcessCollatDV() public view returns (uint256) {
