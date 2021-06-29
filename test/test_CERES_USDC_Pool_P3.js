@@ -274,8 +274,14 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 
 		// GET-2
 		const missing_decimals = (new BigNumber(await pool_instance_USDC.missing_decimals())).toNumber();
+		const pausedPrice = (new BigNumber(await pool_instance_USDC.pausedPrice())).toNumber();
+		const redemption_delay = (new BigNumber(await pool_instance_USDC.redemption_delay())).toNumber();
+		const bonus_rate = (new BigNumber(await pool_instance_USDC.bonus_rate())).toNumber();
 		// ASSERTION-2
 		expect(missing_decimals).to.equal(12);
+		expect(pausedPrice).to.equal(0);
+		expect(redemption_delay).to.equal(1);
+		expect(bonus_rate).to.equal(7500);
 
 	});
 
