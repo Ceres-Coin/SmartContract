@@ -233,9 +233,8 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 
 	it ("Test Scripts for collat_eth_oracle_address()", async() => {
 		const collat_eth_oracle_address = await pool_instance_USDC.collat_eth_oracle_address();
-		console.log(chalk.yellow(`collat_eth_oracle_address: ${collat_eth_oracle_address}`));
 		expect(collat_eth_oracle_address).to.not.be.empty;
-	})
+	});
 
 
 
