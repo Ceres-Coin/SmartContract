@@ -444,7 +444,7 @@ contract CeresPool is AccessControl {
         mintPaused = !mintPaused;
     }
 
-    // TODO: [FUNC][toggleRedeeming] add test scritps
+    // [FUNC][toggleRedeeming] add test scritps
     function toggleRedeeming() external onlyByOwnerOrGovernance {
         // require(hasRole(REDEEM_PAUSER, msg.sender));
         redeemPaused = !redeemPaused;

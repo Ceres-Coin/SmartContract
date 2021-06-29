@@ -355,6 +355,23 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		expect(toggleCollateralPrice).to.equal(NEWVALUE);
 		// Roll back
 		await pool_instance_USDC.toggleCollateralPrice(OLDVALUE,{from: OWNER});
+	});
+
+	it ("Test Scripts for redeemPaused()", async() => {
+		// Before
+		const OLDVALUE = await pool_instance_USDC.redeemPaused();
+		console.log(chalk.yellow(`OLDVALUE: ${OLDVALUE}`));
+		// ACTION
+		await pool_instance_USDC.toggleRedeeming();
+		const NEWVALUE = await pool_instance_USDC.redeemPaused();
+		console.log(chalk.red(`NEWVALUE: ${NEWVALUE}`));
+		// ASSERTION
+		expect(NEWVALUE).to.equal(!OLDVALUE);
+
+		// ROLLBACK
+		await pool_instance_USDC.toggleRedeeming();
+		const ROLLBACKVALUE = await pool_instance_USDC.redeemPaused();
+		expect(ROLLBACKVALUE).to.equal(OLDVALUE);
 	})
 
 });
