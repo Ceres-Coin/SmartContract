@@ -233,8 +233,22 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 
 	it ("Test Scripts for collat_eth_oracle_address()", async() => {
 		const collat_eth_oracle_address = await pool_instance_USDC.collat_eth_oracle_address();
+		// console.log(chalk.yellow(`collat_eth_oracle_address: ${collat_eth_oracle_address}`));
 		expect(collat_eth_oracle_address).to.not.be.empty;
 	});
+
+	it ("Print Parameters", async() => {
+		console.log(chalk.yellow("=================== PRINT PARAMETERS ================="));
+		console.log(chalk.yellow(`collateral_address: ${await pool_instance_USDC.collateral_address()}`));
+		console.log(chalk.yellow(`owner_address: ${await pool_instance_USDC.owner_address()}`));
+		console.log(chalk.yellow(`ceres_contract_address: ${await pool_instance_USDC.ceres_contract_address()}`));
+		console.log(chalk.yellow(`css_contract_address: ${await pool_instance_USDC.css_contract_address()}`));
+		console.log(chalk.yellow(`timelock_address: ${await pool_instance_USDC.timelock_address()}`));
+
+		console.log(chalk.yellow("=================== PRINT PARAMETERS ================="));
+		console.log(chalk.yellow(`collat_eth_oracle_address: ${await pool_instance_USDC.collat_eth_oracle_address()}`));
+		console.log(chalk.yellow(`weth_address: ${await pool_instance_USDC.weth_address()}`));
+	})
 
 
 
