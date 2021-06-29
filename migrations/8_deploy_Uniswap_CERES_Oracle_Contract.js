@@ -194,6 +194,13 @@ module.exports = async function(deployer, network, accounts) {
 	const oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed(); 
 	const oracle_instance_CSS_WETH = await UniswapPairOracle_CSS_WETH.deployed();
 	const oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
+	const oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
+	
+	await oracle_instance_CERES_WETH.update({from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
+	await oracle_instance_CERES_USDC.update({from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
+	await oracle_instance_CSS_WETH.update({from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
+	await oracle_instance_CSS_USDC.update({from: COLLATERAL_CERES_AND_CERESHARES_OWNER});
+	await oracle_instance_USDC_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 
 	// set ceresInstance Price Oracle
 	// === LINK CERES_WETH & CSS_WETH Oracle to CeresInstance ===

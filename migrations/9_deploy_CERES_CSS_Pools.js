@@ -143,8 +143,8 @@ module.exports = async function(deployer, network, accounts) {
 	]);
 
 	const oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
-	await oracle_instance_USDC_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
-
+	
+	// await oracle_instance_USDC_WETH.update({ from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 	// console.log(chalk.red.bold(`wethInstance.address: ${wethInstance.address}`));
 	// console.log(chalk.red.bold(`col_instance_USDC.address: ${col_instance_USDC.address}`));
 	// console.log(chalk.red.bold("reserve0:", await oracle_instance_USDC_WETH.reserve0()));
