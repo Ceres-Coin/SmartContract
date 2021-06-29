@@ -329,6 +329,9 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		expect(instanceCERES_symbol).to.equal("CERES");
 		expect(instanceCERES_decimals).to.equal(18);
 		expect(instanceCERES_eth_usd_price).to.not.equal(0);
+		// Verify the instance.eth_usd_price is equal to pool.ceres_eth_usd_price();
+		expect(instanceCERES_eth_usd_price).to.equal((new BigNumber(await pool_instance_USDC.ceres_eth_usd_price())).toNumber());
+
 	});
 
 	it ("Test Cases for CSS Invoke Func in CERES_USDC_POOL", async() => {
