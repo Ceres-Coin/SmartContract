@@ -76,6 +76,7 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
+	let OWNER;
 
 	// CERES Core  Contract instances
 	let ceresInstance;
@@ -181,6 +182,7 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
     beforeEach(async() => {
 		ADMIN = accounts[0];
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
+		OWNER = accounts[1];
 		const account0 = accounts[0];
 		const account1 = accounts[1];
 		const account2 = accounts[2];
@@ -338,9 +340,17 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	});
 
 	it ("Test Scripts for getCollateralPrice()", async() => {
-		console.log(`getCollateralPrice: ${await pool_instance_USDC.getCollateralPrice()}`);
+		// console.log(`getCollateralPrice: ${await pool_instance_USDC.getCollateralPrice()}`);
 		expect(await pool_instance_USDC.getCollateralPrice()).not.to.be.empty;
 	});
+
+	it ("Test Scripts for toggleCollateralPrice()", async() => {
+		console.log(chalk.yellow(`pausedPrice_before is: ${await pool_instance_USDC.pausedPrice()}`));
+		const NEWVALUE = 1000000;
+		const toggleCollateralPrice = await pool_instance_USDC.toggleCollateralPrice(NEWVALUE,{from: OWNER});
+		console.log(chalk.yellow(`pausedPrice_after is: ${await pool_instance_USDC.pausedPrice()}`));
+	})
+
 });
 
 

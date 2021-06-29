@@ -462,7 +462,7 @@ contract CeresPool is AccessControl {
         buyBackPaused = !buyBackPaused;
     }
 
-    // TODO: [FUNC][toggleCollateralPrice]
+    // [FUNC][toggleCollateralPrice]
     function toggleCollateralPrice(uint256 _new_price) external onlyByOwnerOrGovernance{
         // require(hasRole(COLLATERAL_PRICE_PAUSER, msg.sender));
         // If pausing, set paused price; else if unpausing, clear pausedPrice
