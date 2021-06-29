@@ -262,7 +262,6 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	})
 
 	it ("Print Parameters P2", async() => {
-		console.log(chalk.yellow("=================== PRINT PARAMETER -- CONSTANTS ================="));
 		// GET
 		const PRICE_PRECISION = (new BigNumber(await pool_instance_USDC.PRICE_PRECISION())).toNumber();
 		const COLLATERAL_RATIO_PRECISION = (new BigNumber(await pool_instance_USDC.COLLATERAL_RATIO_PRECISION())).toNumber();
@@ -282,22 +281,33 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		expect(pausedPrice).to.equal(0);
 		expect(redemption_delay).to.equal(1);
 		expect(bonus_rate).to.equal(7500);
+	});
 
+	it ("Print Parameters P3", async() => {
 		// TEST CASE for AccessControl state variables
-		// GET-3
+		// GET
 		const mintPaused = await pool_instance_USDC.mintPaused();
 		const redeemPaused = await pool_instance_USDC.redeemPaused();
 		const recollateralizePaused = await pool_instance_USDC.recollateralizePaused();
 		const buyBackPaused = await pool_instance_USDC.buyBackPaused();
 		const collateralPricePaused = await pool_instance_USDC.collateralPricePaused();
-
+		// ASSERTION
 		expect(mintPaused).to.equal(false);
 		expect(redeemPaused).to.equal(false);
 		expect(recollateralizePaused).to.equal(false);
 		expect(buyBackPaused).to.equal(false);
 		expect(collateralPricePaused).to.equal(false);
 
+	});
 
+	it ("Test Cases for CeresPool Core", async() => {
+		// TESE CASE for CERES & CSS address, it should be equal to ceresInstance/cssInstance.address
+		// GET FOR CERES & CSS
+		const CERES = await pool_instance_USDC.CERES();
+		const CSS = await pool_instance_USDC.CSS();
+		// ASSERTION for address
+		expect(CERES).to.equal(ceresInstance.address);
+		expect(CSS).to.equal(cssInstance.address);
 	});
 
 
