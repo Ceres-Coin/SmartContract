@@ -1,3 +1,41 @@
+## [0.1.210630-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210630-a) (2021-06-29)
+1. create a new test scripts "test_CERES_USDC_Pool_P3.js"
+   1. ADDED Print Parameters func
+   2. added test scripts for ASSERTION of CERES_USDC_Pool's PARAMETERS
+   3. added assertion for
+      1. address public ceres_contract_address; //TEST CASE DONE
+      2. address public css_contract_address; //TEST CASE DONE
+      3. address public collateral_address; //TEST CASE DONE
+      4. address public weth_address; //TEST CASE DONE
+   4. ADDED TEST SCRIPTS OF owner_address parameter
+   5. added test scripts of timelock_address parameter
+   6. add new test scripts for PARAMETERS CONSTANTS
+      1. PRICE_PRECISION
+      2. COLLATERAL_RATIO_PRECISION
+      3. COLLATERAL_RATIO_MAX
+   7. added test scripts of CONSTANTS missing_decimals
+   8. added test scripts of PARAMETERS
+      1. missing_decimals
+      2. pausedPrice
+      3. redemption_delay
+      4. bonus_rate
+   9. added test scripts of ACCESS Control STATE
+      1.  mintPaused
+      2.  redeemPaused
+      3.  recollateralizePaused
+      4.  buyBackPaused
+      5.  collateralPricePaused
+   10. add test cases for CERES() & CSS() in CERES_USDC_POOL contract
+   11. added test cases for Invoke CERES & CSS from CERES_USDC_POOL
+   12. ADDED "Test Cases for CERES Invoke Func in CERES_USDC_POOL" test scripts
+   13. ADD TEST SCRIPTS "Test Cases for CSS Invoke Func in CERES_USDC_POOL"
+   14. verify the instance's invoke func is equal to pool's public func
+   15. ADDED TEST SCRIPTS OF "Test Cases for collatEthOracle_eth_collat_price()"
+   16. added test cases for tmpValue & tmpValue2 & collatDollarBalance()
+   17. added test cases for availableExcessCollatDV
+   18. added test cases for getCollateralPrice() func
+
+
 ## [0.1.210629-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210629-b) (2021-06-29)
 1. ADDED test scripts in test/test_CERES_USDC_Pool_P2.js
    1. availableExcessCollatDV
