@@ -147,7 +147,7 @@ contract CeresPool is AccessControl {
     }
 
     /* ========== VIEWS ========== */
-    // TODO: [FUNC][collatDollarBalance]
+    // TODO: [LATER][FUNC][collatDollarBalance]
     function collatDollarBalance() public view returns (uint256) {
         if(collateralPricePaused == true){
             return (collateral_token.balanceOf(address(this)).sub(unclaimedPoolCollateral)).mul(10 ** missing_decimals).mul(pausedPrice).div(PRICE_PRECISION);
@@ -169,7 +169,7 @@ contract CeresPool is AccessControl {
     }
 
     // Returns the value of excess collateral held in this CERES pool, compared to what is needed to maintain the global collateral ratio
-    // TODO: [FUNC][availableExcessCollatDV]
+    // [FUNC][availableExcessCollatDV]
     function availableExcessCollatDV() public view returns (uint256) {
         uint256 total_supply = CERES.totalSupply();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();

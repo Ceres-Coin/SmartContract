@@ -385,7 +385,14 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		await pool_instance_USDC.toggleRecollateralize({from: OWNER});
 		const ROLLBACKVALUE = await pool_instance_USDC.recollateralizePaused();
 		expect(ROLLBACKVALUE).to.equal(OLDVALUE);
-	})
+	});
+
+	it ("Test Scripts for availableExcessCollatDV() func, its default value is 0", async() => {
+		const availableExcessCollatDV = (new BigNumber(await pool_instance_USDC.availableExcessCollatDV())).toNumber();		
+		expect(availableExcessCollatDV).to.equal(0)
+	});
+
+
 
 });
 
