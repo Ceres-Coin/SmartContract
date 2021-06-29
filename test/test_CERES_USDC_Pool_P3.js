@@ -313,12 +313,22 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 		// const tmpCSS = await CEREShares.at(CSS);
 	});
 
-	it ("Test Cases for CERES & CSS PART II", async() => {
-		const tmpCERES = await CEREStable.at(await pool_instance_USDC.CERES());
-		const tmpCSS = await CEREShares.at(await pool_instance_USDC.CSS());
-		// TODO: CERES.eth_usd_price() & name() & symbol() & decimals() & global_collateral_ratio()
+	it ("Test Cases for CERES Invoke Func in CERES_USDC_POOL", async() => {
+		const instanceCERES = await CEREStable.at(await pool_instance_USDC.CERES());
+		// console.log(chalk.yellow(`instanceCERES.name(): ${await instanceCERES.name()}`));
+		// console.log(chalk.yellow(`instanceCERES.symbol(): ${await instanceCERES.symbol()}`));
+		// console.log(chalk.yellow(`instanceCERES.decimals(): ${await instanceCERES.decimals()}`));
+		// console.log(chalk.blue(`instanceCERES.eth_usd_price(): ${await instanceCERES.eth_usd_price()}`));
 
-		console.log(chalk.yellow(`tmpCERES.name(): ${await tmpCERES.name()}`));
+		const instanceCERES_name = await instanceCERES.name();
+		const instanceCERES_symbol = await instanceCERES.symbol();
+		const instanceCERES_decimals = (new BigNumber(await instanceCERES.decimals())).toNumber();
+		const instanceCERES_eth_usd_price = (new BigNumber(await instanceCERES.eth_usd_price())).toNumber();
+
+		expect(instanceCERES_name).to.equal("CERES");
+		expect(instanceCERES_symbol).to.equal("CERES");
+		expect(instanceCERES_decimals).to.equal(18);
+		expect(instanceCERES_eth_usd_price).to.not.equal(0);
 	});
 
 
