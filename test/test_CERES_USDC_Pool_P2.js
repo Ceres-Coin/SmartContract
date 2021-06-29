@@ -337,7 +337,7 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 
 	it ("Test Scripts for getCollateralPrice()", async() => {
 		console.log(`getCollateralPrice: ${await pool_instance_USDC.getCollateralPrice()}`);
-	})
+	});
 });
 
 
