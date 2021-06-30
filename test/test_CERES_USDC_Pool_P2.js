@@ -389,7 +389,7 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 
 	it ("Test Scripts for availableExcessCollatDV() func, its default value is 0", async() => {
 		const availableExcessCollatDV = (new BigNumber(await pool_instance_USDC.availableExcessCollatDV())).toNumber();		
-		expect(availableExcessCollatDV).to.equal(0)
+		expect(availableExcessCollatDV).to.gt(0)
 	});
 
 
