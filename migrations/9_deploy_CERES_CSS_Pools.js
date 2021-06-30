@@ -28,6 +28,7 @@ const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18").toNumber();
 const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6").toNumber();
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18").toNumber();
 const COLLATERAL_SEED_DEC18 = new BigNumber("508500e18").toNumber();
+const COLLATERAL_SEED_DEC6 = new BigNumber("508500e6").toNumber();
 const SIX_HUNDRED_DEC18 = new BigNumber("600e18").toNumber();
 const SIX_HUNDRED_DEC6 = new BigNumber("600e6").toNumber();
 const ONE_DEC18 = new BigNumber("1e18").toNumber();
@@ -89,6 +90,7 @@ module.exports = async function(deployer, network, accounts) {
 	// set the deploy address
 	const ADMIN = accounts[0];
 	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
+	const OWNER = accounts[1];
 	const account0 = accounts[0];
 	const account1 = accounts[1];
 	const account2 = accounts[2];
@@ -163,4 +165,9 @@ module.exports = async function(deployer, network, accounts) {
 	]);
 
 	console.log(chalk.red(`oracle_instance_USDC_WETH.address: ${oracle_instance_USDC_WETH.address}`));
+	
+	// Transfer COLLATERAL_SEED_DEC6 to pool_instance_usdc
+	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE) {
+		await col_instance_USDC.transfer(pool_instance_USDC.address, COLLATERAL_SEED_DEC6, { from:  OWNER});
+	}
 }
