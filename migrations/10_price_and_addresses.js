@@ -121,8 +121,14 @@ module.exports = async function(deployer, network, accounts) {
 	}
 
 	const pool_instance_USDC = await Pool_USDC.deployed();
-	console.log(chalk.red.bold("============== 10_price_and_addresses ============"));
 	console.log(chalk.yellow(`pool_instance_USDC: ${pool_instance_USDC.address}`));
+
+	const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	const pair_addr_USDC_WETH = await uniswapFactoryInstance.getPair(col_instance_USDC.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
+	const pair_instance_CERES_USDC = await UniswapV2Pair.at(pair_addr_CERES_USDC);
+	const pair_instance_USDC_WETH = await UniswapV2Pair.at(pair_addr_USDC_WETH);
 
 
 
