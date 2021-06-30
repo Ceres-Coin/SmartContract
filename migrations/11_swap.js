@@ -103,6 +103,9 @@ module.exports = async function(deployer, network, accounts) {
 	const account2 = accounts[2];
 	const account3 = accounts[3];
 
+	const MIN_PERIOD = 1;
+	const DEFAULT_PERIOD = 5;
+
 	if (IS_ROPSTEN || IS_RINKEBY){
 		// Note UniswapV2Router02 vs UniswapV2Router02_Modified
 		routerInstance = await UniswapV2Router02.at("0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"); 
@@ -199,5 +202,34 @@ module.exports = async function(deployer, network, accounts) {
 	// )
 	
 	// TODO: ADD UPDATE CODE AFTER SWAP PROCESS
+
+	const oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
+	const oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed(); 
+	const oracle_instance_CSS_WETH = await UniswapPairOracle_CSS_WETH.deployed();
+	const oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
+	const oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
+
+	// SET PERIOD = MIN_PERIOD
+	await Promise.all([
+		oracle_instance_CERES_WETH.setPeriod(MIN_PERIOD, { from: OWNER }),
+		oracle_instance_CERES_USDC.setPeriod(MIN_PERIOD, { from: OWNER }),
+		oracle_instance_CSS_WETH.setPeriod(MIN_PERIOD, { from: OWNER }),
+		oracle_instance_CSS_USDC.setPeriod(MIN_PERIOD, { from: OWNER }),
+		oracle_instance_USDC_WETH.setPeriod(MIN_PERIOD, { from: OWNER }),
+	])
 	
+	await oracle_instance_CERES_WETH.update({from: OWNER});
+	await oracle_instance_CERES_USDC.update({from: OWNER});
+	await oracle_instance_CSS_WETH.update({from: OWNER});
+	await oracle_instance_CSS_USDC.update({from: OWNER});
+	await oracle_instance_USDC_WETH.update({ from: OWNER });
+	
+	// ROLL BACK PERIOD
+	await Promise.all([
+		oracle_instance_CERES_WETH.setPeriod(DEFAULT_PERIOD, { from: OWNER }),
+		oracle_instance_CERES_USDC.setPeriod(DEFAULT_PERIOD, { from: OWNER }),
+		oracle_instance_CSS_WETH.setPeriod(DEFAULT_PERIOD, { from: OWNER }),
+		oracle_instance_CSS_USDC.setPeriod(DEFAULT_PERIOD, { from: OWNER }),
+		oracle_instance_USDC_WETH.setPeriod(DEFAULT_PERIOD, { from: OWNER }),
+	])
 }
