@@ -13,6 +13,8 @@ const MigrationHelper = artifacts.require("Utils/MigrationHelper");
 const CEREStable = artifacts.require("Ceres/CEREStable");
 const CEREShares = artifacts.require("CSS/CEREShares");
 
+const GovernorAlpha = artifacts.require("Governance/GovernorAlpha");
+
 module.exports = async function(deployer, network, accounts) {
 	// Set the Network Settings
 	const IS_MAINNET = (network == 'mainnet');
@@ -25,6 +27,7 @@ module.exports = async function(deployer, network, accounts) {
 	// set the deploy address
 	const ADMIN = accounts[0];
 	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
+	const OWNER = accounts[1];
 	const account0 = accounts[0];
 	const account1 = accounts[1];
 	const account2 = accounts[2];
@@ -49,4 +52,9 @@ module.exports = async function(deployer, network, accounts) {
 	// CSS DEPLOYMENT
 	await deployer.deploy(CEREShares, "CERES Share", "CSS", COLLATERAL_CERES_AND_CERESHARES_OWNER, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address);
 	const cssInstance = await CEREShares.deployed();
+
+	    // ======== Deploy the governance contract and its associated timelock ========
+		await deployer.deploy(GovernorAlpha, timelockInstance.address, ceresInstance.address, OWNER);
+		const governanceInstance = await GovernorAlpha.deployed();
+		await governanceInstance.__setTimelockAddress(timelockInstance.address, { from: OWNER });
 }

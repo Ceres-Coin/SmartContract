@@ -55,6 +55,8 @@ const UniswapPairOracle_CERES_USDC = artifacts.require("Oracle/Variants/UniswapP
 const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_CSS_WETH");
 const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Variants/UniswapPairOracle_CSS_USDC");
 const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
+const GovernorAlpha = artifacts.require("Governance/GovernorAlpha");
+const MigrationHelper = artifacts.require("Utils/MigrationHelper");
 
 // Uniswap Contract
 const Timelock = artifacts.require("Governance/Timelock");
@@ -129,7 +131,9 @@ module.exports = async function(deployer, network, accounts) {
 		timelockInstance = await Timelock.deployed();
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
 		swapToPriceInstance = await SwapToPrice.deployed();
-		// governanceInstance = await GovernorAlpha.deployed();
+		// Governance Contract
+		migrationHelperInstance = await MigrationHelper.deployed()
+		governanceInstance = await GovernorAlpha.deployed();
 	}
 
 	const pool_instance_USDC = await Pool_USDC.deployed();
