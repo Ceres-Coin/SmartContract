@@ -357,7 +357,7 @@ contract('test_CERES_USDC_Pool_P3', async (accounts) => {
 
 		expect((new BigNumber(await pool_instance_USDC.collatDollarBalance())).toNumber()).to.not.equal(0);
 		expect((new BigNumber(await pool_instance_USDC.collatDollarBalance())).toNumber()).to.gt(0);
-		expect((new BigNumber(await pool_instance_USDC.tmpValue())).toNumber()).to.equal(0);
+		expect((new BigNumber(await pool_instance_USDC.tmpValue())).toNumber()).to.gt(0);
 		expect((new BigNumber(await pool_instance_USDC.tmpValue2())).toNumber()).to.equal(0);
 
 		const availableExcessCollatDV = (new BigNumber(await pool_instance_USDC.availableExcessCollatDV())).toNumber()
