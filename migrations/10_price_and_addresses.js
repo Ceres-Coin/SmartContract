@@ -130,6 +130,11 @@ module.exports = async function(deployer, network, accounts) {
 	const pair_instance_CERES_USDC = await UniswapV2Pair.at(pair_addr_CERES_USDC);
 	const pair_instance_USDC_WETH = await UniswapV2Pair.at(pair_addr_USDC_WETH);
 
+	// Link the FAKE collateral pool to the CERES contract
+	if (!await ceresInstance.ceres_pools.call(pool_instance_USDC.address)) {
+		await ceresInstance.addPool(pool_instance_USDC.address, { from: OWNER });
+	}
+
 
 
 }
