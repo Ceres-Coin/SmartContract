@@ -118,13 +118,8 @@ module.exports = async function(deployer, network, accounts) {
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
 		timelockInstance = await Timelock.deployed();
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
-
-		console.log(chalk.red(`ceresInstance: ${ceresInstance.address}`));
-		console.log(chalk.red(`cssInstance: ${cssInstance.address}`));
-		console.log(chalk.red(`wethInstance: ${wethInstance.address}`))
-		console.log(chalk.red(`col_instance_USDC: ${col_instance_USDC.address}`))
 	}
-	
+
 	const pool_instance_USDC = await Pool_USDC.deployed();
 	console.log(chalk.red.bold("============== 10_price_and_addresses ============"));
 	console.log(chalk.yellow(`pool_instance_USDC: ${pool_instance_USDC.address}`));

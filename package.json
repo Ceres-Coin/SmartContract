@@ -18,6 +18,8 @@
     "migrate_singleFile_7" : "truffle migrate -f 7 --to 7 --network development --skip-dry-run",
     "migrate_singleFile_8" : "truffle migrate -f 8 --to 8 --network development --skip-dry-run",
     "migrate_singleFile_9" : "truffle migrate -f 9 --to 9 --network development --skip-dry-run",
+    "migrate_singleFile_10" : "truffle migrate -f 10 --to 10 --network development --skip-dry-run",
+    "migrate_singleFile_11" : "truffle migrate -f 11 --to 11 --network development --skip-dry-run",
     "migration_bscTestnet_reset": "truffle migrate --network testnet --skip-dry-run --reset",
     "migration_bscTestnet_noReset": "truffle migrate --network testnet --skip-dry-run",
     "migration_ropsten_reset": "truffle migrate --network ropsten --skip-dry-run --reset",
