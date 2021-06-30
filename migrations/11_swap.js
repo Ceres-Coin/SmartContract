@@ -129,10 +129,7 @@ module.exports = async function(deployer, network, accounts) {
 	}
 
 	const pool_instance_USDC = await Pool_USDC.deployed();
-	console.log(chalk.yellow(`pool_instance_USDC: ${pool_instance_USDC.address}`));
-
 	if (true) {
-		console.log(chalk.red("todo something"))
 		// Add allowances to the Uniswap Router
 		await Promise.all([
 			wethInstance.approve(routerInstance.address, new BigNumber(TWO_MILLION_DEC18), { from: OWNER }),
@@ -149,7 +146,33 @@ module.exports = async function(deployer, network, accounts) {
 			col_instance_USDT.approve(swapToPriceInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: OWNER }),
 			ceresInstance.approve(swapToPriceInstance.address, new BigNumber(ONE_MILLION_DEC18), { from: OWNER }),
 			cssInstance.approve(swapToPriceInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: OWNER })
-		]);	
+		]);
+	};
 
-	}
+	// Handle CERES / WETH
+	// console.log("ceres / WETH swapped");
+	await swapToPriceInstance.swapToPrice(
+		ceresInstance.address,
+		wethInstance.address,
+		new BigNumber(365e6),
+		new BigNumber(1e6),
+		new BigNumber(100e18),
+		new BigNumber(100e18),
+		OWNER,
+		new BigNumber(2105300114),
+		{ from: OWNER }
+	);
+	await swapToPriceInstance.swapToPrice(
+		ceresInstance.address,
+		col_instance_USDC.address,
+		new BigNumber(1008e3),
+		new BigNumber(997e3),
+		new BigNumber(100e18),
+		new BigNumber(100e18),
+		OWNER,
+		new BigNumber(2105300114),
+		{ from: OWNER }
+	);
+	
+	
 }

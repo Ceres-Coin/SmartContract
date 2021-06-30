@@ -174,6 +174,6 @@ module.exports = async function(deployer, network, accounts) {
 	await ceresInstance.setRefreshCooldown(60,{from: OWNER}); //ROLL BACK
 	expect(parseFloat(await ceresInstance.refresh_cooldown())).to.equal(60);
 
-	// ======== Try frax_info ========
+	// ======== Try ceres_info ========
 	await ceresInstance.ceres_info.call();
 }
