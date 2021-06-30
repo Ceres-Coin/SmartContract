@@ -37,6 +37,7 @@ const ONE_HUNDRED_DEC18 = new BigNumber("100e18").toNumber();
 const ONE_HUNDRED_DEC6 = new BigNumber("100e6").toNumber();
 const Number133_DEC18 = new BigNumber("133e18").toNumber();
 const EIGHT_HUNDRED_DEC18 = new BigNumber("800e18").toNumber();
+const ONE_THOUSAND_DEC18 = new BigNumber("1000e18").toNumber();
 
 
 const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
@@ -90,6 +91,8 @@ module.exports = async function(deployer, network, accounts) {
 
 	// set the deploy address
 	const ADMIN = accounts[0];
+	const METAMASK_ADDRESS = accounts[2];
+
 	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
 	const OWNER = accounts[1];
 	const account0 = accounts[0];
@@ -157,4 +160,10 @@ module.exports = async function(deployer, network, accounts) {
 	let usdc_price_from_USDC_WETH = parseFloat((new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, BIG18))).div(BIG6));
 	expect(usdc_price_from_USDC_WETH).to.gt(599.99);
 	expect(usdc_price_from_USDC_WETH).to.lt(600);
+
+	// CERES and CSS
+	await Promise.all([
+		ceresInstance.transfer(METAMASK_ADDRESS, new BigNumber(ONE_THOUSAND_DEC18), { from: OWNER }),
+		cssInstance.transfer(METAMASK_ADDRESS, new BigNumber(ONE_THOUSAND_DEC18), { from: OWNER })
+	]);
 }
