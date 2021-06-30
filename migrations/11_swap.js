@@ -127,4 +127,25 @@ module.exports = async function(deployer, network, accounts) {
 	const pool_instance_USDC = await Pool_USDC.deployed();
 	console.log(chalk.yellow(`pool_instance_USDC: ${pool_instance_USDC.address}`));
 
+	if (true) {
+		console.log(chalk.red("todo something"))
+		// Add allowances to the Uniswap Router
+		await Promise.all([
+			wethInstance.approve(routerInstance.address, new BigNumber(TWO_MILLION_DEC18), { from: OWNER }),
+			col_instance_USDC.approve(routerInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: OWNER }),
+			col_instance_USDT.approve(routerInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: OWNER }),
+			ceresInstance.approve(routerInstance.address, new BigNumber(ONE_MILLION_DEC18), { from: OWNER }),
+			cssInstance.approve(routerInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: OWNER })
+		]);	
+
+		// Add allowances to the swapToPrice contract
+		// console.log("Doing swapToPrice allowances...");
+		// await Promise.all([
+		// 	wethInstance.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER }),
+		// 	col_instance_USDC.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER }),
+		// 	col_instance_USDT.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER }),
+		// 	fraxInstance.approve(swapToPriceInstance.address, new BigNumber(1000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER }),
+		// 	fxsInstance.approve(swapToPriceInstance.address, new BigNumber(5000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER })
+		// ])
+	}
 }
