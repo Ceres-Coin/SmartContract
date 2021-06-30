@@ -1,3 +1,40 @@
+## [0.1.210701-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210630-a...0.1.210701-a) (2021-06-30)
+1. Test for submit proposal from Timelock Contracts
+   1. FINISH timelock deployment scripts "migrations/12_timelock.js"
+   2. ADDED deployment scripts of GovernanceAlpha.sol
+   3. added Governance.sol & timelock proposal
+2. ADD NEW DEPLOYMENT SCRIPTS "migrations/12_timelock.js"
+3. ADDED UPDATE CODE FOR UniswapPairOracle
+4. tuning FAILED TEST CASES
+5. add swap code
+   1. ceres-usdc and execute SWAP
+   2. css-usdc and execute SWAP
+   3. added APPROVE CODE for swapToPriceInstance
+   4. added APPROVE CODE for routherInstance
+6. added DEPLOYMENT SCRIPTS: "migrations/11_swap.js"
+7. added DEPLOYMENT SCRIPTS OF
+   1. refreshCollateralRatio()
+   2. ceres_info
+8. added test cases for transfer CERES & CSS to METAMASK_ADDRESS
+9. added usdc_price_from_USDC_WETH
+10. added test scripts of get Price from
+    1. ceres_weth
+    2.  ceres_usdc
+    3.  css_weth
+    4.  css_usdc
+11. added code to avoid ADDED DUPLICATE POOLS
+12. added pair_instance
+   1. added pair_instance_CERES_USDC
+   2. added pair_instance_CERES_WETH
+   3. added pair_instance_USDC_WETH
+13. CREATE NEW "migrations/10_price_and_addresses.js"
+14. ADDED NEW DEPLOYMENT SCRIPTS
+15. tuning test scripts for ADDED DEPLOYMENT SCRIPTS
+16. add deployment script "TRANSFER COLLATERAL_SEED_DEC6 TO pool_instance_usdc"
+17. add oracle_instance.update() func
+18. add NEXT TO DO TASKS
+
+
 ## [0.1.210630-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210630-a) (2021-06-29)
 1. create a new test scripts "test_CERES_USDC_Pool_P3.js"
    1. ADDED Print Parameters func
