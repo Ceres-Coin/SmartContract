@@ -335,7 +335,7 @@ contract('test_CERES_USDC_Pool_P2', async (accounts) => {
 	it ("Test Scripts for tmpValue() ", async() => {
 		// console.log(`tmpValue: ${await pool_instance_USDC.tmpValue()}`);
 		// console.log(`tmpValue2: ${await pool_instance_USDC.tmpValue2()}`);
-		expect((new BigNumber(await pool_instance_USDC.tmpValue())).toNumber()).to.equal(0);
+		expect((new BigNumber(await pool_instance_USDC.tmpValue())).toNumber()).to.gt(0);
 		expect((new BigNumber(await pool_instance_USDC.tmpValue2())).toNumber()).to.equal(0);
 	});
 
