@@ -6,6 +6,7 @@ const { expectEvent, send, shouldFail, time, constants } = require('@openzeppeli
 const BIG6 = new BigNumber("1e6");
 const BIG18 = new BigNumber("1e18");
 const chalk = require('chalk');
+const { expect } = require('chai');
 
 // Define UniswapV2Factory & Router
 const UniswapV2Router02 = artifacts.require("Uniswap/UniswapV2Router02");
@@ -121,7 +122,7 @@ module.exports = async function(deployer, network, accounts) {
 	}
 
 	const pool_instance_USDC = await Pool_USDC.deployed();
-	console.log(chalk.yellow(`pool_instance_USDC: ${pool_instance_USDC.address}`));
+	// console.log(chalk.yellow(`pool_instance_USDC: ${pool_instance_USDC.address}`));
 
 	const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 	const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
@@ -142,6 +143,15 @@ module.exports = async function(deployer, network, accounts) {
 	const oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
 	const oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
 
+	let ceres_price_from_CERES_WETH = parseFloat((new BigNumber(await oracle_instance_CERES_WETH.consult.call(wethInstance.address, BIG6))).div(BIG6));
+	let ceres_price_from_CERES_USDC = parseFloat((new BigNumber(await oracle_instance_CERES_USDC.consult.call(col_instance_USDC.address,BIG6))).div(BIG18));
+	
+	let css_price_from_CSS_WETH = parseFloat((new BigNumber(await oracle_instance_CSS_WETH.consult.call(wethInstance.address, BIG6))).div(BIG6));
+	let css_price_from_CSS_USDC = parseFloat((new BigNumber(await oracle_instance_CSS_USDC.consult.call(col_instance_USDC.address,BIG6))).div(BIG18));
 
-
+	expect(ceres_price_from_CERES_WETH).to.equal(600);
+	expect(ceres_price_from_CERES_USDC).to.equal(1);
+	expect(css_price_from_CSS_WETH).to.equal(800);
+	expect(css_price_from_CSS_USDC).to.equal(1.33);
+	
 }
