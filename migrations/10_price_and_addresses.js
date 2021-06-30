@@ -166,4 +166,14 @@ module.exports = async function(deployer, network, accounts) {
 		ceresInstance.transfer(METAMASK_ADDRESS, new BigNumber(ONE_THOUSAND_DEC18), { from: OWNER }),
 		cssInstance.transfer(METAMASK_ADDRESS, new BigNumber(ONE_THOUSAND_DEC18), { from: OWNER })
 	]);
+
+	// GET CERES INFO
+	await ceresInstance.setRefreshCooldown(1,{from: OWNER});
+	await ceresInstance.refreshCollateralRatio();
+	console.log(chalk.yellow(`global_collateral_ratio: ${await ceresInstance.global_collateral_ratio()}`));
+	await ceresInstance.setRefreshCooldown(60,{from: OWNER}); //ROLL BACK
+	expect(parseFloat(await ceresInstance.refresh_cooldown())).to.equal(60);
+
+	// ======== Try frax_info ========
+	await ceresInstance.ceres_info.call();
 }
