@@ -134,6 +134,13 @@ module.exports = async function(deployer, network, accounts) {
 	if (!await ceresInstance.ceres_pools.call(pool_instance_USDC.address)) {
 		await ceresInstance.addPool(pool_instance_USDC.address, { from: OWNER });
 	}
+	await cssInstance.setCERESAddress(ceresInstance.address, { from: OWNER });
+
+	const oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
+	const oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed(); 
+	const oracle_instance_CSS_WETH = await UniswapPairOracle_CSS_WETH.deployed();
+	const oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
+	const oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
 
 
 
