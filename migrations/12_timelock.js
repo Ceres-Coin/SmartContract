@@ -154,7 +154,7 @@ module.exports = async function(deployer, network, accounts) {
 		eta_with_delay,
 		{ from: ADMIN }
 	];
-	await timelockInstance.queueTransaction(...tx_nugget);
+	await timelockInstance.queueTransaction(...tx_nugget,{from: ADMIN});
 	
 	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE){
 		// Advance 2 days to catch things up
@@ -167,6 +167,6 @@ module.exports = async function(deployer, network, accounts) {
 
 	await timelockInstance.executeTransaction(...tx_nugget);
 	await governanceInstance.__acceptAdmin({ from: OWNER });
-	const timelock_admin_address = await timelockInstance.admin.call();
-	console.log("timelock_admin [AFTER]: ", timelock_admin_address)
+	// const timelock_admin_address = await timelockInstance.admin.call();
+	// console.log("timelock_admin [AFTER]: ", timelock_admin_address)
 }
