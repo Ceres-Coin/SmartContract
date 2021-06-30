@@ -153,5 +153,8 @@ module.exports = async function(deployer, network, accounts) {
 	expect(ceres_price_from_CERES_USDC).to.equal(1);
 	expect(css_price_from_CSS_WETH).to.equal(800);
 	expect(css_price_from_CSS_USDC).to.equal(1.33);
-	
+
+	let usdc_price_from_USDC_WETH = parseFloat((new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, BIG18))).div(BIG6));
+	expect(usdc_price_from_USDC_WETH).to.gt(599.99);
+	expect(usdc_price_from_USDC_WETH).to.lt(600);
 }
