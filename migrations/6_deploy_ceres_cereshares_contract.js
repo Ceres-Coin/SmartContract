@@ -35,8 +35,8 @@ module.exports = async function(deployer, network, accounts) {
 
 	// Deploy Timelock & MigrationHelp 
 	const TIMELOCK_DELAY = 300 // 5 minutes in test phrase
-	await deployer.deploy(Timelock, ADMIN, TIMELOCK_DELAY);
-	await deployer.deploy(MigrationHelper, ADMIN);
+	await deployer.deploy(Timelock, ADMIN, TIMELOCK_DELAY,{from: OWNER});
+	await deployer.deploy(MigrationHelper, ADMIN,{from: OWNER});
 	const timelockInstance = await Timelock.deployed();
 	const migrationHelperInstance = await MigrationHelper.deployed();
 	
@@ -53,8 +53,8 @@ module.exports = async function(deployer, network, accounts) {
 	await deployer.deploy(CEREShares, "CERES Share", "CSS", COLLATERAL_CERES_AND_CERESHARES_OWNER, COLLATERAL_CERES_AND_CERESHARES_OWNER, timelockInstance.address);
 	const cssInstance = await CEREShares.deployed();
 
-	    // ======== Deploy the governance contract and its associated timelock ========
-		await deployer.deploy(GovernorAlpha, timelockInstance.address, ceresInstance.address, OWNER);
-		const governanceInstance = await GovernorAlpha.deployed();
-		await governanceInstance.__setTimelockAddress(timelockInstance.address, { from: OWNER });
+	// ======== Deploy the governance contract and its associated timelock ========
+	await deployer.deploy(GovernorAlpha, timelockInstance.address, ceresInstance.address, OWNER);
+	const governanceInstance = await GovernorAlpha.deployed();
+	await governanceInstance.__setTimelockAddress(timelockInstance.address, { from: OWNER });
 }
