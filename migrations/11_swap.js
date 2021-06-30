@@ -125,6 +125,7 @@ module.exports = async function(deployer, network, accounts) {
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
 		timelockInstance = await Timelock.deployed();
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
+		swapToPriceInstance = await SwapToPrice.deployed();
 	}
 
 	const pool_instance_USDC = await Pool_USDC.deployed();
@@ -142,13 +143,13 @@ module.exports = async function(deployer, network, accounts) {
 		]);	
 
 		// Add allowances to the swapToPrice contract
-		// console.log("Doing swapToPrice allowances...");
-		// await Promise.all([
-		// 	wethInstance.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER }),
-		// 	col_instance_USDC.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER }),
-		// 	col_instance_USDT.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER }),
-		// 	fraxInstance.approve(swapToPriceInstance.address, new BigNumber(1000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER }),
-		// 	fxsInstance.approve(swapToPriceInstance.address, new BigNumber(5000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER })
-		// ])
+		await Promise.all([
+			wethInstance.approve(swapToPriceInstance.address, new BigNumber(TWO_MILLION_DEC18), { from: OWNER }),
+			col_instance_USDC.approve(swapToPriceInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: OWNER }),
+			col_instance_USDT.approve(swapToPriceInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: OWNER }),
+			ceresInstance.approve(swapToPriceInstance.address, new BigNumber(ONE_MILLION_DEC18), { from: OWNER }),
+			cssInstance.approve(swapToPriceInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: OWNER })
+		]);	
+
 	}
 }
