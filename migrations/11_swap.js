@@ -162,11 +162,23 @@ module.exports = async function(deployer, network, accounts) {
 		new BigNumber(2105300114),
 		{ from: OWNER }
 	);
+	// await swapToPriceInstance.swapToPrice(
+	// 	ceresInstance.address,
+	// 	col_instance_USDC.address,
+	// 	new BigNumber(1008e3),
+	// 	new BigNumber(997e3),
+	// 	new BigNumber(100e18),
+	// 	new BigNumber(100e18),
+	// 	OWNER,
+	// 	new BigNumber(2105300114),
+	// 	{ from: OWNER }
+	// );
+
 	await swapToPriceInstance.swapToPrice(
-		ceresInstance.address,
-		col_instance_USDC.address,
-		new BigNumber(1008e3),
-		new BigNumber(997e3),
+		cssInstance.address,
+		wethInstance.address,
+		new BigNumber(1855e6),
+		new BigNumber(1e6),
 		new BigNumber(100e18),
 		new BigNumber(100e18),
 		OWNER,
