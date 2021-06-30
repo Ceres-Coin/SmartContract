@@ -22,6 +22,8 @@ const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DE
 
 // set constants
 const ONE_MILLION_DEC18 = new BigNumber("1000000e18").toNumber();
+const TWO_MILLION_DEC18 = (new BigNumber("20000000e18")).toNumber();
+const TWO_MILLION_DEC6 = (new BigNumber("20000000e6")).toNumber();
 const FIVE_MILLION_DEC18 = new BigNumber("5000000e18").toNumber();
 const FIVE_MILLION_DEC6 = new BigNumber("5000000e6").toNumber();
 const TEN_MILLION_DEC18 = new BigNumber("10000000e18").toNumber();
@@ -38,6 +40,7 @@ const ONE_HUNDRED_DEC6 = new BigNumber("100e6").toNumber();
 const Number133_DEC18 = new BigNumber("133e18").toNumber();
 const EIGHT_HUNDRED_DEC18 = new BigNumber("800e18").toNumber();
 const ONE_THOUSAND_DEC18 = new BigNumber("1000e18").toNumber();
+
 
 
 const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
