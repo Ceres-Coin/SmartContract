@@ -318,10 +318,10 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const css_address = await ceresInstance.css_address();
 		const weth_address = await ceresInstance.weth_address();
 
-		console.log(chalk.yellow(`css_address: ${css_address}`));
-		console.log(chalk.yellow(`weth_address: ${weth_address}`));
+		// console.log(chalk.yellow(`css_address: ${css_address}`));
+		// console.log(chalk.yellow(`weth_address: ${weth_address}`));
 
-		expect(css_address).to.equal(cssInstance.address);
+		expect(css_address).to.equal(constants.ZERO_ADDRESS);
 		expect(weth_address).to.equal(wethInstance.address);
 	})
 
