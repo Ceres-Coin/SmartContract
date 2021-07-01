@@ -399,9 +399,19 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 		await instanceCeresEthOracle.setPeriod(MIN_PERIOD, { from: OWNER });
 		await instanceCeresEthOracle.update({from: OWNER});
-		await instanceCeresEthOracle.setPeriod(DEFAULT_PERIOD, { from: OWNER }),
+		await instanceCeresEthOracle.setPeriod(DEFAULT_PERIOD, { from: OWNER });
 
-	})
+		
+
+	});
+
+	it ("Test Scripts for ceresInstance.CeresEthOracle consult()", async() => {
+		const CeresEthOracle_address = await ceresInstance.CeresEthOracle();
+		const instanceCeresEthOracle = await UniswapPairOracle.at(CeresEthOracle_address);
+		let ceres_price_from_CERES_WETH = parseFloat((new BigNumber(await instanceCeresEthOracle.consult.call(wethInstance.address, BIG6))).div(BIG6));
+
+		console.log(chalk.yellow(`ceres_price_from_CERES_WETH: ${ceres_price_from_CERES_WETH}`));
+	});
 
 
 
