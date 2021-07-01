@@ -35,10 +35,10 @@ contract CEREStable is ERC20Custom, AccessControl {
     address public creator_address; //test case done
     address public timelock_address; //test case done
     address public controller_address; //test case done
-    address public css_address;
+    address public css_address; //test case done
     address public ceres_eth_oracle_address;
     address public css_eth_oracle_address;
-    address public weth_address;
+    address public weth_address; //test case done
     uint256 public constant genesis_supply = 1000000e18; //test case done
 
     

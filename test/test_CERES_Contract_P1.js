@@ -312,6 +312,17 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(creator_address).to.equal(OWNER);
 		expect(timelock_address).to.equal(timelockInstance.address);
 		expect(controller_address).to.equal(constants.ZERO_ADDRESS);
+	});
+
+	it ("Test Scripts for ceresInstance.css_address & weth_address", async() => {
+		const css_address = await ceresInstance.css_address();
+		const weth_address = await ceresInstance.weth_address();
+
+		console.log(chalk.yellow(`css_address: ${css_address}`));
+		console.log(chalk.yellow(`weth_address: ${weth_address}`));
+
+		expect(css_address).to.equal(cssInstance.address);
+		expect(weth_address).to.equal(wethInstance.address);
 	})
 
 
