@@ -409,6 +409,20 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(ceres_price_from_CERES_WETH).to.gt(0);
 	});
 
+	it ("Test Scripts for ceresInstance.CSSEthOracle instances", async() => { 
+		const CSSEthOracle_address = await ceresInstance.CSSEthOracle();
+		console.log(chalk.blue(`oracle_instance_CSS_WETH.address: ${oracle_instance_CSS_WETH.address}`));
+		console.log(chalk.yellow(`CSSEthOracle_address: ${CSSEthOracle_address}`));
+		const instanceCSSEthOracle = await UniswapPairOracle.at(CSSEthOracle_address);
+
+		const token0 = await instanceCSSEthOracle.token0();
+		const token1 = await instanceCSSEthOracle.token1();
+		console.log(chalk.blue(`cssInstance.address: ${cssInstance.address}`));
+		console.log(chalk.blue(`wethInstance.address: ${wethInstance.address}`));
+		console.log(chalk.yellow(`token0: ${token0}`));
+		console.log(chalk.yellow(`token1: ${token1}`));
+	});
+
 
 
 
