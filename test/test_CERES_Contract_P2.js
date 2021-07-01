@@ -71,6 +71,7 @@ const UniswapPairOracle = artifacts.require("Oracle/UniswapPairOracle");
 
 // ChainlinkETHUSD Contract
 const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest");
+const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumer");
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
@@ -263,6 +264,11 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		// console.log(chalk.yellow(`eth_usd_pricer_decimals: ${eth_usd_pricer_decimals}`));
 		expect(eth_usd_pricer_decimals).to.equal(8);
 	});
+
+	it ("Test Scripts for ceresInstance.eth_usd_pricer CONTRACT INSTANCE", async() => {
+		const eth_usd_pricer = await ceresInstance.eth_usd_pricer();
+		const instance_eth_usd_pricer = await ChainlinkETHUSDPriceConsumer.at(eth_usd_pricer);
+	})
 });
 
 
