@@ -269,7 +269,8 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 	it ("Test Scripts for ceresInstance.DEFAULT_ADMIN_ADDRESS", async() => {
 		const DEFAULT_ADMIN_ADDRESS = await ceresInstance.DEFAULT_ADMIN_ADDRESS();
-		console.log(chalk.yellow(`DEFAULT_ADMIN_ADDRESS: ${DEFAULT_ADMIN_ADDRESS}`));
+		// console.log(chalk.yellow(`DEFAULT_ADMIN_ADDRESS: ${DEFAULT_ADMIN_ADDRESS}`));
+		expect(DEFAULT_ADMIN_ADDRESS).to.equal(ADMIN);
 	})
 
 
