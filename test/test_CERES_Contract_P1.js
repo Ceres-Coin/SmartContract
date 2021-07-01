@@ -329,10 +329,10 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const ceres_eth_oracle_address = await ceresInstance.ceres_eth_oracle_address();
 		const css_eth_oracle_address = await ceresInstance.css_eth_oracle_address();
 
-		console.log(chalk.yellow(`ceres_eth_oracle_address: ${ceres_eth_oracle_address}`));
-		console.log(chalk.yellow(`css_eth_oracle_address: ${css_eth_oracle_address}`));
-		console.log(chalk.yellow(`oracle_instance_CERES_WETH.address: ${oracle_instance_CERES_WETH.address}`));
-		console.log(chalk.yellow(`oracle_instance_CSS_WETH.address: ${oracle_instance_CSS_WETH.address}`));
+		// console.log(chalk.yellow(`ceres_eth_oracle_address: ${ceres_eth_oracle_address}`));
+		// console.log(chalk.yellow(`css_eth_oracle_address: ${css_eth_oracle_address}`));
+		// console.log(chalk.yellow(`oracle_instance_CERES_WETH.address: ${oracle_instance_CERES_WETH.address}`));
+		// console.log(chalk.yellow(`oracle_instance_CSS_WETH.address: ${oracle_instance_CSS_WETH.address}`));
 
 		expect(ceres_eth_oracle_address).to.equal(oracle_instance_CERES_WETH.address);
 		expect(css_eth_oracle_address).to.equal(oracle_instance_CSS_WETH.address);
