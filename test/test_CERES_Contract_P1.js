@@ -262,6 +262,11 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(last_call_time).to.gt(0);
 	});
 
+	it ("Test Scripts for ceresInstance.collateral_ratio_paused(), its default value is false", async() => {
+		const collateral_ratio_paused = await ceresInstance.collateral_ratio_paused();
+		expect(collateral_ratio_paused).to.equal(false);
+	})
+
 
 
 });
