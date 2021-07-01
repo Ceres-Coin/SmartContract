@@ -356,7 +356,23 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		console.log(chalk.yellow(`token1: ${token1}`));
 
 		
+		const price0CumulativeLast = await instanceCeresEthOracle.price0CumulativeLast();
+		const price1CumulativeLast = await instanceCeresEthOracle.price1CumulativeLast();
+		console.log(chalk.yellow(`price0CumulativeLast: ${price0CumulativeLast}`));
+		console.log(chalk.yellow(`price1CumulativeLast: ${price1CumulativeLast}`));
 
+		const price0Average = await instanceCeresEthOracle.price0Average();
+		const price1Average = await instanceCeresEthOracle.price1Average();
+		console.log(chalk.yellow(`price0Average: ${price0Average}`));
+		console.log(chalk.yellow(`price1Average: ${price1Average}`));
+
+		const reserve0 = await instanceCeresEthOracle.reserve0();
+		const reserve1 = await instanceCeresEthOracle.reserve1();
+		console.log(chalk.yellow(`reserve0: ${reserve0}`));
+		console.log(chalk.yellow(`reserve1: ${reserve1}`));
+
+		const blockTimestampLast = await instanceCeresEthOracle.blockTimestampLast();
+		console.log(chalk.yellow(`blockTimestampLast: ${blockTimestampLast}`));
 	})
 
 
