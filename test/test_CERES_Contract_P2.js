@@ -256,7 +256,7 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		// console.log(chalk.blue(`oracle_chainlink_ETH_USD: ${oracle_chainlink_ETH_USD.address}`));
 		// console.log(chalk.yellow(`eth_usd_consumer_address: ${eth_usd_consumer_address}`));
 		expect(eth_usd_consumer_address).to.equal(oracle_chainlink_ETH_USD.address);
-	})
+	});
 });
 
 
