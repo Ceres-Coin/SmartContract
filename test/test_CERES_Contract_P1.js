@@ -381,6 +381,7 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const pair_address = await instanceCeresEthOracle.pair_address();
 		console.log(chalk.blue(`pair_addr_CERES_WETH: ${pair_addr_CERES_WETH}`));
 		console.log(chalk.yellow(`pair_address: ${pair_address}`));
+		const pair = await instanceCeresEthOracle.pair();
 		expect(pair_address).to.equal(pair_addr_CERES_WETH);
 		console.log(chalk.yellow("----------------------------- SEPERATOR ---------------------------"));
 		
