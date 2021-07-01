@@ -180,6 +180,9 @@ contract('test_CERES_USDC_Pool_P3', async (accounts) => {
 	let ar_buyBackPaused;
 	let ar_collateralPricePaused;
 
+	const global_collateral_ratio_initial_value = 1000000;
+	const RefreshCooldown_Initial_Value = 60;
+
     beforeEach(async() => {
 		ADMIN = accounts[0];
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
@@ -237,6 +240,22 @@ contract('test_CERES_USDC_Pool_P3', async (accounts) => {
 		const ceresInstance_address = await ceresInstance.address;
 		// console.log(chalk.yellow(`ceresInstance_address: ${ceresInstance_address}`));
 	});
+
+	it ("Test Scripts for ceresInstance.setRefreshCooldown() & refreshCollateralRatio() func", async() => {
+
+		// Before
+		await ceresInstance.setRefreshCooldown(1,{from: OWNER});
+		// Action
+		await ceresInstance.refreshCollateralRatio();
+		// Print
+		const global_collateral_ratio = parseFloat(await ceresInstance.global_collateral_ratio());
+		console.log(chalk.yellow(`global_collateral_ratio: ${global_collateral_ratio}`));
+		expect(global_collateral_ratio).to.gt(0);
+		expect(global_collateral_ratio).to.lt(global_collateral_ratio_initial_value);
+		// ROLL BACK
+		await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); //ROLL BACK
+		expect(parseFloat(await ceresInstance.refresh_cooldown())).to.equal(RefreshCooldown_Initial_Value);
+	})
 
 
 
