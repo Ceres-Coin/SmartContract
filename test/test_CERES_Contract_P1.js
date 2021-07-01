@@ -449,6 +449,14 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(canUpdate).to.equal(true);
 	});
 
+	it ("Test Scripts for ceresInstance.CSSEthOracle UPDATE()", async() => {
+		const CSSEthOracle_address = await ceresInstance.CSSEthOracle();
+		const instanceCSSEthOracle = await UniswapPairOracle.at(CSSEthOracle_address);
+		await instanceCSSEthOracle.setPeriod(MIN_PERIOD, { from: OWNER });
+		await instanceCSSEthOracle.update({from: OWNER});
+		await instanceCSSEthOracle.setPeriod(DEFAULT_PERIOD, { from: OWNER });
+	});
+
 
 
 
