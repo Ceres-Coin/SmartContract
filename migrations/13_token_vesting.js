@@ -137,32 +137,7 @@ module.exports = async function(deployer, network, accounts) {
 	}
 
 	const pool_instance_USDC = await Pool_USDC.deployed();
+	console.log(chalk.red.bold(`pool_instance_USDC.address: ${pool_instance_USDC.address}`));
 	
-	let current_timestamp = (await time.latest()).toNumber();
-	let timelock_delay = (await timelockInstance.delay.call()).toNumber();
-	let eta_with_delay = current_timestamp + timelock_delay + 300; // 5 minute buffer
-
-	const tx_nugget = [
-		timelockInstance.address, 
-		0, 
-		"setPendingAdmin(address)",
-		web3.eth.abi.encodeParameters(['address'], [governanceInstance.address]),
-		eta_with_delay,
-		{ from: ADMIN }
-	];
-	await timelockInstance.queueTransaction(...tx_nugget);
 	
-	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE){
-		// Advance 2 days to catch things up
-		await time.increase((2 * 86400) + 300 + 1);
-		await time.advanceBlock();
-	}
-	else {
-		console.log(chalk.red.bold('YOU NEED TO WAIT AT LEAST TWO DAYS HERE'));
-	};
-
-	await timelockInstance.executeTransaction(...tx_nugget);
-	await governanceInstance.__acceptAdmin({ from: OWNER });
-	const timelock_admin_address = await timelockInstance.admin.call();
-	console.log("timelock_admin [AFTER]: ", timelock_admin_address)
 }
