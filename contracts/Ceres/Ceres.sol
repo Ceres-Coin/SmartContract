@@ -200,16 +200,19 @@ contract CEREStable is ERC20Custom, AccessControl {
     /* ========== RESTRICTED FUNCTIONS ========== */
 
     // Used by pools when user redeems
+    // TODO: [FUNC][pool_burn_from]
     function pool_burn_from(address b_address, uint256 b_amount) public onlyPools {
         super._burnFrom(b_address, b_amount);
         emit CERESBurned(b_address, msg.sender, b_amount);
     }
-
+[
+    // TODO: [FUNC][pool_mint]
     function pool_mint(address m_address, uint256 m_amount) public onlyPools {
         super._mint(m_address, m_amount);
         emit CERESMinted(msg.sender, m_address, m_amount);
     }
 
+    // TODO: [FUNC][addPool]
     // Adds collateral addresses supported, such as tether and busd, must be ERC20 
     function addPool(address pool_address) public onlyByOwnerOrGovernance {
         require(ceres_pools[pool_address] == false, "address already exists");
@@ -218,6 +221,7 @@ contract CEREStable is ERC20Custom, AccessControl {
     }
 
     // Remove a pool 
+    // TODO: [FUNC][removePool]
     function removePool(address pool_address) public onlyByOwnerOrGovernance {
         require(ceres_pools[pool_address] == true, "address doesn't exist already");
         
@@ -233,22 +237,27 @@ contract CEREStable is ERC20Custom, AccessControl {
         }
     }
 
+    // TODO: [FUNC][setOwner]
     function setOwner(address _owner_address) external onlyByOwnerOrGovernance {
         owner_address = _owner_address;
     }
 
+    // TODO: [FUNC][setRedemptionFee]
     function setRedemptionFee(uint256 red_fee) public onlyByOwnerOrGovernance {
         redemption_fee = red_fee;
     }
 
+    // TODO: [FUNC][setMintingFee]
     function setMintingFee(uint256 min_fee) public onlyByOwnerOrGovernance {
         minting_fee = min_fee;
     }  
 
+    // TODO: [FUNC][setMintingFee]
     function setCeresStep(uint256 _new_step) public onlyByOwnerOrGovernance {
         ceres_step = _new_step;
     }  
 
+    // TODO: [FUNC][setPriceTarget]
     function setPriceTarget (uint256 _new_price_target) public onlyByOwnerOrGovernance {
         price_target = _new_price_target;
     }
