@@ -106,7 +106,7 @@ contract ChainlinkETHUSDPriceConsumerTest {
         // You can can multiply the "true" price by 1e6 to get the ceres ecosystem 'price'
         // return price;
 
-        return 269000000000;
+        return 211800000000;
     }
 
     function getDecimals() public view returns (uint8) {
