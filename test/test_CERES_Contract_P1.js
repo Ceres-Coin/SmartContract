@@ -5,6 +5,7 @@ const chalk = require('chalk');
 const Contract = require('web3-eth-contract');
 const { expectRevert, time } = require('@openzeppelin/test-helpers');
 const { assert, expect } = require('chai');
+const constants = require('@openzeppelin/test-helpers/src/constants');
 
 // Set provider for all later instances to use
 Contract.setProvider('http://127.0.0.1:8545');
@@ -302,14 +303,15 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const timelock_address = await ceresInstance.timelock_address();
 		const controller_address = await ceresInstance.controller_address();
 
-		console.log(chalk.yellow(`owner_address: ${owner_address}`));
-		console.log(chalk.yellow(`creator_address: ${creator_address}`));
-		console.log(chalk.yellow(`timelock_address: ${timelock_address}`));
-		console.log(chalk.yellow(`controller_address: ${controller_address}`));
+		// console.log(chalk.yellow(`owner_address: ${owner_address}`));
+		// console.log(chalk.yellow(`creator_address: ${creator_address}`));
+		// console.log(chalk.yellow(`timelock_address: ${timelock_address}`));
+		// console.log(chalk.yellow(`controller_address: ${controller_address}`));
 
-		expect(owner_address).equal.to(OWNER);
-		expect(creator_address).equal.to(OWNER);
-		expect(timelock_address).equal.to(timelockInstance.address);
+		expect(owner_address).to.equal(OWNER);
+		expect(creator_address).to.equal(OWNER);
+		expect(timelock_address).to.equal(timelockInstance.address);
+		expect(controller_address).to.equal(constants.ZERO_ADDRESS);
 	})
 
 
