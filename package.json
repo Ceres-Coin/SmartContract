@@ -22,8 +22,6 @@
     "migrate_singleFile_11" : "truffle migrate -f 11 --to 11 --network development --skip-dry-run",
     "migrate_singleFile_12" : "truffle migrate -f 12 --to 12 --network development --skip-dry-run",
     "migrate_singleFile_13" : "truffle migrate -f 13 --to 13 --network development --skip-dry-run",
-    "migrate_singleFile_14" : "truffle migrate -f 14 --to 14 --network development --skip-dry-run",
-    "migrate_singleFile_15" : "truffle migrate -f 15 --to 15 --network development --skip-dry-run",
     "migration_bscTestnet_reset": "truffle migrate --network testnet --skip-dry-run --reset",
     "migration_bscTestnet_noReset": "truffle migrate --network testnet --skip-dry-run",
     "migration_ropsten_reset": "truffle migrate --network ropsten --skip-dry-run --reset",
