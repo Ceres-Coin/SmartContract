@@ -355,7 +355,7 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		console.log(chalk.yellow(`token0: ${token0}`));
 		console.log(chalk.yellow(`token1: ${token1}`));
 
-		
+		console.log(chalk.yellow("----------------------------- SEPERATOR ---------------------------"));
 		const price0CumulativeLast = await instanceCeresEthOracle.price0CumulativeLast();
 		const price1CumulativeLast = await instanceCeresEthOracle.price1CumulativeLast();
 		console.log(chalk.yellow(`price0CumulativeLast: ${price0CumulativeLast}`));
@@ -373,6 +373,9 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 		const blockTimestampLast = await instanceCeresEthOracle.blockTimestampLast();
 		console.log(chalk.yellow(`blockTimestampLast: ${blockTimestampLast}`));
+
+		const pair_address = await instanceCeresEthOracle.pair_address();
+		console.log(chalk.yellow(`pair_address: ${pair_address}`));
 	})
 
 
