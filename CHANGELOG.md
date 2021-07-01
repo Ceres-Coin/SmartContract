@@ -5,6 +5,8 @@ FINISH DEPLOYMENT SCRIPTS IN "Migrations" folder
    1. "migrations/13_token_vesting.js"
 3. ADD NEW TODO: TASKS
 
+<!-- TODO:  ADD More Test Scripts under "Test" folder -->
+
 
 ## [0.1.210701-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210630-a...0.1.210701-a) (2021-06-30)
 1. Test for submit proposal from Timelock Contracts
@@ -42,7 +44,7 @@ FINISH DEPLOYMENT SCRIPTS IN "Migrations" folder
 17. add oracle_instance.update() func
 18. add NEXT TO DO TASKS
 
-<!-- TODO: add other deployment scritps -->
+<!-- Next Release: add other deployment scritps -->
 
 
 ## [0.1.210630-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210630-a) (2021-06-29)
@@ -82,7 +84,7 @@ FINISH DEPLOYMENT SCRIPTS IN "Migrations" folder
    17. added test cases for availableExcessCollatDV
    18. added test cases for getCollateralPrice() func
 
-Next TO: Continue to Investigate the Contract Code and Deployment Scripts
+<!-- Next Release: Continue to Investigate the Contract Code and Deployment Scripts -->
 
 
 ## [0.1.210629-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210629-b) (2021-06-29)
@@ -136,7 +138,7 @@ Debug the USDC_POOL contracts & Test Scripts
    2. FINISH migrations/2_deploy_contract_phase_1.js
    3. FINISH migrations/3_deploy_contract_phase_2.js
 
-Continue to Tuning deployment scripts under MIGRATIONS folders
+<!-- Next Release: Continue to Tuning deployment scripts under MIGRATIONS folders -->
 
 
 
