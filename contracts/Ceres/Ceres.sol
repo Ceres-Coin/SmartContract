@@ -205,7 +205,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         super._burnFrom(b_address, b_amount);
         emit CERESBurned(b_address, msg.sender, b_amount);
     }
-[
+
     // TODO: [FUNC][pool_mint]
     function pool_mint(address m_address, uint256 m_amount) public onlyPools {
         super._mint(m_address, m_amount);
