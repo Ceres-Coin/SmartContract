@@ -20,19 +20,19 @@ contract UniswapPairOracle {
     uint public CONSULT_LENIENCY = 120; // Used for being able to consult past the period end
     bool public ALLOW_STALE_CONSULTS = true; // If false, consult() will fail if the TWAP is stale
 
-    IUniswapV2Pair public immutable pair;
-    address public immutable token0;
-    address public immutable token1;
+    IUniswapV2Pair public immutable pair; //TEST CASE DONE
+    address public immutable token0; //TEST CASE DONE
+    address public immutable token1; //TEST CASE DONE
 
-    uint    public price0CumulativeLast;
-    uint    public price1CumulativeLast;
+    uint    public price0CumulativeLast; //TEST CASE DONE
+    uint    public price1CumulativeLast; //TEST CASE DONE
     
-    FixedPoint.uq112x112 public price0Average;
-    FixedPoint.uq112x112 public price1Average;
+    FixedPoint.uq112x112 public price0Average; //TEST CASE DONE
+    FixedPoint.uq112x112 public price1Average; //TEST CASE DONE
     
-    uint112 public reserve0;
-    uint112 public reserve1;
-    uint32  public blockTimestampLast;
+    uint112 public reserve0; //TEST CASE DONE
+    uint112 public reserve1; //TEST CASE DONE
+    uint32  public blockTimestampLast; //TEST CASE DONE
 
     modifier onlyByOwnerOrGovernance() {
         require(msg.sender == owner_address || msg.sender == timelock_address, "You are not an owner or the governance timelock");
@@ -74,11 +74,13 @@ contract UniswapPairOracle {
         ALLOW_STALE_CONSULTS = _allow_stale_consults;
     }
 
+    //TEST CASE DONE
     function pair_address() public view returns(address) {
         return address(pair);
     }
 
     // Check if update() can be called instead of wasting gas calling it
+    //TEST CASE DONE
     function canUpdate() public view returns (bool) {
         uint32 blockTimestamp = UniswapV2OracleLibrary.currentBlockTimestamp();
         uint32 timeElapsed = blockTimestamp - blockTimestampLast; // Overflow is desired
