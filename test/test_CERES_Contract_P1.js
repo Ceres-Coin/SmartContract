@@ -294,6 +294,22 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 	it ("Test Scripts for ceresInstance.genesis_supply, its default value is one_million_dec18", async() => {
 		const genesis_supply = parseFloat(await ceresInstance.genesis_supply());
 		expect(genesis_supply).to.equal(parseFloat(ONE_MILLION_DEC18));
+	});
+
+	it ("Test Scripts for ceresInstance.owner_address,creator_address,timelock_address,controller_address", async() => {
+		const owner_address = await ceresInstance.owner_address();
+		const creator_address = await ceresInstance.creator_address();
+		const timelock_address = await ceresInstance.timelock_address();
+		const controller_address = await ceresInstance.controller_address();
+
+		console.log(chalk.yellow(`owner_address: ${owner_address}`));
+		console.log(chalk.yellow(`creator_address: ${creator_address}`));
+		console.log(chalk.yellow(`timelock_address: ${timelock_address}`));
+		console.log(chalk.yellow(`controller_address: ${controller_address}`));
+
+		expect(owner_address).equal.to(OWNER);
+		expect(creator_address).equal.to(OWNER);
+		expect(timelock_address).equal.to(timelockInstance.address);
 	})
 
 

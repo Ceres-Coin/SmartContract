@@ -38,6 +38,7 @@ module.exports = async function(deployer, network, accounts) {
 	await deployer.deploy(Timelock, ADMIN, TIMELOCK_DELAY,{from: OWNER});
 	await deployer.deploy(MigrationHelper, ADMIN,{from: OWNER});
 	const timelockInstance = await Timelock.deployed();
+	console.log(chalk.red(`timelockInstance: ${timelockInstance.address}`));
 	const migrationHelperInstance = await MigrationHelper.deployed();
 	
 	// For Test USE 
