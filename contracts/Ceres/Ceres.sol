@@ -31,10 +31,10 @@ contract CEREStable is ERC20Custom, AccessControl {
     string public name; //test case done
     uint8 public constant decimals = 18; //test case done
     // TODO: [PARAMETERS][ADDRESSES]
-    address public owner_address;
-    address public creator_address;
-    address public timelock_address; 
-    address public controller_address; 
+    address public owner_address; //test case done
+    address public creator_address; //test case done
+    address public timelock_address; //test case done
+    address public controller_address; //test case done
     address public css_address;
     address public ceres_eth_oracle_address;
     address public css_eth_oracle_address;
