@@ -262,18 +262,22 @@ contract CEREStable is ERC20Custom, AccessControl {
         price_target = _new_price_target;
     }
 
+    // TODO: [FUNC][setPriceBand]
     function setPriceBand(uint256 _price_band) external onlyByOwnerOrGovernance {
         price_band = _price_band;
     }
 
+    // TODO: [FUNC][setRefreshCooldown]
     function setRefreshCooldown(uint256 _new_cooldown) public onlyByOwnerOrGovernance {
     	refresh_cooldown = _new_cooldown;
     }
 
+    // TODO: [FUNC][setCSSAddress]
     function setCSSAddress(address _css_address) public onlyByOwnerOrGovernance {
         css_address = _css_address;
     }
 
+    // TODO: [FUNC][setETHUSDOracle]
     function setETHUSDOracle(address _eth_usd_consumer_address) public onlyByOwnerOrGovernance {
         eth_usd_consumer_address = _eth_usd_consumer_address;
         eth_usd_pricer = ChainlinkETHUSDPriceConsumer(eth_usd_consumer_address);
