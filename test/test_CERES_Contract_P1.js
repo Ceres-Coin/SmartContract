@@ -284,11 +284,11 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 	it ("Test Scripts for ceresInstance.name/symbol/decimals", async() => {
 		const name = await ceresInstance.name();
 		const symbol = await ceresInstance.symbol();
-		const decimals = parseFloat(await ceresInstance.name());
+		const decimals = parseFloat(await ceresInstance.decimals());
 
-		expect(decimals).to.equal(DECIMALS_DEFAULT_VALUE);
 		expect(name).to.equal(NAME_DEFAULT_VALUE);
 		expect(symbol).to.equal(SYMBOL_DEFAULT_VALUE);
+		expect(decimals).to.equal(DECIMALS_DEFAULT_VALUE);
 	})
 
 
