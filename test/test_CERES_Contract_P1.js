@@ -339,11 +339,24 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(css_eth_oracle_address).to.equal(oracle_instance_CSS_WETH.address);
 	});
 
-	it ("Test Scripts for ceresInstance.CeresEthOracle", async() => {
+	// Test for ceresInstance.CeresEthOracle address
+	// Test for invoke parameters in "ceresInstance.CeresEthOracle"
+	it ("Test Scripts for ceresInstance.CeresEthOracle instances", async() => {
 		const CeresEthOracle_address = await ceresInstance.CeresEthOracle();
-		console.log(chalk.yellow(`CeresEthOracle_address: ${CeresEthOracle_address}`));
-
+		// console.log(chalk.yellow(`CeresEthOracle_address: ${CeresEthOracle_address}`));
 		const instanceCeresEthOracle = await UniswapPairOracle.at(CeresEthOracle_address);
+		const PERIOD = parseFloat(await instanceCeresEthOracle.PERIOD());
+		expect(PERIOD).to.equal(5);
+
+		const token0 = await instanceCeresEthOracle.token0();
+		const token1 = await instanceCeresEthOracle.token1();
+		console.log(chalk.blue(`ceresInstance.address: ${ceresInstance.address}`));
+		console.log(chalk.blue(`wethInstance.address: ${wethInstance.address}`));
+		console.log(chalk.yellow(`token0: ${token0}`));
+		console.log(chalk.yellow(`token1: ${token1}`));
+
+		
+
 	})
 
 
