@@ -265,6 +265,11 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 	it ("Test Scripts for ceresInstance.collateral_ratio_paused(), its default value is false", async() => {
 		const collateral_ratio_paused = await ceresInstance.collateral_ratio_paused();
 		expect(collateral_ratio_paused).to.equal(false);
+	});
+
+	it ("Test Scripts for ceresInstance.DEFAULT_ADMIN_ADDRESS", async() => {
+		const DEFAULT_ADMIN_ADDRESS = await ceresInstance.DEFAULT_ADMIN_ADDRESS();
+		console.log(chalk.yellow(`DEFAULT_ADMIN_ADDRESS: ${DEFAULT_ADMIN_ADDRESS}`));
 	})
 
 
