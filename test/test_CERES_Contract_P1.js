@@ -289,6 +289,11 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(name).to.equal(NAME_DEFAULT_VALUE);
 		expect(symbol).to.equal(SYMBOL_DEFAULT_VALUE);
 		expect(decimals).to.equal(DECIMALS_DEFAULT_VALUE);
+	});
+
+	it ("Test Scripts for ceresInstance.genesis_supply, its default value is one_million_dec18", async() => {
+		const genesis_supply = parseFloat(await ceresInstance.genesis_supply());
+		expect(genesis_supply).to.equal(parseFloat(ONE_MILLION_DEC18));
 	})
 
 

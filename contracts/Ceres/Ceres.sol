@@ -27,9 +27,9 @@ contract CEREStable is ERC20Custom, AccessControl {
     // TODO: [PARAMETERS2]
     UniswapPairOracle public CeresEthOracle;
     UniswapPairOracle public CSSEthOracle;
-    string public symbol;
-    string public name;
-    uint8 public constant decimals = 18;
+    string public symbol; //test case done
+    string public name; //test case done
+    uint8 public constant decimals = 18; //test case done
     // TODO: [PARAMETERS][ADDRESSES]
     address public owner_address;
     address public creator_address;
@@ -39,7 +39,7 @@ contract CEREStable is ERC20Custom, AccessControl {
     address public ceres_eth_oracle_address;
     address public css_eth_oracle_address;
     address public weth_address;
-    uint256 public constant genesis_supply = 1000000e18; 
+    uint256 public constant genesis_supply = 1000000e18; //test case done
 
     
     address[] public ceres_pools_array;
