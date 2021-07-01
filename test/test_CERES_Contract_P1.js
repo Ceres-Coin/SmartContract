@@ -409,8 +409,10 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const CeresEthOracle_address = await ceresInstance.CeresEthOracle();
 		const instanceCeresEthOracle = await UniswapPairOracle.at(CeresEthOracle_address);
 		let ceres_price_from_CERES_WETH = parseFloat((new BigNumber(await instanceCeresEthOracle.consult.call(wethInstance.address, BIG6))).div(BIG6));
-
-		console.log(chalk.yellow(`ceres_price_from_CERES_WETH: ${ceres_price_from_CERES_WETH}`));
+		// PRINT
+		// console.log(chalk.yellow(`ceres_price_from_CERES_WETH: ${ceres_price_from_CERES_WETH}`));
+		// ASSERTION
+		expect(ceres_price_from_CERES_WETH).to.gt(0);
 	});
 
 
