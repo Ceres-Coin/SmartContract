@@ -114,26 +114,32 @@ module.exports = async function(deployer, network, accounts) {
 		// Note UniswapV2Router02 vs UniswapV2Router02_Modified
 		routerInstance = await UniswapV2Router02.at("0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"); 
 		uniswapFactoryInstance = await UniswapV2Factory.at("0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"); 
+
 		ceresInstance = await CEREStable.deployed();
 		cssInstance = await CEREShares.deployed();
 		wethInstance = await WETH.deployed();
 		col_instance_USDC = await FakeCollateral_USDC.deployed(); 
 		col_instance_USDT = await FakeCollateral_USDT.deployed(); 
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
+		
 		timelockInstance = await Timelock.deployed();
+		swapToPriceInstance = await SwapToPrice.deployed();
+		migrationHelperInstance = await MigrationHelper.deployed()
+		governanceInstance = await GovernorAlpha.deployed();
 	}
 	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE) {
+		routerInstance = await UniswapV2Router02_Modified.deployed(); 
 		uniswapFactoryInstance = await UniswapV2Factory.deployed(); 
+
 		ceresInstance = await CEREStable.deployed();
 		cssInstance = await CEREShares.deployed();
 		wethInstance = await WETH.deployed();
 		col_instance_USDC = await FakeCollateral_USDC.deployed(); 
 		col_instance_USDT = await FakeCollateral_USDT.deployed(); 
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
+
 		timelockInstance = await Timelock.deployed();
-		routerInstance = await UniswapV2Router02_Modified.deployed(); 
 		swapToPriceInstance = await SwapToPrice.deployed();
-		// Governance Contract
 		migrationHelperInstance = await MigrationHelper.deployed()
 		governanceInstance = await GovernorAlpha.deployed();
 	}
@@ -144,11 +150,11 @@ module.exports = async function(deployer, network, accounts) {
 	const theTime = await time.latest();
 	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE)
 	{
-		await deployer.deploy(TokenVesting, METAMASK_ADDRESS, theTime, 86400, 86400 * 10, true, { from: ADMIN });
+		await deployer.deploy(TokenVesting, METAMASK_ADDRESS, theTime, 86400, 86400 * 10, true, { from: OWNER });
 	}
 
 	const instanceTokenVesting = await TokenVesting.deployed();
 	console.log(chalk.yellow(`instanceTokenVesting: ${instanceTokenVesting.address}`));
-	
+
 	
 }
