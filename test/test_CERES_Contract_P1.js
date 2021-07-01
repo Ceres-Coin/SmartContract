@@ -182,6 +182,9 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 	const global_collateral_ratio_initial_value = 1000000;
 	const RefreshCooldown_Initial_Value = 60;
+	const DECIMALS_DEFAULT_VALUE = 18;
+	const NAME_DEFAULT_VALUE = "CERES";
+	const SYMBOL_DEFAULT_VALUE = "CERES";
 
     beforeEach(async() => {
 		ADMIN = accounts[0];
@@ -276,6 +279,16 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 	it ("Test scripts for ceresInstance.PRICE_PRECISION, its default should be BIG6",async() => {
 		const PRICE_PRECISION = parseFloat(await ceresInstance.PRICE_PRECISION());
 		expect(PRICE_PRECISION).to.equal(parseFloat(BIG6));
+	});
+
+	it ("Test Scripts for ceresInstance.name/symbol/decimals", async() => {
+		const name = await ceresInstance.name();
+		const symbol = await ceresInstance.symbol();
+		const decimals = parseFloat(await ceresInstance.name());
+
+		expect(decimals).to.equal(DECIMALS_DEFAULT_VALUE);
+		expect(name).to.equal(NAME_DEFAULT_VALUE);
+		expect(symbol).to.equal(SYMBOL_DEFAULT_VALUE);
 	})
 
 
