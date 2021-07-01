@@ -376,6 +376,7 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 		const pair_address = await instanceCeresEthOracle.pair_address();
 		console.log(chalk.yellow(`pair_address: ${pair_address}`));
+		
 	})
 
 
