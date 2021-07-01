@@ -445,7 +445,7 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(pair_address).to.equal(pair_addr_CSS_WETH);
 		expect(pair_address).to.equal(pair);
 
-		const canUpdate = await instanceCeresEthOracle.canUpdate();
+		const canUpdate = await instanceCSSEthOracle.canUpdate();
 		expect(canUpdate).to.equal(true);
 	});
 
