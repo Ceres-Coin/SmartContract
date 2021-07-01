@@ -19,16 +19,18 @@ contract CEREStable is ERC20Custom, AccessControl {
     /* ========== STATE VARIABLES ========== */
     enum PriceChoice { CERES, CSS }
     // ChainLinkETHUSD parameters;
+    // TODO: [PARAMETERS3]
     address public eth_usd_consumer_address;
     ChainlinkETHUSDPriceConsumer public eth_usd_pricer;
     uint8 public eth_usd_pricer_decimals;
     
-
+    // TODO: [PARAMETERS2]
     UniswapPairOracle public CeresEthOracle;
     UniswapPairOracle public CSSEthOracle;
     string public symbol;
     string public name;
     uint8 public constant decimals = 18;
+    // TODO: [PARAMETERS][ADDRESSES]
     address public owner_address;
     address public creator_address;
     address public timelock_address; 
@@ -45,7 +47,7 @@ contract CEREStable is ERC20Custom, AccessControl {
     
     mapping(address => bool) public ceres_pools; 
 
-    
+    // TODO: [PARAMETER]
     uint256 public constant PRICE_PRECISION = 1e6;
     
     uint256 public global_collateral_ratio; 
@@ -112,7 +114,7 @@ contract CEREStable is ERC20Custom, AccessControl {
     }
 
     /* ========== VIEWS ========== */
-
+    // [FUNC][PRIVATE]
     function oracle_price(PriceChoice choice) internal view returns (uint256) {
         // Get the ETH / USD price first, and cut it down to 1e6 precision
         uint256 eth_usd_price = uint256(eth_usd_pricer.getLatestPrice()).mul(PRICE_PRECISION).div(uint256(10) ** eth_usd_pricer_decimals);
@@ -130,19 +132,21 @@ contract CEREStable is ERC20Custom, AccessControl {
         return eth_usd_price.mul(PRICE_PRECISION).div(price_vs_eth);
     }
 
+    // TODO: [FUNC][ceres_price]
     function ceres_price() public view returns (uint256) {
         return oracle_price(PriceChoice.CERES);
     }
 
+    // TODO: [FUNC][css_price]
     function css_price()  public view returns (uint256) {
         return oracle_price(PriceChoice.CSS);
     }
-
+    // TODO: [FUNC][eth_usd_price]
     function eth_usd_price() public view returns (uint256) {
         return uint256(eth_usd_pricer.getLatestPrice()).mul(PRICE_PRECISION).div(uint256(10) ** eth_usd_pricer_decimals);
     }
 
-
+    // TODO: [FUNC][ceres_info]
     function ceres_info() public view returns (uint256, uint256, uint256, uint256, uint256, uint256, uint256, uint256) {
         return (
             oracle_price(PriceChoice.CERES), 
@@ -155,7 +159,7 @@ contract CEREStable is ERC20Custom, AccessControl {
             uint256(eth_usd_pricer.getLatestPrice()).mul(PRICE_PRECISION).div(uint256(10) ** eth_usd_pricer_decimals) 
         );
     }
-
+    // TODO: [FUNC][globalCollateralValue]
     function globalCollateralValue() public view returns (uint256) {
         uint256 total_collateral_value_d18 = 0; 
 
@@ -283,31 +287,33 @@ contract CEREStable is ERC20Custom, AccessControl {
         eth_usd_pricer = ChainlinkETHUSDPriceConsumer(eth_usd_consumer_address);
         eth_usd_pricer_decimals = eth_usd_pricer.getDecimals();
     }
-
+    // TODO: [FUNC][setTimelock]
     function setTimelock(address new_timelock) external onlyByOwnerOrGovernance {
         timelock_address = new_timelock;
     }
 
+    // TODO: [FUNC][setController]
     function setController(address _controller_address) external onlyByOwnerOrGovernance {
         controller_address = _controller_address;
     }
 
 
 
-     
+    //  TODO: [FUNC][setCeresEthOracle]
     function setCeresEthOracle(address _ceres_oracle_addr, address _weth_address) public onlyByOwnerOrGovernance {
         ceres_eth_oracle_address = _ceres_oracle_addr;
         CeresEthOracle = UniswapPairOracle(_ceres_oracle_addr); 
         weth_address = _weth_address;
     }
 
-    
+    // TODO: [FUNC][setCSSEthOracle]
     function setCSSEthOracle(address _css_oracle_addr, address _weth_address) public onlyByOwnerOrGovernance {
         css_eth_oracle_address = _css_oracle_addr;
         CSSEthOracle = UniswapPairOracle(_css_oracle_addr);
         weth_address = _weth_address;
     }
 
+    // TODO: [FUNC][toggleCollateralRatio]
     function toggleCollateralRatio() public onlyCollateralRatioPauser {
         collateral_ratio_paused = !collateral_ratio_paused;
     }
