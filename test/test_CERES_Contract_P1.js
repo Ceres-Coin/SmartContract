@@ -387,8 +387,6 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(pair_address).to.equal(pair_addr_CERES_WETH);
 		expect(pair_address).to.equal(pair);
 		console.log(chalk.yellow("----------------------------- SEPERATOR ---------------------------"));
-		
-
 		const canUpdate = await instanceCeresEthOracle.canUpdate();
 		console.log(chalk.yellow(`canUpdate: ${canUpdate}`));
 	});
@@ -396,13 +394,9 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 	it ("Test Scripts for ceresInstance.CeresEthOracle UPDATE()", async() => {
 		const CeresEthOracle_address = await ceresInstance.CeresEthOracle();
 		const instanceCeresEthOracle = await UniswapPairOracle.at(CeresEthOracle_address);
-
 		await instanceCeresEthOracle.setPeriod(MIN_PERIOD, { from: OWNER });
 		await instanceCeresEthOracle.update({from: OWNER});
 		await instanceCeresEthOracle.setPeriod(DEFAULT_PERIOD, { from: OWNER });
-
-		
-
 	});
 
 	it ("Test Scripts for ceresInstance.CeresEthOracle consult()", async() => {
