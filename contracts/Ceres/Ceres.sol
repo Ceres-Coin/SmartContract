@@ -58,7 +58,7 @@ contract CEREStable is ERC20Custom, AccessControl {
     uint256 public price_target; 
     uint256 public price_band; 
 
-    address public DEFAULT_ADMIN_ADDRESS;
+    address public DEFAULT_ADMIN_ADDRESS; //TEST CASE DONE
     bytes32 public constant COLLATERAL_RATIO_PAUSER = keccak256("COLLATERAL_RATIO_PAUSER");
     bool public collateral_ratio_paused = false; //TEST CASE DONE
 

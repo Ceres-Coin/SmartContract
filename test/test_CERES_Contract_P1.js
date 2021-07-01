@@ -267,11 +267,18 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(collateral_ratio_paused).to.equal(false);
 	});
 
-	it ("Test Scripts for ceresInstance.DEFAULT_ADMIN_ADDRESS", async() => {
+	it ("Test Scripts for ceresInstance.DEFAULT_ADMIN_ADDRESS, its default value should be ADMIN", async() => {
 		const DEFAULT_ADMIN_ADDRESS = await ceresInstance.DEFAULT_ADMIN_ADDRESS();
 		// console.log(chalk.yellow(`DEFAULT_ADMIN_ADDRESS: ${DEFAULT_ADMIN_ADDRESS}`));
 		expect(DEFAULT_ADMIN_ADDRESS).to.equal(ADMIN);
+	});
+
+	it ("Test scripts for ceresInstance.PRICE_PRECISION, its default should be BIG6",async() => {
+		const PRICE_PRECISION = parseFloat(await ceresInstance.PRICE_PRECISION());
+		expect(PRICE_PRECISION).to.equal(parseFloat(BIG6));
 	})
+
+
 
 
 
