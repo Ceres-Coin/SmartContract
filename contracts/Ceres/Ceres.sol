@@ -25,12 +25,14 @@ contract CEREStable is ERC20Custom, AccessControl {
     uint8 public eth_usd_pricer_decimals;
     
     // [PARAMETERS2]
+    // TEST CASE DONE
     UniswapPairOracle public CeresEthOracle; //test case done
     UniswapPairOracle public CSSEthOracle; //test case done
     string public symbol; //test case done
     string public name; //test case done
     uint8 public constant decimals = 18; //test case done
-    // TODO: [PARAMETERS][ADDRESSES]
+    // [PARAMETERS][ADDRESSES]
+    // TEST CASE DONE
     address public owner_address; //test case done
     address public creator_address; //test case done
     address public timelock_address; //test case done
