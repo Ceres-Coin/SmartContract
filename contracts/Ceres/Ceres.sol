@@ -20,9 +20,9 @@ contract CEREStable is ERC20Custom, AccessControl {
     enum PriceChoice { CERES, CSS }
     // ChainLinkETHUSD parameters;
     // TODO: [PARAMETERS3]
-    address public eth_usd_consumer_address;
+    address public eth_usd_consumer_address; //TEST CASE DONE
     ChainlinkETHUSDPriceConsumer public eth_usd_pricer;
-    uint8 public eth_usd_pricer_decimals;
+    uint8 public eth_usd_pricer_decimals; //TEST CASE DONE
     
     // [PARAMETERS2]
     // TEST CASE DONE

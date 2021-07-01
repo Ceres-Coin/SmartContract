@@ -257,6 +257,12 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		// console.log(chalk.yellow(`eth_usd_consumer_address: ${eth_usd_consumer_address}`));
 		expect(eth_usd_consumer_address).to.equal(oracle_chainlink_ETH_USD.address);
 	});
+
+	it ("Test Scripts for ceresInstance.eth_usd_pricer_decimals", async() => {
+		const eth_usd_pricer_decimals = parseFloat(await ceresInstance.eth_usd_pricer_decimals());
+		// console.log(chalk.yellow(`eth_usd_pricer_decimals: ${eth_usd_pricer_decimals}`));
+		expect(eth_usd_pricer_decimals).to.equal(8);
+	});
 });
 
 
