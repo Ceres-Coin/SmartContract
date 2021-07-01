@@ -77,6 +77,7 @@ contract('test_CERES_USDC_Pool_P3', async (accounts) => {
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
 	let OWNER;
+	let METAMASK_ADDRESS;
 
 	// CERES Core  Contract instances
 	let ceresInstance;
@@ -183,6 +184,7 @@ contract('test_CERES_USDC_Pool_P3', async (accounts) => {
 		ADMIN = accounts[0];
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
 		OWNER = accounts[1];
+		METAMASK_ADDRESS = accounts[2];
 		const account0 = accounts[0];
 		const account1 = accounts[1];
 		const account2 = accounts[2];
@@ -231,144 +233,11 @@ contract('test_CERES_USDC_Pool_P3', async (accounts) => {
 		pool_instance_USDC = await Pool_USDC.deployed();
     });
 
-	it ("Test Scripts for collat_eth_oracle_address()", async() => {
-		const collat_eth_oracle_address = await pool_instance_USDC.collat_eth_oracle_address();
-		// console.log(chalk.yellow(`collat_eth_oracle_address: ${collat_eth_oracle_address}`));
-		expect(collat_eth_oracle_address).to.not.be.empty;
+	it ("Test Scripts for ceresInstance.address", async() => {
+		const ceresInstance_address = await ceresInstance.ceresInstance;
+		console.log(chalk.yellow(`ceresInstance_address: ${ceresInstance_address}`));
+		expect(ceresInstance_address).to.not.be.empty;
 	});
-
-	it ("Print Parameters", async() => {
-		// PRINT
-		console.log(chalk.yellow("=================== PRINT PARAMETERS for Contract================="));
-		console.log(chalk.yellow(`timelock_address: ${await pool_instance_USDC.timelock_address()}`));
-		console.log(chalk.yellow(`owner_address: ${await pool_instance_USDC.owner_address()}`));
-		console.log(chalk.yellow(`collat_eth_oracle_address: ${await pool_instance_USDC.collat_eth_oracle_address()}`));
-
-		// ASSERTION
-		expect(await pool_instance_USDC.owner_address()).to.equal(OWNER);
-		expect(await pool_instance_USDC.timelock_address()).to.equal(timelockInstance.address);
-		
-		console.log(chalk.yellow("=================== PRINT PARAMETERS for Token================="));
-		console.log(chalk.yellow(`ceres_contract_address: ${await pool_instance_USDC.ceres_contract_address()}`));
-		console.log(chalk.yellow(`css_contract_address: ${await pool_instance_USDC.css_contract_address()}`));
-		console.log(chalk.yellow(`weth_address: ${await pool_instance_USDC.weth_address()}`));
-		console.log(chalk.yellow(`collateral_address: ${await pool_instance_USDC.collateral_address()}`));
-		
-		// ASSERTION
-		expect(await pool_instance_USDC.ceres_contract_address()).to.equal(ceresInstance.address);
-		expect(await pool_instance_USDC.css_contract_address()).to.equal(cssInstance.address);
-		expect(await pool_instance_USDC.weth_address()).to.equal(wethInstance.address);
-		expect(await pool_instance_USDC.collateral_address()).to.equal(col_instance_USDC.address);
-	})
-
-	it ("Print Parameters P2", async() => {
-		// GET
-		const PRICE_PRECISION = (new BigNumber(await pool_instance_USDC.PRICE_PRECISION())).toNumber();
-		const COLLATERAL_RATIO_PRECISION = (new BigNumber(await pool_instance_USDC.COLLATERAL_RATIO_PRECISION())).toNumber();
-		const COLLATERAL_RATIO_MAX = (new BigNumber(await pool_instance_USDC.COLLATERAL_RATIO_MAX())).toNumber();
-		// ASSERTION
-		expect(PRICE_PRECISION).to.equal(BIG6.toNumber());
-		expect(COLLATERAL_RATIO_PRECISION).to.equal(BIG6.toNumber());
-		expect(COLLATERAL_RATIO_MAX).to.equal(BIG6.toNumber());
-
-		// GET-2
-		const missing_decimals = (new BigNumber(await pool_instance_USDC.missing_decimals())).toNumber();
-		const pausedPrice = (new BigNumber(await pool_instance_USDC.pausedPrice())).toNumber();
-		const redemption_delay = (new BigNumber(await pool_instance_USDC.redemption_delay())).toNumber();
-		const bonus_rate = (new BigNumber(await pool_instance_USDC.bonus_rate())).toNumber();
-		// ASSERTION-2
-		expect(missing_decimals).to.equal(12);
-		expect(pausedPrice).to.equal(0);
-		expect(redemption_delay).to.equal(1);
-		expect(bonus_rate).to.equal(7500);
-	});
-
-	it ("Print Parameters P3", async() => {
-		// TEST CASE for AccessControl state variables
-		// GET
-		const mintPaused = await pool_instance_USDC.mintPaused();
-		const redeemPaused = await pool_instance_USDC.redeemPaused();
-		const recollateralizePaused = await pool_instance_USDC.recollateralizePaused();
-		const buyBackPaused = await pool_instance_USDC.buyBackPaused();
-		const collateralPricePaused = await pool_instance_USDC.collateralPricePaused();
-		// ASSERTION
-		expect(mintPaused).to.equal(false);
-		expect(redeemPaused).to.equal(false);
-		expect(recollateralizePaused).to.equal(false);
-		expect(buyBackPaused).to.equal(false);
-		expect(collateralPricePaused).to.equal(false);
-
-	});
-
-	it ("Test Cases for addresses of CERES & CSS", async() => {
-		// TESE CASE for CERES & CSS address, it should be equal to ceresInstance/cssInstance.address
-		// GET FOR CERES & CSS
-		const CERES = await pool_instance_USDC.CERES();
-		const CSS = await pool_instance_USDC.CSS();
-		// ASSERTION for address
-		expect(CERES).to.equal(ceresInstance.address);
-		expect(CSS).to.equal(cssInstance.address);
-
-		// const tmpCERES = await CEREStable.at(CERES);
-		// const tmpCSS = await CEREShares.at(CSS);
-	});
-
-	it ("Test Cases for CERES Invoke Func in CERES_USDC_POOL", async() => {
-		const instanceCERES = await CEREStable.at(await pool_instance_USDC.CERES());
-		// console.log(chalk.yellow(`instanceCERES.name(): ${await instanceCERES.name()}`));
-		// console.log(chalk.yellow(`instanceCERES.symbol(): ${await instanceCERES.symbol()}`));
-		// console.log(chalk.yellow(`instanceCERES.decimals(): ${await instanceCERES.decimals()}`));
-		// console.log(chalk.blue(`instanceCERES.eth_usd_price(): ${await instanceCERES.eth_usd_price()}`));
-
-		const instanceCERES_name = await instanceCERES.name();
-		const instanceCERES_symbol = await instanceCERES.symbol();
-		const instanceCERES_decimals = (new BigNumber(await instanceCERES.decimals())).toNumber();
-		const instanceCERES_eth_usd_price = (new BigNumber(await instanceCERES.eth_usd_price())).toNumber();
-
-		expect(instanceCERES_name).to.equal("CERES");
-		expect(instanceCERES_symbol).to.equal("CERES");
-		expect(instanceCERES_decimals).to.equal(18);
-		expect(instanceCERES_eth_usd_price).to.not.equal(0);
-		// Verify the instance.eth_usd_price is equal to pool.ceres_eth_usd_price();
-		expect(instanceCERES_eth_usd_price).to.equal((new BigNumber(await pool_instance_USDC.ceres_eth_usd_price())).toNumber());
-
-	});
-
-	it ("Test Cases for CSS Invoke Func in CERES_USDC_POOL", async() => {
-		const instanceCSS = await CEREShares.at(await pool_instance_USDC.CSS());
-		const instanceCSS_name = await instanceCSS.name();
-		const instanceCSS_symbol = await instanceCSS.symbol();
-		const instanceCSS_decimals = (new BigNumber(await instanceCSS.decimals())).toNumber();
-
-		expect(instanceCSS_name).to.equal("CERES Share");
-		expect(instanceCSS_symbol).to.equal("CSS");
-		expect(instanceCSS_decimals).to.equal(18);
-	});
-
-	it ("Test Cases for collatEthOracle_eth_collat_price()", async() => {
-		expect(await pool_instance_USDC.collatEthOracle_eth_collat_price()).to.not.equal(new BigNumber(0));
-		expect((new BigNumber(await pool_instance_USDC.collatEthOracle_eth_collat_price())).toNumber()).to.gt(100000);
-	});
-
-	it ("Test Cases for collatDollarBalance", async() => {
-		// console.log(chalk.yellow(`collatDollarBalance: ${await pool_instance_USDC.collatDollarBalance()}`));
-		// console.log(chalk.yellow(`tmpValue: ${await pool_instance_USDC.tmpValue()}`));
-		// console.log(chalk.yellow(`tmpValue: ${await pool_instance_USDC.tmpValue2()}`));
-
-		expect((new BigNumber(await pool_instance_USDC.collatDollarBalance())).toNumber()).to.not.equal(0);
-		expect((new BigNumber(await pool_instance_USDC.collatDollarBalance())).toNumber()).to.gt(0);
-		expect((new BigNumber(await pool_instance_USDC.tmpValue())).toNumber()).to.gt(0);
-		expect((new BigNumber(await pool_instance_USDC.tmpValue2())).toNumber()).to.equal(0);
-
-		const availableExcessCollatDV = (new BigNumber(await pool_instance_USDC.availableExcessCollatDV())).toNumber()
-		expect(availableExcessCollatDV).to.gt(0);
-
-		const getCollateralPrice = (new BigNumber(await pool_instance_USDC.getCollateralPrice())).toNumber()
-		expect(getCollateralPrice).to.not.equal(0);
-		expect(getCollateralPrice).to.gt(0);
-	});
-
-
 
 
 
