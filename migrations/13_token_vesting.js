@@ -48,6 +48,7 @@ const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 // Core Contract
 const CEREStable = artifacts.require("Ceres/CEREStable");
 const CEREShares = artifacts.require("CSS/CEREShares");
+const TokenVesting = artifacts.require("CSS/TokenVesting");
 
 // UniswapPairOracle
 const UniswapPairOracle_CERES_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_CERES_WETH");
@@ -95,11 +96,12 @@ module.exports = async function(deployer, network, accounts) {
 	const IS_RINKEBY = (network == 'rinkeby');
 
 	// set the deploy address
-	const ADMIN = accounts[0];
-	const METAMASK_ADDRESS = accounts[2];
+
 
 	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
+	const ADMIN = accounts[0];
 	const OWNER = accounts[1];
+	const METAMASK_ADDRESS = accounts[2];
 	const account0 = accounts[0];
 	const account1 = accounts[1];
 	const account2 = accounts[2];
@@ -138,6 +140,15 @@ module.exports = async function(deployer, network, accounts) {
 
 	const pool_instance_USDC = await Pool_USDC.deployed();
 	console.log(chalk.red.bold(`pool_instance_USDC.address: ${pool_instance_USDC.address}`));
+
+	const theTime = await time.latest();
+	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE)
+	{
+		await deployer.deploy(TokenVesting, METAMASK_ADDRESS, theTime, 86400, 86400 * 10, true, { from: ADMIN });
+	}
+
+	const instanceTokenVesting = await TokenVesting.deployed();
+	console.log(chalk.yellow(`instanceTokenVesting: ${instanceTokenVesting.address}`));
 	
 	
 }

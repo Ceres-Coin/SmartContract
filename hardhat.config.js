@@ -11,10 +11,10 @@ module.exports = {
 			host: "127.0.0.1",
 			port: 8545,
 			network_id: "31337",
-			blockGasLimit: 0x1ffffffffffffe,
-      gas: 0x1ffffffffffffe,
+			blockGasLimit: 8000000,
+      gas: 8000000,
       gasPrice: 20000000000,
-      gasLimit: 0x1ffffffffffffe
+      gasLimit: 8000000
 		}
   }
 };
