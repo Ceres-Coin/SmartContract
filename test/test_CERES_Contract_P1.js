@@ -234,9 +234,8 @@ contract('test_CERES_USDC_Pool_P3', async (accounts) => {
     });
 
 	it ("Test Scripts for ceresInstance.address", async() => {
-		const ceresInstance_address = await ceresInstance.ceresInstance;
+		const ceresInstance_address = await ceresInstance.address;
 		console.log(chalk.yellow(`ceresInstance_address: ${ceresInstance_address}`));
-		expect(ceresInstance_address).to.not.be.empty;
 	});
 
 
