@@ -347,6 +347,10 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const instanceCeresEthOracle = await UniswapPairOracle.at(CeresEthOracle_address);
 		const PERIOD = parseFloat(await instanceCeresEthOracle.PERIOD());
 		expect(PERIOD).to.equal(5);
+		const CONSULT_LENIENCY = parseFloat(await instanceCeresEthOracle.CONSULT_LENIENCY());
+		expect(CONSULT_LENIENCY).to.equal(120);
+		const ALLOW_STALE_CONSULTS = await instanceCeresEthOracle.ALLOW_STALE_CONSULTS();
+		expect(ALLOW_STALE_CONSULTS).to.equal(true);
 
 		const token0 = await instanceCeresEthOracle.token0();
 		const token1 = await instanceCeresEthOracle.token1();
@@ -375,8 +379,14 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		console.log(chalk.yellow(`blockTimestampLast: ${blockTimestampLast}`));
 
 		const pair_address = await instanceCeresEthOracle.pair_address();
+		console.log(chalk.blue(`pair_addr_CERES_WETH: ${pair_addr_CERES_WETH}`));
 		console.log(chalk.yellow(`pair_address: ${pair_address}`));
+		expect(pair_address).to.equal(pair_addr_CERES_WETH);
+		console.log(chalk.yellow("----------------------------- SEPERATOR ---------------------------"));
 		
+
+		const canUpdate = await instanceCeresEthOracle.canUpdate();
+		console.log(chalk.yellow(`canUpdate: ${canUpdate}`));
 	})
 
 
