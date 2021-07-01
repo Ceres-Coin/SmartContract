@@ -258,8 +258,7 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 	});
 
 	it ("Test Scripts for ceresIntance.last_call_time()", async() => {
-		const last_call_time = parseFloat(await ceresInstance.last_call_time);
-		console.log(chalk.yellow(`last_call_time: ${last_call_time}`));
+		const last_call_time = parseFloat(await ceresInstance.last_call_time());
 		expect(last_call_time).to.gt(0);
 	});
 

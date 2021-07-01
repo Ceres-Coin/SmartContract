@@ -170,8 +170,9 @@ contract CEREStable is ERC20Custom, AccessControl {
 
 
     // public function
-    
+    // TEST CASE DONE
     uint256 public last_call_time; 
+    // TEST CASE DONE
     function refreshCollateralRatio() public {
         require(collateral_ratio_paused == false, "Collateral Ratio has been paused");
         uint256 ceres_price_cur = ceres_price();
