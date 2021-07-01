@@ -247,6 +247,11 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const ceresInstance_address = await ceresInstance.address;
 		console.log(chalk.blue(`ceresInstance_address: ${ceresInstance_address}`));
 	});
+
+	it ("Test Scripts for ceresInstance.eth_usd_consumer_address", async() => {
+		const eth_usd_consumer_address = await ceresInstance.eth_usd_consumer_address();
+		console.log(chalk.yellow(`eth_usd_consumer_address: ${eth_usd_consumer_address}`));
+	})
 });
 
 
