@@ -336,6 +336,11 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 		expect(ceres_eth_oracle_address).to.equal(oracle_instance_CERES_WETH.address);
 		expect(css_eth_oracle_address).to.equal(oracle_instance_CSS_WETH.address);
+	});
+
+	it ("Test Scripts for ceresInstance.CeresEthOracle", async() => {
+		const CeresEthOracle_address = await ceresInstance.CeresEthOracle();
+		console.log(chalk.yellow(`CeresEthOracle_address: ${CeresEthOracle_address}`));
 	})
 
 
