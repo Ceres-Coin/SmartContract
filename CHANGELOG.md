@@ -34,6 +34,8 @@
 17. add oracle_instance.update() func
 18. add NEXT TO DO TASKS
 
+<!-- TODO: add other deployment scritps -->
+
 
 ## [0.1.210630-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210630-a) (2021-06-29)
 1. create a new test scripts "test_CERES_USDC_Pool_P3.js"
@@ -72,7 +74,7 @@
    17. added test cases for availableExcessCollatDV
    18. added test cases for getCollateralPrice() func
 
-TODO: Next TO: Continue to Investigate the Contract Code and Deployment Scripts
+Next TO: Continue to Investigate the Contract Code and Deployment Scripts
 
 
 ## [0.1.210629-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210629-b) (2021-06-29)

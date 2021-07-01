@@ -165,6 +165,7 @@ module.exports = async function(deployer, network, accounts) {
 		new BigNumber(2105300114),
 		{ from: OWNER }
 	);
+	// TODO: TUNING BELOW CODE: SWAP FOR CERES-USDC
 	// await swapToPriceInstance.swapToPrice(
 	// 	ceresInstance.address,
 	// 	col_instance_USDC.address,
@@ -189,6 +190,7 @@ module.exports = async function(deployer, network, accounts) {
 		{ from: OWNER }
 	);
 
+	// TODO: TUNING BELOW CODE: SWAP FOR CSS-USDC
 	// await swapToPriceInstance.swapToPrice(
 	// 	cssInstance.address,
 	// 	col_instance_USDC.address,
@@ -201,7 +203,7 @@ module.exports = async function(deployer, network, accounts) {
 	// 	{ from: OWNER }
 	// )
 	
-	// TODO: ADD UPDATE CODE AFTER SWAP PROCESS
+	// ADD UPDATE CODE AFTER SWAP PROCESS
 
 	const oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
 	const oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed(); 
