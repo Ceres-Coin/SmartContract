@@ -67,6 +67,7 @@ const UniswapPairOracle_CERES_WETH = artifacts.require("Oracle/Fakes/UniswapPair
 const UniswapPairOracle_CERES_USDC = artifacts.require("Oracle/Fakes/UniswapPairOracle_CERES_USDC");
 const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_WETH");
 const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_USDC");
+const UniswapPairOracle = artifacts.require("Oracle/UniswapPairOracle");
 
 // ChainlinkETHUSD Contract
 const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest2");
@@ -341,6 +342,8 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 	it ("Test Scripts for ceresInstance.CeresEthOracle", async() => {
 		const CeresEthOracle_address = await ceresInstance.CeresEthOracle();
 		console.log(chalk.yellow(`CeresEthOracle_address: ${CeresEthOracle_address}`));
+
+		const instanceCeresEthOracle = await UniswapPairOracle.at(CeresEthOracle_address);
 	})
 
 
