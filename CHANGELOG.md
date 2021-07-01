@@ -1,3 +1,11 @@
+## [0.1.210701-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210701-a...0.1.210701-b) (2021-07-01)
+FINISH DEPLOYMENT SCRIPTS IN "Migrations" folder
+1. FINISH DEPLOYMENT SCRIPTS "migrations/13_token_vesting.js"
+2. ADDED NEW DEPLOYMENT SCRIPTS
+   1. "migrations/13_token_vesting.js"
+3. ADD NEW TODO: TASKS
+
+
 ## [0.1.210701-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210630-a...0.1.210701-a) (2021-06-30)
 1. Test for submit proposal from Timelock Contracts
    1. FINISH timelock deployment scripts "migrations/12_timelock.js"
