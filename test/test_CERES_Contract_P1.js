@@ -457,6 +457,16 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		await instanceCSSEthOracle.setPeriod(DEFAULT_PERIOD, { from: OWNER });
 	});
 
+	it ("Test Scripts for ceresInstance.CSSEthOracle consult()", async() => {
+		const CSSEthOracle_address = await ceresInstance.CSSEthOracle();
+		const instanceCSSEthOracle = await UniswapPairOracle.at(CSSEthOracle_address);
+		let css_price_from_CSS_WETH = parseFloat((new BigNumber(await instanceCSSEthOracle.consult.call(wethInstance.address, BIG6))).div(BIG6));
+		// PRINT
+		console.log(chalk.yellow(`css_price_from_CSS_WETH: ${css_price_from_CSS_WETH}`));
+		// ASSERTION
+		expect(css_price_from_CSS_WETH).to.gt(0);
+	});
+
 
 
 
