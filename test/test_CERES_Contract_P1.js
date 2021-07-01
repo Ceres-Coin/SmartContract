@@ -187,6 +187,8 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 	const DECIMALS_DEFAULT_VALUE = 18;
 	const NAME_DEFAULT_VALUE = "CERES";
 	const SYMBOL_DEFAULT_VALUE = "CERES";
+	const MIN_PERIOD = 1;
+	const DEFAULT_PERIOD = 5;
 
     beforeEach(async() => {
 		ADMIN = accounts[0];
@@ -389,6 +391,16 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 		const canUpdate = await instanceCeresEthOracle.canUpdate();
 		console.log(chalk.yellow(`canUpdate: ${canUpdate}`));
+	});
+
+	it ("Test Scripts for ceresInstance.CeresEthOracle UPDATE()", async() => {
+		const CeresEthOracle_address = await ceresInstance.CeresEthOracle();
+		const instanceCeresEthOracle = await UniswapPairOracle.at(CeresEthOracle_address);
+
+		await instanceCeresEthOracle.setPeriod(MIN_PERIOD, { from: OWNER });
+		await instanceCeresEthOracle.update({from: OWNER});
+		await instanceCeresEthOracle.setPeriod(DEFAULT_PERIOD, { from: OWNER }),
+
 	})
 
 
