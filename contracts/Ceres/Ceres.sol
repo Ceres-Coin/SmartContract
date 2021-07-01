@@ -24,9 +24,9 @@ contract CEREStable is ERC20Custom, AccessControl {
     ChainlinkETHUSDPriceConsumer public eth_usd_pricer;
     uint8 public eth_usd_pricer_decimals;
     
-    // TODO: [PARAMETERS2]
-    UniswapPairOracle public CeresEthOracle;
-    UniswapPairOracle public CSSEthOracle;
+    // [PARAMETERS2]
+    UniswapPairOracle public CeresEthOracle; //test case done
+    UniswapPairOracle public CSSEthOracle; //test case done
     string public symbol; //test case done
     string public name; //test case done
     uint8 public constant decimals = 18; //test case done
