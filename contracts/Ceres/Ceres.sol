@@ -21,7 +21,7 @@ contract CEREStable is ERC20Custom, AccessControl {
     // ChainLinkETHUSD parameters;
     // TODO: [PARAMETERS3]
     address public eth_usd_consumer_address; //TEST CASE DONE
-    ChainlinkETHUSDPriceConsumer public eth_usd_pricer;
+    ChainlinkETHUSDPriceConsumer public eth_usd_pricer; //TEST CASE DONE
     uint8 public eth_usd_pricer_decimals; //TEST CASE DONE
     
     // [PARAMETERS2]

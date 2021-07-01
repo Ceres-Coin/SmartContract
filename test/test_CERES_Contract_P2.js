@@ -268,6 +268,11 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 	it ("Test Scripts for ceresInstance.eth_usd_pricer CONTRACT INSTANCE", async() => {
 		const eth_usd_pricer = await ceresInstance.eth_usd_pricer();
 		const instance_eth_usd_pricer = await ChainlinkETHUSDPriceConsumer.at(eth_usd_pricer);
+
+		const getDecimals = parseFloat(await instance_eth_usd_pricer.getDecimals());
+		console.log(chalk.yellow(`getDecimals: ${getDecimals}`));
+		expect(getDecimals).to.equal(8);
+
 	})
 });
 
