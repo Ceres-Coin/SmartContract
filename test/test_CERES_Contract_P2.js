@@ -71,7 +71,6 @@ const UniswapPairOracle = artifacts.require("Oracle/UniswapPairOracle");
 
 // ChainlinkETHUSD Contract
 const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest");
-const ChainlinkETHUSDPriceConsumerTest2 = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumerTest2");
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
@@ -245,7 +244,6 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 		pool_instance_USDC = await Pool_USDC.deployed();
 		oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumerTest.deployed();
-		oracle_chainlink_ETH_USD2 = await ChainlinkETHUSDPriceConsumerTest2.deployed();
     });
 
 	it ("Test Scripts for ceresInstance.address", async() => {
@@ -255,9 +253,9 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 	it ("Test Scripts for ceresInstance.eth_usd_consumer_address", async() => {
 		const eth_usd_consumer_address = await ceresInstance.eth_usd_consumer_address();
-		console.log(chalk.blue(`oracle_chainlink_ETH_USD: ${oracle_chainlink_ETH_USD.address}`));
-		console.log(chalk.blue(`oracle_chainlink_ETH_USD2: ${oracle_chainlink_ETH_USD2.address}`));
-		console.log(chalk.yellow(`eth_usd_consumer_address: ${eth_usd_consumer_address}`));
+		// console.log(chalk.blue(`oracle_chainlink_ETH_USD: ${oracle_chainlink_ETH_USD.address}`));
+		// console.log(chalk.yellow(`eth_usd_consumer_address: ${eth_usd_consumer_address}`));
+		expect(eth_usd_consumer_address).to.equal(oracle_chainlink_ETH_USD.address);
 	})
 });
 
