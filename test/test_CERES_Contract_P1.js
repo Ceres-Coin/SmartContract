@@ -411,9 +411,10 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 	it ("Test Scripts for ceresInstance.CSSEthOracle instances", async() => { 
 		const CSSEthOracle_address = await ceresInstance.CSSEthOracle();
-		console.log(chalk.blue(`oracle_instance_CSS_WETH.address: ${oracle_instance_CSS_WETH.address}`));
-		console.log(chalk.yellow(`CSSEthOracle_address: ${CSSEthOracle_address}`));
+		// console.log(chalk.blue(`oracle_instance_CSS_WETH.address: ${oracle_instance_CSS_WETH.address}`));
+		// console.log(chalk.yellow(`CSSEthOracle_address: ${CSSEthOracle_address}`));
 		const instanceCSSEthOracle = await UniswapPairOracle.at(CSSEthOracle_address);
+		expect(CSSEthOracle_address).to.equal(oracle_instance_CSS_WETH.address);
 
 		const token0 = await instanceCSSEthOracle.token0();
 		const token1 = await instanceCSSEthOracle.token1();
@@ -421,6 +422,30 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		console.log(chalk.blue(`wethInstance.address: ${wethInstance.address}`));
 		console.log(chalk.yellow(`token0: ${token0}`));
 		console.log(chalk.yellow(`token1: ${token1}`));
+		console.log(chalk.yellow("----------------------------- SEPERATOR ---------------------------"));
+
+		const price0CumulativeLast = await instanceCSSEthOracle.price0CumulativeLast();
+		const price1CumulativeLast = await instanceCSSEthOracle.price1CumulativeLast();
+		console.log(chalk.yellow(`price0CumulativeLast: ${price0CumulativeLast}`));
+		console.log(chalk.yellow(`price1CumulativeLast: ${price1CumulativeLast}`));
+
+		const price0Average = await instanceCSSEthOracle.price0Average();
+		const price1Average = await instanceCSSEthOracle.price1Average();
+		console.log(chalk.yellow(`price0Average: ${price0Average}`));
+		console.log(chalk.yellow(`price1Average: ${price1Average}`));
+
+		const reserve0 = await instanceCSSEthOracle.reserve0();
+		const reserve1 = await instanceCSSEthOracle.reserve1();
+		console.log(chalk.yellow(`reserve0: ${reserve0}`));
+		console.log(chalk.yellow(`reserve1: ${reserve1}`));
+		console.log(chalk.yellow("----------------------------- SEPERATOR ---------------------------"));
+
+		const pair_address = await instanceCSSEthOracle.pair_address();
+		const pair = await instanceCSSEthOracle.pair();
+		expect(pair_address).to.equal(pair_addr_CSS_WETH);
+		expect(pair_address).to.equal(pair);
+
+
 	});
 
 
