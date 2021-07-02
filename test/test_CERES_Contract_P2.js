@@ -379,6 +379,20 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(globalCollateralValue).to.gt(0);
 	});
 
+	it ("Test Scripts for ceresInstance.ceresInfo() func", async() => {
+		let info_before;
+		console.log(chalk.blue("=========== get ceres_info before setRedemptionFee() & setMintingFee()  ========== "));
+		info_before = await ceresInstance.ceres_info();
+		console.log(chalk.blue("oracle_price CERES: ",info_before[0].toString()));
+		console.log(chalk.blue("oracle_price CSS : ",info_before[1].toString()));
+		console.log(chalk.blue("totalSupply: ",info_before[2].toString()));
+		console.log(chalk.blue("global_collateral_ratio: ",info_before[3].toString()));
+		console.log(chalk.blue("globalCollateralValue: ",info_before[4].toString()));
+		console.log(chalk.blue("minting_fee: ",info_before[5].toString()));
+		console.log(chalk.blue("redemption_fee: ",info_before[6].toString()));
+		console.log(chalk.blue("eth_usd_price: ",info_before[7].toString()));
+	})
+
 
 
 });
