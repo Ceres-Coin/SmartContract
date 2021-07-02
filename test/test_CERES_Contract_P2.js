@@ -365,6 +365,13 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(css_price).to.gt(0);
 	});
 
+	it ("Test Scripts for ceresInstance.eth_usd_price() func", async() => {
+		const eth_usd_price = parseFloat(await ceresInstance.eth_usd_price());
+		console.log(chalk.yellow(`eth_usd_price: ${eth_usd_price}`));
+		expect(eth_usd_price).to.not.equal(0);
+		expect(eth_usd_price).to.gt(0);
+	});
+
 
 
 });
