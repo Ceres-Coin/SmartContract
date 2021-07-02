@@ -167,7 +167,7 @@ contract CEREStable is ERC20Custom, AccessControl {
             uint256(eth_usd_pricer.getLatestPrice()).mul(PRICE_PRECISION).div(uint256(10) ** eth_usd_pricer_decimals) 
         );
     }
-    // TODO: [FUNC][globalCollateralValue]
+    // [FUNC][globalCollateralValue]
     function globalCollateralValue() public view returns (uint256) {
         uint256 total_collateral_value_d18 = 0; 
 
