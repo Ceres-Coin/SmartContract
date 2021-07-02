@@ -29,6 +29,7 @@ const ERC20Custom = artifacts.require("ERC20/ERC20Custom");
 const SafeERC20 = artifacts.require("ERC20/SafeERC20");
 
 // set constants
+const ONE_THOUSAND_DEC18 = new BigNumber("1000e18");
 const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
 const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
 const FIVE_MILLION_DEC6 = new BigNumber("5000000e6");
@@ -255,8 +256,12 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 	});
 
 	it ("Test Scripts for ceresInstance.pool_mint()",async() => {
-		console.log(chalk.yellow(`ceresInstance.balanceOf_before: ${await ceresInstance.balanceOf(METAMASK_ADDRESS)}`));
-	})
+		const balanceOf_before = parseFloat(await ceresInstance.balanceOf(METAMASK_ADDRESS));
+		console.log(chalk.yellow(`balanceOf_before: ${balanceOf_before}`));
+		
+		const balanceOf_after = parseFloat(await ceresInstance.balanceOf(METAMASK_ADDRESS));
+		console.log(chalk.yellow(`balanceOf_after: ${balanceOf_after}`));
+	});
 
 	
 

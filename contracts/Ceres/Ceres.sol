@@ -218,7 +218,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         emit CERESBurned(b_address, msg.sender, b_amount);
     }
 
-    // TODO: [FUNC][pool_mint]
+    // TODO: [FUNC][pool_mint], it must be finished using USDC_POOL.mint1t1CERES/mintAlgorithmicCERES/mintFractionalCERES
     function pool_mint(address m_address, uint256 m_amount) public onlyPools {
         super._mint(m_address, m_amount);
         emit CERESMinted(msg.sender, m_address, m_amount);
