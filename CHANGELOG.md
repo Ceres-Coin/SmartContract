@@ -1,3 +1,28 @@
+## [0.1.210702-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210702-a...0.1.210702-b) (2021-07-02)
+1. test/test_CERES_Contract_P2.js
+   1. ADDED TEST CASES FOR ceres_pools_array[0]
+   2. ADDED TEST CASES FOR ceres_pools_array.length
+   3. ADDED TEST CASES FOR ceres_pools.state
+   4. ADDED: "Test Scripts for ceresInstance.global_collateral_ratio"
+   5. ADDED: "Test Scripts for ceresInstance.redemption_fee & minting_fee"
+   6. ADDED: "Test Scripts for ceresInstance.ceres_step, its default value is 2500"
+   7. ADDED: "Test Scripts for ceresInstance.refresh_cooldown, its default value is 60"
+   8. Test Scripts for ceresInstance.price_target, its default value is 1000000
+   9. ADDED: "Test Scripts for ceresInstance.price_band, its default value is 5000"
+   10. ADDED: "Test Scripts for ceresInstance.COLLATERAL_RATIO_PAUSER"
+   11. ADDED: "Test Scripts for ceresInstance.ceres_price() func"
+   12. REMOVE UNUSED CODE: console.log
+   13. ADDED ASSERTION FOR ceresInstance.address
+   14. ADDED: "Test Scripts for ceresInstance.css_price() func"
+   15. added: "Test Scripts for ceresInstance.eth_usd_price() func"
+   16. added: "Test Scripts for ceresInstance.globalCollateralValue() func"
+   17. added: "Test Scripts for ceresInstance.ceresInfo() func"
+2. contracts/ceres/ceres.sol
+   1. REMOVE TODO
+
+<!-- TODO: Continue to write test scripts in test/test_CERES_Contract_P3.js -->
+
+
 ## [0.1.210702-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210701-b...0.1.210701-c) (2021-07-02)
 1. ADDED TODO TASK
 2. Oracle/ChainlinkETHUSDPriceConsumerTest.sol
@@ -46,7 +71,7 @@
    1. remove unused DEPLOYMENT SCRIPTS TASK
 7. ADD TODO TASKs
 
-<!-- TODO: Continue to write test scripts in test/test_CERES_Contract_P2.js -->
+<!-- Continue to write test scripts in test/test_CERES_Contract_P2.js -->
 
 
 ## [0.1.210701-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210701-a...0.1.210701-b) (2021-07-01)
