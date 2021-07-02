@@ -291,10 +291,8 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(ceres_pools_array_lenth).to.equal(1);
 
 		const ceres_pools_0_state = await ceresInstance.ceres_pools.call(ceres_pools_array_0);
-		console.log(chalk.yellow(`ceres_pools_0_state: ${ceres_pools_0_state}`));
+		// console.log(chalk.yellow(`ceres_pools_0_state: ${ceres_pools_0_state}`));
 		expect(ceres_pools_0_state).to.equal(true);
-
-
 	})
 });
 
