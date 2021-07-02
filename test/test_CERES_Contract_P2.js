@@ -293,6 +293,20 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const ceres_pools_0_state = await ceresInstance.ceres_pools.call(ceres_pools_array_0);
 		// console.log(chalk.yellow(`ceres_pools_0_state: ${ceres_pools_0_state}`));
 		expect(ceres_pools_0_state).to.equal(true);
+	});
+
+	it ("Test Scripts for ceresInstance.global_collateral_ratio",async() => {
+		// Before
+		await ceresInstance.setRefreshCooldown(1,{from: OWNER});
+		// Action
+		await ceresInstance.refreshCollateralRatio();
+		// Print
+		const global_collateral_ratio = parseFloat(await ceresInstance.global_collateral_ratio());
+		expect(global_collateral_ratio).to.gt(0);
+		expect(global_collateral_ratio).to.lt(global_collateral_ratio_initial_value);
+		// ROLL BACK
+		await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); //ROLL BACK
+		expect(parseFloat(await ceresInstance.refresh_cooldown())).to.equal(RefreshCooldown_Initial_Value);
 	})
 });
 

@@ -48,12 +48,12 @@ contract CEREStable is ERC20Custom, AccessControl {
     address[] public ceres_pools_array; //test case done
 
     
-    mapping(address => bool) public ceres_pools; 
+    mapping(address => bool) public ceres_pools; //test case done
 
     // TODO: [PARAMETER]
     uint256 public constant PRICE_PRECISION = 1e6; //TEST CASE DONE
     
-    uint256 public global_collateral_ratio; 
+    uint256 public global_collateral_ratio; //test case done
     uint256 public redemption_fee; 
     uint256 public minting_fee; 
     uint256 public ceres_step; 
