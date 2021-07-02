@@ -254,6 +254,10 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		expect(ceresInstance_address).to.not.be.undefined;
 	});
 
+	it ("Test Scripts for ceresInstance.pool_mint()",async() => {
+		console.log(chalk.yellow(`ceresInstance.balanceOf_before: ${await ceresInstance.balanceOf(METAMASK_ADDRESS)}`));
+	})
+
 	
 
 
