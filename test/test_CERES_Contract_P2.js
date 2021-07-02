@@ -280,6 +280,7 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 	// ADDED TEST CASES FOR ceres_pools_array[0]
 	// ADDED TEST CASES FOR ceres_pools_array.length
+	// ADDED TEST CASES FOR ceres_pools.state
 	it ("Test Scripts for ceresInstance.ceres_pools_array", async() => {
 		const ceres_pools_array_0 = await ceresInstance.ceres_pools_array(0);
 		// console.log(chalk.yellow(`ceres_pools_array_0: ${ceres_pools_array_0}`));
@@ -288,6 +289,11 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const ceres_pools_array_lenth = parseFloat(await ceresInstance.ceres_pools_array_lenth());
 		// console.log(chalk.yellow(`ceres_pools_array_lenth: ${ceres_pools_array_lenth}`));
 		expect(ceres_pools_array_lenth).to.equal(1);
+
+		const ceres_pools_0_state = await ceresInstance.ceres_pools.call(ceres_pools_array_0);
+		console.log(chalk.yellow(`ceres_pools_0_state: ${ceres_pools_0_state}`));
+		expect(ceres_pools_0_state).to.equal(true);
+
 
 	})
 });
