@@ -75,7 +75,7 @@ const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPr
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
-contract('test_CERES_Contract_P2', async (accounts) => {
+contract('test_CERES_Contract_P3', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
@@ -254,144 +254,7 @@ contract('test_CERES_Contract_P2', async (accounts) => {
 		expect(ceresInstance_address).to.not.be.undefined;
 	});
 
-	it ("Test Scripts for ceresInstance.eth_usd_consumer_address", async() => {
-		const eth_usd_consumer_address = await ceresInstance.eth_usd_consumer_address();
-		// console.log(chalk.blue(`oracle_chainlink_ETH_USD: ${oracle_chainlink_ETH_USD.address}`));
-		// console.log(chalk.yellow(`eth_usd_consumer_address: ${eth_usd_consumer_address}`));
-		expect(eth_usd_consumer_address).to.equal(oracle_chainlink_ETH_USD.address);
-	});
-
-	it ("Test Scripts for ceresInstance.eth_usd_pricer_decimals", async() => {
-		const eth_usd_pricer_decimals = parseFloat(await ceresInstance.eth_usd_pricer_decimals());
-		// console.log(chalk.yellow(`eth_usd_pricer_decimals: ${eth_usd_pricer_decimals}`));
-		expect(eth_usd_pricer_decimals).to.equal(8);
-	});
-
-	it ("Test Scripts for ceresInstance.eth_usd_pricer CONTRACT INSTANCE", async() => {
-		const eth_usd_pricer = await ceresInstance.eth_usd_pricer();
-		const instance_eth_usd_pricer = await ChainlinkETHUSDPriceConsumer.at(eth_usd_pricer);
-
-		const getDecimals = parseFloat(await instance_eth_usd_pricer.getDecimals());
-		// console.log(chalk.yellow(`getDecimals: ${getDecimals}`));
-		expect(getDecimals).to.equal(8);
-
-		const getLatestPrice = parseFloat(await instance_eth_usd_pricer.getLatestPrice());
-		// console.log(chalk.yellow(`getLatestPrice: ${getLatestPrice}`));
-
-	})
-
-	// ADDED TEST CASES FOR ceres_pools_array[0]
-	// ADDED TEST CASES FOR ceres_pools_array.length
-	// ADDED TEST CASES FOR ceres_pools.state
-	it ("Test Scripts for ceresInstance.ceres_pools_array", async() => {
-		const ceres_pools_array_0 = await ceresInstance.ceres_pools_array(0);
-		// console.log(chalk.yellow(`ceres_pools_array_0: ${ceres_pools_array_0}`));
-		expect(ceres_pools_array_0).to.equal(pool_instance_USDC.address);
-
-		const ceres_pools_array_lenth = parseFloat(await ceresInstance.ceres_pools_array_lenth());
-		// console.log(chalk.yellow(`ceres_pools_array_lenth: ${ceres_pools_array_lenth}`));
-		expect(ceres_pools_array_lenth).to.equal(1);
-
-		const ceres_pools_0_state = await ceresInstance.ceres_pools.call(ceres_pools_array_0);
-		// console.log(chalk.yellow(`ceres_pools_0_state: ${ceres_pools_0_state}`));
-		expect(ceres_pools_0_state).to.equal(true);
-	});
-
-	it ("Test Scripts for ceresInstance.global_collateral_ratio",async() => {
-		// Before
-		await ceresInstance.setRefreshCooldown(1,{from: OWNER});
-		// Action
-		await ceresInstance.refreshCollateralRatio();
-		// Print
-		const global_collateral_ratio = parseFloat(await ceresInstance.global_collateral_ratio());
-		expect(global_collateral_ratio).to.gt(0);
-		expect(global_collateral_ratio).to.lt(global_collateral_ratio_initial_value);
-		// ROLL BACK
-		await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); //ROLL BACK
-		expect(parseFloat(await ceresInstance.refresh_cooldown())).to.equal(RefreshCooldown_Initial_Value);
-	});
-
-	it ("Test Scripts for ceresInstance.redemption_fee & minting_fee", async() => {
-		const MINTING_FEE = 300; // 0.03%
-		const REDEMPTION_FEE = 400; // 0.04%
-
-		const redemption_fee = parseFloat(await ceresInstance.redemption_fee());
-		const minting_fee = parseFloat(await ceresInstance.minting_fee());
-
-		expect(redemption_fee).to.equal(REDEMPTION_FEE);
-		expect(minting_fee).to.equal(MINTING_FEE);
-	})
-
-	it ("Test Scripts for ceresInstance.ceres_step, its default value is 2500", async() => {
-		const CERES_STEP_DEFAULT_VALUE = 2500; 
-		const ceres_step = parseFloat(await ceresInstance.ceres_step());
-		expect(ceres_step).to.equal(CERES_STEP_DEFAULT_VALUE);
-	});
-
-	it ("Test Scripts for ceresInstance.refresh_cooldown, its default value is 60", async() => {
-		const refresh_cooldown_DEFAULT_VALUE = 60; 
-		const refresh_cooldown = parseFloat(await ceresInstance.refresh_cooldown());
-		expect(refresh_cooldown).to.equal(refresh_cooldown_DEFAULT_VALUE);
-	});
-
-	it ("Test Scripts for ceresInstance.price_target, its default value is 1000000", async() => {
-		const price_target_DEFAULT_VALUE = 1000000; 
-		const price_target = parseFloat(await ceresInstance.price_target());
-		expect(price_target).to.equal(price_target_DEFAULT_VALUE);
-	});
-
-	it ("Test Scripts for ceresInstance.price_band, its default value is 5000", async() => {
-		const price_band_DEFAULT_VALUE = 5000; 
-		const price_band = parseFloat(await ceresInstance.price_band());
-		expect(price_band).to.equal(price_band_DEFAULT_VALUE);
-	});
-
-	it ("Test Scripts for ceresInstance.COLLATERAL_RATIO_PAUSER", async() => {
-		const COLLATERAL_RATIO_PAUSER = await ceresInstance.COLLATERAL_RATIO_PAUSER();
-		// console.log(chalk.yellow(`COLLATERAL_RATIO_PAUSER: ${COLLATERAL_RATIO_PAUSER}`));
-	});
-
-	it ("Test Scripts for ceresInstance.ceres_price() func", async() => {
-		const ceres_price = parseFloat(await ceresInstance.ceres_price());
-		// console.log(chalk.yellow(`ceres_price: ${ceres_price}`));
-		expect(ceres_price).to.not.equal(0);
-		expect(ceres_price).to.gt(0);
-	});
-
-	it ("Test Scripts for ceresInstance.css_price() func", async() => {
-		const css_price = parseFloat(await ceresInstance.css_price());
-		// console.log(chalk.yellow(`css_price: ${css_price}`));
-		expect(css_price).to.not.equal(0);
-		expect(css_price).to.gt(0);
-	});
-
-	it ("Test Scripts for ceresInstance.eth_usd_price() func", async() => {
-		const eth_usd_price = parseFloat(await ceresInstance.eth_usd_price());
-		// console.log(chalk.yellow(`eth_usd_price: ${eth_usd_price}`));
-		expect(eth_usd_price).to.not.equal(0);
-		expect(eth_usd_price).to.gt(0);
-	});
-
-	it ("Test Scripts for ceresInstance.globalCollateralValue() func", async() => {
-		const globalCollateralValue = parseFloat(await ceresInstance.globalCollateralValue());
-		// console.log(chalk.yellow(`globalCollateralValue: ${globalCollateralValue}`));
-		expect(globalCollateralValue).to.not.equal(0);
-		expect(globalCollateralValue).to.gt(0);
-	});
-
-	it ("Test Scripts for ceresInstance.ceresInfo() func", async() => {
-		let info_before;
-		console.log(chalk.blue("=========== get ceres_info before setRedemptionFee() & setMintingFee()  ========== "));
-		info_before = await ceresInstance.ceres_info();
-		console.log(chalk.blue("oracle_price CERES: ",info_before[0].toString()));
-		console.log(chalk.blue("oracle_price CSS : ",info_before[1].toString()));
-		console.log(chalk.blue("totalSupply: ",info_before[2].toString()));
-		console.log(chalk.blue("global_collateral_ratio: ",info_before[3].toString()));
-		console.log(chalk.blue("globalCollateralValue: ",info_before[4].toString()));
-		console.log(chalk.blue("minting_fee: ",info_before[5].toString()));
-		console.log(chalk.blue("redemption_fee: ",info_before[6].toString()));
-		console.log(chalk.blue("eth_usd_price: ",info_before[7].toString()));
-	})
+	
 
 
 
