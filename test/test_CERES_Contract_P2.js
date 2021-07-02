@@ -330,7 +330,13 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const refresh_cooldown_DEFAULT_VALUE = 60; 
 		const refresh_cooldown = parseFloat(await ceresInstance.refresh_cooldown());
 		expect(refresh_cooldown).to.equal(refresh_cooldown_DEFAULT_VALUE);
-	})
+	});
+
+	it ("Test Scripts for ceresInstance.price_target, its default value is 1000000", async() => {
+		const price_target_DEFAULT_VALUE = 1000000; 
+		const price_target = parseFloat(await ceresInstance.price_target());
+		expect(price_target).to.equal(price_target_DEFAULT_VALUE);
+	});
 
 
 });

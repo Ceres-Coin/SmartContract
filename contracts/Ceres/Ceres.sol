@@ -58,7 +58,7 @@ contract CEREStable is ERC20Custom, AccessControl {
     uint256 public minting_fee; //test cases done
     uint256 public ceres_step; //test cases done
     uint256 public refresh_cooldown; //TEST CASES DONE
-    uint256 public price_target; 
+    uint256 public price_target; //TEST CASES DONE
     uint256 public price_band; 
 
     address public DEFAULT_ADMIN_ADDRESS; //TEST CASE DONE
