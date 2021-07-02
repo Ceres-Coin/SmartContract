@@ -346,9 +346,16 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 	it ("Test Scripts for ceresInstance.COLLATERAL_RATIO_PAUSER", async() => {
 		const COLLATERAL_RATIO_PAUSER = await ceresInstance.COLLATERAL_RATIO_PAUSER();
-		console.log(chalk.yellow(`COLLATERAL_RATIO_PAUSER: ${COLLATERAL_RATIO_PAUSER}`));
+		// console.log(chalk.yellow(`COLLATERAL_RATIO_PAUSER: ${COLLATERAL_RATIO_PAUSER}`));
 	});
-	
+
+	it ("Test Scripts for ceresInstance.ceres_price() func", async() => {
+		const ceres_price = parseFloat(await ceresInstance.ceres_price());
+		console.log(chalk.yellow(`ceres_price: ${ceres_price}`));
+		expect(ceres_price).to.not.equal(0);
+		expect(ceres_price).to.gt(0);
+	});
+
 
 
 });
