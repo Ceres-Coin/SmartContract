@@ -374,7 +374,7 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 	it ("Test Scripts for ceresInstance.globalCollateralValue() func", async() => {
 		const globalCollateralValue = parseFloat(await ceresInstance.globalCollateralValue());
-		console.log(chalk.yellow(`globalCollateralValue: ${globalCollateralValue}`));
+		// console.log(chalk.yellow(`globalCollateralValue: ${globalCollateralValue}`));
 		expect(globalCollateralValue).to.not.equal(0);
 		expect(globalCollateralValue).to.gt(0);
 	});
