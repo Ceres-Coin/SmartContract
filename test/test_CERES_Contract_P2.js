@@ -348,6 +348,7 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const COLLATERAL_RATIO_PAUSER = await ceresInstance.COLLATERAL_RATIO_PAUSER();
 		console.log(chalk.yellow(`COLLATERAL_RATIO_PAUSER: ${COLLATERAL_RATIO_PAUSER}`));
 	});
+	
 
 
 });
