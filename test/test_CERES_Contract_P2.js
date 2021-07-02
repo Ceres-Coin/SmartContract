@@ -307,7 +307,22 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		// ROLL BACK
 		await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); //ROLL BACK
 		expect(parseFloat(await ceresInstance.refresh_cooldown())).to.equal(RefreshCooldown_Initial_Value);
+	});
+
+	it ("Test Scripts for ceresInstance.redemption_fee & minting_fee", async() => {
+		const MINTING_FEE = 300; // 0.03%
+		const REDEMPTION_FEE = 400; // 0.04%
+		
+		const redemption_fee = parseFloat(await ceresInstance.redemption_fee());
+		const minting_fee = parseFloat(await ceresInstance.minting_fee());
+
+		expect(redemption_fee).to.equal(REDEMPTION_FEE);
+		expect(minting_fee).to.equal(MINTING_FEE);
+
+		
 	})
+
+
 });
 
 
