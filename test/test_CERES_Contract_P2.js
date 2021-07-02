@@ -353,9 +353,16 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 
 	it ("Test Scripts for ceresInstance.ceres_price() func", async() => {
 		const ceres_price = parseFloat(await ceresInstance.ceres_price());
-		console.log(chalk.yellow(`ceres_price: ${ceres_price}`));
+		// console.log(chalk.yellow(`ceres_price: ${ceres_price}`));
 		expect(ceres_price).to.not.equal(0);
 		expect(ceres_price).to.gt(0);
+	});
+
+	it ("Test Scripts for ceresInstance.css_price() func", async() => {
+		const css_price = parseFloat(await ceresInstance.css_price());
+		console.log(chalk.yellow(`css_price: ${css_price}`));
+		expect(css_price).to.not.equal(0);
+		expect(css_price).to.gt(0);
 	});
 
 

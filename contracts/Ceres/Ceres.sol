@@ -140,12 +140,12 @@ contract CEREStable is ERC20Custom, AccessControl {
         return ceres_pools_array.length;
     }
 
-    // TODO: [FUNC][ceres_price]
+    // [FUNC][ceres_price]
     function ceres_price() public view returns (uint256) {
         return oracle_price(PriceChoice.CERES);
     }
 
-    // TODO: [FUNC][css_price]
+    // [FUNC][css_price]
     function css_price()  public view returns (uint256) {
         return oracle_price(PriceChoice.CSS);
     }
