@@ -338,6 +338,12 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(price_target).to.equal(price_target_DEFAULT_VALUE);
 	});
 
+	it ("Test Scripts for ceresInstance.price_band, its default value is 5000", async() => {
+		const price_band_DEFAULT_VALUE = 5000; 
+		const price_band = parseFloat(await ceresInstance.price_band());
+		expect(price_band).to.equal(price_band_DEFAULT_VALUE);
+	});
+
 
 });
 
