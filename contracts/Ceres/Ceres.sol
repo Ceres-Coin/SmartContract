@@ -54,9 +54,9 @@ contract CEREStable is ERC20Custom, AccessControl {
     uint256 public constant PRICE_PRECISION = 1e6; //TEST CASE DONE
     
     uint256 public global_collateral_ratio; //test case done
-    uint256 public redemption_fee; 
-    uint256 public minting_fee; 
-    uint256 public ceres_step; 
+    uint256 public redemption_fee; //test cases done
+    uint256 public minting_fee; //test cases done
+    uint256 public ceres_step; //test cases done
     uint256 public refresh_cooldown; 
     uint256 public price_target; 
     uint256 public price_band; 

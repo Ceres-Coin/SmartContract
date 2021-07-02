@@ -312,14 +312,18 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 	it ("Test Scripts for ceresInstance.redemption_fee & minting_fee", async() => {
 		const MINTING_FEE = 300; // 0.03%
 		const REDEMPTION_FEE = 400; // 0.04%
-		
+
 		const redemption_fee = parseFloat(await ceresInstance.redemption_fee());
 		const minting_fee = parseFloat(await ceresInstance.minting_fee());
 
 		expect(redemption_fee).to.equal(REDEMPTION_FEE);
 		expect(minting_fee).to.equal(MINTING_FEE);
+	})
 
-		
+	it ("Test Scripts for ceresInstance.ceres_step, its default value is 2500", async() => {
+		const CERES_STEP_DEFAULT_VALUE = 2500; 
+		const ceres_step = parseFloat(await ceresInstance.ceres_step());
+		expect(ceres_step).to.equal(CERES_STEP_DEFAULT_VALUE);
 	})
 
 
