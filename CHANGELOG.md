@@ -1,3 +1,54 @@
+## [0.1.210702-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210701-b...0.1.210701-c) (2021-07-02)
+1. ADDED TODO TASK
+2. Oracle/ChainlinkETHUSDPriceConsumerTest.sol
+   1. MODIFY ETH's price from 2690 to 2118
+3. ADDED test/test_CERES_Contract_P2.js
+   1. ADDED: "Test Scripts for ceresInstance.eth_usd_pricer CONTRACT INSTANCE"
+   2. ADDED: "Test Scripts for ceresInstance.eth_usd_pricer_decimals"
+   3. ADDED: "Test Scripts for ceresInstance.eth_usd_consumer_address"
+   4. ADDED: test/test_CERES_Contract_P2.js
+4. ADDED test/test_CERES_Contract_P1.js
+   1. ADDED: "Test Scripts for ceresInstance.CSSEthOracle consult()"
+   2. ADDED: "Test Scripts for ceresInstance.CSSEthOracle UPDATE()"
+   3. ADDED: "Test Scripts for ceresInstance.CSSEthOracle instances"
+   4. ADDED: "Test Scripts for ceresInstance.CeresEthOracle consult()"
+   5. ADDED: "Test Scripts for ceresInstance.CeresEthOracle UPDATE()"
+   6. ADDED: pair_address
+   7. ADDED SOME SCENARIOS:
+      1. price0CumulativeLast
+      2. price1CumulativeLast
+      3. price0Average
+      4. price1Average
+      5. reserve0
+      6. reserve1
+      7. blockTimestampLast
+   8. ADDED: "Test Scripts for ceresInstance.CeresEthOracle instances"
+      1. token0()
+      2. token1()
+      3. PERIOD()
+   9. ADDED: instanceCeresEthOracle
+   10. ADDED: "Test Scripts for ceresInstance.CeresEthOracle"
+   11. Update test_CERES_Contract_P1.js
+   12. ADDED: "Test Scripts for ceresInstance.css_address & weth_address"
+   13. ADDED: "Test Scripts for ceresInstance.owner_address,creator_address,timelock_address,controller_address"
+   14. ADDED: "Test Scripts for ceresInstance.genesis_supply, its default value is one_million_dec18"
+   15. ADDED: "Test Scripts for ceresInstance.name/symbol/decimals"
+   16. ADDED: "Test scripts for ceresInstance.PRICE_PRECISION, its default should be BIG6"
+   17. ADDED: "Test Scripts for ceresInstance.DEFAULT_ADMIN_ADDRESS"
+   18. ADDED: "Test Scripts for ceresInstance.collateral_ratio_paused(), its default value is false"
+   19. ADDED: Test Scripts for ceresIntance.last_call_time()
+   20. finish test scripts "ceresInstance.setRefreshCooldown() & refreshCollateralRatio() func"
+   21. finish first test scripts "PRINT ceresInstance.address"
+   22. ADDED new test scripts "test/test_CERES_Contract_P1.js"
+5. contracts/Ceres/Ceres.sol
+   1. ADDED: added todo task in Ceres Contract 
+6. package.json
+   1. remove unused DEPLOYMENT SCRIPTS TASK
+7. ADD TODO TASKs
+
+<!-- TODO: Continue to write test scripts in test/test_CERES_Contract_P2.js -->
+
+
 ## [0.1.210701-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210701-a...0.1.210701-b) (2021-07-01)
 FINISH DEPLOYMENT SCRIPTS IN "Migrations" folder
 1. FINISH DEPLOYMENT SCRIPTS "migrations/13_token_vesting.js"
@@ -5,7 +56,7 @@ FINISH DEPLOYMENT SCRIPTS IN "Migrations" folder
    1. "migrations/13_token_vesting.js"
 3. ADD NEW TODO: TASKS
 
-<!-- TODO:  ADD More Test Scripts under "Test" folder -->
+<!-- ADD More Test Scripts under "Test" folder -->
 
 
 ## [0.1.210701-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210630-a...0.1.210701-a) (2021-06-30)
