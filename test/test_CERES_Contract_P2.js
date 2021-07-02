@@ -276,7 +276,7 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		expect(getDecimals).to.equal(8);
 
 		const getLatestPrice = parseFloat(await instance_eth_usd_pricer.getLatestPrice());
-		console.log(chalk.yellow(`getLatestPrice: ${getLatestPrice}`));
+		// console.log(chalk.yellow(`getLatestPrice: ${getLatestPrice}`));
 
 	})
 
