@@ -324,6 +324,12 @@ contract('test_CERES_Contract_P1', async (accounts) => {
 		const CERES_STEP_DEFAULT_VALUE = 2500; 
 		const ceres_step = parseFloat(await ceresInstance.ceres_step());
 		expect(ceres_step).to.equal(CERES_STEP_DEFAULT_VALUE);
+	});
+
+	it ("Test Scripts for ceresInstance.refresh_cooldown, its default value is 60", async() => {
+		const refresh_cooldown_DEFAULT_VALUE = 60; 
+		const refresh_cooldown = parseFloat(await ceresInstance.refresh_cooldown());
+		expect(refresh_cooldown).to.equal(refresh_cooldown_DEFAULT_VALUE);
 	})
 
 
