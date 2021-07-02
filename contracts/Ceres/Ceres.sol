@@ -44,8 +44,8 @@ contract CEREStable is ERC20Custom, AccessControl {
     address public weth_address; //test case done
     uint256 public constant genesis_supply = 1000000e18; //test case done
 
-    // TODO: ceres_pools_array
-    address[] public ceres_pools_array;
+    // ceres_pools_array
+    address[] public ceres_pools_array; //test case done
 
     
     mapping(address => bool) public ceres_pools; 
@@ -133,6 +133,11 @@ contract CEREStable is ERC20Custom, AccessControl {
 
         // Will be in 1e6 format
         return eth_usd_price.mul(PRICE_PRECISION).div(price_vs_eth);
+    }
+
+    // [FUNC][ceres_pools_array_lenth]
+    function ceres_pools_array_lenth() public view returns(uint256) {
+        return ceres_pools_array.length;
     }
 
     // TODO: [FUNC][ceres_price]
