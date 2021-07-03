@@ -295,7 +295,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         eth_usd_pricer = ChainlinkETHUSDPriceConsumer(eth_usd_consumer_address);
         eth_usd_pricer_decimals = eth_usd_pricer.getDecimals();
     }
-    // TODO: [FUNC][setTimelock]
+    // [FUNC][setTimelock]
     function setTimelock(address new_timelock) external onlyByOwnerOrGovernance {
         timelock_address = new_timelock;
     }
