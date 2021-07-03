@@ -292,8 +292,15 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 
 	it ("Test Scripts for ceresInstance.setOwner()", async() => {
 		const owner_address = await ceresInstance.owner_address();
-		console.log(chalk.yellow(`owner_address: ${owner_address}`));
 		expect(owner_address).to.equal(OWNER);
+		// ACTION
+		await ceresInstance.setOwner(ADMIN,{from: OWNER});
+		// ASSERTION
+		expect(await ceresInstance.owner_address()).to.equal(ADMIN);
+
+		// ROLL BACK
+		await ceresInstance.setOwner(OWNER,{from: ADMIN}); 
+		expect(await ceresInstance.owner_address()).to.equal(OWNER);
 	})
 
 	
