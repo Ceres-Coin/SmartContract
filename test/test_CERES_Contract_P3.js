@@ -271,21 +271,6 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		await ceresInstance.removePool(METAMASK_ADDRESS,{from: OWNER});
 	});
 
-	// it ("Test Scripts for ceresInstance.pool_burn_from()",async() => {
-	// 	const balanceOf_before = parseFloat(await ceresInstance.balanceOf(METAMASK_ADDRESS));
-	// 	// console.log(chalk.yellow(`balanceOf_before: ${balanceOf_before}`));
-
-	// 	await ceresInstance.addPool(METAMASK_ADDRESS,{from: OWNER});
-	// 	await ceresInstance.pool_burn_from(METAMASK_ADDRESS,ONE_HUNDRED_DEC18,{from: METAMASK_ADDRESS});
-		
-	// 	const balanceOf_after = parseFloat(await ceresInstance.balanceOf(METAMASK_ADDRESS));
-	// 	// console.log(chalk.yellow(`balanceOf_after: ${balanceOf_after}`));
-	// 	expect(balanceOf_after).to.equal(parseFloat(balanceOf_before-ONE_HUNDRED_DEC18));
-
-	// 	// ROLL BACK CODE
-	// 	await ceresInstance.removePool(METAMASK_ADDRESS,{from: OWNER});
-	// })
-
 	it ("Test Scripts for ceresInstance.addPool() & removePool()", async() => {
 		const ceres_pools_OWNER_BEFORE = await ceresInstance.ceres_pools(OWNER);
 		// ASSERTION: DEFAULT VALUE IS FALSE
