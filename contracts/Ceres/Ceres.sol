@@ -212,7 +212,7 @@ contract CEREStable is ERC20Custom, AccessControl {
     /* ========== RESTRICTED FUNCTIONS ========== */
 
     // Used by pools when user redeems
-    // TODO: [FUNC][pool_burn_from]
+    // [LATER][FUNC][pool_burn_from]: because it is a little complicated, we could test this case in USDC_POOL
     function pool_burn_from(address b_address, uint256 b_amount) public onlyPools {
         super._burnFrom(b_address, b_amount);
         emit CERESBurned(b_address, msg.sender, b_amount);
@@ -321,7 +321,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         weth_address = _weth_address;
     }
 
-    // TODO: [FUNC][toggleCollateralRatio]
+    // [FUNC][toggleCollateralRatio]
     function toggleCollateralRatio() public onlyCollateralRatioPauser {
         collateral_ratio_paused = !collateral_ratio_paused;
     }
