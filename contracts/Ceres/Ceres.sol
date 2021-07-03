@@ -264,7 +264,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         minting_fee = min_fee;
     }  
 
-    // TODO: [FUNC][setMintingFee]
+    // [FUNC][setMintingFee]
     function setCeresStep(uint256 _new_step) public onlyByOwnerOrGovernance {
         ceres_step = _new_step;
     }  

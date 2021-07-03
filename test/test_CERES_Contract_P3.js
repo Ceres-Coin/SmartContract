@@ -148,6 +148,9 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 	const BUYBACK_FEE_MODIFIED = 200; //0.02%
 	const RECOLLAT_FEE_MODIFIED = 200; //0.02%
 
+	const CERES_STEP = 2500; 
+	const CERES_STEP_MODIFIED = 5000; 
+
 	
 	// USDC_Pool Constants
 	const PRICE_PRECISION = new BigNumber(1e6);
@@ -321,6 +324,16 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		// ROLLBACK CODE
 		await ceresInstance.setMintingFee(MINTING_FEE,{from: OWNER});
 		expect(parseFloat(await ceresInstance.minting_fee())).to.equal(MINTING_FEE);
+	});
+
+	it ("TEST SCRIPTS FOR ceresInstance.setCeresStep()",async() => {
+		expect(parseFloat(await ceresInstance.ceres_step())).to.equal(CERES_STEP);
+		// ACTION & ASSERTION
+		await ceresInstance.setCeresStep(CERES_STEP_MODIFIED,{from: OWNER});
+		expect(parseFloat(await ceresInstance.ceres_step())).to.equal(CERES_STEP_MODIFIED);
+		// ROLLBACK CODE
+		await ceresInstance.setCeresStep(CERES_STEP,{from: OWNER});
+		expect(parseFloat(await ceresInstance.ceres_step())).to.equal(CERES_STEP);
 	});
 
 	
