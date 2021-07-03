@@ -388,7 +388,7 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR ceresInstance.setController()", async() => {
-
+		console.log(chalk.yellow(`controller_address: ${await ceresInstance.controller_address()}`));
 	})
 
 	
