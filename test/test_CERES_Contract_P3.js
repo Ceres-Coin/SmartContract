@@ -265,16 +265,21 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 
 	it ("Test Scripts for ceresInstance.addPool() & removePool()", async() => {
 		const ceres_pools_OWNER_BEFORE = await ceresInstance.ceres_pools(OWNER);
-		console.log(chalk.yellow(`ceres_pools_OWNER_BEFORE: ${ceres_pools_OWNER_BEFORE}`));
-
+		// ASSERTION: DEFAULT VALUE IS FALSE
+		expect(ceres_pools_OWNER_BEFORE).to.equal(false);
+		// ACTION: AddPool()
 		await ceresInstance.addPool(OWNER,{from: OWNER});
 
 		const ceres_pools_OWNER_AFTER = await ceresInstance.ceres_pools(OWNER);
-		console.log(chalk.yellow(`ceres_pools_OWNER_AFTER: ${ceres_pools_OWNER_AFTER}`));
-
+		// ASSERTION: AFTER AddPool(), VALUE IS CHANGED TO TRUE
+		expect(ceres_pools_OWNER_AFTER).to.equal(true);
+		
+		// ACTION: RemovePool
 		await ceresInstance.removePool(OWNER,{from: OWNER});
 		const ceres_pools_OWNER_AFTER_RemovePool = await ceresInstance.ceres_pools(OWNER);
-		console.log(chalk.yellow(`ceres_pools_OWNER_AFTER_RemovePool: ${ceres_pools_OWNER_AFTER_RemovePool}`));
+		// ASSERTION: // ASSERTION: AFTER RemovePool(), VALUE IS CHANGED TO FALSE
+		expect(ceres_pools_OWNER_AFTER_RemovePool).to.equal(false);
+		
 	});
 
 	
