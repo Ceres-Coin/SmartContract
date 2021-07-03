@@ -364,14 +364,14 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 
 	it ("TEST SCRIPTS FOR ceresInstance.setCSSAddress()",async() => {
 		// console.log(chalk.yellow(`ceresInstance.css_address, ${await ceresInstance.css_address()}`));
-		expect(await ceresInstance.css_address()).equal.to(constants.ZERO_ADDRESS);
+		expect(await ceresInstance.css_address()).to.equal(constants.ZERO_ADDRESS);
 		// ACTION & ASSERTION
 		await ceresInstance.setCSSAddress(cssInstance.address,{from: OWNER});
-		expect(await ceresInstance.css_address()).equal.to(cssInstance.address);
+		expect(await ceresInstance.css_address()).to.equal(cssInstance.address);
 
 		// ROLLBACK CODE
 		await ceresInstance.setCSSAddress(constants.ZERO_ADDRESS,{from: OWNER});
-		expect(await ceresInstance.css_address()).equal.to(constants.ZERO_ADDRESS);
+		expect(await ceresInstance.css_address()).to.equal(constants.ZERO_ADDRESS);
 	});
 
 	
