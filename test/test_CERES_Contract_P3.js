@@ -301,6 +301,20 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		// ROLL BACK
 		await ceresInstance.setOwner(OWNER,{from: ADMIN}); 
 		expect(await ceresInstance.owner_address()).to.equal(OWNER);
+	});
+
+	it ("TEST SCRIPTS FOR ceresInstance.setRedemptionFee()",async() => {
+		const setRedemptionFee_value_before = parseFloat(await ceresInstance.redemption_fee());
+		expect(setRedemptionFee_value_before).to.equal(REDEMPTION_FEE);
+		// ACTION & ASSERTION
+		await ceresInstance.setRedemptionFee(REDEMPTION_FEE_MODIFIED);
+		const setRedemptionFee_value_after = parseFloat(await ceresInstance.redemption_fee());
+		expect(setRedemptionFee_value_after).to.equal(REDEMPTION_FEE_MODIFIED);
+
+		// ROLLBACK CODE
+		await ceresInstance.setRedemptionFee(REDEMPTION_FEE);
+		const setRedemptionFee_value_ROLLBACK = parseFloat(await ceresInstance.redemption_fee());
+		expect(setRedemptionFee_value_ROLLBACK).to.equal(REDEMPTION_FEE);
 	})
 
 	

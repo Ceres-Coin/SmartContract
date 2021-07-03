@@ -254,7 +254,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         owner_address = _owner_address;
     }
 
-    // TODO: [FUNC][setRedemptionFee]
+    // [FUNC][setRedemptionFee]
     function setRedemptionFee(uint256 red_fee) public onlyByOwnerOrGovernance {
         redemption_fee = red_fee;
     }
