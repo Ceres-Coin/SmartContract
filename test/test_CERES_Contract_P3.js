@@ -375,16 +375,15 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR ceresInstance.setTimelock()",async() => {
-		console.log(chalk.yellow(`timelock_address: ${await ceresInstance.timelock_address()}`));
-
+		// console.log(chalk.yellow(`timelock_address: ${await ceresInstance.timelock_address()}`));
 		expect(await ceresInstance.timelock_address()).to.equal(timelockInstance.address);
 		// ACTION & ASSERTION
-		// await ceresInstance.setCSSAddress(cssInstance.address,{from: OWNER});
-		// expect(await ceresInstance.css_address()).to.equal(cssInstance.address);
+		await ceresInstance.setTimelock(constants.ZERO_ADDRESS,{from: OWNER});
+		expect(await ceresInstance.timelock_address()).to.equal(constants.ZERO_ADDRESS);
 
 		// // ROLLBACK CODE
-		// await ceresInstance.setCSSAddress(constants.ZERO_ADDRESS,{from: OWNER});
-		// expect(await ceresInstance.css_address()).to.equal(constants.ZERO_ADDRESS);
+		await ceresInstance.setTimelock(timelockInstance.address,{from: OWNER});
+		expect(await ceresInstance.setTimelock()).to.equal(timelockInstance.address);
 	});
 
 	
