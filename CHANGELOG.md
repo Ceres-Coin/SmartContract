@@ -1,3 +1,31 @@
+## [0.1.210703-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210702-b...0.1.210703-a) (2021-07-03)
+1. ADDED: "test/test_CERES_Contract_P3.js"
+   1. ADDED: "Test Scripts for ceresInstance.pool_mint()"
+   2. added test scripts
+   3. ADDED: "Test Scripts for ceresInstance.ceres_pools"
+   4. ADDED: Test Scripts for ceresInstance.addPool() & removePool()
+   5. MODIFIED: "Test Scripts for ceresInstance.pool_mint()"
+   6. ADDED: "Test Scripts for ceresInstance.pool_burn_from()"
+   7. ADDED: "Test Scripts for ceresInstance.setOwner()"
+   8. ADDED: "TEST SCRIPTS FOR ceresInstance.setRedemptionFee()"
+   9. ADDED: "TEST SCRIPTS FOR ceresInstance.setCeresStep()"
+   10. ADDED: "TEST SCRIPTS FOR ceresInstance.setPriceTarget()"
+   11. ADDED: "TEST SCRIPTS FOR ceresInstance.setPriceBand()"
+   12. ADDED: "TEST SCRIPTS FOR ceresInstance.setRefreshCooldown()
+   13. ADDED: "TEST SCRIPTS FOR ceresInstance.setCSSAddress()"
+   14. ADDED "TEST SCRIPTS FOR ceresInstance.setCSSAddress()"
+   15. ADDED: "TEST SCRIPTS FOR ceresInstance.setTimelock()"
+   16. ADDED: "TEST SCRIPTS FOR ceresInstance.setTimelock()"
+   17. REMOVE TODO TASKS
+   18. ADDED: "TEST SCRIPTS FOR ceresInstance.setController()"
+   19. ADDED: "TEST SCRIPTS FOR ceresInstance.toggleCollateralRatio()"
+   20. fix bugs for toggleCollateralRatio()
+2. MODIFIED test/test_CERES_Contract_P2.js
+   1. MOVE ceres_info() test scripts from P2 to P3
+
+<!-- TODO: add new test scripts & new tasks for CSS.sol contract-->
+
+
 ## [0.1.210702-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210702-a...0.1.210702-b) (2021-07-02)
 1. test/test_CERES_Contract_P2.js
    1. ADDED TEST CASES FOR ceres_pools_array[0]
@@ -20,7 +48,7 @@
 2. contracts/ceres/ceres.sol
    1. REMOVE TODO
 
-<!-- TODO: Continue to write test scripts in test/test_CERES_Contract_P3.js -->
+<!-- Continue to write test scripts in test/test_CERES_Contract_P3.js -->
 
 
 ## [0.1.210702-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210701-b...0.1.210701-c) (2021-07-02)
