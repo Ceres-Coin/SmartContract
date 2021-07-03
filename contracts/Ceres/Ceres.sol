@@ -269,7 +269,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         ceres_step = _new_step;
     }  
 
-    // TODO: [FUNC][setPriceTarget]
+    // [FUNC][setPriceTarget]
     function setPriceTarget (uint256 _new_price_target) public onlyByOwnerOrGovernance {
         price_target = _new_price_target;
     }

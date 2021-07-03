@@ -150,6 +150,8 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 
 	const CERES_STEP = 2500; 
 	const CERES_STEP_MODIFIED = 5000; 
+	const PRICE_TARGET = 1000000; 
+	const PRICE_TARGET_MODIFIED = 1000000; 
 
 	
 	// USDC_Pool Constants
@@ -334,6 +336,16 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		// ROLLBACK CODE
 		await ceresInstance.setCeresStep(CERES_STEP,{from: OWNER});
 		expect(parseFloat(await ceresInstance.ceres_step())).to.equal(CERES_STEP);
+	});
+
+	it ("TEST SCRIPTS FOR ceresInstance.setPriceTarget()",async() => {
+		expect(parseFloat(await ceresInstance.price_target())).to.equal(PRICE_TARGET);
+		// ACTION & ASSERTION
+		await ceresInstance.setPriceTarget(PRICE_TARGET_MODIFIED,{from: OWNER});
+		expect(parseFloat(await ceresInstance.price_target())).to.equal(PRICE_TARGET_MODIFIED);
+		// ROLLBACK CODE
+		await ceresInstance.setPriceTarget(PRICE_TARGET,{from: OWNER});
+		expect(parseFloat(await ceresInstance.price_target())).to.equal(PRICE_TARGET);
 	});
 
 	
