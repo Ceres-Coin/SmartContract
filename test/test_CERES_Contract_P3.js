@@ -257,13 +257,14 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 
 	it ("Test Scripts for ceresInstance.pool_mint()",async() => {
 		const balanceOf_before = parseFloat(await ceresInstance.balanceOf(METAMASK_ADDRESS));
-		console.log(chalk.yellow(`balanceOf_before: ${balanceOf_before}`));
+		// console.log(chalk.yellow(`balanceOf_before: ${balanceOf_before}`));
 
 		await ceresInstance.addPool(METAMASK_ADDRESS,{from: OWNER});
 		await ceresInstance.pool_mint(METAMASK_ADDRESS,ONE_THOUSAND_DEC18,{from: METAMASK_ADDRESS});
 		
 		const balanceOf_after = parseFloat(await ceresInstance.balanceOf(METAMASK_ADDRESS));
-		console.log(chalk.yellow(`balanceOf_after: ${balanceOf_after}`));
+		// console.log(chalk.yellow(`balanceOf_after: ${balanceOf_after}`));
+		expect(balanceOf_after-balanceOf_before).to.equal(parseFloat(ONE_THOUSAND_DEC18));
 
 		// ROLL BACK CODE
 		await ceresInstance.removePool(METAMASK_ADDRESS,{from: OWNER});
