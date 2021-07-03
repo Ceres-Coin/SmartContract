@@ -307,7 +307,7 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		const setRedemptionFee_value_before = parseFloat(await ceresInstance.redemption_fee());
 		expect(setRedemptionFee_value_before).to.equal(REDEMPTION_FEE);
 		// ACTION & ASSERTION
-		await ceresInstance.setRedemptionFee(REDEMPTION_FEE_MODIFIED);
+		await ceresInstance.setRedemptionFee(REDEMPTION_FEE_MODIFIED,{from: OWNER});
 		const setRedemptionFee_value_after = parseFloat(await ceresInstance.redemption_fee());
 		expect(setRedemptionFee_value_after).to.equal(REDEMPTION_FEE_MODIFIED);
 
@@ -321,12 +321,12 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		const minting_fee_before = parseFloat(await ceresInstance.minting_fee());
 		expect(minting_fee_before).to.equal(MINTING_FEE);
 		// ACTION & ASSERTION
-		await ceresInstance.setMintingFee(MINTING_FEE_MODIFIED);
+		await ceresInstance.setMintingFee(MINTING_FEE_MODIFIED,{from: OWNER});
 		const minting_fee_after = parseFloat(await ceresInstance.minting_fee());
 		expect(minting_fee_after).to.equal(MINTING_FEE_MODIFIED);
 
 		// ROLLBACK CODE
-		await ceresInstance.setMintingFee(MINTING_FEE);
+		await ceresInstance.setMintingFee(MINTING_FEE,{from: OWNER});
 		const minting_fee_rollback = parseFloat(await ceresInstance.minting_fee());
 		expect(minting_fee_rollback).to.equal(MINTING_FEE);
 	});
