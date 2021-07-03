@@ -402,14 +402,14 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 	it ("TEST SCRIPTS FOR ceresInstance.toggleCollateralRatio()", async() => {
 		// BEFORE
 		// console.log(chalk.yellow(`collateral_ratio_paused: ${await ceresInstance.collateral_ratio_paused()}`))
-		expect(ceresInstance.collateral_ratio_paused).to.equal(false);
+		expect(await ceresInstance.collateral_ratio_paused).to.equal(false);
 		// ACTION & ASSERTION
 		await ceresInstance.toggleCollateralRatio({from: OWNER});
-		expect(ceresInstance.collateral_ratio_paused).to.equal(true);
+		expect(await ceresInstance.collateral_ratio_paused).to.equal(true);
 
 		// // ROLLBACK CODE
 		await ceresInstance.toggleCollateralRatio({from: OWNER});
-		expect(ceresInstance.collateral_ratio_paused).to.equal(false);
+		expect(await ceresInstance.collateral_ratio_paused).to.equal(false);
 	});
 
 	it ("Test Scripts for ceresInstance.ceresInfo() func", async() => {
