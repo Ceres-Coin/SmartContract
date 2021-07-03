@@ -279,7 +279,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         price_band = _price_band;
     }
 
-    // TODO: [FUNC][setRefreshCooldown]
+    // [FUNC][setRefreshCooldown]
     function setRefreshCooldown(uint256 _new_cooldown) public onlyByOwnerOrGovernance {
     	refresh_cooldown = _new_cooldown;
     }

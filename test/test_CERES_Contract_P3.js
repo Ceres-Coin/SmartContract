@@ -154,6 +154,8 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 	const PRICE_TARGET_MODIFIED = 1000000; 
 	const PRICE_BAND = 5000; 
 	const PRICE_BAND_MODIFIED = 10000; 
+	const refresh_cooldown_default = 60; 
+	const refresh_cooldown_modified = 120; 
 
 	
 	// USDC_Pool Constants
@@ -350,14 +352,14 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		expect(parseFloat(await ceresInstance.price_target())).to.equal(PRICE_TARGET);
 	});
 
-	it ("TEST SCRIPTS FOR ceresInstance.setPriceBand()",async() => {
-		expect(parseFloat(await ceresInstance.price_band())).to.equal(PRICE_BAND);
+	it ("TEST SCRIPTS FOR ceresInstance.setRefreshCooldown()",async() => {
+		expect(parseFloat(await ceresInstance.refresh_cooldown())).to.equal(refresh_cooldown_default);
 		// ACTION & ASSERTION
-		await ceresInstance.setPriceBand(PRICE_BAND_MODIFIED,{from: OWNER});
-		expect(parseFloat(await ceresInstance.price_band())).to.equal(PRICE_BAND_MODIFIED);
+		await ceresInstance.setRefreshCooldown(refresh_cooldown_modified,{from: OWNER});
+		expect(parseFloat(await ceresInstance.refresh_cooldown())).to.equal(refresh_cooldown_modified);
 		// ROLLBACK CODE
-		await ceresInstance.setPriceBand(PRICE_BAND,{from: OWNER});
-		expect(parseFloat(await ceresInstance.price_band())).to.equal(PRICE_BAND);
+		await ceresInstance.setRefreshCooldown(refresh_cooldown_default,{from: OWNER});
+		expect(parseFloat(await ceresInstance.refresh_cooldown())).to.equal(refresh_cooldown_default);
 	});
 
 	
