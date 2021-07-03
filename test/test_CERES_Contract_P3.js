@@ -362,6 +362,12 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		expect(parseFloat(await ceresInstance.refresh_cooldown())).to.equal(refresh_cooldown_default);
 	});
 
+	it ("TEST SCRIPTS FOR ceresInstance.setCSSAddress()",async() => {
+		console.log(chalk.yellow(`ceresInstance.css_address, ${await ceresInstance.css_address()}`));
+
+
+	});
+
 	
 
 

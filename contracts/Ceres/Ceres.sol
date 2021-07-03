@@ -284,7 +284,7 @@ contract CEREStable is ERC20Custom, AccessControl {
     	refresh_cooldown = _new_cooldown;
     }
 
-    // TODO: [FUNC][setCSSAddress]
+    // [FUNC][setCSSAddress]
     function setCSSAddress(address _css_address) public onlyByOwnerOrGovernance {
         css_address = _css_address;
     }
