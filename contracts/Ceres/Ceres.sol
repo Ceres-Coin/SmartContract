@@ -224,7 +224,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         emit CERESMinted(msg.sender, m_address, m_amount);
     }
 
-    // TODO: [FUNC][addPool]
+    // [FUNC][addPool]
     // Adds collateral addresses supported, such as tether and busd, must be ERC20 
     function addPool(address pool_address) public onlyByOwnerOrGovernance {
         require(ceres_pools[pool_address] == false, "address already exists");
@@ -233,7 +233,7 @@ contract CEREStable is ERC20Custom, AccessControl {
     }
 
     // Remove a pool 
-    // TODO: [FUNC][removePool]
+    // [FUNC][removePool]
     function removePool(address pool_address) public onlyByOwnerOrGovernance {
         require(ceres_pools[pool_address] == true, "address doesn't exist already");
         

@@ -263,15 +263,19 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		console.log(chalk.yellow(`balanceOf_after: ${balanceOf_after}`));
 	});
 
-	it ("Test Scripts for ceresInstance.ceres_pools", async() => {
-		const ceres_pools_metamaskAddress_BEFORE = await ceresInstance.ceres_pools(METAMASK_ADDRESS);
-		console.log(chalk.yellow(`ceres_pools_metamaskAddress_BEFORE: ${ceres_pools_metamaskAddress_BEFORE}`));
+	it ("Test Scripts for ceresInstance.addPool() & removePool()", async() => {
+		const ceres_pools_OWNER_BEFORE = await ceresInstance.ceres_pools(OWNER);
+		console.log(chalk.yellow(`ceres_pools_OWNER_BEFORE: ${ceres_pools_OWNER_BEFORE}`));
 
-		await ceresInstance.addPool(METAMASK_ADDRESS,{from: OWNER});
+		await ceresInstance.addPool(OWNER,{from: OWNER});
 
-		const ceres_pools_metamaskAddress_AFTER = await ceresInstance.ceres_pools(METAMASK_ADDRESS);
-		console.log(chalk.yellow(`ceres_pools_metamaskAddress_AFTER: ${ceres_pools_metamaskAddress_AFTER}`));
-	})
+		const ceres_pools_OWNER_AFTER = await ceresInstance.ceres_pools(OWNER);
+		console.log(chalk.yellow(`ceres_pools_OWNER_AFTER: ${ceres_pools_OWNER_AFTER}`));
+
+		await ceresInstance.removePool(OWNER,{from: OWNER});
+		const ceres_pools_OWNER_AFTER_RemovePool = await ceresInstance.ceres_pools(OWNER);
+		console.log(chalk.yellow(`ceres_pools_OWNER_AFTER_RemovePool: ${ceres_pools_OWNER_AFTER_RemovePool}`));
+	});
 
 	
 
