@@ -300,7 +300,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         timelock_address = new_timelock;
     }
 
-    // TODO: [FUNC][setController]
+    // [FUNC][setController]
     function setController(address _controller_address) external onlyByOwnerOrGovernance {
         controller_address = _controller_address;
     }

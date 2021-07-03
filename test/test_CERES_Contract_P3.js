@@ -388,8 +388,16 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR ceresInstance.setController()", async() => {
-		console.log(chalk.yellow(`controller_address: ${await ceresInstance.controller_address()}`));
-	})
+		// BEFORE
+		expect(await ceresInstance.controller_address()).to.equal(constants.ZERO_ADDRESS);
+		// ACTION & ASSERTION
+		await ceresInstance.setController(ADMIN,{from: OWNER});
+		expect(await ceresInstance.controller_address()).to.equal(ADMIN);
+
+		// ROLLBACK CODE
+		await ceresInstance.setController(constants.ZERO_ADDRESS,{from: OWNER});
+		expect(await ceresInstance.controller_address()).to.equal(constants.ZERO_ADDRESS);
+	});
 
 	
 
