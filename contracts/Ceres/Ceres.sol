@@ -274,7 +274,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         price_target = _new_price_target;
     }
 
-    // TODO: [FUNC][setPriceBand]
+    // [FUNC][setPriceBand]
     function setPriceBand(uint256 _price_band) external onlyByOwnerOrGovernance {
         price_band = _price_band;
     }
