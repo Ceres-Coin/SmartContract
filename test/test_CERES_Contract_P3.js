@@ -304,17 +304,13 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR ceresInstance.setRedemptionFee()",async() => {
-		const setRedemptionFee_value_before = parseFloat(await ceresInstance.redemption_fee());
-		expect(setRedemptionFee_value_before).to.equal(REDEMPTION_FEE);
+		expect(parseFloat(await ceresInstance.redemption_fee())).to.equal(REDEMPTION_FEE);
 		// ACTION & ASSERTION
 		await ceresInstance.setRedemptionFee(REDEMPTION_FEE_MODIFIED,{from: OWNER});
-		const setRedemptionFee_value_after = parseFloat(await ceresInstance.redemption_fee());
-		expect(setRedemptionFee_value_after).to.equal(REDEMPTION_FEE_MODIFIED);
-
+		expect(parseFloat(await ceresInstance.redemption_fee())).to.equal(REDEMPTION_FEE_MODIFIED);
 		// ROLLBACK CODE
 		await ceresInstance.setRedemptionFee(REDEMPTION_FEE,{from: OWNER});
-		const setRedemptionFee_value_ROLLBACK = parseFloat(await ceresInstance.redemption_fee());
-		expect(setRedemptionFee_value_ROLLBACK).to.equal(REDEMPTION_FEE);
+		expect(parseFloat(await ceresInstance.redemption_fee())).to.equal(REDEMPTION_FEE);
 	});
 
 	it ("TEST SCRIPTS FOR ceresInstance.setMintingFee()",async() => {
