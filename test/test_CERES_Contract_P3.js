@@ -384,6 +384,7 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		// // ROLLBACK CODE
 		await ceresInstance.setTimelock(timelockInstance.address,{from: OWNER});
 		expect(await ceresInstance.setTimelock()).to.equal(timelockInstance.address);
+		
 	});
 
 	
