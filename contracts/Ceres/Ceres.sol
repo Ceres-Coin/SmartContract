@@ -289,7 +289,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         css_address = _css_address;
     }
 
-    // TODO: [FUNC][setETHUSDOracle]
+    // [FUNC][setETHUSDOracle]
     function setETHUSDOracle(address _eth_usd_consumer_address) public onlyByOwnerOrGovernance {
         eth_usd_consumer_address = _eth_usd_consumer_address;
         eth_usd_pricer = ChainlinkETHUSDPriceConsumer(eth_usd_consumer_address);
@@ -307,14 +307,14 @@ contract CEREStable is ERC20Custom, AccessControl {
 
 
 
-    //  TODO: [FUNC][setCeresEthOracle]
+    //  [FUNC][setCeresEthOracle]
     function setCeresEthOracle(address _ceres_oracle_addr, address _weth_address) public onlyByOwnerOrGovernance {
         ceres_eth_oracle_address = _ceres_oracle_addr;
         CeresEthOracle = UniswapPairOracle(_ceres_oracle_addr); 
         weth_address = _weth_address;
     }
 
-    // TODO: [FUNC][setCSSEthOracle]
+    // [FUNC][setCSSEthOracle]
     function setCSSEthOracle(address _css_oracle_addr, address _weth_address) public onlyByOwnerOrGovernance {
         css_eth_oracle_address = _css_oracle_addr;
         CSSEthOracle = UniswapPairOracle(_css_oracle_addr);
