@@ -259,7 +259,7 @@ contract CEREStable is ERC20Custom, AccessControl {
         redemption_fee = red_fee;
     }
 
-    // TODO: [FUNC][setMintingFee]
+    // [FUNC][setMintingFee]
     function setMintingFee(uint256 min_fee) public onlyByOwnerOrGovernance {
         minting_fee = min_fee;
     }  
