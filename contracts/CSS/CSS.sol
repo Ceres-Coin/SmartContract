@@ -82,7 +82,7 @@ contract CEREShares is ERC20Custom, AccessControl {
         oracle_address = new_oracle;
     }
 
-    
+    // TEST CASE DONE
     function setTimelock(address new_timelock) external onlyByOwnerOrGovernance {
         timelock_address = new_timelock;
     }

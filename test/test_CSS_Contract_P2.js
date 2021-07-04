@@ -280,6 +280,19 @@ contract('test_CSS_Contract_P2', async (accounts) => {
 
     });
 
+	it ("TEST SCRIPTS FOR cssInstance.setTimelock()", async() => {
+        // BEFORE
+        expect(await cssInstance.timelock_address()).to.equal(timelockInstance.address);
+		// ACTION & ASSERTION
+		await cssInstance.setTimelock(oracle_instance_CSS_WETH.address,{from: OWNER});
+		expect(await cssInstance.timelock_address()).to.equal(oracle_instance_CSS_WETH.address);
+
+		// ROLLBACK CODE
+		await cssInstance.setTimelock(timelockInstance.address,{from: OWNER});
+		expect(await cssInstance.timelock_address()).to.equal(timelockInstance.address);
+
+    });
+
 	
 
 	
