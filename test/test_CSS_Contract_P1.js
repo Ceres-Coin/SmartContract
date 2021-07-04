@@ -286,8 +286,12 @@ contract('test_CERES_Contract_P3', async (accounts) => {
     });
 
     it ("TEST SCRIPTS FOR cssInstance.owner_address", async() => {
-        expect(await cssInstance.owner_address).to.equal(OWNER);
+        expect(await cssInstance.owner_address()).to.equal(OWNER);
     });
+
+    it ("TEST SCRIPTS FOR cssInstance.oracle_address", async() => {
+        console.log(chalk.blue(`cssInstance.oracle_address: ${await cssInstance.oracle_address()}`));
+    })
 
 	
 
