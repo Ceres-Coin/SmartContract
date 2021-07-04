@@ -204,19 +204,28 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 	const MIN_PERIOD = 1;
 	const DEFAULT_PERIOD = 5;
 
+    let account0;
+    let account1;
+    let account2;
+    let account3;
+    let account4;
+    let account5;
+    let account6;
+    let account7;
+
     beforeEach(async() => {
 		ADMIN = accounts[0];
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
 		OWNER = accounts[1];
 		METAMASK_ADDRESS = accounts[2];
-		const account0 = accounts[0];
-		const account1 = accounts[1];
-		const account2 = accounts[2];
-		const account3 = accounts[3];
-		const account4 = accounts[4];
-		const account5 = accounts[5];
-		const account6 = accounts[6];
-		const account7 = accounts[7];
+		account0 = accounts[0];
+		account1 = accounts[1];
+		account2 = accounts[2];
+		account3 = accounts[3];
+		account4 = accounts[4];
+		account5 = accounts[5];
+		account6 = accounts[6];
+		account7 = accounts[7];
 
 		ceresInstance = await CEREStable.deployed();
 		cssInstance = await CEREShares.deployed();
@@ -302,10 +311,10 @@ contract('test_CERES_Contract_P3', async (accounts) => {
         expect(await cssInstance.trackingVotes()).to.equal(true);
     });
 
-    it ("TEST SCRIPTS FOR cssInstance.checkpoints", async() => {
-        const checkpoints_0 = await cssInstance.checkpoints(account0);
-        const checkpoints_1 = await cssInstance.checkpoints(account0);
-        const checkpoints_2 = await cssInstance.checkpoints(account0);
+    it ("TEST SCRIPTS FOR cssInstance.numCheckpoints", async() => {
+        const checkpoints_0 = await cssInstance.numCheckpoints(account0);
+        const checkpoints_1 = await cssInstance.numCheckpoints(account1);
+        const checkpoints_2 = await cssInstance.numCheckpoints(account2);
 
         console.log(chalk.yellow(`checkpoints_0: ${checkpoints_0}`));
         console.log(chalk.yellow(`checkpoints_1: ${checkpoints_1}`));
