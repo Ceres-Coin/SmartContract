@@ -329,6 +329,11 @@ contract('test_CERES_Contract_P3', async (accounts) => {
         // console.log(chalk.yellow(`numCheckpoints_5: ${numCheckpoints_5}`));
         // console.log(chalk.yellow(`numCheckpoints_6: ${numCheckpoints_6}`));
         // console.log(chalk.yellow(`numCheckpoints_7: ${numCheckpoints_7}`));
+    });
+
+    it ("TEST SCRIPTS FOR cssInstance.setOracle()", async() => {
+        // BEFORE
+        expect(await cssInstance.oracle_address()).to.equal(OWNER);
     })
 
 	
