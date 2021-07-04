@@ -273,7 +273,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 	it ("Test Scripts for ceresInstance.address", async() => {
 		const ceresInstance_address = await ceresInstance.address;
-		console.log(chalk.yellow(`ceresInstance_address: ${ceresInstance_address}`));
+		// console.log(chalk.yellow(`ceresInstance_address: ${ceresInstance_address}`));
 	});
 
 	it('Check up on the oracles and make sure the prices are set', async () => {
