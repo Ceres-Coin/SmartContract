@@ -376,19 +376,17 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log("============6DEC mint1t1FRAX()============");
 		const totalSupplyCERES = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18).toNumber();
 		const totalSupplyCSS = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18).toNumber();
-
 		console.log(chalk.yellow(`totalSupplyCERES: ${totalSupplyCERES}`));
 		console.log(chalk.yellow(`totalSupplyCSS: ${totalSupplyCSS}`));
 
-		// globalCollateralRatio = new BigNumber(await fraxInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
-		// globalCollateralValue = new BigNumber(await fraxInstance.globalCollateralValue.call()).div(BIG18).toNumber();
-		// console.log("FRAX price (USD): ", (new BigNumber(await fraxInstance.frax_price.call()).div(BIG6)).toNumber());
-		// console.log("FXS price (USD): ", (new BigNumber(await fraxInstance.fxs_price.call()).div(BIG6)).toNumber());
-		// console.log("totalSupplyFRAX: ", totalSupplyFRAX);
-		// console.log("totalSupplyFXS: ", totalSupplyFXS);
-		// console.log("globalCollateralRatio: ", globalCollateralRatio);
-		// console.log("globalCollateralValue: ", globalCollateralValue);
-		// console.log("");
+		const globalCollateralRatio = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
+		const globalCollateralValue = new BigNumber(await ceresInstance.globalCollateralValue.call()).div(BIG18).toNumber();
+		console.log(chalk.yellow(`globalCollateralRatio: ${globalCollateralRatio}`));
+		console.log(chalk.yellow(`globalCollateralValue: ${globalCollateralValue}`));
+
+		console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
+		console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
+	
 
 		// // Note the collateral ratio
 		// const collateral_ratio_before = new BigNumber(await fraxInstance.global_collateral_ratio.call()).div(BIG6);
