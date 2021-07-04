@@ -64,8 +64,8 @@ contract CEREShares is ERC20Custom, AccessControl {
     ) public {
         name = _name;
         symbol = _symbol;
-        owner_address = _owner_address;
         oracle_address = _oracle_address;
+        owner_address = _owner_address;
         timelock_address = _timelock_address;
         _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _mint(owner_address, genesis_supply);

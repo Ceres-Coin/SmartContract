@@ -285,12 +285,13 @@ contract('test_CERES_Contract_P3', async (accounts) => {
         expect(parseFloat(await cssInstance.CSS_DAO_min())).to.equal(0);
     });
 
-    it ("TEST SCRIPTS FOR cssInstance.owner_address", async() => {
+    it ("TEST SCRIPTS FOR cssInstance.owner_address, default value is OWNER", async() => {
         expect(await cssInstance.owner_address()).to.equal(OWNER);
     });
 
-    it ("TEST SCRIPTS FOR cssInstance.oracle_address", async() => {
-        console.log(chalk.blue(`cssInstance.oracle_address: ${await cssInstance.oracle_address()}`));
+    it ("TEST SCRIPTS FOR cssInstance.oracle_address, default value is OWNER", async() => {
+        // console.log(chalk.blue(`cssInstance.oracle_address: ${await cssInstance.oracle_address()}`));
+        expect(await cssInstance.oracle_address()).to.equal(OWNER);
     })
 
 	
