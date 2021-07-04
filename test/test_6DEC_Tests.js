@@ -69,6 +69,7 @@ const UniswapPairOracle_CERES_WETH = artifacts.require("Oracle/Fakes/UniswapPair
 const UniswapPairOracle_CERES_USDC = artifacts.require("Oracle/Fakes/UniswapPairOracle_CERES_USDC");
 const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_WETH");
 const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Fakes/UniswapPairOracle_CSS_USDC");
+const UniswapPairOracle_USDC_WETH = artifacts.require("Oracle/Variants/UniswapPairOracle_USDC_WETH");
 const UniswapPairOracle = artifacts.require("Oracle/UniswapPairOracle");
 
 // ChainlinkETHUSD Contract
@@ -115,6 +116,7 @@ contract('test_CSS_Contract_P2', async (accounts) => {
 	let oracle_instance_CERES_USDC;
 	let oracle_instance_CSS_WETH;
 	let oracle_instance_CSS_USDC;
+	let oracle_instance_USDC_WETH;
 
 	let first_CERES_WETH;
 	let first_CERES_USDC;
@@ -249,7 +251,7 @@ contract('test_CSS_Contract_P2', async (accounts) => {
 
 		oracle_instance_CERES_WETH = await UniswapPairOracle_CERES_WETH.deployed();
 		oracle_instance_CERES_USDC = await UniswapPairOracle_CERES_USDC.deployed();
-
+		oracle_instance_USDC_WETH = await UniswapPairOracle_USDC_WETH.deployed();
 		oracle_instance_CSS_WETH = await UniswapPairOracle_CSS_WETH.deployed();
 		oracle_instance_CSS_USDC = await UniswapPairOracle_CSS_USDC.deployed();
 
@@ -271,6 +273,237 @@ contract('test_CSS_Contract_P2', async (accounts) => {
 		const ceresInstance_address = await ceresInstance.address;
 		console.log(chalk.yellow(`ceresInstance_address: ${ceresInstance_address}`));
 	});
+
+	it('Check up on the oracles and make sure the prices are set', async () => {
+		// Advance 24 hrs so the period can be computed
+		await time.increase(86400 + 1);
+		await time.advanceBlock();
+
+		// Make sure the prices are updated
+		await oracle_instance_CERES_WETH.update({ from: OWNER });
+		await oracle_instance_CERES_USDC.update({ from: OWNER });
+		await oracle_instance_CSS_WETH.update({ from: OWNER });
+		await oracle_instance_CSS_USDC.update({ from: OWNER });
+		await oracle_instance_USDC_WETH.update({ from: OWNER });
+		
+		// Get the prices
+		// Price is in collateral needed for 1 FRAX
+		// let frax_price_from_FRAX_WETH = (new BigNumber(await oracle_instance_FRAX_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		// let frax_price_from_FRAX_USDC = (new BigNumber(await oracle_instance_FRAX_USDC.consult.call(FakeCollateral_USDC.address, 1e6))).div(BIG6).toNumber();
+		// let frax_price_from_FRAX_USDT = (new BigNumber(await oracle_instance_FRAX_USDT.consult.call(FakeCollateral_USDT.address, 1e6))).div(BIG6).toNumber();
+		// // let frax_price_from_FRAX_yUSD = (new BigNumber(await oracle_instance_FRAX_yUSD.consult.call(FakeCollateral_yUSD.address, 1e6))).div(BIG6).toNumber();
+		// let fxs_price_from_FXS_WETH = (new BigNumber(await oracle_instance_FXS_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		// let fxs_price_from_FXS_USDC = (new BigNumber(await oracle_instance_FXS_USDC.consult.call(FakeCollateral_USDC.address, 1e6))).div(BIG6).toNumber();
+		// let fxs_price_from_FXS_USDT = (new BigNumber(await oracle_instance_FXS_USDT.consult.call(FakeCollateral_USDT.address, 1e6))).div(BIG6).toNumber();
+		// // let fxs_price_from_FXS_yUSD = (new BigNumber(await oracle_instance_FXS_yUSD.consult.call(FakeCollateral_yUSD.address, 1e6))).div(BIG6).toNumber();
+		// let USDT_price_from_USDT_WETH = (new BigNumber(await oracle_instance_USDT_WETH.consult.call(WETH.address, 1e6))).div(1e6).toNumber();
+		// let USDC_price_from_USDC_WETH = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(WETH.address, 1e6))).div(1e6).toNumber();
+		// let DEC6_price_from_DEC6_WETH = (new BigNumber(await oracle_instance_6DEC_WETH.consult.call(WETH.address, (1e18).toString()))).div(1e6).toNumber();
+
+		// Print the prices
+		// console.log("frax_price_from_FRAX_WETH: ", frax_price_from_FRAX_WETH.toString(), " FRAX = 1 WETH");
+		// console.log("frax_price_from_FRAX_USDC: ", frax_price_from_FRAX_USDC.toString(), " FRAX = 1 USDC");
+		// console.log("frax_price_from_FRAX_USDT: ", frax_price_from_FRAX_USDT.toString(), " FRAX = 1 USDT");
+		// // console.log("frax_price_from_FRAX_yUSD: ", frax_price_from_FRAX_yUSD.toString(), " FRAX = 1 yUSD");
+		// console.log("fxs_price_from_FXS_WETH: ", fxs_price_from_FXS_WETH.toString(), " FXS = 1 WETH");
+		// console.log("fxs_price_from_FXS_USDC: ", fxs_price_from_FXS_USDC.toString(), " FXS = 1 USDC");
+		// console.log("fxs_price_from_FXS_USDT: ", fxs_price_from_FXS_USDT.toString(), " FXS = 1 USDT");
+		// // console.log("fxs_price_from_FXS_yUSD: ", fxs_price_from_FXS_yUSD.toString(), " FXS = 1 yUSD");
+		// console.log("USDT_price_from_USDT_WETH: ", USDT_price_from_USDT_WETH.toString(), " USDT = 1 WETH");
+		// console.log("USDC_price_from_USDC_WETH: ", USDC_price_from_USDC_WETH.toString(), " USDC = 1 WETH");
+		// console.log("6DEC_price_from_6DEC_WETH: ", DEC6_price_from_DEC6_WETH.toString(), " 6DEC = 1 WETH");
+
+		// Add allowances to the Uniswap Router
+		// await wethInstance.approve(routerInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await col_instance_USDC.approve(routerInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await col_instance_USDT.approve(routerInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// // await col_instance_yUSD.approve(routerInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await fraxInstance.approve(routerInstance.address, new BigNumber(1000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await fxsInstance.approve(routerInstance.address, new BigNumber(5000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+
+		// // Add allowances to the swapToPrice contract
+		// await wethInstance.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await col_instance_USDC.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await col_instance_USDT.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// // await col_instance_yUSD.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await fraxInstance.approve(swapToPriceInstance.address, new BigNumber(1000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await fxsInstance.approve(swapToPriceInstance.address, new BigNumber(5000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+
+
+		// console.log("===============FIRST SWAPS===============");
+		
+		// //--- FRAX
+
+		// // Handle FRAX / WETH
+		// // Targeting 390.6 FRAX / 1 WETH
+		// await swapToPriceInstance.swapToPrice(
+		// 	fraxInstance.address,
+		// 	wethInstance.address,
+		// 	new BigNumber(3906e5),
+		// 	new BigNumber(1e6),
+		// 	new BigNumber(100e18),
+		// 	new BigNumber(100e18),
+		// 	COLLATERAL_FRAX_AND_FXS_OWNER,
+		// 	new BigNumber(2105300114),
+		// 	{ from: COLLATERAL_FRAX_AND_FXS_OWNER }
+		// )
+
+		// // Handle FRAX / USDC
+		// // Targeting 1.003 FRAX / 1 USDC
+		// await swapToPriceInstance.swapToPrice(
+		// 	fraxInstance.address,
+		// 	col_instance_USDC.address,
+		// 	new BigNumber(1003e3),
+		// 	new BigNumber(997e3),
+		// 	new BigNumber(100e18),
+		// 	new BigNumber(100e18),
+		// 	COLLATERAL_FRAX_AND_FXS_OWNER,
+		// 	new BigNumber(2105300114),
+		// 	{ from: COLLATERAL_FRAX_AND_FXS_OWNER }
+		// )
+
+		// // Handle FRAX / USDT
+		// // Targeting 0.995 FRAX / 1 USDT
+		// await swapToPriceInstance.swapToPrice(
+		// 	fraxInstance.address,
+		// 	col_instance_USDT.address,
+		// 	new BigNumber(995e3),
+		// 	new BigNumber(1005e3),
+		// 	new BigNumber(100e18),
+		// 	new BigNumber(100e18),
+		// 	COLLATERAL_FRAX_AND_FXS_OWNER,
+		// 	new BigNumber(2105300114),
+		// 	{ from: COLLATERAL_FRAX_AND_FXS_OWNER }
+		// )
+
+		// // Handle FRAX / yUSD
+		// // Targeting 0.998 FRAX / 1 yUSD
+		// // await swapToPriceInstance.swapToPrice(
+		// // 	fraxInstance.address,
+		// // 	col_instance_yUSD.address,
+		// // 	new BigNumber(998e3),
+		// // 	new BigNumber(1002e3),
+		// // 	new BigNumber(100e18),
+		// // 	new BigNumber(100e18),
+		// // 	COLLATERAL_FRAX_AND_FXS_OWNER,
+		// // 	new BigNumber(2105300114),
+		// // 	{ from: COLLATERAL_FRAX_AND_FXS_OWNER }
+		// // )
+
+		// //--- FXS
+
+		// // Handle FXS / WETH
+		// // Targeting 1955 FXS / 1 WETH
+		// await swapToPriceInstance.swapToPrice(
+		// 	fxsInstance.address,
+		// 	wethInstance.address,
+		// 	new BigNumber(1955e6),
+		// 	new BigNumber(1e6),
+		// 	new BigNumber(100e18),
+		// 	new BigNumber(100e18),
+		// 	COLLATERAL_FRAX_AND_FXS_OWNER,
+		// 	new BigNumber(2105300114),
+		// 	{ from: COLLATERAL_FRAX_AND_FXS_OWNER }
+		// )
+
+		// // Handle FXS / USDC
+		// // Targeting 5.2 FXS / 1 USDC
+		// await swapToPriceInstance.swapToPrice(
+		// 	fxsInstance.address,
+		// 	col_instance_USDC.address,
+		// 	new BigNumber(52e5),
+		// 	new BigNumber(1e6),
+		// 	new BigNumber(100e18),
+		// 	new BigNumber(100e18),
+		// 	COLLATERAL_FRAX_AND_FXS_OWNER,
+		// 	new BigNumber(2105300114),
+		// 	{ from: COLLATERAL_FRAX_AND_FXS_OWNER }
+		// )
+
+
+		// // Handle FXS / USDT
+		// // Targeting 5.1 FXS / 1 USDT
+		// await swapToPriceInstance.swapToPrice(
+		// 	fxsInstance.address,
+		// 	col_instance_USDT.address,
+		// 	new BigNumber(51e5),
+		// 	new BigNumber(1e6),
+		// 	new BigNumber(100e18),
+		// 	new BigNumber(100e18),
+		// 	COLLATERAL_FRAX_AND_FXS_OWNER,
+		// 	new BigNumber(2105300114),
+		// 	{ from: COLLATERAL_FRAX_AND_FXS_OWNER }
+		// )
+
+		// // Handle FXS / yUSD
+		// // Targeting 4.9 FXS / 1 yUSD
+		// // await swapToPriceInstance.swapToPrice(
+		// // 	fxsInstance.address,
+		// // 	col_instance_yUSD.address,
+		// // 	new BigNumber(49e5),
+		// // 	new BigNumber(1e6),
+		// // 	new BigNumber(100e18),
+		// // 	new BigNumber(100e18),
+		// // 	COLLATERAL_FRAX_AND_FXS_OWNER,
+		// // 	new BigNumber(2105300114),
+		// // 	{ from: COLLATERAL_FRAX_AND_FXS_OWNER }
+		// // )
+
+		// // Advance 24 hrs so the period can be computed
+		// await time.increase(86400 + 1);
+		// await time.advanceBlock();
+
+		// // Make sure the prices are updated
+		// await oracle_instance_FRAX_WETH.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await oracle_instance_FRAX_USDC.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await oracle_instance_FRAX_USDT.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// // await oracle_instance_FRAX_yUSD.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await oracle_instance_FXS_WETH.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await oracle_instance_FXS_USDC.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await oracle_instance_FXS_USDT.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// // await oracle_instance_FXS_yUSD.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await oracle_instance_USDT_WETH.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// await oracle_instance_USDC_WETH.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
+
+		// // Advance 24 hrs so the period can be computed
+		// await time.increase(86400 + 1);
+		// await time.advanceBlock();
+
+		// Get the prices
+		// frax_price_from_FRAX_WETH = (new BigNumber(await oracle_instance_FRAX_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		// frax_price_from_FRAX_USDC = (new BigNumber(await oracle_instance_FRAX_USDC.consult.call(FakeCollateral_USDC.address, 1e6))).div(BIG6).toNumber();
+		// frax_price_from_FRAX_USDT = (new BigNumber(await oracle_instance_FRAX_USDT.consult.call(FakeCollateral_USDT.address, 1e6))).div(BIG6).toNumber();
+		// // frax_price_from_FRAX_yUSD = (new BigNumber(await oracle_instance_FRAX_yUSD.consult.call(FakeCollateral_yUSD.address, 1e6))).div(BIG6).toNumber();
+		// fxs_price_from_FXS_WETH = (new BigNumber(await oracle_instance_FXS_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
+		// fxs_price_from_FXS_USDC = (new BigNumber(await oracle_instance_FXS_USDC.consult.call(FakeCollateral_USDC.address, 1e6))).div(BIG6).toNumber();
+		// fxs_price_from_FXS_USDT = (new BigNumber(await oracle_instance_FXS_USDT.consult.call(FakeCollateral_USDT.address, 1e6))).div(BIG6).toNumber();
+		// // fxs_price_from_FXS_yUSD = (new BigNumber(await oracle_instance_FXS_yUSD.consult.call(FakeCollateral_yUSD.address, 1e6))).div(BIG6).toNumber();
+		// USDT_price_from_USDT_WETH = (new BigNumber(await oracle_instance_USDT_WETH.consult.call(WETH.address, 1e6))).div(1e6).toNumber();
+		// USDC_price_from_USDC_WETH = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(WETH.address, 1e6))).div(1e6).toNumber();
+		// DEC6_price_from_DEC6_WETH = (new BigNumber(await oracle_instance_6DEC_WETH.consult.call(WETH.address, (1e18).toString()))).div(1e6).toNumber();
+
+		// console.log(chalk.blue("==================PRICES=================="));
+		// Print the new prices
+		// console.log("ETH-USD price from Chainlink:", (new BigNumber((await fraxInstance.frax_info.call())['7'])).div(1e6).toString() , "USD = 1 ETH");
+		// console.log("frax_price_from_FRAX_WETH: ", frax_price_from_FRAX_WETH.toString(), " FRAX = 1 WETH");
+		// console.log("FRAX-USD price from Chainlink, Uniswap:", (new BigNumber(await fraxInstance.frax_price.call())).div(1e6).toString(), "FRAX = 1 USD");
+		//console.log("frax_price_from_FRAX_USDC: ", frax_price_from_FRAX_USDC.toString(), " FRAX = 1 USDC");
+		//console.log("frax_price_from_FRAX_USDT: ", frax_price_from_FRAX_USDT.toString(), " FRAX = 1 USDT");
+		//console.log("frax_price_from_FRAX_yUSD: ", frax_price_from_FRAX_yUSD.toString(), " FRAX = 1 yUSD");
+		// console.log("fxs_price_from_FXS_WETH: ", fxs_price_from_FXS_WETH.toString(), " FXS = 1 WETH");
+		// //console.log("fxs_price_from_FXS_USDC: ", fxs_price_from_FXS_USDC.toString(), " FXS = 1 USDC");
+		// //console.log("fxs_price_from_FXS_USDT: ", fxs_price_from_FXS_USDT.toString(), " FXS = 1 USDT");
+		// //console.log("fxs_price_from_FXS_yUSD: ", fxs_price_from_FXS_yUSD.toString(), " FXS = 1 yUSD");
+		// console.log("USDT_price_from_USDT_WETH: ", USDT_price_from_USDT_WETH.toString(), " USDT = 1 WETH");
+		// console.log("USDC_price_from_USDC_WETH: ", USDC_price_from_USDC_WETH.toString(), " USDC = 1 WETH");
+		// console.log("6DEC_price_from_6DEC_WETH: ", DEC6_price_from_DEC6_WETH.toString(), " 6DEC = 1 WETH");
+		// console.log("USDT_price_from_pool: ", (new BigNumber (await pool_instance_USDT.getCollateralPrice.call())).div(1e6).toString(), " USDT = 1 USD");
+		// console.log("USDC_price_from_pool: ", (new BigNumber (await pool_instance_USDC.getCollateralPrice.call())).div(1e6).toString(), " USDC = 1 USD");
+		// console.log("6DEC_price_from_pool: ", (new BigNumber (await pool_instance_6DEC.getCollateralPrice.call())).div(1e6).toString(), " 6DEC = 1 USD");
+
+
+	});
+
 });
 
 
