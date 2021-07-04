@@ -86,11 +86,11 @@ contract CEREShares is ERC20Custom, AccessControl {
     function setTimelock(address new_timelock) external onlyByOwnerOrGovernance {
         timelock_address = new_timelock;
     }
-    
+    // TODO: [LATER][WRITE TEST SCRIPTS]
     function setCERESAddress(address ceres_contract_address) external onlyByOwnerOrGovernance {
         CERES = CEREStable(ceres_contract_address);
     }
-    
+    // TEST CASE DONE
     function setCSSMinDAO(uint256 min_CSS) external onlyByOwnerOrGovernance {
         CSS_DAO_min = min_CSS;
     }
