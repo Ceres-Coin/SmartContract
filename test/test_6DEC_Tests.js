@@ -376,20 +376,20 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log("============6DEC mint1t1FRAX()============");
 		const totalSupplyCERES = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18).toNumber();
 		const totalSupplyCSS = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18).toNumber();
-		console.log(chalk.yellow(`totalSupplyCERES: ${totalSupplyCERES}`));
-		console.log(chalk.yellow(`totalSupplyCSS: ${totalSupplyCSS}`));
+		// console.log(chalk.yellow(`totalSupplyCERES: ${totalSupplyCERES}`));
+		// console.log(chalk.yellow(`totalSupplyCSS: ${totalSupplyCSS}`));
 
 		const globalCollateralRatio = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
 		const globalCollateralValue = new BigNumber(await ceresInstance.globalCollateralValue.call()).div(BIG18).toNumber();
-		console.log(chalk.yellow(`globalCollateralRatio: ${globalCollateralRatio}`));
-		console.log(chalk.yellow(`globalCollateralValue: ${globalCollateralValue}`));
+		// console.log(chalk.yellow(`globalCollateralRatio: ${globalCollateralRatio}`));
+		// console.log(chalk.yellow(`globalCollateralValue: ${globalCollateralValue}`));
 
 		console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
 		console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
 	
 		// Note the collateral ratio
 		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
-		console.log(chalk.yellow(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
+		// console.log(chalk.yellow(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
 		
 		// Note the collateral and CERES amounts before minting
 		const ceres_before = new BigNumber(await ceresInstance.balanceOf.call(OWNER)).div(BIG18);
