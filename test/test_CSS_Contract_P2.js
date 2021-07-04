@@ -293,15 +293,16 @@ contract('test_CSS_Contract_P2', async (accounts) => {
     });
 
 	it ("TEST SCRIPTS FOR cssInstance.setCSSMinDAO()", async() => {
+		const CSS_DAO_MIN_VALUE = 1000;
         // BEFORE
         expect(parseFloat(await cssInstance.CSS_DAO_min())).to.equal(0);
-		// // ACTION & ASSERTION
-		// await cssInstance.setTimelock(oracle_instance_CSS_WETH.address,{from: OWNER});
-		// expect(await cssInstance.timelock_address()).to.equal(oracle_instance_CSS_WETH.address);
+		// ACTION & ASSERTION
+		await cssInstance.setCSSMinDAO(CSS_DAO_MIN_VALUE,{from: OWNER});
+		expect(parseFloat(await cssInstance.CSS_DAO_min())).to.equal(CSS_DAO_MIN_VALUE);
 
-		// // ROLLBACK CODE
-		// await cssInstance.setTimelock(timelockInstance.address,{from: OWNER});
-		// expect(await cssInstance.timelock_address()).to.equal(timelockInstance.address);
+		// ROLLBACK CODE
+		await cssInstance.setCSSMinDAO(0,{from: OWNER});
+		expect(parseFloat(await cssInstance.CSS_DAO_min())).to.equal(0);
     });
 
 	
