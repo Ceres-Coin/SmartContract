@@ -265,6 +265,12 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 		expect(cssInstance_address).to.not.be.undefined;
 	});
 
+    it ("Test Scripts for cssInstance.name/symbol/decimals", async() => {
+        expect(await cssInstance.name()).to.equal("CERES Share");
+        expect(await cssInstance.symbol()).to.equal("CSS");
+        expect(parseFloat(await cssInstance.decimals())).to.equal(18);
+    })
+
 	
 
 	
