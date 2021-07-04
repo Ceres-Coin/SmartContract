@@ -397,10 +397,10 @@ contract('test_6DEC_Tests', async (accounts) => {
 		const pool_collateral_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
 		const collateral_price = (new BigNumber(await pool_instance_USDC.getCollateralPrice.call()).div(BIG6)).toNumber()
 
-		console.log(chalk.yellow(`ceres_before: ${ceres_before}`));
-		console.log(chalk.yellow(`collateral_before: ${collateral_before}`));
-		console.log(chalk.yellow(`pool_collateral_before: ${pool_collateral_before}`));
-		console.log(chalk.yellow(`collateral_price: ${collateral_price}`));
+		// console.log(chalk.yellow(`ceres_before: ${ceres_before}`));
+		// console.log(chalk.yellow(`collateral_before: ${collateral_before}`));
+		// console.log(chalk.yellow(`pool_collateral_before: ${pool_collateral_before}`));
+		// console.log(chalk.yellow(`collateral_price: ${collateral_price}`));
 
 		const bal_ceres = ceres_before;
 		const col_bal_6dec = collateral_before;
