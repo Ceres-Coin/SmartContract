@@ -39,6 +39,8 @@ const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
 const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
+const TWO_MILLION_DEC18 = (new BigNumber("20000000e18")).toNumber();
+const TWO_MILLION_DEC6 = (new BigNumber("20000000e6")).toNumber();
 
 // Uniswap related
 const TransferHelper = artifacts.require("Uniswap/TransferHelper");
@@ -307,15 +309,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 			ceresInstance.approve(routerInstance.address, new BigNumber(ONE_MILLION_DEC18), { from: OWNER }),
 			cssInstance.approve(routerInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: OWNER })
 		]);	
-
-		// Add allowances to the Uniswap Router
-		// await wethInstance.approve(routerInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await col_instance_USDC.approve(routerInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await col_instance_USDT.approve(routerInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// // await col_instance_yUSD.approve(routerInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await fraxInstance.approve(routerInstance.address, new BigNumber(1000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await fxsInstance.approve(routerInstance.address, new BigNumber(5000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-
+		
 		// // Add allowances to the swapToPrice contract
 		// await wethInstance.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
 		// await col_instance_USDC.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
