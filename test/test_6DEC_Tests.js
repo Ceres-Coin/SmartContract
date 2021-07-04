@@ -30,6 +30,7 @@ const SafeERC20 = artifacts.require("ERC20/SafeERC20");
 
 // set constants
 const ONE_HUNDRED_DEC18 = new BigNumber("100e18");
+const ONE_HUNDRED_DEC6 = new BigNumber("100e6");
 const ONE_THOUSAND_DEC18 = new BigNumber("1000e18");
 const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
 const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
@@ -410,13 +411,13 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log("pool_bal_6dec: ", pool_bal_6dec.toNumber());
 		console.log("6DEC price:", collateral_price);
 
-		// // Need to approve first so the pool contract can use transferFrom
-		// const collateral_amount = new BigNumber("100e6");
-		// await col_instance_6DEC.approve(pool_instance_6DEC.address, collateral_amount, { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// // Mint some FRAX
-		// console.log("accounts[0] mint1t1FRAX() with 100 6DEC; slippage limit of 1%");
-		// const FRAX_out_min = new BigNumber(collateral_amount.times(collateral_price).times(0.99)); // 1% slippage
-		// await pool_instance_6DEC.mint1t1FRAX(collateral_amount, FRAX_out_min, { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// Need to approve first so the pool contract can use transferFrom
+		const collateral_amount = ONE_HUNDRED_DEC6;
+		await col_instance_USDC.approve(pool_instance_USDC.address, collateral_amount, { from: OWNER });
+		// Mint some FRAX
+		console.log("accounts[0] mint1t1FRAX() with 100 6DEC; slippage limit of 1%");
+		const ceres_out_min = new BigNumber(collateral_amount.times(collateral_price).times(0.99)); // 1% slippage
+		await pool_instance_USDC.mint1t1FRAX(collateral_amount, ceres_out_min, { from: OWNER });
 
 		// // Note the collateral and FRAX amounts after minting
 		// const frax_after = new BigNumber(await fraxInstance.balanceOf.call(COLLATERAL_FRAX_AND_FXS_OWNER)).div(BIG18);
