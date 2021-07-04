@@ -387,6 +387,10 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
 		console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
 	
+		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
+		console.log(chalk.yellow(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
+		
+
 
 		// // Note the collateral ratio
 		// const collateral_ratio_before = new BigNumber(await fraxInstance.global_collateral_ratio.call()).div(BIG6);
