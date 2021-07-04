@@ -436,8 +436,8 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 	});
 
-	it("[mintFractionalFRAX]: Mint some FRAX using FXS and 6DEC (collateral ratio between .000001 and .999999)", async () => {
-		console.log("============6DEC mintFractionalFRAX()============");
+	it("[mintFractionalCERES]: Mint some CERES using CSS and 6DEC (collateral ratio between .000001 and .999999)", async () => {
+		console.log("============6DEC mintFractionalCERES()============");
 		const totalSupplyCERES = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18).toNumber();
 		const totalSupplyCSS = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18).toNumber();
 		const global_collateral_ratio = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
@@ -447,12 +447,12 @@ contract('test_6DEC_Tests', async (accounts) => {
 		// console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
 	
 		// CeresInstance.refreshCollateralRatio()
-				// Before
-				await ceresInstance.setRefreshCooldown(1,{from: OWNER});
-				// Action
-				await ceresInstance.refreshCollateralRatio();
-				//ROLL BACK
-				await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); 
+		// Before
+		await ceresInstance.setRefreshCooldown(1,{from: OWNER});
+		// Action
+		await ceresInstance.refreshCollateralRatio();
+		//ROLL BACK
+		await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); 
 
 		// Note the collateral ratio
 		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
@@ -460,11 +460,13 @@ contract('test_6DEC_Tests', async (accounts) => {
 		
 		// Note the collateral and CERES amounts before minting
 		const ceres_before = new BigNumber(await ceresInstance.balanceOf.call(OWNER)).div(BIG18);
+		const css_before = new BigNumber(await cssInstance.balanceOf.call(OWNER)).div(BIG18);
 		const usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
 		const pool_usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
 		const collateral_price = (new BigNumber(await pool_instance_USDC.getCollateralPrice.call()).div(BIG6)).toNumber()
 
 		console.log(chalk.yellow(`ceres_before: ${ceres_before}`));
+		console.log(chalk.yellow(`css_before: ${css_before}`));
 		console.log(chalk.yellow(`usdc_before: ${usdc_before}`));
 		console.log(chalk.yellow(`pool_usdc_before: ${pool_usdc_before}`))
 
@@ -479,23 +481,26 @@ contract('test_6DEC_Tests', async (accounts) => {
 		await cssInstance.approve(pool_instance_USDC.address, css_amount, { from: OWNER });
 		const usdc_amount = new BigNumber(ONE_HUNDRED_DEC6);
 		await col_instance_USDC.approve(pool_instance_USDC.address, usdc_amount, { from: OWNER });
-		await pool_instance_USDC.mintFractionalFRAX(usdc_amount, css_amount, new BigNumber("10e18"), { from: OWNER });
-		console.log("accounts[0] mintFractionalFRAX() with 100 6DEC and 500 FXS");
+		await pool_instance_USDC.mintFractionalCERES(usdc_amount, css_amount, new BigNumber("10e18"), { from: OWNER });
+		console.log("accounts[0] mintFractionalCERES() with 100 6DEC and 500 CSS");
 
 
 
 
 
 		const ceres_after = new BigNumber(await ceresInstance.balanceOf.call(OWNER)).div(BIG18);
+		const css_after = new BigNumber(await cssInstance.balanceOf.call(OWNER)).div(BIG18);
 		const usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
 		const pool_usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
 		console.log(chalk.yellow(`ceres_after: ${ceres_after}`));
+		console.log(chalk.yellow(`css_after: ${css_after}`));
 		console.log(chalk.yellow(`usdc_after: ${usdc_after}`));
 		console.log(chalk.yellow(`pool_usdc_after: ${pool_usdc_after}`));
 
 
-		console.log("accounts[0] ceres change: ", ceres_after.toNumber() - ceres_before.toNumber());
-		console.log("accounts[0] usdc change: ", usdc_after.toNumber() - usdc_before.toNumber());
+		console.log("OWNER ceres change: ", ceres_after.toNumber() - ceres_before.toNumber());
+		console.log("OWNER css change: ", css_after.toNumber() - css_before.toNumber());
+		console.log("OWNER usdc change: ", usdc_after.toNumber() - usdc_before.toNumber());
 		console.log("pool_usdc_after usdc change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber());
 
 		// // Note the new collateral ratio
