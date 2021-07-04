@@ -425,9 +425,9 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log(chalk.yellow(`pool_usdc_after: ${pool_usdc_after}`));
 
 
-		// console.log("accounts[0] frax change: ", frax_after.toNumber() - frax_before.toNumber());
-		// console.log("accounts[0] collateral change: ", collateral_after.toNumber() - collateral_before.toNumber());
-		// console.log("FRAX_pool_6DEC collateral change: ", pool_collateral_after.toNumber() - pool_collateral_before.toNumber());
+		console.log("accounts[0] ceres change: ", ceres_after.toNumber() - ceres_before.toNumber());
+		console.log("accounts[0] usdc change: ", usdc_after.toNumber() - usdc_before.toNumber());
+		console.log("pool_usdc_after change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber());
 
 		// // Note the new collateral ratio
 		// const collateral_ratio_after = new BigNumber(await fraxInstance.global_collateral_ratio.call()).div(BIG6);
