@@ -387,20 +387,20 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
 		console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
 	
+		// Note the collateral ratio
 		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
 		console.log(chalk.yellow(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
 		
+		// Note the collateral and CERES amounts before minting
+		const ceres_before = new BigNumber(await ceresInstance.balanceOf.call(OWNER)).div(BIG18);
+		const collateral_before = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
+		const pool_collateral_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+		const collateral_price = (new BigNumber(await pool_instance_USDC.getCollateralPrice.call()).div(BIG6)).toNumber()
 
-
-		// // Note the collateral ratio
-		// const collateral_ratio_before = new BigNumber(await fraxInstance.global_collateral_ratio.call()).div(BIG6);
-		// console.log("collateral_ratio_before: ", collateral_ratio_before.toNumber());
-
-		// // Note the collateral and FRAX amounts before minting
-		// const frax_before = new BigNumber(await fraxInstance.balanceOf.call(COLLATERAL_FRAX_AND_FXS_OWNER)).div(BIG18);
-		// const collateral_before = new BigNumber(await col_instance_6DEC.balanceOf.call(COLLATERAL_FRAX_AND_FXS_OWNER)).div(BIG6);
-		// const pool_collateral_before = new BigNumber(await col_instance_6DEC.balanceOf.call(pool_instance_6DEC.address)).div(BIG6);
-		// const collateral_price = (new BigNumber(await pool_instance_6DEC.getCollateralPrice.call()).div(BIG6)).toNumber()
+		console.log(chalk.yellow(`ceres_before: ${ceres_before}`));
+		console.log(chalk.yellow(`collateral_before: ${collateral_before}`));
+		console.log(chalk.yellow(`pool_collateral_before: ${pool_collateral_before}`));
+		console.log(chalk.yellow(`collateral_price: ${collateral_price}`));
 
 		// bal_frax = frax_before;
 		// col_bal_6dec = collateral_before;
