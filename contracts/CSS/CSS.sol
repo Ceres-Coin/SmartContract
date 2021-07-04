@@ -94,7 +94,7 @@ contract CEREShares is ERC20Custom, AccessControl {
     function setCSSMinDAO(uint256 min_CSS) external onlyByOwnerOrGovernance {
         CSS_DAO_min = min_CSS;
     }
-
+    // TEST CASE DONE
     function setOwner(address _owner_address) external onlyByOwnerOrGovernance {
         owner_address = _owner_address;
     }

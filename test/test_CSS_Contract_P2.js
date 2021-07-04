@@ -305,6 +305,18 @@ contract('test_CSS_Contract_P2', async (accounts) => {
 		expect(parseFloat(await cssInstance.CSS_DAO_min())).to.equal(0);
     });
 
+	it ("TEST SCRIPTS FOR cssInstance.setOwner()", async() => {
+        // BEFORE
+        expect(await cssInstance.owner_address()).to.equal(OWNER);
+		// ACTION & ASSERTION
+		await cssInstance.setOwner(ADMIN,{from: OWNER});
+		expect(await cssInstance.owner_address()).to.equal(ADMIN);
+
+		// ROLLBACK CODE
+		await cssInstance.setOwner(OWNER,{from: ADMIN});
+		expect(await cssInstance.owner_address()).to.equal(OWNER);
+    });
+
 	
 
 	
