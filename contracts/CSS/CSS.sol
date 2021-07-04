@@ -98,11 +98,12 @@ contract CEREShares is ERC20Custom, AccessControl {
     function setOwner(address _owner_address) external onlyByOwnerOrGovernance {
         owner_address = _owner_address;
     }
-
+    // TODO: [LATER], Using Pools to mint
     function mint(address to, uint256 amount) public onlyPools {
         _mint(to, amount);
     }
     
+    // TODO: [LATER], Using Pools to mint
     function pool_mint(address m_address, uint256 m_amount) external onlyPools {        
         if(trackingVotes){
             uint32 srcRepNum = numCheckpoints[address(this)];
@@ -116,6 +117,7 @@ contract CEREShares is ERC20Custom, AccessControl {
         emit CSSMinted(address(this), m_address, m_amount);
     }
 
+    // TODO: [LATER], using POOLS TO pool_burn_from
     function pool_burn_from(address b_address, uint256 b_amount) external onlyPools {
         if(trackingVotes){
             trackVotes(b_address, address(this), uint96(b_amount));
