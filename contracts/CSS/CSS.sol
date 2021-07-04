@@ -23,7 +23,8 @@ contract CEREShares is ERC20Custom, AccessControl {
     uint256 public CSS_DAO_min; //TEST CASE DONE
 
     address public owner_address; //TEST CASE DONE
-    address public oracle_address;
+    address public oracle_address; //TEST CASE DONE
+    //TEST CASE DONE
     address public timelock_address; // Governance timelock address
     CEREStable private CERES;
 

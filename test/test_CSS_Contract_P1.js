@@ -292,7 +292,11 @@ contract('test_CERES_Contract_P3', async (accounts) => {
     it ("TEST SCRIPTS FOR cssInstance.oracle_address, default value is OWNER", async() => {
         // console.log(chalk.blue(`cssInstance.oracle_address: ${await cssInstance.oracle_address()}`));
         expect(await cssInstance.oracle_address()).to.equal(OWNER);
-    })
+    });
+
+    it ("TEST SCRIPTS FOR cssInstance.timelock_address, default value is timelocakInstance.address", async() => {
+        expect(await cssInstance.timelock_address()).to.equal(timelockInstance.address);
+    });
 
 	
 
