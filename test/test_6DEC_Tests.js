@@ -417,7 +417,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 		// Mint some FRAX
 		console.log("accounts[0] mint1t1FRAX() with 100 6DEC; slippage limit of 1%");
 		const ceres_out_min = new BigNumber(collateral_amount.times(collateral_price).times(0.99)); // 1% slippage
-		await pool_instance_USDC.mint1t1FRAX(collateral_amount, ceres_out_min, { from: OWNER });
+		await pool_instance_USDC.mint1t1CERES(collateral_amount, ceres_out_min, { from: OWNER });
 
 		// // Note the collateral and FRAX amounts after minting
 		// const frax_after = new BigNumber(await fraxInstance.balanceOf.call(COLLATERAL_FRAX_AND_FXS_OWNER)).div(BIG18);
