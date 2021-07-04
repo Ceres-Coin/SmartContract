@@ -1,3 +1,12 @@
+## [0.1.210704-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210704-a...0.1.210704-b) (2021-07-04)
+1. ADDED test/test_6DEC_Tests.js
+   1. ADDED "Test Scripts for ceresInstance.address"
+   2. ADDED 'Check up on the oracles and make sure the prices are set'
+   3. ADDED "Mints 6DEC 1-to-1"
+2. MODIFIED: migrations/10_price_and_addresses.js
+   1. removed ceresInstance.refreshCollateralRatio() func
+
+
 ## [0.1.210704-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210703-a...0.1.210704-a) (2021-07-04)
 1. package.json
    1. change version number
