@@ -271,9 +271,10 @@ contract('test_CERES_Contract_P3', async (accounts) => {
         expect(parseFloat(await cssInstance.decimals())).to.equal(18);
     });
 
-    it ("TEST SCRIPTS FOR cssInstance.CEREStablecoinAdd", async() => {
-        console.log(chalk.blue(`cssInstance.CEREStablecoinAdd: ${await cssInstance.CEREStablecoinAdd()}`));
-    })
+    it ("TEST SCRIPTS FOR cssInstance.CEREStablecoinAdd, default value is ZERO", async() => {
+        // console.log(chalk.blue(`cssInstance.CEREStablecoinAdd: ${await cssInstance.CEREStablecoinAdd()}`));
+        expect(await cssInstance.CEREStablecoinAdd()).to.equal(constants.ZERO_ADDRESS);
+    });
 
 	
 
