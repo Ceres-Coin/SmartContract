@@ -285,6 +285,10 @@ contract('test_CERES_Contract_P3', async (accounts) => {
         expect(parseFloat(await cssInstance.CSS_DAO_min())).to.equal(0);
     });
 
+    it ("TEST SCRIPTS FOR cssInstance.owner_address", async() => {
+        expect(await cssInstance.owner_address).to.equal(OWNER);
+    });
+
 	
 
 	
