@@ -382,7 +382,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 		const globalCollateralRatio = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
 		const globalCollateralValue = new BigNumber(await ceresInstance.globalCollateralValue.call()).div(BIG18).toNumber();
-		// console.log(chalk.yellow(`globalCollateralRatio: ${globalCollateralRatio}`));
+		console.log(chalk.yellow(`globalCollateralRatio: ${globalCollateralRatio}`));
 		// console.log(chalk.yellow(`globalCollateralValue: ${globalCollateralValue}`));
 
 		// console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
@@ -398,34 +398,35 @@ contract('test_6DEC_Tests', async (accounts) => {
 		const pool_collateral_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
 		const collateral_price = (new BigNumber(await pool_instance_USDC.getCollateralPrice.call()).div(BIG6)).toNumber()
 
-		// console.log(chalk.yellow(`ceres_before: ${ceres_before}`));
-		// console.log(chalk.yellow(`collateral_before: ${collateral_before}`));
-		// console.log(chalk.yellow(`pool_collateral_before: ${pool_collateral_before}`));
-		// console.log(chalk.yellow(`collateral_price: ${collateral_price}`));
+		console.log(chalk.yellow(`ceres_before: ${ceres_before}`));
+		console.log(chalk.yellow(`collateral_before: ${collateral_before}`));
+		console.log(chalk.yellow(`pool_collateral_before: ${pool_collateral_before}`));
+		console.log(chalk.blue(`collateral_price: ${collateral_price}`));
 
 		const bal_ceres = ceres_before;
 		const col_bal_6dec = collateral_before;
 		const pool_bal_6dec = pool_collateral_before;
-		console.log("bal_frax: ", bal_ceres.toNumber());
-		console.log("col_bal_6dec: ", col_bal_6dec.toNumber());
-		console.log("pool_bal_6dec: ", pool_bal_6dec.toNumber());
-		console.log("6DEC price:", collateral_price);
+		// console.log("bal_frax: ", bal_ceres.toNumber());
+		// console.log("col_bal_6dec: ", col_bal_6dec.toNumber());
+		// console.log("pool_bal_6dec: ", pool_bal_6dec.toNumber());
+		// console.log("6DEC price:", collateral_price);
 
 		// Need to approve first so the pool contract can use transferFrom
 		const collateral_amount = ONE_HUNDRED_DEC6;
 		await col_instance_USDC.approve(pool_instance_USDC.address, collateral_amount, { from: OWNER });
 		// Mint some FRAX
-		console.log("accounts[0] mint1t1FRAX() with 100 6DEC; slippage limit of 1%");
+		// console.log("accounts[0] mint1t1FRAX() with 100 6DEC; slippage limit of 1%");
 		const ceres_out_min = new BigNumber(collateral_amount.times(collateral_price).times(0.99)); // 1% slippage
 		await pool_instance_USDC.mint1t1CERES(collateral_amount, ceres_out_min, { from: OWNER });
 
-		// // Note the collateral and FRAX amounts after minting
-		// const frax_after = new BigNumber(await fraxInstance.balanceOf.call(COLLATERAL_FRAX_AND_FXS_OWNER)).div(BIG18);
-		// const collateral_after = new BigNumber(await col_instance_6DEC.balanceOf.call(COLLATERAL_FRAX_AND_FXS_OWNER)).div(BIG6);
-		// const pool_collateral_after = new BigNumber(await col_instance_6DEC.balanceOf.call(pool_instance_6DEC.address)).div(BIG6);
-		// // assert.equal(frax_after, 103.9584);
-		// // assert.equal(collateral_after, 8999900);
-		// // assert.equal(pool_collateral_after, 1000100);
+		const ceres_after = new BigNumber(await ceresInstance.balanceOf.call(OWNER)).div(BIG18);
+		const collateral_after = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
+		const pool_collateral_after = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+		console.log(chalk.yellow(`ceres_after: ${ceres_after}`));
+		console.log(chalk.yellow(`collateral_after: ${collateral_after}`));
+		console.log(chalk.yellow(`pool_collateral_after: ${pool_collateral_after}`));
+
+
 		// console.log("accounts[0] frax change: ", frax_after.toNumber() - frax_before.toNumber());
 		// console.log("accounts[0] collateral change: ", collateral_after.toNumber() - collateral_before.toNumber());
 		// console.log("FRAX_pool_6DEC collateral change: ", pool_collateral_after.toNumber() - pool_collateral_before.toNumber());
