@@ -78,7 +78,7 @@ const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPr
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
-contract('test_CSS_Contract_P2', async (accounts) => {
+contract('test_6DEC_Tests', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
