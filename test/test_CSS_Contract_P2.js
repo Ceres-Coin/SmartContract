@@ -350,14 +350,10 @@ contract('test_CSS_Contract_P2', async (accounts) => {
     // });
 
 	it ("TEST SCRIPTS FOR cssInstance.getCurrentVotes()", async() => {
-		const getCurrentVotes_0 = parseFloat(await cssInstance.getCurrentVotes(account0));
 		const getCurrentVotes_1 = parseFloat(await cssInstance.getCurrentVotes(account1));
 		const getCurrentVotes_2 = parseFloat(await cssInstance.getCurrentVotes(account2));
-
-		console.log(chalk.yellow(`getCurrentVotes_0: ${getCurrentVotes_0}`));
-		console.log(chalk.yellow(`getCurrentVotes_1: ${getCurrentVotes_1}`));
-		console.log(chalk.yellow(`getCurrentVotes_2: ${getCurrentVotes_2}`));
-
+		expect(getCurrentVotes_1).to.gt(0);
+		expect(getCurrentVotes_2).to.gt(0);
     });
 
 
