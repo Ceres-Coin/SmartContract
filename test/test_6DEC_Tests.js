@@ -394,37 +394,35 @@ contract('test_6DEC_Tests', async (accounts) => {
 		
 		// Note the collateral and CERES amounts before minting
 		const ceres_before = new BigNumber(await ceresInstance.balanceOf.call(OWNER)).div(BIG18);
-		const collateral_before = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
-		const pool_collateral_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+		const usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
+		const pool_usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
 		const collateral_price = (new BigNumber(await pool_instance_USDC.getCollateralPrice.call()).div(BIG6)).toNumber()
 
 		console.log(chalk.yellow(`ceres_before: ${ceres_before}`));
-		console.log(chalk.yellow(`collateral_before: ${collateral_before}`));
-		console.log(chalk.yellow(`pool_collateral_before: ${pool_collateral_before}`));
+		console.log(chalk.yellow(`usdc_before: ${usdc_before}`));
+		console.log(chalk.yellow(`pool_usdc_before: ${pool_usdc_before}`));
 		console.log(chalk.blue(`collateral_price: ${collateral_price}`));
 
 		const bal_ceres = ceres_before;
-		const col_bal_6dec = collateral_before;
-		const pool_bal_6dec = pool_collateral_before;
+		const col_bal_6dec = usdc_before;
+		const pool_bal_6dec = pool_usdc_before;
 		// console.log("bal_frax: ", bal_ceres.toNumber());
 		// console.log("col_bal_6dec: ", col_bal_6dec.toNumber());
 		// console.log("pool_bal_6dec: ", pool_bal_6dec.toNumber());
 		// console.log("6DEC price:", collateral_price);
 
-		// Need to approve first so the pool contract can use transferFrom
+		// ACTION
 		const collateral_amount = ONE_HUNDRED_DEC6;
 		await col_instance_USDC.approve(pool_instance_USDC.address, collateral_amount, { from: OWNER });
-		// Mint some FRAX
-		// console.log("accounts[0] mint1t1FRAX() with 100 6DEC; slippage limit of 1%");
 		const ceres_out_min = new BigNumber(collateral_amount.times(collateral_price).times(0.99)); // 1% slippage
 		await pool_instance_USDC.mint1t1CERES(collateral_amount, ceres_out_min, { from: OWNER });
 
 		const ceres_after = new BigNumber(await ceresInstance.balanceOf.call(OWNER)).div(BIG18);
-		const collateral_after = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
-		const pool_collateral_after = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+		const usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
+		const pool_usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
 		console.log(chalk.yellow(`ceres_after: ${ceres_after}`));
-		console.log(chalk.yellow(`collateral_after: ${collateral_after}`));
-		console.log(chalk.yellow(`pool_collateral_after: ${pool_collateral_after}`));
+		console.log(chalk.yellow(`usdc_after: ${usdc_after}`));
+		console.log(chalk.yellow(`pool_usdc_after: ${pool_usdc_after}`));
 
 
 		// console.log("accounts[0] frax change: ", frax_after.toNumber() - frax_before.toNumber());
