@@ -269,6 +269,10 @@ contract('test_CERES_Contract_P3', async (accounts) => {
         expect(await cssInstance.name()).to.equal("CERES Share");
         expect(await cssInstance.symbol()).to.equal("CSS");
         expect(parseFloat(await cssInstance.decimals())).to.equal(18);
+    });
+
+    it ("TEST SCRIPTS FOR cssInstance.CEREStablecoinAdd", async() => {
+        console.log(chalk.blue(`cssInstance.CEREStablecoinAdd: ${await cssInstance.CEREStablecoinAdd()}`));
     })
 
 	

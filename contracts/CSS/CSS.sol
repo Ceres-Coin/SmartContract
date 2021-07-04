@@ -17,7 +17,7 @@ contract CEREShares is ERC20Custom, AccessControl {
     string public symbol; //TEST CASE DONE
     string public name; //TEST CASE DONE
     uint8 public constant decimals = 18; //TEST CASE DONE
-    address public CEREStablecoinAdd;
+    address public CEREStablecoinAdd; //TEST CASE DONE
     
     uint256 public constant genesis_supply = 100000000e18; 
     uint256 public CSS_DAO_min; 
