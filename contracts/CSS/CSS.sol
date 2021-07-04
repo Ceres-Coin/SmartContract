@@ -86,7 +86,7 @@ contract CEREShares is ERC20Custom, AccessControl {
     function setTimelock(address new_timelock) external onlyByOwnerOrGovernance {
         timelock_address = new_timelock;
     }
-    // TODO: [LATER][WRITE TEST SCRIPTS]
+    // [LATER][WRITE TEST SCRIPTS]
     function setCERESAddress(address ceres_contract_address) external onlyByOwnerOrGovernance {
         CERES = CEREStable(ceres_contract_address);
     }
@@ -182,7 +182,7 @@ contract CEREShares is ERC20Custom, AccessControl {
      * @return The number of votes the account had as of the given block
      */
 
-    // TODO: [LATER]
+    // TODO: [LATER][NOT KNOW WHY NOT USING OTHER VOTES PARTNER]
     function getPriorVotes(address account, uint blockNumber) public view returns (uint96) {
         require(blockNumber < block.number, "CSS::getPriorVotes: not yet determined");
 
