@@ -280,9 +280,9 @@ contract('test_CERES_Contract_P3', async (accounts) => {
         expect(parseFloat(await cssInstance.genesis_supply())).to.equal(parseFloat(ONE_HUNDRED_MILLION_DEC18));
     });
 
-    it ("TEST SCRIPTS FOR cssInstance.CSS_DAO_min()", async() => {
-        console.log(chalk.blue(`cssInstance.CSS_DAO_min: ${await cssInstance.CSS_DAO_min()}`));
-        // expect(parseFloat(await cssInstance.genesis_supply())).to.equal(parseFloat(ONE_HUNDRED_MILLION_DEC18));
+    it ("TEST SCRIPTS FOR cssInstance.CSS_DAO_min(), default value is 0", async() => {
+        // console.log(chalk.blue(`cssInstance.CSS_DAO_min: ${await cssInstance.CSS_DAO_min()}`));
+        expect(parseFloat(await cssInstance.CSS_DAO_min())).to.equal(0);
     });
 
 	
