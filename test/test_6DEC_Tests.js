@@ -374,8 +374,12 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 	it("Mints 6DEC 1-to-1", async () => {
 		console.log("============6DEC mint1t1FRAX()============");
-		// totalSupplyFRAX = new BigNumber(await fraxInstance.totalSupply.call()).div(BIG18).toNumber();
-		// totalSupplyFXS = new BigNumber(await fxsInstance.totalSupply.call()).div(BIG18).toNumber();
+		const totalSupplyCERES = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18).toNumber();
+		const totalSupplyCSS = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18).toNumber();
+
+		console.log(chalk.yellow(`totalSupplyCERES: ${totalSupplyCERES}`));
+		console.log(chalk.yellow(`totalSupplyCSS: ${totalSupplyCSS}`));
+
 		// globalCollateralRatio = new BigNumber(await fraxInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
 		// globalCollateralValue = new BigNumber(await fraxInstance.globalCollateralValue.call()).div(BIG18).toNumber();
 		// console.log("FRAX price (USD): ", (new BigNumber(await fraxInstance.frax_price.call()).div(BIG6)).toNumber());
