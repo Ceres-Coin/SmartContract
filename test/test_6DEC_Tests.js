@@ -287,11 +287,19 @@ contract('test_6DEC_Tests', async (accounts) => {
 		await oracle_instance_USDC_WETH.update({ from: OWNER });
 		
 		// Get the prices
-		// Price is in collateral needed for 1 FRAX
-		// let frax_price_from_FRAX_WETH = (new BigNumber(await oracle_instance_FRAX_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
-		// let frax_price_from_FRAX_USDC = (new BigNumber(await oracle_instance_FRAX_USDC.consult.call(FakeCollateral_USDC.address, 1e6))).div(BIG6).toNumber();
-		// let frax_price_from_FRAX_USDT = (new BigNumber(await oracle_instance_FRAX_USDT.consult.call(FakeCollateral_USDT.address, 1e6))).div(BIG6).toNumber();
-		// // let frax_price_from_FRAX_yUSD = (new BigNumber(await oracle_instance_FRAX_yUSD.consult.call(FakeCollateral_yUSD.address, 1e6))).div(BIG6).toNumber();
+		// Price is in collateral needed for 1 CERES
+		let ceres_price_from_CERES_WETH = parseFloat((new BigNumber(await oracle_instance_CERES_WETH.consult.call(wethInstance.address, BIG6))).div(BIG6));
+		let ceres_price_from_CERES_USDC = parseFloat((new BigNumber(await oracle_instance_CERES_USDC.consult.call(col_instance_USDC.address,BIG6))).div(BIG18));
+		let css_price_from_CSS_WETH = parseFloat((new BigNumber(await oracle_instance_CSS_WETH.consult.call(wethInstance.address, BIG6))).div(BIG6));
+		let css_price_from_CSS_USDC = parseFloat((new BigNumber(await oracle_instance_CSS_USDC.consult.call(col_instance_USDC.address,BIG6))).div(BIG18));
+		let usdc_price_from_USDC_WETH = parseFloat((new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, BIG18))).div(BIG6));
+	
+		console.log(chalk.yellow(`ceres_price_from_CERES_WETH: ${ceres_price_from_CERES_WETH}`));
+		console.log(chalk.yellow(`ceres_price_from_CERES_USDC: ${ceres_price_from_CERES_USDC}`));
+		console.log(chalk.yellow(`css_price_from_CSS_WETH: ${css_price_from_CSS_WETH}`));
+		console.log(chalk.yellow(`css_price_from_CSS_USDC: ${css_price_from_CSS_USDC}`));
+		console.log(chalk.yellow(`usdc_price_from_USDC_WETH: ${usdc_price_from_USDC_WETH}`));
+		
 		// let fxs_price_from_FXS_WETH = (new BigNumber(await oracle_instance_FXS_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
 		// let fxs_price_from_FXS_USDC = (new BigNumber(await oracle_instance_FXS_USDC.consult.call(FakeCollateral_USDC.address, 1e6))).div(BIG6).toNumber();
 		// let fxs_price_from_FXS_USDT = (new BigNumber(await oracle_instance_FXS_USDT.consult.call(FakeCollateral_USDT.address, 1e6))).div(BIG6).toNumber();
