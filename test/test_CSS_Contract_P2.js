@@ -349,6 +349,17 @@ contract('test_CSS_Contract_P2', async (accounts) => {
 	// 	expect(balance_2_after).to.equal(balance_2_before+parseFloat(ONE_THOUSAND_DEC18));
     // });
 
+	it ("TEST SCRIPTS FOR cssInstance.getCurrentVotes()", async() => {
+		const getCurrentVotes_0 = parseFloat(await cssInstance.getCurrentVotes(account0));
+		const getCurrentVotes_1 = parseFloat(await cssInstance.getCurrentVotes(account1));
+		const getCurrentVotes_2 = parseFloat(await cssInstance.getCurrentVotes(account2));
+
+		console.log(chalk.yellow(`getCurrentVotes_0: ${getCurrentVotes_0}`));
+		console.log(chalk.yellow(`getCurrentVotes_1: ${getCurrentVotes_1}`));
+		console.log(chalk.yellow(`getCurrentVotes_2: ${getCurrentVotes_2}`));
+
+    });
+
 
 
 	
