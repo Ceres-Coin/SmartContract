@@ -1,3 +1,35 @@
+## [0.1.210704-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210703-a...0.1.210704-a) (2021-07-04)
+1. package.json
+   1. change version number
+   2. TUNING NPM RUN SCRIPTS
+2. ADDED: test/test_CSS_Contract_P1.js
+   1. ADDED: "Test Scripts for cssInstance.name/symbol/decimals"
+   2. ADDED: "TEST SCRIPTS FOR cssInstance.CEREStablecoinAdd"
+   3. ADDED: "TEST SCRIPTS FOR cssInstance.genesis_supply, default value is 100million_dec18"
+   4. ADDED: TEST SCRIPTS FOR cssInstance.CSS_DAO_min()
+   5. added: "TEST SCRIPTS FOR cssInstance.CSS_DAO_min(), default value is 0"
+   6. ADDED: "TEST SCRIPTS FOR cssInstance.owner_address"
+   7. added: "TEST SCRIPTS FOR cssInstance.oracle_address"
+   8. ADDED: "TEST SCRIPTS FOR cssInstance.oracle_address, default value is OWNER"
+   9. added: "TEST SCRIPTS FOR cssInstance.timelock_address, default value is timelocakInstance.address"
+   10. ADDED: "TEST SCRIPTS FOR cssInstance.trackingVotes, default value is TRUE"
+   11. added: "TEST SCRIPTS FOR cssInstance.checkpoints"
+   12. added: "TEST SCRIPTS FOR cssInstance.numCheckpoints"
+   13. ADDED: "TEST SCRIPTS FOR cssInstance.setOracle()"
+3. ADDED test/test_CSS_Contract_P2.js
+   1. ADDED: "TEST SCRIPTS FOR cssInstance.setOracle()"
+   2. ADDED: "TEST SCRIPTS FOR cssInstance.setTimelock()"
+   3. ADDED: "TEST SCRIPTS FOR cssInstance.setCSSMinDAO()"
+   4. ADDED: "TEST SCRIPTS FOR cssInstance.setOwner()"
+   5. added: "TEST SCRIPTS FOR cssInstance.toggleVotes()"
+   6. ADDED: "TEST SCRIPTS FOR cssInstance.transfer()"
+   7. ADDED: "TEST SCRIPTS FOR cssInstance.transferFrom()"
+   8. added: "TEST SCRIPTS FOR cssInstance.getCurrentVotes()"
+4. CSS/CSS.sol
+   1. ADDED TODO TASK
+   
+<!-- TODO: Continue to investigate other contracts -->
+
 ## [0.1.210703-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210702-b...0.1.210703-a) (2021-07-03)
 1. ADDED: "test/test_CERES_Contract_P3.js"
    1. ADDED: "Test Scripts for ceresInstance.pool_mint()"
@@ -23,7 +55,7 @@
 2. MODIFIED test/test_CERES_Contract_P2.js
    1. MOVE ceres_info() test scripts from P2 to P3
 
-<!-- TODO: add new test scripts & new tasks for CSS.sol contract-->
+<!-- add new test scripts & new tasks for CSS.sol contract-->
 
 
 ## [0.1.210702-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210702-a...0.1.210702-b) (2021-07-02)
