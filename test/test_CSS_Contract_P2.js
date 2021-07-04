@@ -77,7 +77,7 @@ const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPr
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 
-contract('test_CERES_Contract_P3', async (accounts) => {
+contract('test_CSS_Contract_P2', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
@@ -270,6 +270,14 @@ contract('test_CERES_Contract_P3', async (accounts) => {
     it ("TEST SCRIPTS FOR cssInstance.setOracle()", async() => {
         // BEFORE
         expect(await cssInstance.oracle_address()).to.equal(OWNER);
+		// ACTION & ASSERTION
+		await cssInstance.setOracle(oracle_instance_CSS_WETH.address,{from: OWNER});
+		expect(await cssInstance.oracle_address()).to.equal(oracle_instance_CSS_WETH.address);
+
+		// ROLLBACK CODE
+		await cssInstance.setOracle(OWNER,{from: OWNER});
+		expect(await cssInstance.oracle_address()).to.equal(OWNER);
+
     });
 
 	
