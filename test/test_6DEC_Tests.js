@@ -438,8 +438,8 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 	it("[mintFractionalCERES]: Mint some CERES using CSS and 6DEC (collateral ratio between .000001 and .999999)", async () => {
 		console.log(chalk.blue("============USDC mintFractionalCERES()============"));
-		const totalSupplyCERES_before = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18).toNumber();
-		const totalSupplyCSS_before = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18).toNumber();
+		const totalSupplyCERES_before = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
+		const totalSupplyCSS_before = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18);
 		const global_collateral_ratio = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
 		const globalCollateralValue = new BigNumber(await ceresInstance.globalCollateralValue.call()).div(BIG18).toNumber();
 
@@ -481,8 +481,8 @@ contract('test_6DEC_Tests', async (accounts) => {
 		const usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
 		const pool_usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
 		
-		const totalSupplyCERES_after = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18).toNumber();
-		const totalSupplyCSS_after = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18).toNumber();
+		const totalSupplyCERES_after = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
+		const totalSupplyCSS_after = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18);
 		// COMMENT PRINT CODE
 		// COMMENT PRINT CODE
 		// COMMENT PRINT CODE
