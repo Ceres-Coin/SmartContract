@@ -276,6 +276,10 @@ contract('test_CERES_Contract_P3', async (accounts) => {
         expect(await cssInstance.CEREStablecoinAdd()).to.equal(constants.ZERO_ADDRESS);
     });
 
+    it ("TEST SCRIPTS FOR cssInstance.genesis_supply, default value is 100million_dec18", async() => {
+        expect(parseFloat(await cssInstance.genesis_supply())).to.equal(parseFloat(ONE_HUNDRED_MILLION_DEC18));
+    });
+
 	
 
 	
