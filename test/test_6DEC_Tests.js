@@ -31,6 +31,7 @@ const SafeERC20 = artifacts.require("ERC20/SafeERC20");
 // set constants
 const ONE_HUNDRED_DEC18 = new BigNumber("100e18");
 const ONE_HUNDRED_DEC6 = new BigNumber("100e6");
+const FIVE_HUNDRED_DEC18 = new BigNumber("500e18");
 const ONE_THOUSAND_DEC18 = new BigNumber("1000e18");
 const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
 const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
@@ -373,7 +374,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 	});
 
-	it("Mints 6DEC 1-to-1", async () => {
+	it("[mint1t1CERES]: Mints 6DEC 1-to-1", async () => {
 		console.log("============6DEC mint1t1FRAX()============");
 		const totalSupplyCERES = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18).toNumber();
 		const totalSupplyCSS = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18).toNumber();
@@ -435,6 +436,73 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 	});
 
+	it("[mintFractionalFRAX]: Mint some FRAX using FXS and 6DEC (collateral ratio between .000001 and .999999)", async () => {
+		console.log("============6DEC mintFractionalFRAX()============");
+		const totalSupplyCERES = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18).toNumber();
+		const totalSupplyCSS = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18).toNumber();
+		const global_collateral_ratio = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
+		const globalCollateralValue = new BigNumber(await ceresInstance.globalCollateralValue.call()).div(BIG18).toNumber();
+
+		// console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
+		// console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
+	
+		// CeresInstance.refreshCollateralRatio()
+				// Before
+				await ceresInstance.setRefreshCooldown(1,{from: OWNER});
+				// Action
+				await ceresInstance.refreshCollateralRatio();
+				//ROLL BACK
+				await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); 
+
+		// Note the collateral ratio
+		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
+		console.log(chalk.blue(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
+		
+		// Note the collateral and CERES amounts before minting
+		const ceres_before = new BigNumber(await ceresInstance.balanceOf.call(OWNER)).div(BIG18);
+		const usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
+		const pool_usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+		const collateral_price = (new BigNumber(await pool_instance_USDC.getCollateralPrice.call()).div(BIG6)).toNumber()
+
+		console.log(chalk.yellow(`ceres_before: ${ceres_before}`));
+		console.log(chalk.yellow(`usdc_before: ${usdc_before}`));
+		console.log(chalk.yellow(`pool_usdc_before: ${pool_usdc_before}`))
+
+		// ACTION
+		// const collateral_amount = ONE_HUNDRED_DEC6;
+		// await col_instance_USDC.approve(pool_instance_USDC.address, collateral_amount, { from: OWNER });
+		// const ceres_out_min = new BigNumber(collateral_amount.times(collateral_price).times(0.99)); // 1% slippage
+		// await pool_instance_USDC.mint1t1CERES(collateral_amount, ceres_out_min, { from: OWNER });
+
+		// Need to approve first so the pool contract can use transferFrom
+		const css_amount = new BigNumber(FIVE_HUNDRED_DEC18);
+		await cssInstance.approve(pool_instance_USDC.address, css_amount, { from: OWNER });
+		const usdc_amount = new BigNumber(ONE_HUNDRED_DEC6);
+		await col_instance_USDC.approve(pool_instance_USDC.address, usdc_amount, { from: OWNER });
+		await pool_instance_USDC.mintFractionalFRAX(usdc_amount, css_amount, new BigNumber("10e18"), { from: OWNER });
+		console.log("accounts[0] mintFractionalFRAX() with 100 6DEC and 500 FXS");
+
+
+
+
+
+		const ceres_after = new BigNumber(await ceresInstance.balanceOf.call(OWNER)).div(BIG18);
+		const usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
+		const pool_usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+		console.log(chalk.yellow(`ceres_after: ${ceres_after}`));
+		console.log(chalk.yellow(`usdc_after: ${usdc_after}`));
+		console.log(chalk.yellow(`pool_usdc_after: ${pool_usdc_after}`));
+
+
+		console.log("accounts[0] ceres change: ", ceres_after.toNumber() - ceres_before.toNumber());
+		console.log("accounts[0] usdc change: ", usdc_after.toNumber() - usdc_before.toNumber());
+		console.log("pool_usdc_after usdc change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber());
+
+		// // Note the new collateral ratio
+		const global_collateral_ratio_after = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6);
+		console.log(chalk.blue("global_collateral_ratio_after: ", global_collateral_ratio_after.toNumber()));
+
+	});
 
 
 });
