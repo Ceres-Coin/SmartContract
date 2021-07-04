@@ -380,9 +380,9 @@ contract('test_6DEC_Tests', async (accounts) => {
 		// console.log(chalk.yellow(`totalSupplyCERES: ${totalSupplyCERES}`));
 		// console.log(chalk.yellow(`totalSupplyCSS: ${totalSupplyCSS}`));
 
-		const globalCollateralRatio = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
+		const global_collateral_ratio = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
 		const globalCollateralValue = new BigNumber(await ceresInstance.globalCollateralValue.call()).div(BIG18).toNumber();
-		console.log(chalk.yellow(`globalCollateralRatio: ${globalCollateralRatio}`));
+		console.log(chalk.blue(`global_collateral_ratio: ${global_collateral_ratio}`));
 		// console.log(chalk.yellow(`globalCollateralValue: ${globalCollateralValue}`));
 
 		// console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
@@ -401,7 +401,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log(chalk.yellow(`ceres_before: ${ceres_before}`));
 		console.log(chalk.yellow(`usdc_before: ${usdc_before}`));
 		console.log(chalk.yellow(`pool_usdc_before: ${pool_usdc_before}`));
-		console.log(chalk.blue(`collateral_price: ${collateral_price}`));
+		// console.log(chalk.blue(`collateral_price: ${collateral_price}`));
 
 		const bal_ceres = ceres_before;
 		const col_bal_6dec = usdc_before;
@@ -427,11 +427,11 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 		console.log("accounts[0] ceres change: ", ceres_after.toNumber() - ceres_before.toNumber());
 		console.log("accounts[0] usdc change: ", usdc_after.toNumber() - usdc_before.toNumber());
-		console.log("pool_usdc_after change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber());
+		console.log("pool_usdc_after usdc change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber());
 
 		// // Note the new collateral ratio
-		// const collateral_ratio_after = new BigNumber(await fraxInstance.global_collateral_ratio.call()).div(BIG6);
-		// console.log("collateral_ratio_after: ", collateral_ratio_after.toNumber());
+		const global_collateral_ratio_after = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6);
+		console.log(chalk.blue("global_collateral_ratio_after: ", global_collateral_ratio_after.toNumber()));
 
 	});
 
