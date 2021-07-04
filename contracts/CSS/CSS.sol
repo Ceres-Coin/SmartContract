@@ -181,6 +181,8 @@ contract CEREShares is ERC20Custom, AccessControl {
      * @param blockNumber The block number to get the vote balance at
      * @return The number of votes the account had as of the given block
      */
+
+    // TODO: [LATER]
     function getPriorVotes(address account, uint blockNumber) public view returns (uint96) {
         require(blockNumber < block.number, "CSS::getPriorVotes: not yet determined");
 
