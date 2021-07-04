@@ -338,6 +338,15 @@ contract('test_CSS_Contract_P2', async (accounts) => {
 		expect(balance_2_after).to.equal(balance_2_before+parseFloat(ONE_THOUSAND_DEC18));
     });
 
+	it ("TEST SCRIPTS FOR cssInstance.transferFrom()", async() => {
+		const balance_2_before = parseFloat(await cssInstance.balanceOf(account2));
+		await cssInstance.transferFrom(OWNER,account2,ONE_THOUSAND_DEC18,{from: OWNER});
+		const balance_2_after = parseFloat(await cssInstance.balanceOf(account2));
+		console.log(chalk.yellow(`balance_2_before: ${balance_2_before}`));
+		console.log(chalk.yellow(`balance_2_after: ${balance_2_after}`));
+		expect(balance_2_after).to.equal(balance_2_before+parseFloat(ONE_THOUSAND_DEC18));
+    });
+
 
 
 	
