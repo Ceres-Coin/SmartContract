@@ -329,6 +329,16 @@ contract('test_CSS_Contract_P2', async (accounts) => {
 		expect(await cssInstance.trackingVotes()).to.equal(true);
     });
 
+	it ("TEST SCRIPTS FOR cssInstance.transfer()", async() => {
+        // BEFORE
+        console.log(chalk.yellow(`balance_0: ${await cssInstance.balanceOf(account0)}`));
+		console.log(chalk.yellow(`balance_1: ${await cssInstance.balanceOf(account1)}`));
+		console.log(chalk.yellow(`balance_2: ${await cssInstance.balanceOf(account2)}`));
+
+    });
+
+
+
 	
 
 	

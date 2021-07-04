@@ -137,7 +137,7 @@ contract CEREShares is ERC20Custom, AccessControl {
     }
 
     /* ========== OVERRIDDEN PUBLIC FUNCTIONS ========== */
-
+    // TEST CAES DONE
     function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
         if(trackingVotes){
             // Transfer votes
