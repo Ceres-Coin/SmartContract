@@ -269,7 +269,7 @@ contract('test_CERES_Contract_P3', async (accounts) => {
 
 	it ("Test Scripts for cssInstance.address", async() => {
 		const cssInstance_address = await cssInstance.address;
-		console.log(chalk.blue(`cssInstance_address: ${cssInstance_address}`));
+		// console.log(chalk.blue(`cssInstance_address: ${cssInstance_address}`));
 		expect(cssInstance_address).to.not.be.empty;
 		expect(cssInstance_address).to.not.be.undefined;
 	});
