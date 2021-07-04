@@ -318,16 +318,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 			ceresInstance.approve(swapToPriceInstance.address, new BigNumber(ONE_MILLION_DEC18), { from: OWNER }),
 			cssInstance.approve(swapToPriceInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: OWNER })
 		]);
-
-		// // Add allowances to the swapToPrice contract
-		// await wethInstance.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await col_instance_USDC.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await col_instance_USDT.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// // await col_instance_yUSD.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await fraxInstance.approve(swapToPriceInstance.address, new BigNumber(1000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await fxsInstance.approve(swapToPriceInstance.address, new BigNumber(5000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-
-
+		
 		// console.log("===============FIRST SWAPS===============");
 		
 		// //--- FRAX
