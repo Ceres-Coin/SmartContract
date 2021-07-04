@@ -131,6 +131,7 @@ contract CEREShares is ERC20Custom, AccessControl {
         emit CSSBurned(b_address, address(this), b_amount);
     }
 
+    // TEST CASE DONE
     function toggleVotes() external onlyByOwnerOrGovernance {
         trackingVotes = !trackingVotes;
     }

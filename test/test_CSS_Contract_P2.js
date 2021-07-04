@@ -317,6 +317,18 @@ contract('test_CSS_Contract_P2', async (accounts) => {
 		expect(await cssInstance.owner_address()).to.equal(OWNER);
     });
 
+	it ("TEST SCRIPTS FOR cssInstance.toggleVotes()", async() => {
+        // BEFORE
+        expect(await cssInstance.trackingVotes()).to.equal(true);
+		// // ACTION & ASSERTION
+		// await cssInstance.setOwner(ADMIN,{from: OWNER});
+		// expect(await cssInstance.owner_address()).to.equal(ADMIN);
+
+		// // ROLLBACK CODE
+		// await cssInstance.setOwner(OWNER,{from: ADMIN});
+		// expect(await cssInstance.owner_address()).to.equal(OWNER);
+    });
+
 	
 
 	
