@@ -302,6 +302,16 @@ contract('test_CERES_Contract_P3', async (accounts) => {
         expect(await cssInstance.trackingVotes()).to.equal(true);
     });
 
+    it ("TEST SCRIPTS FOR cssInstance.checkpoints", async() => {
+        const checkpoints_0 = await cssInstance.checkpoints(account0);
+        const checkpoints_1 = await cssInstance.checkpoints(account0);
+        const checkpoints_2 = await cssInstance.checkpoints(account0);
+
+        console.log(chalk.yellow(`checkpoints_0: ${checkpoints_0}`));
+        console.log(chalk.yellow(`checkpoints_1: ${checkpoints_1}`));
+        console.log(chalk.yellow(`checkpoints_2: ${checkpoints_2}`));
+    })
+
 	
 
 	
