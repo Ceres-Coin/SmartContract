@@ -298,6 +298,10 @@ contract('test_CERES_Contract_P3', async (accounts) => {
         expect(await cssInstance.timelock_address()).to.equal(timelockInstance.address);
     });
 
+    it ("TEST SCRIPTS FOR cssInstance.trackingVotes, default value is TRUE", async() => {
+        expect(await cssInstance.trackingVotes()).to.equal(true);
+    });
+
 	
 
 	

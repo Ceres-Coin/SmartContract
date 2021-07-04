@@ -26,8 +26,9 @@ contract CEREShares is ERC20Custom, AccessControl {
     address public oracle_address; //TEST CASE DONE
     //TEST CASE DONE
     address public timelock_address; // Governance timelock address
-    CEREStable private CERES;
+    CEREStable private CERES; //PRIVATE, NOTHING TO DO
 
+    // TEST CASE DONE
     bool public trackingVotes = true; // Tracking votes (only change if need to disable votes)
 
     // A checkpoint for marking number of votes from a given block
