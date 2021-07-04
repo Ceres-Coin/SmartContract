@@ -309,7 +309,16 @@ contract('test_6DEC_Tests', async (accounts) => {
 			ceresInstance.approve(routerInstance.address, new BigNumber(ONE_MILLION_DEC18), { from: OWNER }),
 			cssInstance.approve(routerInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: OWNER })
 		]);	
-		
+
+		// Add allowances to the swapToPrice contract
+		await Promise.all([
+			wethInstance.approve(swapToPriceInstance.address, new BigNumber(TWO_MILLION_DEC18), { from: OWNER }),
+			col_instance_USDC.approve(swapToPriceInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: OWNER }),
+			col_instance_USDT.approve(swapToPriceInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: OWNER }),
+			ceresInstance.approve(swapToPriceInstance.address, new BigNumber(ONE_MILLION_DEC18), { from: OWNER }),
+			cssInstance.approve(swapToPriceInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: OWNER })
+		]);
+
 		// // Add allowances to the swapToPrice contract
 		// await wethInstance.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
 		// await col_instance_USDC.approve(swapToPriceInstance.address, new BigNumber(2000000e18), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
