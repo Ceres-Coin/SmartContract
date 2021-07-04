@@ -330,11 +330,12 @@ contract('test_CSS_Contract_P2', async (accounts) => {
     });
 
 	it ("TEST SCRIPTS FOR cssInstance.transfer()", async() => {
-        // BEFORE
-        console.log(chalk.yellow(`balance_0: ${await cssInstance.balanceOf(account0)}`));
-		console.log(chalk.yellow(`balance_1: ${await cssInstance.balanceOf(account1)}`));
-		console.log(chalk.yellow(`balance_2: ${await cssInstance.balanceOf(account2)}`));
-
+		const balance_2_before = parseFloat(await cssInstance.balanceOf(account2));
+		await cssInstance.transfer(account2,ONE_THOUSAND_DEC18,{from: OWNER});
+		const balance_2_after = parseFloat(await cssInstance.balanceOf(account2));
+		// console.log(chalk.yellow(`balance_2_before: ${balance_2_before}`));
+		// console.log(chalk.yellow(`balance_2_after: ${balance_2_after}`));
+		expect(balance_2_after).to.equal(balance_2_before+parseFloat(ONE_THOUSAND_DEC18));
     });
 
 
