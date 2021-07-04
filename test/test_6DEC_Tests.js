@@ -384,8 +384,8 @@ contract('test_6DEC_Tests', async (accounts) => {
 		// console.log(chalk.yellow(`globalCollateralRatio: ${globalCollateralRatio}`));
 		// console.log(chalk.yellow(`globalCollateralValue: ${globalCollateralValue}`));
 
-		console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
-		console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
+		// console.log("CERES price (USD): ", (new BigNumber(await ceresInstance.ceres_price.call()).div(BIG6)).toNumber());
+		// console.log("CSS price (USD): ", (new BigNumber(await ceresInstance.css_price.call()).div(BIG6)).toNumber());
 	
 		// Note the collateral ratio
 		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
@@ -402,13 +402,13 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log(chalk.yellow(`pool_collateral_before: ${pool_collateral_before}`));
 		console.log(chalk.yellow(`collateral_price: ${collateral_price}`));
 
-		// bal_frax = frax_before;
-		// col_bal_6dec = collateral_before;
-		// pool_bal_6dec = pool_collateral_before;
-		// console.log("bal_frax: ", bal_frax.toNumber());
-		// console.log("col_bal_6dec: ", col_bal_6dec.toNumber());
-		// console.log("pool_bal_6dec: ", pool_bal_6dec.toNumber());
-		// console.log("6DEC price:", collateral_price);
+		const bal_ceres = ceres_before;
+		const col_bal_6dec = collateral_before;
+		const pool_bal_6dec = pool_collateral_before;
+		console.log("bal_frax: ", bal_ceres.toNumber());
+		console.log("col_bal_6dec: ", col_bal_6dec.toNumber());
+		console.log("pool_bal_6dec: ", pool_bal_6dec.toNumber());
+		console.log("6DEC price:", collateral_price);
 
 		// // Need to approve first so the pool contract can use transferFrom
 		// const collateral_amount = new BigNumber("100e6");
