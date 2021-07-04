@@ -312,13 +312,23 @@ contract('test_CERES_Contract_P3', async (accounts) => {
     });
 
     it ("TEST SCRIPTS FOR cssInstance.numCheckpoints", async() => {
-        const checkpoints_0 = await cssInstance.numCheckpoints(account0);
-        const checkpoints_1 = await cssInstance.numCheckpoints(account1);
-        const checkpoints_2 = await cssInstance.numCheckpoints(account2);
+        const numCheckpoints_0 = await cssInstance.numCheckpoints(account0);
+        const numCheckpoints_1 = await cssInstance.numCheckpoints(account1);
+        const numCheckpoints_2 = await cssInstance.numCheckpoints(account2);
+        const numCheckpoints_3 = await cssInstance.numCheckpoints(account3);
+        const numCheckpoints_4 = await cssInstance.numCheckpoints(account4);
+        const numCheckpoints_5 = await cssInstance.numCheckpoints(account5);
+        const numCheckpoints_6 = await cssInstance.numCheckpoints(account6);
+        const numCheckpoints_7 = await cssInstance.numCheckpoints(account7);
 
-        console.log(chalk.yellow(`checkpoints_0: ${checkpoints_0}`));
-        console.log(chalk.yellow(`checkpoints_1: ${checkpoints_1}`));
-        console.log(chalk.yellow(`checkpoints_2: ${checkpoints_2}`));
+        // console.log(chalk.yellow(`numCheckpoints_0: ${numCheckpoints_0}`));
+        // console.log(chalk.yellow(`numCheckpoints_1: ${numCheckpoints_1}`));
+        // console.log(chalk.yellow(`numCheckpoints_2: ${numCheckpoints_2}`));
+        // console.log(chalk.yellow(`numCheckpoints_3: ${numCheckpoints_3}`));
+        // console.log(chalk.yellow(`numCheckpoints_4: ${numCheckpoints_4}`));
+        // console.log(chalk.yellow(`numCheckpoints_5: ${numCheckpoints_5}`));
+        // console.log(chalk.yellow(`numCheckpoints_6: ${numCheckpoints_6}`));
+        // console.log(chalk.yellow(`numCheckpoints_7: ${numCheckpoints_7}`));
     })
 
 	
