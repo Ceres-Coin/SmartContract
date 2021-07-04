@@ -318,59 +318,45 @@ contract('test_6DEC_Tests', async (accounts) => {
 			ceresInstance.approve(swapToPriceInstance.address, new BigNumber(ONE_MILLION_DEC18), { from: OWNER }),
 			cssInstance.approve(swapToPriceInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: OWNER })
 		]);
+
+		await swapToPriceInstance.swapToPrice(
+			ceresInstance.address,
+			wethInstance.address,
+			new BigNumber(3906e5),
+			new BigNumber(1e6),
+			new BigNumber(100e18),
+			new BigNumber(100e18),
+			OWNER,
+			new BigNumber(2105300114),
+			{ from: OWNER }
+		)
 		
 		// Advance 24 hrs so the period can be computed
 		await time.increase(86400 + 1);
 		await time.advanceBlock();
 
-		// // Make sure the prices are updated
-		// await oracle_instance_FRAX_WETH.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await oracle_instance_FRAX_USDC.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await oracle_instance_FRAX_USDT.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// // await oracle_instance_FRAX_yUSD.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await oracle_instance_FXS_WETH.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await oracle_instance_FXS_USDC.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await oracle_instance_FXS_USDT.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// // await oracle_instance_FXS_yUSD.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await oracle_instance_USDT_WETH.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await oracle_instance_USDC_WETH.update({ from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		// Make sure the prices are updated
+		await oracle_instance_CERES_WETH.update({ from: OWNER });
+		await oracle_instance_CERES_USDC.update({ from: OWNER });
+		await oracle_instance_CSS_WETH.update({ from: OWNER });
+		await oracle_instance_CSS_USDC.update({ from: OWNER });
+		await oracle_instance_USDC_WETH.update({ from: OWNER });
 
-		// // Advance 24 hrs so the period can be computed
-		// await time.increase(86400 + 1);
-		// await time.advanceBlock();
+		// Advance 24 hrs so the period can be computed
+		await time.increase(86400 + 1);
+		await time.advanceBlock();
 
-		// Get the prices
-		// frax_price_from_FRAX_WETH = (new BigNumber(await oracle_instance_FRAX_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
-		// frax_price_from_FRAX_USDC = (new BigNumber(await oracle_instance_FRAX_USDC.consult.call(FakeCollateral_USDC.address, 1e6))).div(BIG6).toNumber();
-		// frax_price_from_FRAX_USDT = (new BigNumber(await oracle_instance_FRAX_USDT.consult.call(FakeCollateral_USDT.address, 1e6))).div(BIG6).toNumber();
-		// // frax_price_from_FRAX_yUSD = (new BigNumber(await oracle_instance_FRAX_yUSD.consult.call(FakeCollateral_yUSD.address, 1e6))).div(BIG6).toNumber();
-		// fxs_price_from_FXS_WETH = (new BigNumber(await oracle_instance_FXS_WETH.consult.call(wethInstance.address, 1e6))).div(BIG6).toNumber();
-		// fxs_price_from_FXS_USDC = (new BigNumber(await oracle_instance_FXS_USDC.consult.call(FakeCollateral_USDC.address, 1e6))).div(BIG6).toNumber();
-		// fxs_price_from_FXS_USDT = (new BigNumber(await oracle_instance_FXS_USDT.consult.call(FakeCollateral_USDT.address, 1e6))).div(BIG6).toNumber();
-		// // fxs_price_from_FXS_yUSD = (new BigNumber(await oracle_instance_FXS_yUSD.consult.call(FakeCollateral_yUSD.address, 1e6))).div(BIG6).toNumber();
-		// USDT_price_from_USDT_WETH = (new BigNumber(await oracle_instance_USDT_WETH.consult.call(WETH.address, 1e6))).div(1e6).toNumber();
-		// USDC_price_from_USDC_WETH = (new BigNumber(await oracle_instance_USDC_WETH.consult.call(WETH.address, 1e6))).div(1e6).toNumber();
-		// DEC6_price_from_DEC6_WETH = (new BigNumber(await oracle_instance_6DEC_WETH.consult.call(WETH.address, (1e18).toString()))).div(1e6).toNumber();
-
-		// console.log(chalk.blue("==================PRICES=================="));
-		// Print the new prices
-		// console.log("ETH-USD price from Chainlink:", (new BigNumber((await fraxInstance.frax_info.call())['7'])).div(1e6).toString() , "USD = 1 ETH");
-		// console.log("frax_price_from_FRAX_WETH: ", frax_price_from_FRAX_WETH.toString(), " FRAX = 1 WETH");
-		// console.log("FRAX-USD price from Chainlink, Uniswap:", (new BigNumber(await fraxInstance.frax_price.call())).div(1e6).toString(), "FRAX = 1 USD");
-		//console.log("frax_price_from_FRAX_USDC: ", frax_price_from_FRAX_USDC.toString(), " FRAX = 1 USDC");
-		//console.log("frax_price_from_FRAX_USDT: ", frax_price_from_FRAX_USDT.toString(), " FRAX = 1 USDT");
-		//console.log("frax_price_from_FRAX_yUSD: ", frax_price_from_FRAX_yUSD.toString(), " FRAX = 1 yUSD");
-		// console.log("fxs_price_from_FXS_WETH: ", fxs_price_from_FXS_WETH.toString(), " FXS = 1 WETH");
-		// //console.log("fxs_price_from_FXS_USDC: ", fxs_price_from_FXS_USDC.toString(), " FXS = 1 USDC");
-		// //console.log("fxs_price_from_FXS_USDT: ", fxs_price_from_FXS_USDT.toString(), " FXS = 1 USDT");
-		// //console.log("fxs_price_from_FXS_yUSD: ", fxs_price_from_FXS_yUSD.toString(), " FXS = 1 yUSD");
-		// console.log("USDT_price_from_USDT_WETH: ", USDT_price_from_USDT_WETH.toString(), " USDT = 1 WETH");
-		// console.log("USDC_price_from_USDC_WETH: ", USDC_price_from_USDC_WETH.toString(), " USDC = 1 WETH");
-		// console.log("6DEC_price_from_6DEC_WETH: ", DEC6_price_from_DEC6_WETH.toString(), " 6DEC = 1 WETH");
-		// console.log("USDT_price_from_pool: ", (new BigNumber (await pool_instance_USDT.getCollateralPrice.call())).div(1e6).toString(), " USDT = 1 USD");
-		// console.log("USDC_price_from_pool: ", (new BigNumber (await pool_instance_USDC.getCollateralPrice.call())).div(1e6).toString(), " USDC = 1 USD");
-		// console.log("6DEC_price_from_pool: ", (new BigNumber (await pool_instance_6DEC.getCollateralPrice.call())).div(1e6).toString(), " 6DEC = 1 USD");
-
+		let ceres_price_from_CERES_WETH_after = parseFloat((new BigNumber(await oracle_instance_CERES_WETH.consult.call(wethInstance.address, BIG6))).div(BIG6));
+		let ceres_price_from_CERES_USDC_after = parseFloat((new BigNumber(await oracle_instance_CERES_USDC.consult.call(col_instance_USDC.address,BIG6))).div(BIG18));
+		let css_price_from_CSS_WETH_after = parseFloat((new BigNumber(await oracle_instance_CSS_WETH.consult.call(wethInstance.address, BIG6))).div(BIG6));
+		let css_price_from_CSS_USDC_after = parseFloat((new BigNumber(await oracle_instance_CSS_USDC.consult.call(col_instance_USDC.address,BIG6))).div(BIG18));
+		let usdc_price_from_USDC_WETH_after = parseFloat((new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, BIG18))).div(BIG6));
+	
+		console.log(chalk.yellow(`ceres_price_from_CERES_WETH_after: ${ceres_price_from_CERES_WETH_after}`));
+		console.log(chalk.yellow(`ceres_price_from_CERES_USDC_after: ${ceres_price_from_CERES_USDC_after}`));
+		console.log(chalk.yellow(`css_price_from_CSS_WETH_after: ${css_price_from_CSS_WETH_after}`));
+		console.log(chalk.yellow(`css_price_from_CSS_USDC_after: ${css_price_from_CSS_USDC_after}`));
+		console.log(chalk.yellow(`usdc_price_from_USDC_WETH_after: ${usdc_price_from_USDC_WETH_after}`));
 
 	});
 
