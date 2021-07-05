@@ -540,6 +540,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 		// Redeem some CERES
 		await pool_instance_USDC.redeemFractionalCERES(ceres_amount, new BigNumber("1e6"), new BigNumber("1e6"), { from: OWNER });
+		// await pool_instance_USDC.redeemFractionalCERES(ceres_amount, new BigNumber("1e6"), new BigNumber("1e6"));
 		// Collect redemption
 		await time.advanceBlock();
 		await time.advanceBlock();
