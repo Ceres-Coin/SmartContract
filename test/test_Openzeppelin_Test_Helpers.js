@@ -71,6 +71,7 @@ const ONE_HUNDRED_DEC6 = new BigNumber("100e6");
 const FIVE_HUNDRED_DEC18 = new BigNumber("500e18");
 const ONE_THOUSAND_DEC18 = new BigNumber("1000e18");
 const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
+const ONE_MILLION_DEC6 = new BigNumber("1000000e6");
 const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
 const FIVE_MILLION_DEC6 = new BigNumber("5000000e6");
 const TEN_MILLION_DEC18 = new BigNumber("10000000e18");
@@ -78,8 +79,8 @@ const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
 const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
-const TWO_MILLION_DEC18 = (new BigNumber("20000000e18")).toNumber();
-const TWO_MILLION_DEC6 = (new BigNumber("20000000e6")).toNumber();
+const TWO_MILLION_DEC18 = (new BigNumber("2000000e18")).toNumber();
+const TWO_MILLION_DEC6 = (new BigNumber("2000000e6")).toNumber();
 
 // ADD TEST Scripts for @openzeppelin/test-helpers
 contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
@@ -358,14 +359,24 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 		console.log(chalk.yellow(`allowance ${account1} to ${account2}: ${await col_instance_USDC.allowance(account1,account2)}`));
 
 		await col_instance_USDC.increaseAllowance(account2,TWO_MILLION_DEC6,{ from: account1 });
-		console.log(chalk.blue(`allowance ${account1} to ${account2}: ${await col_instance_USDC.allowance(account1,account2)}`));
+		console.log(chalk.yellow(`allowance ${account1} to ${account2}: ${await col_instance_USDC.allowance(account1,account2)}`));
 
 		const balance_account1 = parseFloat(await col_instance_USDC.balanceOf(account1));
 		const balance_account2 = parseFloat(await col_instance_USDC.balanceOf(account2));
 		const balance_account3 = parseFloat(await col_instance_USDC.balanceOf(account3));
 		console.log(chalk.yellow(`balance_account1: ${balance_account1}; balance_account2: ${balance_account2}; balance_account3: ${balance_account3};`));
 		
-		
+		await col_instance_USDC.transferFrom(account1,account3,ONE_MILLION_DEC6,{from: account2});
+		await col_instance_USDC.transferFrom(account1,account4,ONE_MILLION_DEC6,{from: account2});
+		await col_instance_USDC.transferFrom(account1,account3,ONE_MILLION_DEC6,{from: account2});
+		await col_instance_USDC.transferFrom(account1,account3,ONE_MILLION_DEC6,{from: account2});
+
+		const balance_account1_after = parseFloat(await col_instance_USDC.balanceOf(account1));
+		const balance_account2_after = parseFloat(await col_instance_USDC.balanceOf(account2));
+		const balance_account3_after = parseFloat(await col_instance_USDC.balanceOf(account3));
+		const balance_account4_after = parseFloat(await col_instance_USDC.balanceOf(account4));
+		console.log(chalk.yellow(`allowance ${account1} to ${account2}: ${await col_instance_USDC.allowance(account1,account2)}`));
+		console.log(chalk.yellow(`balance_account1_after: ${balance_account1_after}; balance_account2_after: ${balance_account2_after}; balance_account3_after: ${balance_account3_after}; balance_account4_after: ${balance_account4_after};`));
 
 
 
