@@ -452,7 +452,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 		// Note the collateral ratio
 		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
-		console.log(chalk.blue(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
+		
 		
 		// Note the collateral and CERES amounts before minting
 		const ceres_before = new BigNumber(await ceresInstance.balanceOf.call(OWNER)).div(BIG18);
@@ -501,6 +501,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 		// // Note the new collateral ratio
 		const global_collateral_ratio_after = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6);
+		console.log(chalk.blue(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
 		console.log(chalk.blue("global_collateral_ratio_after: ", global_collateral_ratio_after.toNumber()));
 	});
 
