@@ -536,7 +536,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 				await time.advanceBlock();
 				await time.advanceBlock();
 				await time.advanceBlock();
-				await pool_instance_USDC.collectRedemption({ from: OWNER });
+				// await pool_instance_USDC.collectRedemption({ from: OWNER });
 
 		// Note the collateral and CERES amounts before REDEEM
 		const totalSupplyCERES_after = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
