@@ -529,7 +529,15 @@ contract('test_6DEC_Tests', async (accounts) => {
 		// Need to approve first so the pool contract can use transfer
 		const ceres_amount = new BigNumber("135242531948024e6");
 		await ceresInstance.approve(pool_instance_USDC.address, ceres_amount, { from: OWNER });
+		// TODO something
 		await col_instance_USDC.approve(pool_instance_USDC.address, TWO_MILLION_DEC6, { from: OWNER });
+
+
+
+
+
+		
+
 		// Redeem some CERES
 		await pool_instance_USDC.redeemFractionalCERES(ceres_amount, new BigNumber("1e6"), new BigNumber("1e6"), { from: OWNER });
 		// Collect redemption
