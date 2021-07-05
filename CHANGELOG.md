@@ -1,3 +1,22 @@
+## [0.1.210705-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210704-b...0.1.210705-a) (2021-07-05)
+1. ADDED: test/test_6DEC_Tests.js
+   1. added: "[mintFractionalFRAX]: Mint some CERES using CSS and 6DEC (collateral ratio between .000001 and .999999)"
+   2. fix bugs for "[mintFractionalCERES]: Mint some CERES using CSS and 6DEC (collateral ratio between .000001 and .999999)"
+   3. ADDED: "[redeemFractionalCERES]: Redeem some CERES for CSS and USDC (collateral ratio between .000001 and .999999)"
+   4. tuning to fix bugs
+   5. update two_million constants
+   6. FINISH TEST CASES [redeemFractionalCERES]: Redeem some CERES for CSS and USDC (collateral ratio between .000001 and .999999)
+   7. ADDED: "[redeemFractionalCERES][ACCOUNT5]: Redeem some CERES for CSS and USDC FROM ACCOUNT5"
+   8. fix bugs
+   9. FINISH "[redeemFractionalCERES][ACCOUNT5]: Redeem some CERES for CSS and USDC FROM ACCOUNT5"
+   10. ADDED: "[redeem1t1CERES][account5]: Redeem USDC 1-TO-1"
+   11. ADDED: "[recollateralizeFRAX][ACCOUNT5]: Recollateralizes the system using recollateralizeFRAX()"
+   12. ADDED: "[mintAlgorithmicFRAX][ACCOUNT5]: Mint some FRAX using FXS (collateral ratio = 0) FROM ACCOUNT5"
+   13. ADDED: "[redeemAlgorithmicCERES][ACCOUNT5]: redeemAlgorithmicCERES (collateral ratio = 0) FROM ACCOUNT5"
+2. ADDED: new code in test_helpers.js
+   1. ADDED TEST SCRIPTS OF erc20.transFrom
+
+
 ## [0.1.210704-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210704-a...0.1.210704-b) (2021-07-04)
 1. ADDED test/test_6DEC_Tests.js
    1. ADDED "Test Scripts for ceresInstance.address"
