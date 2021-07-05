@@ -402,6 +402,13 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 
 		const balance_account_3rd_after = parseFloat(await col_instance_USDC.balanceOf(account_3rd));
 		console.log(chalk.yellow(`balance_account_3rd_after: ${balance_account_3rd_after}`));
+
+		// AFTER
+		col_instance_USDC.transferFrom(account_source,account_3rd,ONE_MILLION_DEC6,{from: account_target});
+		console.log(chalk.yellow(`allowance ${account_source} to ${account_target}: ${await col_instance_USDC.allowance(account_source,account_target)}`));
+
+		const balance_account_3rd_after2 = parseFloat(await col_instance_USDC.balanceOf(account_3rd));
+		console.log(chalk.yellow(`balance_account_3rd_after2: ${balance_account_3rd_after2}`));
 	});
 	
 });
