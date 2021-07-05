@@ -705,6 +705,10 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log(chalk.yellow("pool_usdc_change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber()));
 	});
 
+	it("[recollateralizeFRAX][ACCOUNT5]: Recollateralizes the system using recollateralizeFRAX()",async() => {
+
+	});
+
 
 
 
