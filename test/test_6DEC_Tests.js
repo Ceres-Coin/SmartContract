@@ -532,6 +532,11 @@ contract('test_6DEC_Tests', async (accounts) => {
 		// TODO something
 		await col_instance_USDC.approve(pool_instance_USDC.address, TWO_MILLION_DEC6, { from: OWNER });
 
+		const account_source = OWNER;
+		const account_target = pool_instance_USDC.address;
+		
+		console.log(chalk.red.bold(`allowance ${account_source} to ${account_target}: ${await col_instance_USDC.allowance(account_source,account_target)}`));
+
 
 
 
