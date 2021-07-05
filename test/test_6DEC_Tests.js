@@ -524,7 +524,6 @@ contract('test_6DEC_Tests', async (accounts) => {
 		const usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
 		const pool_usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
 		
-		console.log(chalk.blue(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
 		// ACTION
 
 				// Need to approve first so the pool contract can use transfer
@@ -554,8 +553,8 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log(chalk.yellow("pool_usdc_after usdc change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber()));
 
 		const global_collateral_ratio_after = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6);
-		// console.log(chalk.blue(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
-		// console.log(chalk.blue("global_collateral_ratio_after: ", global_collateral_ratio_after.toNumber()));
+		console.log(chalk.blue(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
+		console.log(chalk.blue("global_collateral_ratio_after: ", global_collateral_ratio_after.toNumber()));
 
 
 	})
