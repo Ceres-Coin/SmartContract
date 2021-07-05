@@ -363,7 +363,7 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 
 
 
-	})
+	});
 	
 });
 
