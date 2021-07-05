@@ -771,6 +771,8 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 	it("[mintAlgorithmicFRAX][ACCOUNT5]: Mint some FRAX using FXS (collateral ratio = 0) FROM ACCOUNT5", async() => {
 		console.log(chalk.blue("============USDC mintAlgorithmicFRAX(ACCOUNT5)============"));
+		const css_amount = new BigNumber("10000e18");
+		await cssInstance.transfer(account5,css_amount,{from: OWNER});
 
 		// Note the collateral and CERES amounts 
 		const totalSupplyCERES_before = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
@@ -808,6 +810,38 @@ contract('test_6DEC_Tests', async (accounts) => {
 		// await time.advanceBlock();
 		// await time.advanceBlock();
 		// await pool_instance_USDC.collectRedemption({ from: account5 });
+
+
+		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
+		console.log(chalk.yellow(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
+		// Before
+		await ceresInstance.setRefreshCooldown(0,{from: OWNER});
+		// Action
+		await ceresInstance.refreshCollateralRatio();
+		//ROLL BACK
+		await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); 
+
+
+
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Mint some CERES
+		await cssInstance.approve(pool_instance_USDC.address, css_amount, { from: account5 });
+		// await pool_instance_USDC.mintAlgorithmicCERES(css_amount, new BigNumber("1e18"), { from: account5 });
 
 		// Note the collateral and CERES amounts before REDEEM
 		const totalSupplyCERES_after = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
