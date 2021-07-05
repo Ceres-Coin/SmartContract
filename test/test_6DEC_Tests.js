@@ -705,7 +705,28 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log(chalk.yellow("pool_usdc_change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber()));
 	});
 
-	it("[recollateralizeFRAX][ACCOUNT5]: Recollateralizes the system using recollateralizeFRAX()",async() => {
+	it("[recollateralizeCERES][ACCOUNT5]: Recollateralizes the system using recollateralizeCERES()",async() => {
+		console.log(chalk.blue("============USDC recollateralizeCERES(ACCOUNT5)============"));
+
+		const totalSupplyCERES_before = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
+		const totalSupplyCSS_before = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18);
+		const ceres_before = new BigNumber(await ceresInstance.balanceOf.call(account5)).div(BIG18);
+		const css_before = new BigNumber(await cssInstance.balanceOf.call(account5)).div(BIG18);
+		const usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(account5)).div(BIG6);
+		const pool_ceres_before = new BigNumber(await ceresInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18); 
+		const pool_css_before = new BigNumber(await cssInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18);
+		const pool_usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+
+		console.log(chalk.blue("============================ SEPERATOR ========================="));
+		console.log(chalk.yellow(`totalSupplyCERES_before: ${totalSupplyCERES_before}`));
+		console.log(chalk.yellow(`totalSupplyCSS_before: ${totalSupplyCSS_before}`));
+
+		console.log(chalk.yellow(`account5_ceres_before: ${ceres_before}`));
+		console.log(chalk.yellow(`account5_css_before: ${css_before}`));
+		console.log(chalk.yellow(`account5_usdc_before: ${usdc_before}`));
+		console.log(chalk.yellow(`pool_ceres_before: ${pool_ceres_before}`));
+		console.log(chalk.yellow(`pool_css_before: ${pool_css_before}`));
+		console.log(chalk.yellow(`pool_usdc_before: ${pool_usdc_before}`));
 
 	});
 
