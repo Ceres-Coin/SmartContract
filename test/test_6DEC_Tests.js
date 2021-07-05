@@ -769,6 +769,83 @@ contract('test_6DEC_Tests', async (accounts) => {
 	});
 
 
+	it("[mintAlgorithmicFRAX][ACCOUNT5]: Mint some FRAX using FXS (collateral ratio = 0) FROM ACCOUNT5", async() => {
+		console.log(chalk.blue("============USDC mintAlgorithmicFRAX(ACCOUNT5)============"));
+
+		// Note the collateral and CERES amounts 
+		const totalSupplyCERES_before = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
+		const totalSupplyCSS_before = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18);
+		const ceres_before = new BigNumber(await ceresInstance.balanceOf.call(account5)).div(BIG18);
+		const css_before = new BigNumber(await cssInstance.balanceOf.call(account5)).div(BIG18);
+		const usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(account5)).div(BIG6);
+		const pool_ceres_before = new BigNumber(await ceresInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18); 
+		const pool_css_before = new BigNumber(await cssInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18);
+		const pool_usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+
+		console.log(chalk.blue("============================ SEPERATOR ========================="));
+		console.log(chalk.yellow(`totalSupplyCERES_before: ${totalSupplyCERES_before}`));
+		console.log(chalk.yellow(`totalSupplyCSS_before: ${totalSupplyCSS_before}`));
+
+		console.log(chalk.yellow(`account5_ceres_before: ${ceres_before}`));
+		console.log(chalk.yellow(`account5_css_before: ${css_before}`));
+		console.log(chalk.yellow(`account5_usdc_before: ${usdc_before}`));
+		console.log(chalk.yellow(`pool_ceres_before: ${pool_ceres_before}`));
+		console.log(chalk.yellow(`pool_css_before: ${pool_css_before}`));
+		console.log(chalk.yellow(`pool_usdc_before: ${pool_usdc_before}`));
+
+		// ACTION
+		// // Need to approve first so the pool contract can use transfer
+		// const ceres_amount = new BigNumber("135242531948024e6");
+		// await ceresInstance.transfer(account5,ceres_amount,{from: OWNER});
+
+		// await ceresInstance.approve(pool_instance_USDC.address, ceres_amount, { from: account5 });
+		// await col_instance_USDC.approve(pool_instance_USDC.address, TWO_MILLION_DEC6, { from: account5 });
+		
+		// // Redeem some CERES
+		// await pool_instance_USDC.redeemFractionalCERES(ceres_amount, new BigNumber("1e6"), new BigNumber("1e6"), { from: account5 });
+		// // Collect redemption
+		// await time.advanceBlock();
+		// await time.advanceBlock();
+		// await time.advanceBlock();
+		// await pool_instance_USDC.collectRedemption({ from: account5 });
+
+		// Note the collateral and CERES amounts before REDEEM
+		const totalSupplyCERES_after = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
+		const totalSupplyCSS_after = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18);
+		const ceres_after = new BigNumber(await ceresInstance.balanceOf.call(account5)).div(BIG18);
+		const css_after = new BigNumber(await cssInstance.balanceOf.call(account5)).div(BIG18);
+		const usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(account5)).div(BIG6);
+
+		const pool_ceres_after = new BigNumber(await ceresInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18); 
+		const pool_css_after = new BigNumber(await cssInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18);
+		const pool_usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+		console.log(chalk.blue("============================ SEPERATOR ========================="));
+		console.log(chalk.yellow(`totalSupplyCERES_after: ${totalSupplyCERES_after}`));
+		console.log(chalk.yellow(`totalSupplyCSS_after: ${totalSupplyCSS_after}`));
+
+		console.log(chalk.yellow(`account5_ceres_after: ${ceres_after}`));
+		console.log(chalk.yellow(`account5_css_after: ${css_after}`));
+		console.log(chalk.yellow(`account5_usdc_after: ${usdc_after}`));
+		console.log(chalk.yellow(`pool_ceres_after: ${pool_ceres_after}`));
+		console.log(chalk.yellow(`pool_css_after: ${pool_css_after}`));
+		console.log(chalk.yellow(`pool_usdc_after: ${pool_usdc_after}`));
+
+
+		console.log(chalk.blue("============================ SEPERATOR ========================="));
+		console.log(chalk.yellow("ceres total supply change: ", totalSupplyCERES_after.toNumber() - totalSupplyCERES_before.toNumber()));
+		console.log(chalk.yellow("css total supply change: ", totalSupplyCSS_after.toNumber() - totalSupplyCSS_before.toNumber()));
+		console.log(chalk.yellow("account5_ceres change: ", ceres_after.toNumber() - ceres_before.toNumber()));
+		console.log(chalk.yellow("account5_css change: ", css_after.toNumber() - css_before.toNumber()));
+		console.log(chalk.yellow("account5_usdc change: ", usdc_after.toNumber() - usdc_before.toNumber()));
+		console.log(chalk.yellow("pool_ceres_change: ", pool_ceres_after.toNumber() - pool_ceres_before.toNumber()));
+		console.log(chalk.yellow("pool_css_change: ", pool_css_after.toNumber() - pool_css_before.toNumber()));
+		console.log(chalk.yellow("pool_usdc_change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber()));
+	});
+
+	
+
+
+
 
 
 });
