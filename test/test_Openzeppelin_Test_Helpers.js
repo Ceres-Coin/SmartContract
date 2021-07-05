@@ -402,7 +402,7 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 
 		const balance_account_3rd_after = parseFloat(await col_instance_USDC.balanceOf(account_3rd));
 		console.log(chalk.yellow(`balance_account_3rd_after: ${balance_account_3rd_after}`));
-	})
+	});
 	
 });
 
