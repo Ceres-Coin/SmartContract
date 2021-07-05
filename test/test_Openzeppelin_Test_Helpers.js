@@ -351,14 +351,16 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 
 	it ("Test for ERC20.transFrom() func", async() => {
 		console.log(chalk.red(`====================== transFrom ================`));
-		const USDC_METAMASK_ADDRESS_BEFORE = await col_instance_USDC.balanceOf(METAMASK_ADDRESS);
-		console.log(chalk.yellow(`USDC_METAMASK_ADDRESS_BEFORE: ${USDC_METAMASK_ADDRESS_BEFORE}`));
+		// const USDC_METAMASK_ADDRESS_BEFORE = await col_instance_USDC.balanceOf(METAMASK_ADDRESS);
+		// console.log(chalk.yellow(`USDC_METAMASK_ADDRESS_BEFORE: ${USDC_METAMASK_ADDRESS_BEFORE}`));
 
 		await col_instance_USDC.approve(pool_instance_USDC.address, TWO_MILLION_DEC6, { from: OWNER });
-		await col_instance_USDC.transferFrom(pool_instance_USDC.address,METAMASK_ADDRESS,ONE_HUNDRED_DEC6,{ from: OWNER });
+		console.log(chalk.blue(`allowance0: ${await col_instance_USDC.allowance(OWNER,pool_instance_USDC.address)}`));
 
-		const USDC_METAMASK_ADDRESS_AFTER = await col_instance_USDC.balanceOf(METAMASK_ADDRESS);
-		console.log(chalk.yellow(`USDC_METAMASK_ADDRESS_AFTER: ${USDC_METAMASK_ADDRESS_AFTER}`));
+
+		// await col_instance_USDC.transferFrom(OWNER,METAMASK_ADDRESS,ONE_HUNDRED_DEC6,{ from: pool_instance_USDC.address });
+
+
 
 
 	})
