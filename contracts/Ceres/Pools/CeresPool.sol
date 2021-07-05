@@ -409,11 +409,11 @@ contract CeresPool is AccessControl {
 
         uint256 collateral_units_precision = collateral_units.div(10 ** missing_decimals);
 
-        uint256 css_paid_back = amount_to_recollat.mul(uint(1e6).add(bonus_rate).sub(recollat_fee)).div(css_price);
+        // uint256 css_paid_back = amount_to_recollat.mul(uint(1e6).add(bonus_rate).sub(recollat_fee)).div(css_price);
 
-        require(CSS_out_min <= css_paid_back, "Slippage limit reached");
-        collateral_token.transferFrom(msg.sender, address(this), collateral_units_precision);
-        CSS.pool_mint(msg.sender, css_paid_back);
+        // require(CSS_out_min <= css_paid_back, "Slippage limit reached");
+        // collateral_token.transferFrom(msg.sender, address(this), collateral_units_precision);
+        // CSS.pool_mint(msg.sender, css_paid_back);
         
     }
 
