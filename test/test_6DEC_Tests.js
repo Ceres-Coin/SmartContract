@@ -845,7 +845,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 		// Mint some CERES
 		await cssInstance.approve(pool_instance_USDC.address, css_amount, { from: account5 });
-		// await pool_instance_USDC.mintAlgorithmicCERES(css_amount, new BigNumber("1e18"), { from: account5 });
+		await pool_instance_USDC.mintAlgorithmicCERES(css_amount, new BigNumber("1e18"), { from: account5 });
 
 		// Note the collateral and CERES amounts before REDEEM
 		const totalSupplyCERES_after = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
