@@ -81,6 +81,7 @@ const ChainlinkETHUSDPriceConsumerTest = artifacts.require("Oracle/ChainlinkETHU
 const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumer");
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
+const GovernorAlpha = artifacts.require("Governance/GovernorAlpha");
 
 contract('test_6DEC_Tests', async (accounts) => {
 	// deploy address;
@@ -138,6 +139,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 	let ceres_contract_address;
 	let css_contract_address;
 	let timelock_address;
+	let governanceInstance;
 
 	let minting_fee;
 	let redemption_fee;
@@ -271,6 +273,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 		pool_instance_USDC = await Pool_USDC.deployed();
 		oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumerTest.deployed();
+		governanceInstance = await GovernorAlpha.deployed();
     });
 
 	it ("Test Scripts for ceresInstance.address", async() => {
@@ -278,9 +281,19 @@ contract('test_6DEC_Tests', async (accounts) => {
 		// console.log(chalk.blue(`ceresInstance_address: ${ceresInstance_address}`));
 	});
 
-	it ("TEST SCRIPTS for governanceInstance.propose P1", async() => {
-		console.log(chalk.blue("====== PROPOSAL 1 ======"));
-	})
+	// it ("TEST SCRIPTS for governanceInstance.propose P1", async() => {
+	// 	console.log(chalk.blue("====== PROPOSAL 1 ======"));
+	// 	// Minting fee 0.04% -> 0.1%
+	// 	await governanceInstance.propose(
+	// 		[ceresInstance.address],
+	// 		[0],
+	// 		['setMintingFee(uint256)'],
+	// 		[web3.eth.abi.encodeParameters(['uint256'], [1000])], // 0.1%
+	// 		"Minting fee increase",
+	// 		"I hereby propose to increase the minting fee from 0.04% to 0.1%",
+	// 		{ from: OWNER }
+	// 	);
+	// })
 
 });
 
