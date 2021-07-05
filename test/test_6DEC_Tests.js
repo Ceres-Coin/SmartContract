@@ -531,14 +531,15 @@ contract('test_6DEC_Tests', async (accounts) => {
 		await ceresInstance.approve(pool_instance_USDC.address, ceres_amount, { from: OWNER });
 		// TODO something
 		await col_instance_USDC.approve(pool_instance_USDC.address, TWO_MILLION_DEC6, { from: OWNER });
+		const balance_pool_instance_USDC = parseFloat(await col_instance_USDC.balanceOf(pool_instance_USDC.address));
+		console.log(chalk.yellow(`balance_pool_instance_USDC: ${balance_pool_instance_USDC}`));
 
 		const account_source = OWNER;
 		const account_target = pool_instance_USDC.address;
-		
 		console.log(chalk.red.bold(`allowance ${account_source} to ${account_target}: ${await col_instance_USDC.allowance(account_source,account_target)}`));
 
-
-
+		col_instance_USDC.transferFrom(pool_instance_USDC.address, METAMASK_ADDRESS, ONE_HUNDRED_DEC6,{from: OWNER});;
+		
 
 
 		
