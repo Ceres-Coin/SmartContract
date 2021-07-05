@@ -41,8 +41,8 @@ const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18");
 const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6");
 const ONE_BILLION_DEC18 = new BigNumber("1000000000e18");
 const COLLATERAL_SEED_DEC18 = new BigNumber(508500e18);
-const TWO_MILLION_DEC18 = (new BigNumber("20000000e18")).toNumber();
-const TWO_MILLION_DEC6 = (new BigNumber("20000000e6")).toNumber();
+const TWO_MILLION_DEC18 = (new BigNumber("2000000e18")).toNumber();
+const TWO_MILLION_DEC6 = (new BigNumber("2000000e6")).toNumber();
 
 // Uniswap related
 const TransferHelper = artifacts.require("Uniswap/TransferHelper");
