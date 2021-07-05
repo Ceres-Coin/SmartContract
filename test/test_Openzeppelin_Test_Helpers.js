@@ -355,8 +355,10 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 		// console.log(chalk.yellow(`USDC_METAMASK_ADDRESS_BEFORE: ${USDC_METAMASK_ADDRESS_BEFORE}`));
 
 		await col_instance_USDC.approve(account2, TWO_MILLION_DEC6, { from: account1 });
-		
 		console.log(chalk.yellow(`allowance ${account1} to ${account2}: ${await col_instance_USDC.allowance(account1,account2)}`));
+
+		await col_instance_USDC.increaseAllowance(account2,TWO_MILLION_DEC6,{ from: account1 });
+		console.log(chalk.blue(`allowance ${account1} to ${account2}: ${await col_instance_USDC.allowance(account1,account2)}`));
 
 		const balance_account1 = parseFloat(await col_instance_USDC.balanceOf(account1));
 		const balance_account2 = parseFloat(await col_instance_USDC.balanceOf(account2));
