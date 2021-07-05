@@ -795,53 +795,16 @@ contract('test_6DEC_Tests', async (accounts) => {
 		// console.log(chalk.yellow(`pool_css_before: ${pool_css_before}`));
 		// console.log(chalk.yellow(`pool_usdc_before: ${pool_usdc_before}`));
 
-		// ACTION
-		// // Need to approve first so the pool contract can use transfer
-		// const ceres_amount = new BigNumber("135242531948024e6");
-		// await ceresInstance.transfer(account5,ceres_amount,{from: OWNER});
-
-		// await ceresInstance.approve(pool_instance_USDC.address, ceres_amount, { from: account5 });
-		// await col_instance_USDC.approve(pool_instance_USDC.address, TWO_MILLION_DEC6, { from: account5 });
-		
-		// // Redeem some CERES
-		// await pool_instance_USDC.redeemFractionalCERES(ceres_amount, new BigNumber("1e6"), new BigNumber("1e6"), { from: account5 });
-		// // Collect redemption
-		// await time.advanceBlock();
-		// await time.advanceBlock();
-		// await time.advanceBlock();
-		// await pool_instance_USDC.collectRedemption({ from: account5 });
-
-
 		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
 		console.log(chalk.yellow(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
-		// Before
+		// refreshCollateralRatio
 		await ceresInstance.setRefreshCooldown(0,{from: OWNER});
-		// Action
-		for (var i=0; i<399; i++) {
-			await ceresInstance.refreshCollateralRatio();
-		}
-		//ROLL BACK
+		for (var i=0; i<399; i++) { 
+			await ceresInstance.refreshCollateralRatio(); 
+		};
 		await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); 
 		const global_collateral_ratio_after = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
 		console.log(chalk.yellow(`global_collateral_ratio_after: ${global_collateral_ratio_after}`));
-
-
-
-
-		
-		
-
-
-
-
-
-
-
-
-
-
-
-
 
 		// Mint some CERES
 		await cssInstance.approve(pool_instance_USDC.address, css_amount, { from: account5 });
