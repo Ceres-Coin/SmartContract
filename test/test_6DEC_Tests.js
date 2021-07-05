@@ -561,32 +561,24 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 	it("[redeemFractionalCERES][ACCOUNT5]: Redeem some CERES for CSS and USDC FROM ACCOUNT5", async() => {
 		console.log(chalk.blue("============USDC redeemFractionalCERES(ACCOUNT5)============"));
-		// refreshCollateralRatio
-		await ceresInstance.setRefreshCooldown(1,{from: OWNER});
-		await ceresInstance.refreshCollateralRatio();
-		await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); 
 
-		// Note the collateral ratio
-		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
-		
-		
 		// Note the collateral and CERES amounts before REDEEM
 		const totalSupplyCERES_before = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
 		const totalSupplyCSS_before = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18);
 		const ceres_before = new BigNumber(await ceresInstance.balanceOf.call(account5)).div(BIG18);
 		const css_before = new BigNumber(await cssInstance.balanceOf.call(account5)).div(BIG18);
 		const usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(account5)).div(BIG6);
-
 		const pool_ceres_before = new BigNumber(await ceresInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18); 
 		const pool_css_before = new BigNumber(await cssInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18);
 		const pool_usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+
 		console.log(chalk.blue("============================ SEPERATOR ========================="));
 		console.log(chalk.yellow(`totalSupplyCERES_before: ${totalSupplyCERES_before}`));
 		console.log(chalk.yellow(`totalSupplyCSS_before: ${totalSupplyCSS_before}`));
+
 		console.log(chalk.yellow(`account5_ceres_before: ${ceres_before}`));
 		console.log(chalk.yellow(`account5_css_before: ${css_before}`));
 		console.log(chalk.yellow(`account5_usdc_before: ${usdc_before}`));
-
 		console.log(chalk.yellow(`pool_ceres_before: ${pool_ceres_before}`));
 		console.log(chalk.yellow(`pool_css_before: ${pool_css_before}`));
 		console.log(chalk.yellow(`pool_usdc_before: ${pool_usdc_before}`));
@@ -621,6 +613,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log(chalk.blue("============================ SEPERATOR ========================="));
 		console.log(chalk.yellow(`totalSupplyCERES_after: ${totalSupplyCERES_after}`));
 		console.log(chalk.yellow(`totalSupplyCSS_after: ${totalSupplyCSS_after}`));
+		
 		console.log(chalk.yellow(`account5_ceres_after: ${ceres_after}`));
 		console.log(chalk.yellow(`account5_css_after: ${css_after}`));
 		console.log(chalk.yellow(`account5_usdc_after: ${usdc_after}`));
