@@ -382,6 +382,26 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 
 
 	});
+
+	it ("Test For collateral_token.transferFrom(address(this), msg.sender, collateral_amount)", async() => {
+		// PREPARE
+		const account_source = OWNER;
+		const account_target = pool_instance_USDC.address;
+		const account_3rd = METAMASK_ADDRESS;
+		
+		// BEFORE
+		col_instance_USDC.approve(account_target,TWO_MILLION_DEC6,{from: account_source});
+		console.log(chalk.yellow(`allowance ${account_source} to ${account_target}: ${await col_instance_USDC.allowance(account_source,account_target)}`));
+		const balance_account_3rd_before = parseFloat(await col_instance_USDC.balanceOf(account_3rd));
+		console.log(chalk.yellow(`balance_account_3rd_before: ${balance_account_3rd_before}`));
+		
+		// AFTER
+		col_instance_USDC.transferFrom(account_source,account_3rd,ONE_MILLION_DEC6,{from: account_target});
+		console.log(chalk.yellow(`allowance ${account_source} to ${account_target}: ${await col_instance_USDC.allowance(account_source,account_target)}`));
+
+		const balance_account_3rd_after = parseFloat(await col_instance_USDC.balanceOf(account_3rd));
+		console.log(chalk.yellow(`balance_account_3rd_after: ${balance_account_3rd_after}`));
+	})
 	
 });
 
