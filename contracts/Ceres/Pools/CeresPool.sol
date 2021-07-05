@@ -295,7 +295,7 @@ contract CeresPool is AccessControl {
 
     // Will fail if fully collateralized or algorithmic
     // Redeem CERES for collateral and CSS. > 0% and < 100% collateral-backed
-    // TODO: [LATER][FUNC][redeemFractionalCERES]
+    // [LATER][FUNC][redeemFractionalCERES]
     function redeemFractionalCERES(uint256 CERES_amount, uint256 CSS_out_min, uint256 COLLATERAL_out_min) external notRedeemPaused {
         uint256 css_price = CERES.css_price();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();
@@ -327,9 +327,9 @@ contract CeresPool is AccessControl {
         lastRedeemed[msg.sender] = block.number;
         
         // Move all external functions to the end
-        CERES.pool_burn_from(msg.sender, CERES_amount);
-        collateral_token.transferFrom(address(this), msg.sender, collateral_amount);
-        CSS.pool_mint(address(this), css_amount);
+        // CERES.pool_burn_from(msg.sender, CERES_amount);
+        // collateral_token.transferFrom(address(this), msg.sender, collateral_amount);
+        // CSS.pool_mint(address(this), css_amount);
     }
 
     // TODO: [LATER][FUNC][redeemAlgorithmicCERES]
