@@ -354,11 +354,16 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 		// const USDC_METAMASK_ADDRESS_BEFORE = await col_instance_USDC.balanceOf(METAMASK_ADDRESS);
 		// console.log(chalk.yellow(`USDC_METAMASK_ADDRESS_BEFORE: ${USDC_METAMASK_ADDRESS_BEFORE}`));
 
-		await col_instance_USDC.approve(pool_instance_USDC.address, TWO_MILLION_DEC6, { from: OWNER });
-		console.log(chalk.blue(`allowance0: ${await col_instance_USDC.allowance(OWNER,pool_instance_USDC.address)}`));
+		await col_instance_USDC.approve(account2, TWO_MILLION_DEC6, { from: account1 });
+		
+		console.log(chalk.yellow(`allowance ${account1} to ${account2}: ${await col_instance_USDC.allowance(account1,account2)}`));
 
-
-		// await col_instance_USDC.transferFrom(OWNER,METAMASK_ADDRESS,ONE_HUNDRED_DEC6,{ from: pool_instance_USDC.address });
+		const balance_account1 = parseFloat(await col_instance_USDC.balanceOf(account1));
+		const balance_account2 = parseFloat(await col_instance_USDC.balanceOf(account2));
+		const balance_account3 = parseFloat(await col_instance_USDC.balanceOf(account3));
+		console.log(chalk.yellow(`balance_account1: ${balance_account1}; balance_account2: ${balance_account2}; balance_account3: ${balance_account3};`));
+		
+		
 
 
 
