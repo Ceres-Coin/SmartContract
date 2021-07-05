@@ -631,7 +631,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log(chalk.yellow("pool_ceres_change: ", pool_ceres_after.toNumber() - pool_ceres_before.toNumber()));
 		console.log(chalk.yellow("pool_css_change: ", pool_css_after.toNumber() - pool_css_before.toNumber()));
 		console.log(chalk.yellow("pool_usdc_change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber()));
-	})
+	});
 
 
 });
