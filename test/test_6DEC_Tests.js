@@ -870,48 +870,48 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log(chalk.yellow(`pool_usdc_before: ${pool_usdc_before}`));
 
 		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
-		console.log(chalk.yellow(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
+		console.log(chalk.blue(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
 		
 		await ceresInstance.set_global_collateral_ratio(0,{from: OWNER});
 
 		const global_collateral_ratio_after = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
-		console.log(chalk.yellow(`global_collateral_ratio_after: ${global_collateral_ratio_after}`));
+		console.log(chalk.blue(`global_collateral_ratio_after: ${global_collateral_ratio_after}`));
 
-		// // Mint some CERES
-		// await ceresInstance.approve(pool_instance_USDC.address, ceres_amount, { from: account5 });
-		// await pool_instance_USDC.redeemAlgorithmicCERES(ceres_amount, new BigNumber("1e18"), { from: account5 });
+		// redeemAlgorithmicCERES
+		await ceresInstance.approve(pool_instance_USDC.address, ceres_amount, { from: account5 });
+		await pool_instance_USDC.redeemAlgorithmicCERES(ceres_amount, new BigNumber("1e18"), { from: account5 });
 
-		// // Note the collateral and CERES amounts before REDEEM
-		// const totalSupplyCERES_after = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
-		// const totalSupplyCSS_after = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18);
-		// const ceres_after = new BigNumber(await ceresInstance.balanceOf.call(account5)).div(BIG18);
-		// const css_after = new BigNumber(await cssInstance.balanceOf.call(account5)).div(BIG18);
-		// const usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(account5)).div(BIG6);
-
-		// const pool_ceres_after = new BigNumber(await ceresInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18); 
-		// const pool_css_after = new BigNumber(await cssInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18);
-		// const pool_usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
-		// // console.log(chalk.blue("============================ SEPERATOR ========================="));
-		// // console.log(chalk.yellow(`totalSupplyCERES_after: ${totalSupplyCERES_after}`));
-		// // console.log(chalk.yellow(`totalSupplyCSS_after: ${totalSupplyCSS_after}`));
-
-		// // console.log(chalk.yellow(`account5_ceres_after: ${ceres_after}`));
-		// // console.log(chalk.yellow(`account5_css_after: ${css_after}`));
-		// // console.log(chalk.yellow(`account5_usdc_after: ${usdc_after}`));
-		// // console.log(chalk.yellow(`pool_ceres_after: ${pool_ceres_after}`));
-		// // console.log(chalk.yellow(`pool_css_after: ${pool_css_after}`));
-		// // console.log(chalk.yellow(`pool_usdc_after: ${pool_usdc_after}`));
-
-
+		// Note the collateral and CERES amounts before REDEEM
+		const totalSupplyCERES_after = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
+		const totalSupplyCSS_after = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18);
+		const ceres_after = new BigNumber(await ceresInstance.balanceOf.call(account5)).div(BIG18);
+		const css_after = new BigNumber(await cssInstance.balanceOf.call(account5)).div(BIG18);
+		const usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(account5)).div(BIG6);
+		const pool_ceres_after = new BigNumber(await ceresInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18); 
+		const pool_css_after = new BigNumber(await cssInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18);
+		const pool_usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+		
 		// console.log(chalk.blue("============================ SEPERATOR ========================="));
-		// console.log(chalk.yellow("ceres total supply change: ", totalSupplyCERES_after.toNumber() - totalSupplyCERES_before.toNumber()));
-		// console.log(chalk.yellow("css total supply change: ", totalSupplyCSS_after.toNumber() - totalSupplyCSS_before.toNumber()));
-		// console.log(chalk.yellow("account5_ceres change: ", ceres_after.toNumber() - ceres_before.toNumber()));
-		// console.log(chalk.yellow("account5_css change: ", css_after.toNumber() - css_before.toNumber()));
-		// console.log(chalk.yellow("account5_usdc change: ", usdc_after.toNumber() - usdc_before.toNumber()));
-		// console.log(chalk.yellow("pool_ceres_change: ", pool_ceres_after.toNumber() - pool_ceres_before.toNumber()));
-		// console.log(chalk.yellow("pool_css_change: ", pool_css_after.toNumber() - pool_css_before.toNumber()));
-		// console.log(chalk.yellow("pool_usdc_change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber()));
+		// console.log(chalk.yellow(`totalSupplyCERES_after: ${totalSupplyCERES_after}`));
+		// console.log(chalk.yellow(`totalSupplyCSS_after: ${totalSupplyCSS_after}`));
+
+		// console.log(chalk.yellow(`account5_ceres_after: ${ceres_after}`));
+		// console.log(chalk.yellow(`account5_css_after: ${css_after}`));
+		// console.log(chalk.yellow(`account5_usdc_after: ${usdc_after}`));
+		// console.log(chalk.yellow(`pool_ceres_after: ${pool_ceres_after}`));
+		// console.log(chalk.yellow(`pool_css_after: ${pool_css_after}`));
+		// console.log(chalk.yellow(`pool_usdc_after: ${pool_usdc_after}`));
+
+
+		console.log(chalk.blue("============================ SEPERATOR ========================="));
+		console.log(chalk.yellow("ceres total supply change: ", totalSupplyCERES_after.toNumber() - totalSupplyCERES_before.toNumber()));
+		console.log(chalk.yellow("css total supply change: ", totalSupplyCSS_after.toNumber() - totalSupplyCSS_before.toNumber()));
+		console.log(chalk.yellow("account5_ceres change: ", ceres_after.toNumber() - ceres_before.toNumber()));
+		console.log(chalk.yellow("account5_css change: ", css_after.toNumber() - css_before.toNumber()));
+		console.log(chalk.yellow("account5_usdc change: ", usdc_after.toNumber() - usdc_before.toNumber()));
+		console.log(chalk.yellow("pool_ceres_change: ", pool_ceres_after.toNumber() - pool_ceres_before.toNumber()));
+		console.log(chalk.yellow("pool_css_change: ", pool_css_after.toNumber() - pool_css_before.toNumber()));
+		console.log(chalk.yellow("pool_usdc_change: ", pool_usdc_after.toNumber() - pool_usdc_before.toNumber()));
 	});
 
 	
