@@ -557,8 +557,6 @@ contract('test_6DEC_Tests', async (accounts) => {
 		const global_collateral_ratio_after = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6);
 		console.log(chalk.blue(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
 		console.log(chalk.blue("global_collateral_ratio_after: ", global_collateral_ratio_after.toNumber()));
-
-
 	})
 
 
