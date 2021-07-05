@@ -505,6 +505,29 @@ contract('test_6DEC_Tests', async (accounts) => {
 		// console.log(chalk.blue("global_collateral_ratio_after: ", global_collateral_ratio_after.toNumber()));
 	});
 
+	it("[redeemFractionalCERES]: Redeem some CERES for CSS and USDC (collateral ratio between .000001 and .999999)", async() => {
+		console.log(chalk.blue("============USDC redeemFractionalCERES()============"));
+		// refreshCollateralRatio
+		await ceresInstance.setRefreshCooldown(1,{from: OWNER});
+		await ceresInstance.refreshCollateralRatio();
+		await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); 
+
+		// Note the collateral ratio
+		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
+		const collateral_price = (new BigNumber(await pool_instance_USDC.getCollateralPrice.call()).div(BIG6)).toNumber();
+		const globalCollateralValue = new BigNumber(await ceresInstance.globalCollateralValue.call()).div(BIG18).toNumber();
+		
+		// Note the collateral and CERES amounts before minting
+		const totalSupplyCERES_before = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
+		const totalSupplyCSS_before = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18);
+		const ceres_before = new BigNumber(await ceresInstance.balanceOf.call(OWNER)).div(BIG18);
+		const css_before = new BigNumber(await cssInstance.balanceOf.call(OWNER)).div(BIG18);
+		const usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(OWNER)).div(BIG6);
+		const pool_usdc_before = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
+		
+		console.log(chalk.blue(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
+	})
+
 
 });
 

@@ -202,7 +202,7 @@ contract CeresPool is AccessControl {
     }
 
     // We separate out the 1t1, fractional and algorithmic minting functions for gas efficiency 
-    // TODO: [LATER][FUNC][mint1t1CERES]
+    // [LATER][FUNC][mint1t1CERES]
     function mint1t1CERES(uint256 collateral_amount, uint256 CERES_out_min) external notMintPaused {
         uint256 collateral_amount_d18 = collateral_amount * (10 ** missing_decimals);
 
@@ -241,7 +241,7 @@ contract CeresPool is AccessControl {
 
     // Will fail if fully collateralized or fully algorithmic
     // > 0% and < 100% collateral-backed
-    // TODO: [LATER][FUNC][mintFractionalCERES]
+    // [LATER][FUNC][mintFractionalCERES]
     function mintFractionalCERES(uint256 collateral_amount, uint256 css_amount, uint256 CERES_out_min) external notMintPaused {
         uint256 css_price = CERES.css_price();
         uint256 global_collateral_ratio = CERES.global_collateral_ratio();
