@@ -890,11 +890,10 @@ contract('test_6DEC_Tests', async (accounts) => {
 		const pool_ceres_after = new BigNumber(await ceresInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18); 
 		const pool_css_after = new BigNumber(await cssInstance.balanceOf.call(pool_instance_USDC.address)).div(BIG18);
 		const pool_usdc_after = new BigNumber(await col_instance_USDC.balanceOf.call(pool_instance_USDC.address)).div(BIG6);
-		
+
 		// console.log(chalk.blue("============================ SEPERATOR ========================="));
 		// console.log(chalk.yellow(`totalSupplyCERES_after: ${totalSupplyCERES_after}`));
 		// console.log(chalk.yellow(`totalSupplyCSS_after: ${totalSupplyCSS_after}`));
-
 		// console.log(chalk.yellow(`account5_ceres_after: ${ceres_after}`));
 		// console.log(chalk.yellow(`account5_css_after: ${css_after}`));
 		// console.log(chalk.yellow(`account5_usdc_after: ${usdc_after}`));
