@@ -386,7 +386,8 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 	it ("Test For collateral_token.transferFrom(address(this), msg.sender, collateral_amount)", async() => {
 		// PREPARE
 		const account_source = OWNER;
-		const account_target = pool_instance_USDC.address;
+		// const account_target = pool_instance_USDC.address;
+		const account_target = ADMIN;
 		const account_3rd = METAMASK_ADDRESS;
 		
 		// BEFORE
