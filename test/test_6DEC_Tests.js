@@ -731,12 +731,9 @@ contract('test_6DEC_Tests', async (accounts) => {
 		console.log(chalk.yellow(`pool_css_before: ${pool_css_before}`));
 		console.log(chalk.yellow(`pool_usdc_before: ${pool_usdc_before}`));
 
-				// Need to approve first so the pool contract can use transfer
-				await col_instance_USDC.approve(pool_instance_USDC.address, usdc_amount, { from: account5 });
 		
-				// Redeem some FRAX
-				await pool_instance_USDC.recollateralizeCERES(usdc_amount, new BigNumber("1e6"), { from: account5 });
-				
+		// Need to approve first so the pool contract can use transfer
+		await col_instance_USDC.approve(pool_instance_USDC.address, usdc_amount, { from: account5 });
 		
 		// AFTER
 		const totalSupplyCERES_after = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
