@@ -378,7 +378,7 @@ contract('test_Openzeppelin_Test_Helpers', async (accounts) => {
 		console.log(chalk.yellow(`allowance ${account1} to ${account2}: ${await col_instance_USDC.allowance(account1,account2)}`));
 		console.log(chalk.yellow(`balance_account1_after: ${balance_account1_after}; balance_account2_after: ${balance_account2_after}; balance_account3_after: ${balance_account3_after}; balance_account4_after: ${balance_account4_after};`));
 
-		await col_instance_USDC.transferFrom(account1,account3,ONE_MILLION_DEC6,{from: account2});
+	
 
 
 	});
