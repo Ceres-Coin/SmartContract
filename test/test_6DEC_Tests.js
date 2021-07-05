@@ -871,12 +871,9 @@ contract('test_6DEC_Tests', async (accounts) => {
 
 		const global_collateral_ratio_before = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
 		console.log(chalk.yellow(`global_collateral_ratio_before: ${global_collateral_ratio_before}`));
-		// refreshCollateralRatio
-		await ceresInstance.setRefreshCooldown(0,{from: OWNER});
-		for (var i=0; i<399; i++) { 
-			await ceresInstance.refreshCollateralRatio(); 
-		};
-		await ceresInstance.setRefreshCooldown(RefreshCooldown_Initial_Value,{from: OWNER}); 
+		
+		await ceresInstance.set_global_collateral_ratio(0,{from: OWNER});
+
 		const global_collateral_ratio_after = new BigNumber(await ceresInstance.global_collateral_ratio.call()).div(BIG6).toNumber();
 		console.log(chalk.yellow(`global_collateral_ratio_after: ${global_collateral_ratio_after}`));
 

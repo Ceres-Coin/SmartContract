@@ -249,6 +249,10 @@ contract CEREStable is ERC20Custom, AccessControl {
         }
     }
 
+    function set_global_collateral_ratio(uint256 _global_collateral_ratio) external onlyByOwnerOrGovernance {
+        global_collateral_ratio = _global_collateral_ratio;
+    }
+
     // [FUNC][setOwner]
     function setOwner(address _owner_address) external onlyByOwnerOrGovernance {
         owner_address = _owner_address;
