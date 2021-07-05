@@ -327,8 +327,8 @@ contract CeresPool is AccessControl {
         lastRedeemed[msg.sender] = block.number;
         
         // Move all external functions to the end
-        // CERES.pool_burn_from(msg.sender, CERES_amount);
-        collateral_token.transferFrom(address(this), msg.sender, collateral_amount);
+        CERES.pool_burn_from(msg.sender, CERES_amount);
+        // collateral_token.transferFrom(address(this), msg.sender, collateral_amount);
         CSS.pool_mint(address(this), css_amount);
     }
 

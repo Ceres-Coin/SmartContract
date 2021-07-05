@@ -526,16 +526,17 @@ contract('test_6DEC_Tests', async (accounts) => {
 		
 		// ACTION
 
-				// Need to approve first so the pool contract can use transfer
-				const ceres_amount = new BigNumber("135242531948024e6");
-				await ceresInstance.approve(pool_instance_USDC.address, ceres_amount, { from: OWNER });
-				// Redeem some CERES
-				await pool_instance_USDC.redeemFractionalCERES(ceres_amount, new BigNumber("1e6"), new BigNumber("1e6"), { from: OWNER });
-				// Collect redemption
-				await time.advanceBlock();
-				await time.advanceBlock();
-				await time.advanceBlock();
-				// await pool_instance_USDC.collectRedemption({ from: OWNER });
+		// Need to approve first so the pool contract can use transfer
+		const ceres_amount = new BigNumber("135242531948024e6");
+		await ceresInstance.approve(pool_instance_USDC.address, ceres_amount, { from: OWNER });
+		await col_instance_USDC.approve(pool_instance_USDC.address, TWO_MILLION_DEC6, { from: OWNER });
+		// Redeem some CERES
+		await pool_instance_USDC.redeemFractionalCERES(ceres_amount, new BigNumber("1e6"), new BigNumber("1e6"), { from: OWNER });
+		// Collect redemption
+		await time.advanceBlock();
+		await time.advanceBlock();
+		await time.advanceBlock();
+		// await pool_instance_USDC.collectRedemption({ from: OWNER });
 
 		// Note the collateral and CERES amounts before REDEEM
 		const totalSupplyCERES_after = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18);
