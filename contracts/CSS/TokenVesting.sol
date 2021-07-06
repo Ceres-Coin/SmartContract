@@ -91,6 +91,7 @@ contract TokenVesting {
     /**
      * @return the beneficiary of the tokens.
      */
+    // TEST CASE DONE
     function getBeneficiary() public view returns (address) {
         return _beneficiary;
     }
@@ -98,6 +99,7 @@ contract TokenVesting {
     /**
      * @return the cliff time of the token vesting.
      */
+    // TEST CASE DONE
     function getCliff() public view returns (uint256) {
         return _cliff;
     }
