@@ -321,6 +321,11 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		expect(await stakingInstance_CERES_WETH.timelock_address()).to.equal(timelockInstance.address);
 	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.locked_stake_max_multiplier, its default value is 3000000", async() => {
+		const VALUE = 3000000;
+		expect(parseFloat(await stakingInstance_CERES_WETH.locked_stake_max_multiplier())).to.equal(VALUE);
+	});
+
 
 
 
