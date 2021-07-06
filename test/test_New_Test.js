@@ -83,7 +83,7 @@ const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPr
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 const GovernorAlpha = artifacts.require("Governance/GovernorAlpha");
 
-contract('GOVERNANCE PROPOSAL', async (accounts) => {
+contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
