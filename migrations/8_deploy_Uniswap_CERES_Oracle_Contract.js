@@ -245,4 +245,15 @@ module.exports = async function(deployer, network, accounts) {
 		deployer.deploy(StakingRewards_CERES_USDC, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CERES_USDC, ceresInstance.address, timelockInstance.address, 500000,{from: OWNER}),
 		deployer.deploy(StakingRewards_CSS_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CSS_WETH, ceresInstance.address, timelockInstance.address, 0,{from: OWNER})
 	]);
+
+	// ======== Get various staking addresses ======== 
+	console.log(chalk.yellow('===== GET VARIOUS STAKING ADDRESSES ====='));
+	const stakingInstance_CERES_WETH = await StakingRewards_CERES_WETH.deployed();
+	const stakingInstance_CERES_USDC = await StakingRewards_CERES_USDC.deployed();
+	const stakingInstance_CSS_WETH = await StakingRewards_CSS_WETH.deployed();
+
+	console.log(chalk.red("stakingInstance_CERES_WETH: ",stakingInstance_CERES_WETH.address));
+	console.log(chalk.red("stakingInstance_CERES_USDC: ",stakingInstance_CERES_USDC.address));
+	console.log(chalk.red("stakingInstance_CSS_WETH: ",stakingInstance_CSS_WETH.address));
+	
 }
