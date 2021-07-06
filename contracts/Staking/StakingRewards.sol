@@ -63,9 +63,11 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     // TEST CASE DONE
     uint256 public cr_boost_max_multiplier = 3000000; // 6 decimals of precision. 1x = 1000000
 
+    // TODO: [LATER]: FOR MAPPING
     mapping(address => uint256) public userRewardPerTokenPaid;
     mapping(address => uint256) public rewards;
 
+    // NOTHING TO DO FOR PRIVATE
     uint256 private _staking_token_supply = 0;
     uint256 private _staking_token_boosted_supply = 0;
     mapping(address => uint256) private _unlocked_balances;

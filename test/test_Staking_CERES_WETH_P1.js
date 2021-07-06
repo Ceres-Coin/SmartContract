@@ -6,6 +6,7 @@ const Contract = require('web3-eth-contract');
 const { expectRevert, time } = require('@openzeppelin/test-helpers');
 const { assert, expect } = require('chai');
 const constants = require('@openzeppelin/test-helpers/src/constants');
+const { parse } = require('path');
 
 // Set provider for all later instances to use
 Contract.setProvider('http://127.0.0.1:8545');
@@ -339,6 +340,11 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.cr_boost_max_multiplier, its default value is 3000000", async() => {
 		const DEFAULT_VALUE = 3000000;
 		expect(parseFloat(await stakingInstance_CERES_WETH.cr_boost_max_multiplier())).to.equal(DEFAULT_VALUE);
+	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewards(account0 - account7), check its default value for account0 - account7", async() => {
+		const rewards_account0 = parseFloat(await stakingInstance_CERES_WETH.rewards.call(account0));
+		console.log(chalk.yellow(`rewards_account0: ${rewards_account0}`));
 	});
 
 
