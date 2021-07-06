@@ -65,7 +65,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
     // TODO: [LATER]: FOR MAPPING
     mapping(address => uint256) public userRewardPerTokenPaid;
-    mapping(address => uint256) public rewards;
+    mapping(address => uint256) public rewards; // TEST CASE DONE
 
     // NOTHING TO DO FOR PRIVATE
     uint256 private _staking_token_supply = 0;
