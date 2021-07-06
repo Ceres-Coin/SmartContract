@@ -139,6 +139,7 @@ contract TokenVesting {
     /**
      * @return true if the token is revoked.
      */
+    // TEST CASE DONE
     function getRevoked() public view returns (bool) {
         return _revoked;
     }
