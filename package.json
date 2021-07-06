@@ -7,7 +7,6 @@
     "test": "test"
   },
   "scripts": {
-    "test": "truffle test",
     "migration_clean": "rm -rf build & truffle compile --all",
     "migrate_singleFile_1" : "truffle migrate -f 1 --to 1 --network development --skip-dry-run",
     "migrate_singleFile_2" : "truffle migrate -f 2 --to 2 --network development --skip-dry-run",
