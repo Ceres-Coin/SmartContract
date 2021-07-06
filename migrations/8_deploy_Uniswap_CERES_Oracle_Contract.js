@@ -24,6 +24,7 @@ const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DE
 // set constants
 const ONE_MILLION_DEC18 = new BigNumber("1000000e18").toNumber();
 const FIVE_MILLION_DEC18 = new BigNumber("5000000e18").toNumber();
+const SIX_MILLION_DEC18 = new BigNumber("6000000e18").toNumber();
 const TEN_MILLION_DEC18 = new BigNumber("10000000e18").toNumber();
 const ONE_HUNDRED_MILLION_DEC18 = new BigNumber("100000000e18").toNumber();
 const ONE_HUNDRED_MILLION_DEC6 = new BigNumber("100000000e6").toNumber();
@@ -36,6 +37,7 @@ const ONE_HUNDRED_DEC18 = new BigNumber("100e18").toNumber();
 const ONE_HUNDRED_DEC6 = new BigNumber("100e6").toNumber();
 const Number133_DEC18 = new BigNumber("133e18").toNumber();
 const EIGHT_HUNDRED_DEC18 = new BigNumber("800e18").toNumber();
+
 
 // Core Contract
 const CEREStable = artifacts.require("Ceres/CEREStable");
@@ -259,9 +261,9 @@ module.exports = async function(deployer, network, accounts) {
 		// Transfer CSS to staking contracts
 		console.log(chalk.yellow('===== Transfer FXS to staking contracts ====='));
 		await Promise.all([
-			cssInstance.transfer(stakingInstance_CERES_WETH.address, new BigNumber("6000000e18"), { from: OWNER }),
-			cssInstance.transfer(stakingInstance_CERES_USDC.address, new BigNumber("6000000e18"), { from: OWNER }),
-			cssInstance.transfer(stakingInstance_CSS_WETH.address, new BigNumber("1000000e18"), { from: OWNER })
+			cssInstance.transfer(stakingInstance_CERES_WETH.address, new BigNumber(SIX_MILLION_DEC18), { from: OWNER }),
+			cssInstance.transfer(stakingInstance_CERES_USDC.address, new BigNumber(SIX_MILLION_DEC18), { from: OWNER }),
+			cssInstance.transfer(stakingInstance_CSS_WETH.address, new BigNumber(ONE_MILLION_DEC18), { from: OWNER })
 		]);
 	
 		if (!IS_MAINNET){
