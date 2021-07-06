@@ -344,7 +344,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewards(account0 - account7), check its default value for account0 - account7", async() => {
 		const rewards_account0 = parseFloat(await stakingInstance_CERES_WETH.rewards.call(account0));
-		console.log(chalk.yellow(`rewards_account0: ${rewards_account0}`));
+		console.log(chalk.yellow(`rewards_account0: ${account0} value: ${rewards_account0}`));
 
 		console.log(chalk.yellow(`rewards_account1: ${account1} value: ${parseFloat(await stakingInstance_CERES_WETH.rewards.call(account1))}`));
 		console.log(chalk.yellow(`rewards_account2: ${account2} value: ${parseFloat(await stakingInstance_CERES_WETH.rewards.call(account2))}`));
