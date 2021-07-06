@@ -332,9 +332,20 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.locked_stake_min_time, its default value is 7 days", async() => {
-		const DEFAULT_VALUE = 7 * 86400;;
+		const DEFAULT_VALUE = 7 * 86400;
 		expect(parseFloat(await stakingInstance_CERES_WETH.locked_stake_min_time())).to.equal(DEFAULT_VALUE);
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.locked_stake_min_time_str, its default value is `604800`", async() => {
+		const DEFAULT_VALUE = "604800";
+		expect(await stakingInstance_CERES_WETH.locked_stake_min_time_str()).to.equal(DEFAULT_VALUE);
+	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.cr_boost_max_multiplier, its default value is 3000000", async() => {
+		const DEFAULT_VALUE = 3000000;
+		expect(parseFloat(await stakingInstance_CERES_WETH.cr_boost_max_multiplier())).to.equal(DEFAULT_VALUE);
+	});
+
 
 	
 

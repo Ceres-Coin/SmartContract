@@ -56,9 +56,11 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     uint256 public locked_stake_max_multiplier = 3000000; // 6 decimals of precision. 1x = 1000000
     // TEST CASE DONE
     uint256 public locked_stake_time_for_max_multiplier = 3 * 365 * 86400; // 3 years
+    // TEST CASE DONE
     uint256 public locked_stake_min_time = 604800; // 7 * 86400  (7 days)
+    // TEST CASE DONE
     string private locked_stake_min_time_str = "604800"; // 7 days on genesis
-
+    // TEST CASE DONE
     uint256 public cr_boost_max_multiplier = 3000000; // 6 decimals of precision. 1x = 1000000
 
     mapping(address => uint256) public userRewardPerTokenPaid;
