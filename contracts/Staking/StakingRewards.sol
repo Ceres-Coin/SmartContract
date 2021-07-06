@@ -52,7 +52,9 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     // TEST CASE DONE
     address public timelock_address; // Governance timelock address
 
+    // TEST CASE DONE
     uint256 public locked_stake_max_multiplier = 3000000; // 6 decimals of precision. 1x = 1000000
+    // TEST CASE DONE
     uint256 public locked_stake_time_for_max_multiplier = 3 * 365 * 86400; // 3 years
     uint256 public locked_stake_min_time = 604800; // 7 * 86400  (7 days)
     string private locked_stake_min_time_str = "604800"; // 7 days on genesis

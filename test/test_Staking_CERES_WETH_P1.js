@@ -326,6 +326,13 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		expect(parseFloat(await stakingInstance_CERES_WETH.locked_stake_max_multiplier())).to.equal(VALUE);
 	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.locked_stake_time_for_max_multiplier, its default value is 3 years", async() => {
+		const VALUE = 3 * 365 * 86400;;
+		expect(parseFloat(await stakingInstance_CERES_WETH.locked_stake_time_for_max_multiplier())).to.equal(VALUE);
+	});
+
+	
+
 
 
 
