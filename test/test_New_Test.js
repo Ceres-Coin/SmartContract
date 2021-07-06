@@ -140,6 +140,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	let css_contract_address;
 	let timelock_address;
 	let governanceInstance;
+	let vestingInstance;
 
 	let minting_fee;
 	let redemption_fee;
@@ -274,6 +275,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		pool_instance_USDC = await Pool_USDC.deployed();
 		oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumerTest.deployed();
 		governanceInstance = await GovernorAlpha.deployed();
+		vestingInstance = await TokenVesting.deployed();
     });
 
 	it ("Test Scripts for ceresInstance.address", async() => {
@@ -387,6 +389,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 
 	it("Deploys a vesting contract and then executes a governance proposal to revoke it", async () => { 
 		console.log(chalk.blue("======== Setup vestingInstance ========"));
+		console.log(chalk.yellow(`vestingInstance: ${vestingInstance}`));
 	});
 
 });
