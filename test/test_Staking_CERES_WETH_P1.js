@@ -355,6 +355,19 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		console.log(chalk.yellow(`rewards_account7: ${account7} value: ${parseFloat(await stakingInstance_CERES_WETH.rewards.call(account7))}`));
 	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.userRewardPerTokenPaid(account0 - account7), check its default value for account0 - account7 should ALL be 0 ", async() => {
+		const rewards_account0 = parseFloat(await stakingInstance_CERES_WETH.userRewardPerTokenPaid.call(account0));
+		console.log(chalk.yellow(`rewards_account0: ${account0} value: ${rewards_account0}`));
+
+		// console.log(chalk.yellow(`rewards_account1: ${account1} value: ${parseFloat(await stakingInstance_CERES_WETH.rewards.call(account1))}`));
+		// console.log(chalk.yellow(`rewards_account2: ${account2} value: ${parseFloat(await stakingInstance_CERES_WETH.rewards.call(account2))}`));
+		// console.log(chalk.yellow(`rewards_account3: ${account3} value: ${parseFloat(await stakingInstance_CERES_WETH.rewards.call(account3))}`));
+		// console.log(chalk.yellow(`rewards_account4: ${account4} value: ${parseFloat(await stakingInstance_CERES_WETH.rewards.call(account4))}`));
+		// console.log(chalk.yellow(`rewards_account5: ${account5} value: ${parseFloat(await stakingInstance_CERES_WETH.rewards.call(account5))}`));
+		// console.log(chalk.yellow(`rewards_account6: ${account6} value: ${parseFloat(await stakingInstance_CERES_WETH.rewards.call(account6))}`));
+		// console.log(chalk.yellow(`rewards_account7: ${account7} value: ${parseFloat(await stakingInstance_CERES_WETH.rewards.call(account7))}`));
+	});
+
 
 	
 
