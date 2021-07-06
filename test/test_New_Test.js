@@ -296,7 +296,16 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	// })
 
 	it ("Check up on the oracles and make sure the prices are set", async() => {
-		
+		// Advance 24 hrs so the period can be computed
+		await time.increase(86400 + 1);
+		await time.advanceBlock();
+
+		// Make sure the prices are updated
+		await oracle_instance_CERES_WETH.update({ from: OWNER });
+		await oracle_instance_CERES_USDC.update({ from: OWNER });
+		await oracle_instance_CSS_WETH.update({ from: OWNER });
+		await oracle_instance_CSS_USDC.update({ from: OWNER });
+		await oracle_instance_USDC_WETH.update({ from: OWNER });
 	})
 
 });
