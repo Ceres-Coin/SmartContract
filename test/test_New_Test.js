@@ -452,7 +452,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR vestingInstance.getRevoked(), default value is false", async() => {
-		console.log(chalk.yellow(`vestingInstance.getRevoked(): ${await vestingInstance.getRevoked()}`));
+		// console.log(chalk.yellow(`vestingInstance.getRevoked(): ${await vestingInstance.getRevoked()}`));
 		expect(await vestingInstance.getRevoked()).to.equal(false);
 	});
 
