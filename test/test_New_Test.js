@@ -385,7 +385,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 
 	});
 
-	it("Mints 6DEC 1-to-1", async () => { 
+	it("Deploys a vesting contract and then executes a governance proposal to revoke it", async () => { 
 
 	});
 
