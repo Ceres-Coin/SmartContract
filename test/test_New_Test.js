@@ -321,6 +321,23 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		console.log(chalk.yellow(`css_price_from_CSS_USDC: ${css_price_from_CSS_USDC}`));
 		console.log(chalk.yellow(`usdc_price_from_USDC_WETH: ${usdc_price_from_USDC_WETH}`));
 
+		await Promise.all([
+			wethInstance.approve(routerInstance.address, new BigNumber(TWO_MILLION_DEC18), { from: OWNER }),
+			col_instance_USDC.approve(routerInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: OWNER }),
+			col_instance_USDT.approve(routerInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: OWNER }),
+			ceresInstance.approve(routerInstance.address, new BigNumber(ONE_MILLION_DEC18), { from: OWNER }),
+			cssInstance.approve(routerInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: OWNER })
+		]);	
+
+		// Add allowances to the swapToPrice contract
+		await Promise.all([
+			wethInstance.approve(swapToPriceInstance.address, new BigNumber(TWO_MILLION_DEC18), { from: OWNER }),
+			col_instance_USDC.approve(swapToPriceInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: OWNER }),
+			col_instance_USDT.approve(swapToPriceInstance.address, new BigNumber(TWO_MILLION_DEC6), { from: OWNER }),
+			ceresInstance.approve(swapToPriceInstance.address, new BigNumber(ONE_MILLION_DEC18), { from: OWNER }),
+			cssInstance.approve(swapToPriceInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: OWNER })
+		]);
+
 	})
 
 });
