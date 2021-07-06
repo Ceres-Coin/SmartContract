@@ -338,6 +338,51 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 			cssInstance.approve(swapToPriceInstance.address, new BigNumber(FIVE_MILLION_DEC18), { from: OWNER })
 		]);
 
+		await swapToPriceInstance.swapToPrice(
+			ceresInstance.address,
+			wethInstance.address,
+			new BigNumber(4906e5),
+			new BigNumber(1e6),
+			new BigNumber(100e18),
+			new BigNumber(100e18),
+			OWNER,
+			new BigNumber(2105300114),
+			{ from: OWNER }
+		);
+
+		await swapToPriceInstance.swapToPrice(
+			cssInstance.address,
+			wethInstance.address,
+			new BigNumber(2955e6),
+			new BigNumber(1e6),
+			new BigNumber(100e18),
+			new BigNumber(100e18),
+			OWNER,
+			new BigNumber(2105300114),
+			{ from: OWNER }
+		);
+
+		await time.increase(86400 + 1);
+		await time.advanceBlock();
+
+		await oracle_instance_CERES_WETH.update({ from: OWNER });
+		await oracle_instance_CERES_USDC.update({ from: OWNER });
+		await oracle_instance_CSS_WETH.update({ from: OWNER });
+		await oracle_instance_CSS_USDC.update({ from: OWNER });
+		await oracle_instance_USDC_WETH.update({ from: OWNER });
+
+		let ceres_price_from_CERES_WETH_AFTER = parseFloat((new BigNumber(await oracle_instance_CERES_WETH.consult.call(wethInstance.address, BIG6))).div(BIG6));
+		let ceres_price_from_CERES_USDC_AFTER = parseFloat((new BigNumber(await oracle_instance_CERES_USDC.consult.call(col_instance_USDC.address,BIG6))).div(BIG18));
+		let css_price_from_CSS_WETH_AFTER = parseFloat((new BigNumber(await oracle_instance_CSS_WETH.consult.call(wethInstance.address, BIG6))).div(BIG6));
+		let css_price_from_CSS_USDC_AFTER = parseFloat((new BigNumber(await oracle_instance_CSS_USDC.consult.call(col_instance_USDC.address,BIG6))).div(BIG18));
+		let usdc_price_from_USDC_WETH_AFTER = parseFloat((new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, BIG18))).div(BIG6));
+	
+		console.log(chalk.yellow(`ceres_price_from_CERES_WETH_AFTER: ${ceres_price_from_CERES_WETH_AFTER}`));
+		console.log(chalk.yellow(`ceres_price_from_CERES_USDC_AFTER: ${ceres_price_from_CERES_USDC_AFTER}`));
+		console.log(chalk.yellow(`css_price_from_CSS_WETH_AFTER: ${css_price_from_CSS_WETH_AFTER}`));
+		console.log(chalk.yellow(`css_price_from_CSS_USDC_AFTER: ${css_price_from_CSS_USDC_AFTER}`));
+		console.log(chalk.yellow(`usdc_price_from_USDC_WETH_AFTER: ${usdc_price_from_USDC_WETH_AFTER}`));
+
 	})
 
 });
