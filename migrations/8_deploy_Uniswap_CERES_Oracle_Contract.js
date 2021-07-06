@@ -87,10 +87,13 @@ module.exports = async function(deployer, network, accounts) {
 	// set the deploy address
 	const ADMIN = accounts[0];
 	const COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
+	const OWNER = accounts[1];
 	const account0 = accounts[0];
 	const account1 = accounts[1];
 	const account2 = accounts[2];
 	const account3 = accounts[3];
+	const STAKING_OWNER = accounts[6];
+	const STAKING_REWARDS_DISTRIBUTOR = accounts[6];
 	console.log(chalk.red.bold('===== Uniswap Pair Oracle Deployment & Add Liquidity ====='));
 	if (IS_ROPSTEN || IS_RINKEBY){
 		// Note UniswapV2Router02 vs UniswapV2Router02_Modified
@@ -228,14 +231,19 @@ module.exports = async function(deployer, network, accounts) {
 		await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 	}
 
+	// ======== Get the addresses of the pairs CERES_WETH & CERES_USDC & CSS_WETH ========
+	const pair_addr_CERES_WETH = await uniswapFactoryInstance.getPair(ceresInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	const pair_addr_CERES_USDC = await uniswapFactoryInstance.getPair(ceresInstance.address, col_instance_USDC.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
+	const pair_addr_CSS_WETH = await uniswapFactoryInstance.getPair(cssInstance.address, wethInstance.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });	
+
 	// ======== Deploy the staking contracts ========
 	console.log(chalk.yellow('===== DEPLOY THE STAKING CONTRACTS ====='));
 	await deployer.link(CEREStable, [StakingRewards_CERES_WETH, StakingRewards_CERES_USDC, StakingRewards_CERES_CSS, StakingRewards_CSS_WETH]);
 	await deployer.link(StringHelpers, [StakingRewards_CERES_WETH, StakingRewards_CERES_USDC, StakingRewards_CERES_CSS, StakingRewards_CSS_WETH]);
 	// await Promise.all([
-	// 	deployer.deploy(StakingRewards_FRAX_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FRAX_WETH, FRAXStablecoin.address, timelockInstance.address, 500000),
-	// 	deployer.deploy(StakingRewards_FRAX_USDC, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FRAX_USDC, FRAXStablecoin.address, timelockInstance.address, 500000),
-	// 	deployer.deploy(StakingRewards_FRAX_FXS, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FRAX_FXS, FRAXStablecoin.address, timelockInstance.address, 0),
-	// 	deployer.deploy(StakingRewards_FXS_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FXS_WETH, FRAXStablecoin.address, timelockInstance.address, 0)
+	// 	deployer.deploy(StakingRewards_CERES_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CERES_WETH, FRAXStablecoin.address, timelockInstance.address, 500000),
+	// 	deployer.deploy(StakingRewards_CERES_USDC, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CERES_USDC, FRAXStablecoin.address, timelockInstance.address, 500000),
+	// 	deployer.deploy(StakingRewards_FRAX_FXS, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CERES_CSS, FRAXStablecoin.address, timelockInstance.address, 0),
+	// 	deployer.deploy(StakingRewards_CSS_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CSS_WETH, FRAXStablecoin.address, timelockInstance.address, 0)
 	// ]);
 }
