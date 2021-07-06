@@ -147,6 +147,7 @@ contract TokenVesting {
     /**
      * @notice Transfers vested tokens to beneficiary.
      */
+    // TEST CASE DONE
     function release() public {
         require(msg.sender == _beneficiary, "must be the beneficiary to release tokens");
         uint256 unreleased = _releasableAmount();

@@ -395,6 +395,8 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	it("Deploys a vesting contract and then executes a governance proposal to revoke it", async () => { 
 		console.log(chalk.blue("======== Setup vestingInstance ========"));
 		console.log(chalk.yellow(`vestingInstance: ${await vestingInstance.address}`));
+		let revoked_status_before = await vestingInstance.getRevoked();
+		console.log(chalk.yellow(`revoked_status_before: ${revoked_status_before}`));
 
 		await vestingInstance.setTimelockAddress(timelockInstance.address, { from: OWNER });
 		await vestingInstance.setCSSAddress(cssInstance.address, { from: OWNER });
@@ -412,6 +414,9 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		expect(await vestingInstance.getBeneficiary()).to.equal(OWNER);
 		// console.log(chalk.blue('=== VESTING INSTANCE RELEASE ==='));
         await vestingInstance.release({ from: OWNER });
+
+		let revoked_status_after = await vestingInstance.getRevoked();
+		console.log(chalk.yellow(`revoked_status_after: ${revoked_status_after}`));
 
 		const initial_CSS_balance_OWNER_AFTER = new BigNumber(await cssInstance.balanceOf(OWNER));
 		const initial_CSS_balance_5_AFTER = new BigNumber(await cssInstance.balanceOf(account5));
