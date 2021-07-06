@@ -25,7 +25,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
     /* ========== STATE VARIABLES ========== */
 
-    CEREStable public CERES;
+    CEREStable public CERES                                     ;
     ERC20 public rewardsToken;
     ERC20 public stakingToken;
     uint256 public periodFinish;
@@ -91,7 +91,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         owner_address = _owner;
         rewardsToken = ERC20(_rewardsToken);
         stakingToken = ERC20(_stakingToken);
-        FRAX = FRAXStablecoin(_frax_address);
+        CERES = CEREStable(_frax_address);
         rewardsDistribution = _rewardsDistribution;
         lastUpdateTime = block.timestamp;
         timelock_address = _timelock_address;
@@ -118,7 +118,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     }
 
     function crBoostMultiplier() public view returns (uint256) {
-        uint256 multiplier = uint(MULTIPLIER_BASE).add((uint(MULTIPLIER_BASE).sub(FRAX.global_collateral_ratio())).mul(cr_boost_max_multiplier.sub(MULTIPLIER_BASE)).div(MULTIPLIER_BASE) );
+        uint256 multiplier = uint(MULTIPLIER_BASE).add((uint(MULTIPLIER_BASE).sub(CERES.global_collateral_ratio())).mul(cr_boost_max_multiplier.sub(MULTIPLIER_BASE)).div(MULTIPLIER_BASE) );
         return multiplier;
     }
 
