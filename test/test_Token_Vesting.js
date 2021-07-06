@@ -456,6 +456,10 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		expect(await vestingInstance.getRevoked()).to.equal(false);
 	});
 
+	it ("TEST SCRIPTS FOR vestingInstance.release()", async() => {
+		await vestingInstance.release({from: OWNER});
+	});
+
 	
 
 });
