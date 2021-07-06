@@ -405,8 +405,8 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		console.log(chalk.yellow(`initial_CSS_balance_5_BEFORE: ${initial_CSS_balance_5_BEFORE}`));
 		console.log(chalk.yellow(`initial_CSS_vestingInstance_BEFORE: ${initial_CSS_vestingInstance_BEFORE}`));
 
-		console.log(chalk.blue('=== VESTING INSTANCE RELEASE ==='));
-        await vestingInstance.release({ from: account5 });
+		// console.log(chalk.blue('=== VESTING INSTANCE RELEASE ==='));
+        // await vestingInstance.release({ from: account5 });
 
 		const initial_CSS_balance_OWNER_AFTER = new BigNumber(await cssInstance.balanceOf(OWNER));
 		const initial_CSS_balance_5_AFTER = new BigNumber(await cssInstance.balanceOf(account5));
