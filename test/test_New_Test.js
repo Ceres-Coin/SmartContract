@@ -422,33 +422,33 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 
 	// });
 
-	it ("TEST SCRIPTS FOR TokenVesting.getBeneficiary()", async() => {
+	it ("TEST SCRIPTS FOR TokenVesting.getBeneficiary(), default value is OWNER", async() => {
 		expect(await vestingInstance.getBeneficiary()).to.equal(OWNER);
 	});
 
-	it ("TEST SCRIPTS FOR TokenVesting.getCliff()", async() => {
+	it ("TEST SCRIPTS FOR TokenVesting.getCliff(), default value greater than time.latest", async() => {
 		expect(parseFloat(await vestingInstance.getCliff())).to.gt(0)
 	});
 
-	it ("TEST SCRIPTS FOR vestingInstance.getStart()", async() => {
+	it ("TEST SCRIPTS FOR vestingInstance.getStart(), default value is 0", async() => {
 		expect(parseFloat(await vestingInstance.getStart())).to.gt(0);
 	});
 
-	it ("TEST SCRIPTS FOR vestingInstance.getDuration()", async() => {
+	it ("TEST SCRIPTS FOR vestingInstance.getDuration(), default value is TEN_DAYS", async() => {
 		const TEN_DAYS = 86400 * 10;
 		// console.log(chalk.yellow(`vestingInstance.getDuration(): ${await vestingInstance.getDuration()}`));
 		expect(parseFloat(await vestingInstance.getDuration())).to.gt(0);
 		expect(parseFloat(await vestingInstance.getDuration())).to.equal(TEN_DAYS);
 	});
 
-	it ("TEST SCRIPTS FOR vestingInstance.getRevocable()", async() => {
+	it ("TEST SCRIPTS FOR vestingInstance.getRevocable(), default value is TRUE", async() => {
 		// console.log(chalk.yellow(`vestingInstance.getRevocable(): ${await vestingInstance.getRevocable()}`));
 		expect(await vestingInstance.getRevocable()).to.equal(true);
 	});
 
-	it ("TEST SCRIPTS FOR vestingInstance.getReleased()", async() => {
-		console.log(chalk.yellow(`vestingInstance.getReleased(): ${await vestingInstance.getReleased()}`));
-		// expect(await vestingInstance.getReleased()).to.gt(0);
+	it ("TEST SCRIPTS FOR vestingInstance.getReleased(), default value is 0", async() => {
+		// console.log(chalk.yellow(`vestingInstance.getReleased(): ${await vestingInstance.getReleased()}`));
+		expect(await vestingInstance.getReleased()).to.gt(0);
 	});
 
 	
