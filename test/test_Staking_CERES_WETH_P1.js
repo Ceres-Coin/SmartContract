@@ -304,6 +304,11 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		expect(parseFloat(await stakingInstance_CERES_WETH.rewardPerTokenStored())).to.equal(0);
 	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.pool_weight, its default value is 500000", async() => {
+		const VALUE = 500000;
+		expect(parseFloat(await stakingInstance_CERES_WETH.pool_weight())).to.equal(VALUE);
+	});
+
 
 	
 
