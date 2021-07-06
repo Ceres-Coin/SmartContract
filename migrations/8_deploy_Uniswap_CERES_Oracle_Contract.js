@@ -95,7 +95,7 @@ module.exports = async function(deployer, network, accounts) {
 	const account2 = accounts[2];
 	const account3 = accounts[3];
 	const STAKING_OWNER = accounts[6];
-	const STAKING_REWARDS_DISTRIBUTOR = accounts[6];
+	const STAKING_REWARDS_DISTRIBUTOR = accounts[7];
 	console.log(chalk.red.bold('===== Uniswap Pair Oracle Deployment & Add Liquidity ====='));
 	if (IS_ROPSTEN || IS_RINKEBY){
 		// Note UniswapV2Router02 vs UniswapV2Router02_Modified

@@ -47,6 +47,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     // TEST CASE DONE
     uint256 public pool_weight; // This staking pool's percentage of the total CSS being distributed by all pools, 6 decimals of precision
 
+    // TEST CASE DONE
     address public owner_address;
     address public timelock_address; // Governance timelock address
 

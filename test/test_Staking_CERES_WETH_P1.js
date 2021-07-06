@@ -93,6 +93,8 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	let OWNER;
 	let METAMASK_ADDRESS;
 	let Beneficiary;
+	let STAKING_OWNER;
+	let STAKING_REWARDS_DISTRIBUTOR;
 
 	// CERES Core  Contract instances
 	let ceresInstance;
@@ -241,6 +243,8 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		account5 = accounts[5];
 		account6 = accounts[6];
 		account7 = accounts[7];
+		STAKING_OWNER = accounts[6];
+		STAKING_REWARDS_DISTRIBUTOR = accounts[7];
 
 		ceresInstance = await CEREStable.deployed();
 		cssInstance = await CEREShares.deployed();
@@ -308,6 +312,12 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		const VALUE = 500000;
 		expect(parseFloat(await stakingInstance_CERES_WETH.pool_weight())).to.equal(VALUE);
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.owner_address, its default value is STAKING_OWNER", async() => {
+		expect(await stakingInstance_CERES_WETH.owner_address()).to.equal(STAKING_OWNER);
+	});
+
+
 
 
 	
