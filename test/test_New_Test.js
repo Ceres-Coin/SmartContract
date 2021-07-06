@@ -435,9 +435,10 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR vestingInstance.getDuration()", async() => {
+		const TEN_DAYS = 86400 * 10;
 		// console.log(chalk.yellow(`vestingInstance.getDuration(): ${await vestingInstance.getDuration()}`));
 		expect(parseFloat(await vestingInstance.getDuration())).to.gt(0);
-		expect(parseFloat(await vestingInstance.getDuration())).to.equal(86400);
+		expect(parseFloat(await vestingInstance.getDuration())).to.equal(TEN_DAYS);
 	});
 
 	
