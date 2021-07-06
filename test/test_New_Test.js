@@ -446,6 +446,11 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		expect(await vestingInstance.getRevocable()).to.equal(true);
 	});
 
+	it ("TEST SCRIPTS FOR vestingInstance.getReleased()", async() => {
+		console.log(chalk.yellow(`vestingInstance.getReleased(): ${await vestingInstance.getReleased()}`));
+		// expect(await vestingInstance.getReleased()).to.gt(0);
+	});
+
 	
 
 });

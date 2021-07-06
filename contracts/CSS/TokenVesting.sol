@@ -123,6 +123,7 @@ contract TokenVesting {
     /**
      * @return true if the vesting is revocable.
      */
+    // TEST CASE DONE
     function getRevocable() public view returns (bool) {
         return _revocable;
     }
@@ -130,6 +131,7 @@ contract TokenVesting {
     /**
      * @return the amount of the token released.
      */
+    // TEST CASE DONE
     function getReleased() public view returns (uint256) {
         return _released;
     }
