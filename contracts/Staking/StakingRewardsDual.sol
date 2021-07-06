@@ -22,7 +22,7 @@ contract StakingRewardsDual is IStakingRewardsDual, Owned, ReentrancyGuard, Paus
 
     /* ========== STATE VARIABLES ========== */
 
-    CEREStable public CERES   
+    CEREStable public CERES;
     ERC20 public rewardsToken0;
     ERC20 public rewardsToken1;
     ERC20 public stakingToken;
