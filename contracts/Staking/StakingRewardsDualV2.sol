@@ -2,29 +2,6 @@
 pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
 
-// ====================================================================
-// |     ______                   _______                             |
-// |    / _____________ __  __   / ____(_____  ____ _____  ________   |
-// |   / /_  / ___/ __ `| |/_/  / /_  / / __ \/ __ `/ __ \/ ___/ _ \  |
-// |  / __/ / /  / /_/ _>  <   / __/ / / / / / /_/ / / / / /__/  __/  |
-// | /_/   /_/   \__,_/_/|_|  /_/   /_/_/ /_/\__,_/_/ /_/\___/\___/   |
-// |                                                                  |
-// ====================================================================
-// ======================= StakingRewardsDualV2 =======================
-// ====================================================================
-// Frax Finance: https://github.com/FraxFinance
-
-// Primary Author(s)
-// Travis Moore: https://github.com/FortisFortuna
-
-// Reviewer(s) / Contributor(s)
-// Jason Huan: https://github.com/jasonhuan
-// Sam Kazemian: https://github.com/samkazemian
-// Sam Sun: https://github.com/samczsun
-
-// Modified originally from Synthetixio
-// https://raw.githubusercontent.com/Synthetixio/synthetix/develop/contracts/StakingRewards.sol
-
 import "../Math/Math.sol";
 import "../Math/SafeMath.sol";
 import "../ERC20/ERC20.sol";
@@ -45,7 +22,7 @@ contract StakingRewardsDualV2 is IStakingRewardsDual, Owned, ReentrancyGuard, Pa
 
     /* ========== STATE VARIABLES ========== */
 
-    FRAXStablecoin private FRAX;
+    CEREStable public CERES;
     ERC20 public rewardsToken0;
     ERC20 public rewardsToken1;
     ERC20 public stakingToken;
@@ -175,7 +152,7 @@ contract StakingRewardsDualV2 is IStakingRewardsDual, Owned, ReentrancyGuard, Pa
         rewardsToken0 = ERC20(_rewardsToken0);
         rewardsToken1 = ERC20(_rewardsToken1);
         stakingToken = ERC20(_stakingToken);
-        FRAX = FRAXStablecoin(_frax_address);
+        CERES = CEREStable(_frax_address);
         lastUpdateTime = block.timestamp;
         timelock_address = _timelock_address;
         pool_weight0 = _pool_weight0;
@@ -209,7 +186,7 @@ contract StakingRewardsDualV2 is IStakingRewardsDual, Owned, ReentrancyGuard, Pa
     }
 
     function crBoostMultiplier() public view returns (uint256) {
-        uint256 multiplier = uint(MULTIPLIER_BASE).add((uint(MULTIPLIER_BASE).sub(FRAX.global_collateral_ratio())).mul(cr_boost_max_multiplier.sub(MULTIPLIER_BASE)).div(MULTIPLIER_BASE) );
+        uint256 multiplier = uint(MULTIPLIER_BASE).add((uint(MULTIPLIER_BASE).sub(CERES.global_collateral_ratio())).mul(cr_boost_max_multiplier.sub(MULTIPLIER_BASE)).div(MULTIPLIER_BASE) );
         return multiplier;
     }
 

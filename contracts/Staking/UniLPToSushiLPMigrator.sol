@@ -2,25 +2,6 @@
 pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
 
-// ====================================================================
-// |     ______                   _______                             |
-// |    / _____________ __  __   / ____(_____  ____ _____  ________   |
-// |   / /_  / ___/ __ `| |/_/  / /_  / / __ \/ __ `/ __ \/ ___/ _ \  |
-// |  / __/ / /  / /_/ _>  <   / __/ / / / / / /_/ / / / / /__/  __/  |
-// | /_/   /_/   \__,_/_/|_|  /_/   /_/_/ /_/\__,_/_/ /_/\___/\___/   |
-// |                                                                  |
-// ====================================================================
-// ====================== UniLPToSushiLPMigrator ======================
-// ====================================================================
-// Frax Finance: https://github.com/FraxFinance
-
-// Primary Author(s)
-// Travis Moore: https://github.com/FortisFortuna
-
-// Reviewer(s) / Contributor(s)
-// Jason Huan: https://github.com/jasonhuan
-// Sam Kazemian: https://github.com/samkazemian
-
 import "../Math/Math.sol";
 import "../Math/SafeMath.sol";
 import "../ERC20/ERC20.sol";
@@ -45,7 +26,7 @@ contract UniLPToSushiLPMigrator is IStakingRewards, RewardsDistributionRecipient
 
     /* ========== DUPLICATE VARIABLES (NEEDED FOR DELEGATECALL) ========== */
 
-    FRAXStablecoin private FRAX;
+    CEREStable public CERES;
     ERC20 public rewardsToken;
     ERC20 public stakingToken;
     uint256 public periodFinish;
@@ -92,7 +73,7 @@ contract UniLPToSushiLPMigrator is IStakingRewards, RewardsDistributionRecipient
 
     /* ========== STATE VARIABLES ========== */
 
-    // FRAXStablecoin private FRAX;
+    // FRAXStablecoin private CERES;
     IStakingRewardsDualForMigrator public SourceStakingContract;
     IStakingRewardsDualForMigrator public DestStakingContract;
     UniswapV2Pair public SourceLPPair;
