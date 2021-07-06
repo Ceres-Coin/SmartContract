@@ -300,6 +300,10 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsDuration())).to.equal(SEVEN_DAYS);
 	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardPerTokenStored, its default value is 0", async() => {
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardPerTokenStored())).to.equal(0);
+	});
+
 
 	
 
