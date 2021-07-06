@@ -392,35 +392,35 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 
 
 	// TODO: finish test scripts later
-	// it("Deploys a vesting contract and then executes a governance proposal to revoke it", async () => { 
-	// 	console.log(chalk.blue("======== Setup vestingInstance ========"));
-	// 	console.log(chalk.yellow(`vestingInstance: ${await vestingInstance.address}`));
+	it("Deploys a vesting contract and then executes a governance proposal to revoke it", async () => { 
+		console.log(chalk.blue("======== Setup vestingInstance ========"));
+		console.log(chalk.yellow(`vestingInstance: ${await vestingInstance.address}`));
 
-	// 	await vestingInstance.setTimelockAddress(timelockInstance.address, { from: OWNER });
-	// 	await vestingInstance.setCSSAddress(cssInstance.address, { from: OWNER });
-	// 	await cssInstance.approve(vestingInstance.address, new BigNumber(ONE_HUNDRED_THOUSAND_DEC18), { from: OWNER });
-	// 	await cssInstance.transfer(vestingInstance.address, new BigNumber(ONE_HUNDRED_THOUSAND_DEC18), { from: OWNER });
+		await vestingInstance.setTimelockAddress(timelockInstance.address, { from: OWNER });
+		await vestingInstance.setCSSAddress(cssInstance.address, { from: OWNER });
+		await cssInstance.approve(vestingInstance.address, new BigNumber(ONE_HUNDRED_THOUSAND_DEC18), { from: OWNER });
+		await cssInstance.transfer(vestingInstance.address, new BigNumber(ONE_HUNDRED_THOUSAND_DEC18), { from: OWNER });
 
-	// 	const initial_CSS_balance_OWNER_BEFORE = new BigNumber(await cssInstance.balanceOf(OWNER));
-	// 	const initial_CSS_balance_5_BEFORE = new BigNumber(await cssInstance.balanceOf(account5));
-	// 	const initial_CSS_vestingInstance_BEFORE = new BigNumber(await cssInstance.balanceOf(vestingInstance.address));
-	// 	console.log(chalk.yellow(`initial_CSS_balance_OWNER_BEFORE: ${initial_CSS_balance_OWNER_BEFORE}`));
-	// 	console.log(chalk.yellow(`initial_CSS_balance_5_BEFORE: ${initial_CSS_balance_5_BEFORE}`));
-	// 	console.log(chalk.yellow(`initial_CSS_vestingInstance_BEFORE: ${initial_CSS_vestingInstance_BEFORE}`));
+		const initial_CSS_balance_OWNER_BEFORE = new BigNumber(await cssInstance.balanceOf(OWNER));
+		const initial_CSS_balance_5_BEFORE = new BigNumber(await cssInstance.balanceOf(account5));
+		const initial_CSS_vestingInstance_BEFORE = new BigNumber(await cssInstance.balanceOf(vestingInstance.address));
+		console.log(chalk.yellow(`initial_CSS_balance_OWNER_BEFORE: ${initial_CSS_balance_OWNER_BEFORE}`));
+		console.log(chalk.yellow(`initial_CSS_balance_5_BEFORE: ${initial_CSS_balance_5_BEFORE}`));
+		console.log(chalk.yellow(`initial_CSS_vestingInstance_BEFORE: ${initial_CSS_vestingInstance_BEFORE}`));
 
-	// 	console.log(chalk.yellow(`getBeneficiary: ${await vestingInstance.getBeneficiary()}`));
-	// 	expect(await vestingInstance.getBeneficiary()).to.equal(OWNER);
-	// 	// console.log(chalk.blue('=== VESTING INSTANCE RELEASE ==='));
-    //     // await vestingInstance.release({ from: account5 });
+		console.log(chalk.yellow(`getBeneficiary: ${await vestingInstance.getBeneficiary()}`));
+		expect(await vestingInstance.getBeneficiary()).to.equal(OWNER);
+		// console.log(chalk.blue('=== VESTING INSTANCE RELEASE ==='));
+        await vestingInstance.release({ from: OWNER });
 
-	// 	const initial_CSS_balance_OWNER_AFTER = new BigNumber(await cssInstance.balanceOf(OWNER));
-	// 	const initial_CSS_balance_5_AFTER = new BigNumber(await cssInstance.balanceOf(account5));
-	// 	const initial_CSS_vestingInstance_AFTER = new BigNumber(await cssInstance.balanceOf(vestingInstance.address));
-	// 	console.log(chalk.yellow(`initial_CSS_balance_OWNER_AFTER: ${initial_CSS_balance_OWNER_AFTER}`));
-	// 	console.log(chalk.yellow(`initial_CSS_balance_5_AFTER: ${initial_CSS_balance_5_AFTER}`));
-	// 	console.log(chalk.yellow(`initial_CSS_vestingInstance_AFTER: ${initial_CSS_vestingInstance_AFTER}`));
+		const initial_CSS_balance_OWNER_AFTER = new BigNumber(await cssInstance.balanceOf(OWNER));
+		const initial_CSS_balance_5_AFTER = new BigNumber(await cssInstance.balanceOf(account5));
+		const initial_CSS_vestingInstance_AFTER = new BigNumber(await cssInstance.balanceOf(vestingInstance.address));
+		console.log(chalk.yellow(`initial_CSS_balance_OWNER_AFTER: ${initial_CSS_balance_OWNER_AFTER}`));
+		console.log(chalk.yellow(`initial_CSS_balance_5_AFTER: ${initial_CSS_balance_5_AFTER}`));
+		console.log(chalk.yellow(`initial_CSS_vestingInstance_AFTER: ${initial_CSS_vestingInstance_AFTER}`));
 
-	// });
+	});
 
 	it ("TEST SCRIPTS FOR TokenVesting.getBeneficiary(), default value is OWNER", async() => {
 		expect(await vestingInstance.getBeneficiary()).to.equal(OWNER);
@@ -457,7 +457,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR vestingInstance.release()", async() => {
-		await vestingInstance.release({from: OWNER});
+		// await vestingInstance.release({from: OWNER});
 	});
 
 	
