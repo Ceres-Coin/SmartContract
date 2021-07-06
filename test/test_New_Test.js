@@ -430,8 +430,8 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		expect(parseFloat(await vestingInstance.getCliff())).to.gt(0)
 	});
 
-	it ("TEST SCRIPTS FOR TokenVesting.getStart()", async() => {
-		console.log(chalk.yellow(`TokenVesting.getStart(): ${await TokenVesting.getStart()}`));
+	it ("TEST SCRIPTS FOR vestingInstance.getStart()", async() => {
+		console.log(chalk.yellow(`vestingInstance.getStart(): ${await vestingInstance.getStart()}`));
 		expect(parseFloat(await vestingInstance.getStart())).to.gt(0);
 	});
 
