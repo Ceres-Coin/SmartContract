@@ -393,7 +393,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 
 
 
-	// TODO: finish test scripts later
+	// TEST CASE DONE
 	it("Deploys a vesting contract and then executes a governance proposal to revoke it", async () => { 
 		console.log(chalk.blue("======== Setup vestingInstance ========"));
 		console.log(chalk.yellow(`vestingInstance: ${await vestingInstance.address}`));
