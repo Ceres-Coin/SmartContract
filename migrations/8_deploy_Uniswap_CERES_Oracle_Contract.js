@@ -48,6 +48,12 @@ const UniswapPairOracle_CSS_WETH = artifacts.require("Oracle/Variants/UniswapPai
 const UniswapPairOracle_CSS_USDC = artifacts.require("Oracle/Variants/UniswapPairOracle_CSS_USDC");
 const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 
+// Staking contracts
+const StakingRewards_CERES_WETH = artifacts.require("Staking/Variants/Stake_FRAX_WETH.sol");
+const StakingRewards_CERES_USDC = artifacts.require("Staking/Variants/Stake_FRAX_USDC.sol");
+const StakingRewards_CERES_CSS = artifacts.require("Staking/Variants/Stake_FRAX_FXS.sol");
+const StakingRewards_CSS_WETH = artifacts.require("Staking/Variants/Stake_FXS_WETH.sol");
+
 // Uniswap Contract
 const Timelock = artifacts.require("Governance/Timelock");
 
@@ -220,4 +226,15 @@ module.exports = async function(deployer, network, accounts) {
 		oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumerTest.deployed();
 		await ceresInstance.setETHUSDOracle(oracle_chainlink_ETH_USD.address, { from: COLLATERAL_CERES_AND_CERESHARES_OWNER });
 	}
+
+	// ======== Deploy the staking contracts ========
+	// console.log(chalk.yellow('===== DEPLOY THE STAKING CONTRACTS ====='));
+	// await deployer.link(CEREStable), [StakingRewards_FRAX_WETH, StakingRewards_FRAX_USDC, StakingRewards_FXS_WETH, StakingRewards_FRAX_FXS]);
+	// await deployer.link(StringHelpers, [StakingRewards_FRAX_WETH, StakingRewards_FRAX_USDC, StakingRewards_FXS_WETH, StakingRewards_FRAX_FXS]);
+	// await Promise.all([
+	// 	deployer.deploy(StakingRewards_FRAX_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FRAX_WETH, FRAXStablecoin.address, timelockInstance.address, 500000),
+	// 	deployer.deploy(StakingRewards_FRAX_USDC, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FRAX_USDC, FRAXStablecoin.address, timelockInstance.address, 500000),
+	// 	deployer.deploy(StakingRewards_FRAX_FXS, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FRAX_FXS, FRAXStablecoin.address, timelockInstance.address, 0),
+	// 	deployer.deploy(StakingRewards_FXS_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FXS_WETH, FRAXStablecoin.address, timelockInstance.address, 0)
+	// ])
 }
