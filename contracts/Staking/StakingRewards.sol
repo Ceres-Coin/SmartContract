@@ -25,7 +25,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
     /* ========== STATE VARIABLES ========== */
 
-    FRAXStablecoin private FRAX;
+    CEREStable public CERES;
     ERC20 public rewardsToken;
     ERC20 public stakingToken;
     uint256 public periodFinish;
