@@ -292,7 +292,13 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	it ("Test Scripts for stakingInstance_CERES_WETH.rewardRate", async() => {
 		// console.log(chalk.yellow(`stakingInstance_CERES_WETH.rewardRate: ${await stakingInstance_CERES_WETH.rewardRate()}`));
 		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate())).to.gt(0);
-	})
+	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsDuration, its default value is 7 days", async() => {
+		const SEVEN_DAYS = 86400 * 7;
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsDuration())).to.gt(0);
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsDuration())).to.equal(SEVEN_DAYS);
+	});
 
 
 	

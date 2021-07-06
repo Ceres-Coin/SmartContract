@@ -35,7 +35,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     uint256 private constant MULTIPLIER_BASE = 1e6;
 
     // Max reward per second
-    uint256 public rewardRate;
+    uint256 public rewardRate; //TEST CASE DONE
 
     // uint256 public rewardsDuration = 86400 hours;
     uint256 public rewardsDuration = 604800; // 7 * 86400  (7 days)
