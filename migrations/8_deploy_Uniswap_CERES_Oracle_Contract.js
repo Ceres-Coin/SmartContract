@@ -241,8 +241,8 @@ module.exports = async function(deployer, network, accounts) {
 	await deployer.link(CEREStable, [StakingRewards_CERES_WETH, StakingRewards_CERES_USDC, StakingRewards_CERES_CSS, StakingRewards_CSS_WETH]);
 	await deployer.link(StringHelpers, [StakingRewards_CERES_WETH, StakingRewards_CERES_USDC, StakingRewards_CERES_CSS, StakingRewards_CSS_WETH]);
 	await Promise.all([
-		deployer.deploy(StakingRewards_CERES_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CERES_WETH, ceresInstance, timelockInstance.address, 500000,{from: OWNER}),
-		deployer.deploy(StakingRewards_CERES_USDC, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CERES_USDC, ceresInstance, timelockInstance.address, 500000,{from: OWNER}),
-		deployer.deploy(StakingRewards_CSS_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CSS_WETH, ceresInstance, timelockInstance.address, 0,{from: OWNER})
+		deployer.deploy(StakingRewards_CERES_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CERES_WETH, ceresInstance.address, timelockInstance.address, 500000,{from: OWNER}),
+		deployer.deploy(StakingRewards_CERES_USDC, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CERES_USDC, ceresInstance.address, timelockInstance.address, 500000,{from: OWNER}),
+		deployer.deploy(StakingRewards_CSS_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, cssInstance.address, pair_addr_CSS_WETH, ceresInstance.address, timelockInstance.address, 0,{from: OWNER})
 	]);
 }
