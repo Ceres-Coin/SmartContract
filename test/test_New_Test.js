@@ -442,8 +442,8 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR vestingInstance.getRevocable()", async() => {
-		console.log(chalk.yellow(`vestingInstance.getRevocable(): ${await vestingInstance.getRevocable()}`));
-		// expect(parseFloat(await vestingInstance.getDuration())).to.gt(0);
+		// console.log(chalk.yellow(`vestingInstance.getRevocable(): ${await vestingInstance.getRevocable()}`));
+		expect(parseFloat(await vestingInstance.getDuration())).to.equal(true);
 	});
 
 	
