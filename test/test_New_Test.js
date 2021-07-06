@@ -426,6 +426,10 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		expect(await vestingInstance.getBeneficiary()).to.equal(OWNER);
 	});
 
+	it ("TEST SCRIPTS FOR TokenVesting.getCliff()", async() => {
+		expect(parseFloat(await vestingInstance.getCliff())).to.gt(0)
+	});
+
 });
 
 
