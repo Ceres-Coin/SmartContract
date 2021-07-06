@@ -82,6 +82,7 @@ const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPr
 
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 const GovernorAlpha = artifacts.require("Governance/GovernorAlpha");
+const TokenVesting = artifacts.require("CSS/TokenVesting");
 
 contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	// deploy address;
