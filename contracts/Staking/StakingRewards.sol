@@ -78,6 +78,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
     mapping(address => bool) public greylist; // TEST CASE DONE
 
+    // TEST CASE
     bool public unlockedStakes; // Release lock stakes in case of system migration
 
     struct LockedStake {
@@ -154,6 +155,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         return _boosted_balances[account];
     }
 
+    // TEST CASE
     function lockedStakesOf(address account) external view returns (LockedStake[] memory) {
         return lockedStakes[account];
     }
