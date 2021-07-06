@@ -36,8 +36,8 @@ contract TokenVesting {
     uint256 private _start;
     uint256 private _duration;
 
-    address public _FXS_contract_address;
-    ERC20 FXS;
+    address public _CSS_contract_address;
+    ERC20 CSS;
     address public _timelock_address;
     bool public _revocable;
 
@@ -77,10 +77,10 @@ contract TokenVesting {
         _owner = msg.sender;
     }
 
-    function setFXSAddress(address FXS_address) public {
+    function setCSSAddress(address CSS_address) public {
         require(msg.sender == _owner, "must be set by the owner");
-        _FXS_contract_address = FXS_address;
-        FXS = ERC20(FXS_address);
+        _CSS_contract_address = CSS_address;
+        CSS = ERC20(FXS_address);
     }
 
     function setTimelockAddress(address timelock_address) public {

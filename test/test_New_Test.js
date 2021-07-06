@@ -393,7 +393,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		console.log(chalk.yellow(`vestingInstance: ${await vestingInstance.address}`));
 
 		await vestingInstance.setTimelockAddress(timelockInstance.address, { from: OWNER });
-		await vestingInstance.setFXSAddress(cssInstance.address, { from: OWNER });
+		await vestingInstance.setCSSAddress(cssInstance.address, { from: OWNER });
 		// await fxsInstance.approve(vestingInstance.address, new BigNumber("100000e18"), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
 		// await fxsInstance.transfer(vestingInstance.address, new BigNumber("100000e18"), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
 
