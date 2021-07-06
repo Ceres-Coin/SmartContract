@@ -107,7 +107,7 @@ contract TokenVesting {
     /**
      * @return the start time of the token vesting.
      */
-    //  TEST CASEs DONE
+    //  TEST CASE DONE
     function getStart() public view returns (uint256) {
         return _start;
     }
@@ -115,6 +115,7 @@ contract TokenVesting {
     /**
      * @return the duration of the token vesting.
      */
+    //  TEST CASE DONE
     function getDuration() public view returns (uint256) {
         return _duration;
     }
