@@ -290,7 +290,8 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	});
 
 	it ("Test Scripts for stakingInstance_CERES_WETH.rewardRate", async() => {
-		console.log(chalk.yellow(`stakingInstance_CERES_WETH.rewardRate: ${await stakingInstance_CERES_WETH.rewardRate()}`));
+		// console.log(chalk.yellow(`stakingInstance_CERES_WETH.rewardRate: ${await stakingInstance_CERES_WETH.rewardRate()}`));
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate())).to.gt(0);
 	})
 
 
