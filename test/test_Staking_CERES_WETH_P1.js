@@ -84,6 +84,7 @@ const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPr
 const Pool_USDC = artifacts.require("Ceres/Pools/Pool_USDC");
 const GovernorAlpha = artifacts.require("Governance/GovernorAlpha");
 const TokenVesting = artifacts.require("CSS/TokenVesting");
+const StakingRewards_CERES_WETH = artifacts.require("Staking/Variants/Stake_CERES_WETH.sol");
 
 contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	// deploy address;
@@ -144,6 +145,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	let timelock_address;
 	let governanceInstance;
 	let vestingInstance;
+	let stakingInstance_CERES_WETH;
 
 	let minting_fee;
 	let redemption_fee;
@@ -280,11 +282,11 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		oracle_chainlink_ETH_USD = await ChainlinkETHUSDPriceConsumerTest.deployed();
 		governanceInstance = await GovernorAlpha.deployed();
 		vestingInstance = await TokenVesting.deployed();
+		stakingInstance_CERES_WETH = await StakingRewards_CERES_WETH.deployed();
     });
 
-	it ("Test Scripts for ceresInstance.address", async() => {
-		const ceresInstance_address = await ceresInstance.address;
-		console.log(chalk.blue(`ceresInstance_address: ${ceresInstance_address}`));
+	it ("Test Scripts for stakingInstance_CERES_WETH.address", async() => {
+		console.log(chalk.blue(`stakingInstance_CERES_WETH: ${stakingInstance_CERES_WETH.address}`));
 	});
 
 
