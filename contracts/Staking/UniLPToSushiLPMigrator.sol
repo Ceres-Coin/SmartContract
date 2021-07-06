@@ -26,7 +26,7 @@ import "../Math/SafeMath.sol";
 import "../ERC20/ERC20.sol";
 import '../Uniswap/TransferHelper.sol';
 import "../ERC20/SafeERC20.sol";
-import "../Frax/Frax.sol";
+import "../Ceres/Ceres.sol";
 import "../Utils/ReentrancyGuard.sol";
 import "../Utils/StringHelpers.sol";
 import "../Uniswap/UniswapV2Pair.sol";
