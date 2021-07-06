@@ -147,7 +147,7 @@ module.exports = async function(deployer, network, accounts) {
 	const pool_instance_USDC = await Pool_USDC.deployed();
 	console.log(chalk.red.bold(`pool_instance_USDC.address: ${pool_instance_USDC.address}`));
 
-	const Beneficiary = OWNER;
+	const Beneficiary = accounts[5];
 	const theTime = await time.latest();
 	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE)
 	{

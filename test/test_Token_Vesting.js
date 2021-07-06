@@ -230,7 +230,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
 		OWNER = accounts[1];
 		METAMASK_ADDRESS = accounts[2];
-		Beneficiary = OWNER;
+		Beneficiary = accounts[5];
 		account0 = accounts[0];
 		account1 = accounts[1];
 		account2 = accounts[2];
@@ -424,11 +424,11 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 
 	});
 
-	it ("TEST SCRIPTS FOR TokenVesting.getBeneficiary(), default value is OWNER", async() => {
+	it ("TEST SCRIPTS FOR vestingInstance.getBeneficiary(), default value is OWNER", async() => {
 		expect(await vestingInstance.getBeneficiary()).to.equal(Beneficiary);
 	});
 
-	it ("TEST SCRIPTS FOR TokenVesting.getCliff(), default value greater than time.latest", async() => {
+	it ("TEST SCRIPTS FOR vestingInstance.getCliff(), default value greater than time.latest", async() => {
 		expect(parseFloat(await vestingInstance.getCliff())).to.gt(0)
 	});
 
