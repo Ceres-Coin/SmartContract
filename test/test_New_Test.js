@@ -390,7 +390,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR TokenVesting.getBeneficiary()", async() => {
-		console.log(chalk.blue(`TokenVesting.getBeneficiary()`));
+		expect(await TokenVesting.getBeneficiary()).to.equal(OWNER);
 	})
 
 	// TODO: finish test scripts later
