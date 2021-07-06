@@ -33,6 +33,7 @@ const ONE_HUNDRED_DEC18 = new BigNumber("100e18");
 const ONE_HUNDRED_DEC6 = new BigNumber("100e6");
 const FIVE_HUNDRED_DEC18 = new BigNumber("500e18");
 const ONE_THOUSAND_DEC18 = new BigNumber("1000e18");
+const ONE_HUNDRED_THOUSAND_DEC18 = new BigNumber("100000e18");
 const ONE_MILLION_DEC18 = new BigNumber("1000000e18");
 const FIVE_MILLION_DEC18 = new BigNumber("5000000e18");
 const FIVE_MILLION_DEC6 = new BigNumber("5000000e6");
@@ -394,8 +395,8 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 
 		await vestingInstance.setTimelockAddress(timelockInstance.address, { from: OWNER });
 		await vestingInstance.setCSSAddress(cssInstance.address, { from: OWNER });
-		// await fxsInstance.approve(vestingInstance.address, new BigNumber("100000e18"), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
-		// await fxsInstance.transfer(vestingInstance.address, new BigNumber("100000e18"), { from: COLLATERAL_FRAX_AND_FXS_OWNER });
+		await cssInstance.approve(vestingInstance.address, new BigNumber(ONE_HUNDRED_THOUSAND_DEC18), { from: OWNER });
+		await cssInstance.transfer(vestingInstance.address, new BigNumber(ONE_HUNDRED_THOUSAND_DEC18), { from: OWNER });
 
 	});
 
