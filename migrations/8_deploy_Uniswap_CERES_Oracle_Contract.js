@@ -255,5 +255,19 @@ module.exports = async function(deployer, network, accounts) {
 	console.log(chalk.red("stakingInstance_CERES_WETH: ",stakingInstance_CERES_WETH.address));
 	console.log(chalk.red("stakingInstance_CERES_USDC: ",stakingInstance_CERES_USDC.address));
 	console.log(chalk.red("stakingInstance_CSS_WETH: ",stakingInstance_CSS_WETH.address));
+
+		// Transfer CSS to staking contracts
+		console.log(chalk.yellow('===== Transfer FXS to staking contracts ====='));
+		await Promise.all([
+			cssInstance.transfer(stakingInstance_CERES_WETH.address, new BigNumber("6000000e18"), { from: OWNER }),
+			cssInstance.transfer(stakingInstance_CERES_USDC.address, new BigNumber("6000000e18"), { from: OWNER }),
+			cssInstance.transfer(stakingInstance_CSS_WETH.address, new BigNumber("1000000e18"), { from: OWNER })
+		]);
+	
+		if (!IS_MAINNET){
+			// Advance 1 block so you can check the votes below
+			await time.increase(20);
+			await time.advanceBlock();
+		};
 	
 }
