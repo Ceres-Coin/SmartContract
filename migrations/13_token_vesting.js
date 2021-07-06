@@ -147,10 +147,11 @@ module.exports = async function(deployer, network, accounts) {
 	const pool_instance_USDC = await Pool_USDC.deployed();
 	console.log(chalk.red.bold(`pool_instance_USDC.address: ${pool_instance_USDC.address}`));
 
+	const Beneficiary = OWNER;
 	const theTime = await time.latest();
 	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE)
 	{
-		await deployer.deploy(TokenVesting, OWNER, theTime, 86400, 86400 * 10, true, { from: OWNER });
+		await deployer.deploy(TokenVesting, Beneficiary, theTime, 86400, 86400 * 10, true, { from: OWNER });
 	}
 
 	const instanceTokenVesting = await TokenVesting.deployed();

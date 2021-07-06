@@ -91,6 +91,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
 	let OWNER;
 	let METAMASK_ADDRESS;
+	let Beneficiary;
 
 	// CERES Core  Contract instances
 	let ceresInstance;
@@ -229,6 +230,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		COLLATERAL_CERES_AND_CERESHARES_OWNER = accounts[1];
 		OWNER = accounts[1];
 		METAMASK_ADDRESS = accounts[2];
+		Beneficiary = OWNER;
 		account0 = accounts[0];
 		account1 = accounts[1];
 		account2 = accounts[2];
@@ -409,9 +411,9 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		console.log(chalk.yellow(`initial_CSS_vestingInstance_BEFORE: ${initial_CSS_vestingInstance_BEFORE}`));
 
 		console.log(chalk.yellow(`getBeneficiary: ${await vestingInstance.getBeneficiary()}`));
-		expect(await vestingInstance.getBeneficiary()).to.equal(OWNER);
+		expect(await vestingInstance.getBeneficiary()).to.equal(Beneficiary);
 		// console.log(chalk.blue('=== VESTING INSTANCE RELEASE ==='));
-        await vestingInstance.release({ from: OWNER });
+        await vestingInstance.release({ from: Beneficiary });
 
 		const initial_CSS_balance_OWNER_AFTER = new BigNumber(await cssInstance.balanceOf(OWNER));
 		const initial_CSS_balance_5_AFTER = new BigNumber(await cssInstance.balanceOf(account5));
@@ -423,7 +425,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR TokenVesting.getBeneficiary(), default value is OWNER", async() => {
-		expect(await vestingInstance.getBeneficiary()).to.equal(OWNER);
+		expect(await vestingInstance.getBeneficiary()).to.equal(Beneficiary);
 	});
 
 	it ("TEST SCRIPTS FOR TokenVesting.getCliff(), default value greater than time.latest", async() => {
