@@ -295,6 +295,10 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	// 	);
 	// })
 
+	it ("Check up on the oracles and make sure the prices are set", async() => {
+		
+	})
+
 });
 
 
