@@ -375,7 +375,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 	});
 
 	it("[mint1t1CERES]: Mints USDC 1-to-1", async () => {
-		console.log("============6DEC mint1t1FRAX()============");
+		console.log("============6DEC mint1t1CERES()============");
 		const totalSupplyCERES = new BigNumber(await ceresInstance.totalSupply.call()).div(BIG18).toNumber();
 		const totalSupplyCSS = new BigNumber(await cssInstance.totalSupply.call()).div(BIG18).toNumber();
 		// console.log(chalk.yellow(`totalSupplyCERES: ${totalSupplyCERES}`));
@@ -407,7 +407,7 @@ contract('test_6DEC_Tests', async (accounts) => {
 		const bal_ceres = ceres_before;
 		const col_bal_6dec = usdc_before;
 		const pool_bal_6dec = pool_usdc_before;
-		// console.log("bal_frax: ", bal_ceres.toNumber());
+		// console.log("bal_ceres: ", bal_ceres.toNumber());
 		// console.log("col_bal_6dec: ", col_bal_6dec.toNumber());
 		// console.log("pool_bal_6dec: ", pool_bal_6dec.toNumber());
 		// console.log("6DEC price:", collateral_price);
@@ -769,8 +769,8 @@ contract('test_6DEC_Tests', async (accounts) => {
 	});
 
 
-	// it("[mintAlgorithmicFRAX][ACCOUNT5]: mintAlgorithmicFRAX (collateral ratio = 0) FROM ACCOUNT5", async() => {
-	// 	console.log(chalk.blue("============USDC mintAlgorithmicFRAX(ACCOUNT5)============"));
+	// it("[mintAlgorithmicCERES][ACCOUNT5]: mintAlgorithmicCERES (collateral ratio = 0) FROM ACCOUNT5", async() => {
+	// 	console.log(chalk.blue("============USDC mintAlgorithmicCERES(ACCOUNT5)============"));
 	// 	const css_amount = new BigNumber("10000e18");
 	// 	await cssInstance.transfer(account5,css_amount,{from: OWNER});
 

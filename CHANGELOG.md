@@ -1,6 +1,37 @@
+## [0.1.210706-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210705-a...0.1.210706-a) (2021-07-06)
+1. ADDED: ./test/test_Governance_proposal.js
+   1. remove unused code
+   2. ADDED: "TEST SCRIPTS for governanceInstance.propose P1"
+   3. removed FAILED TEST CASES
+   4. ADDED: "Check up on the oracles and make sure the prices are set"
+   5. added new CODE FOR SWAP NEW PRICE
+   6. ADDED: Mints USDC 1-to-1
+   7. REMOVE "mints 6dec 1-to-1"
+   8. ADDED: "Deploys a vesting contract and then executes a governance proposal to revoke it"
+   9. updates
+   10. UPDATES TokenVesting.sol
+   11. MODIFY DEPLOYMENT SCRIPTS migrations/13_token_vesting.js
+   12. ADDED TEST SCRIPTS "TEST SCRIPTS FOR TokenVesting.getBeneficiary()"
+   13. FINISH: "TEST SCRIPTS FOR TokenVesting.getBeneficiary()"
+   14. ADDED: "TEST SCRIPTS FOR TokenVesting.getCliff()"
+   15. added: "TEST SCRIPTS FOR TokenVesting.getStart()"
+   16. ADDED: "TEST SCRIPTS FOR vestingInstance.getDuration()"
+   17. ADDED: "TEST SCRIPTS FOR vestingInstance.getRevocable()"
+   18. ADDED: "TEST SCRIPTS FOR vestingInstance.getReleased()"
+   19. added: "TEST SCRIPTS FOR vestingInstance.getRevoked(), default value is false"
+   20. ADDED: "TEST SCRIPTS FOR vestingInstance.release()"
+   21. added: "Deploys a vesting contract and then executes a governance proposal to revoke it"
+   22. MODIFY BEFICIARY = ACCOUNTS[5]
+2. ADD NEW TEST SCRIPTS OF Governance Proposal
+3. modify ./test/test_New_Test.js
+4. RENAME TO ./test/test_Token_Vesting.js
+
+<!-- TODO: next to do: ADD Stake_CERES_USDC.sol & ADD to deployment script & add test scripts -->
+
+
 ## [0.1.210705-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210704-b...0.1.210705-a) (2021-07-05)
 1. ADDED: test/test_6DEC_Tests.js
-   1. added: "[mintFractionalFRAX]: Mint some CERES using CSS and 6DEC (collateral ratio between .000001 and .999999)"
+   1. added: "[mintFractionalCERES]: Mint some CERES using CSS and 6DEC (collateral ratio between .000001 and .999999)"
    2. fix bugs for "[mintFractionalCERES]: Mint some CERES using CSS and 6DEC (collateral ratio between .000001 and .999999)"
    3. ADDED: "[redeemFractionalCERES]: Redeem some CERES for CSS and USDC (collateral ratio between .000001 and .999999)"
    4. tuning to fix bugs
@@ -10,12 +41,18 @@
    8. fix bugs
    9. FINISH "[redeemFractionalCERES][ACCOUNT5]: Redeem some CERES for CSS and USDC FROM ACCOUNT5"
    10. ADDED: "[redeem1t1CERES][account5]: Redeem USDC 1-TO-1"
-   11. ADDED: "[recollateralizeFRAX][ACCOUNT5]: Recollateralizes the system using recollateralizeFRAX()"
-   12. ADDED: "[mintAlgorithmicFRAX][ACCOUNT5]: Mint some FRAX using FXS (collateral ratio = 0) FROM ACCOUNT5"
+   11. ADDED: "[recollateralizeCERES][ACCOUNT5]: Recollateralizes the system using recollateralizeCERES()"
+   12. ADDED: "[mintAlgorithmicCERES][ACCOUNT5]: Mint some CERES using CSS (collateral ratio = 0) FROM ACCOUNT5"
    13. ADDED: "[redeemAlgorithmicCERES][ACCOUNT5]: redeemAlgorithmicCERES (collateral ratio = 0) FROM ACCOUNT5"
 2. ADDED: new code in test_helpers.js
    1. ADDED TEST SCRIPTS OF erc20.transFrom
 
+<!-- FINISH WRITE CORE CODE -->
+<!-- WRITE TEST SCRIPT for MINT1T1CERES/redeem1t1ceres -->
+<!-- WRITE TEST SCRIPT for mintFractionalCERES/redeemFractionalCERES/ --> 
+<!-- WRITE TEST SCRIPT for mintAlgorithmicCERES/redeemAlgorithmicCERES/ --> 
+
+<!-- NEXT TO DO: TokenVesting.sol & test scripts -->
 
 ## [0.1.210704-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210704-a...0.1.210704-b) (2021-07-04)
 1. ADDED test/test_6DEC_Tests.js
@@ -24,6 +61,11 @@
    3. ADDED "Mints 6DEC 1-to-1"
 2. MODIFIED: migrations/10_price_and_addresses.js
    1. removed ceresInstance.refreshCollateralRatio() func
+
+<!-- START WRITE CORE CODE -->
+<!-- WRITE TEST SCRIPT for MINT1T1CERES/redeem1t1ceres -->
+<!-- WRITE TEST SCRIPT for mintFractionalCERES/redeemFractionalCERES/ --> 
+<!-- WRITE TEST SCRIPT for mintAlgorithmicCERES/redeemAlgorithmicCERES/ --> 
 
 
 ## [0.1.210704-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210703-a...0.1.210704-a) (2021-07-04)
@@ -56,7 +98,7 @@
 4. CSS/CSS.sol
    1. ADDED TODO TASK
    
-<!-- TODO: Continue to investigate other contracts -->
+<!-- Continue to investigate other contracts -->
 
 ## [0.1.210703-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210702-b...0.1.210703-a) (2021-07-03)
 1. ADDED: "test/test_CERES_Contract_P3.js"
