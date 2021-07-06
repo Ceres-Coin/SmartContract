@@ -56,6 +56,7 @@ const StakingRewards_CSS_WETH = artifacts.require("Staking/Variants/Stake_CSS_WE
 
 // Uniswap Contract
 const Timelock = artifacts.require("Governance/Timelock");
+const StringHelpers = artifacts.require("Utils/StringHelpers");
 
 // Chainlink Price Consumer
 const ChainlinkETHUSDPriceConsumer = artifacts.require("Oracle/ChainlinkETHUSDPriceConsumer");
@@ -228,13 +229,13 @@ module.exports = async function(deployer, network, accounts) {
 	}
 
 	// ======== Deploy the staking contracts ========
-	// console.log(chalk.yellow('===== DEPLOY THE STAKING CONTRACTS ====='));
-	// await deployer.link(CEREStable), [StakingRewards_FRAX_WETH, StakingRewards_FRAX_USDC, StakingRewards_FXS_WETH, StakingRewards_FRAX_FXS]);
-	// await deployer.link(StringHelpers, [StakingRewards_FRAX_WETH, StakingRewards_FRAX_USDC, StakingRewards_FXS_WETH, StakingRewards_FRAX_FXS]);
+	console.log(chalk.yellow('===== DEPLOY THE STAKING CONTRACTS ====='));
+	await deployer.link(CEREStable, [StakingRewards_CERES_WETH, StakingRewards_CERES_USDC, StakingRewards_CERES_CSS, StakingRewards_CSS_WETH]);
+	await deployer.link(StringHelpers, [StakingRewards_CERES_WETH, StakingRewards_CERES_USDC, StakingRewards_CERES_CSS, StakingRewards_CSS_WETH]);
 	// await Promise.all([
 	// 	deployer.deploy(StakingRewards_FRAX_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FRAX_WETH, FRAXStablecoin.address, timelockInstance.address, 500000),
 	// 	deployer.deploy(StakingRewards_FRAX_USDC, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FRAX_USDC, FRAXStablecoin.address, timelockInstance.address, 500000),
 	// 	deployer.deploy(StakingRewards_FRAX_FXS, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FRAX_FXS, FRAXStablecoin.address, timelockInstance.address, 0),
 	// 	deployer.deploy(StakingRewards_FXS_WETH, STAKING_OWNER, STAKING_REWARDS_DISTRIBUTOR, fxsInstance.address, pair_addr_FXS_WETH, FRAXStablecoin.address, timelockInstance.address, 0)
-	// ])
+	// ]);
 }
