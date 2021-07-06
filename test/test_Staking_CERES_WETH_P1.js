@@ -372,13 +372,13 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		const value_account0 = await stakingInstance_CERES_WETH.greylist.call(account0);
 		console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0}`));
 
-		// console.log(chalk.yellow(`address_account1: ${account1} value: ${parseFloat(await stakingInstance_CERES_WETH.userRewardPerTokenPaid.call(account1))}`));
-		// console.log(chalk.yellow(`address_account2: ${account2} value: ${parseFloat(await stakingInstance_CERES_WETH.userRewardPerTokenPaid.call(account2))}`));
-		// console.log(chalk.yellow(`address_account3: ${account3} value: ${parseFloat(await stakingInstance_CERES_WETH.userRewardPerTokenPaid.call(account3))}`));
-		// console.log(chalk.yellow(`address_account4: ${account4} value: ${parseFloat(await stakingInstance_CERES_WETH.userRewardPerTokenPaid.call(account4))}`));
-		// console.log(chalk.yellow(`address_account5: ${account5} value: ${parseFloat(await stakingInstance_CERES_WETH.userRewardPerTokenPaid.call(account5))}`));
-		// console.log(chalk.yellow(`address_account6: ${account6} value: ${parseFloat(await stakingInstance_CERES_WETH.userRewardPerTokenPaid.call(account6))}`));
-		// console.log(chalk.yellow(`address_account7: ${account7} value: ${parseFloat(await stakingInstance_CERES_WETH.userRewardPerTokenPaid.call(account7))}`));
+		console.log(chalk.yellow(`address_account1: ${account1} value: ${parseFloat(await stakingInstance_CERES_WETH.greylist.call(account1))}`));
+		console.log(chalk.yellow(`address_account2: ${account2} value: ${parseFloat(await stakingInstance_CERES_WETH.greylist.call(account2))}`));
+		console.log(chalk.yellow(`address_account3: ${account3} value: ${parseFloat(await stakingInstance_CERES_WETH.greylist.call(account3))}`));
+		console.log(chalk.yellow(`address_account4: ${account4} value: ${parseFloat(await stakingInstance_CERES_WETH.greylist.call(account4))}`));
+		console.log(chalk.yellow(`address_account5: ${account5} value: ${parseFloat(await stakingInstance_CERES_WETH.greylist.call(account5))}`));
+		console.log(chalk.yellow(`address_account6: ${account6} value: ${parseFloat(await stakingInstance_CERES_WETH.greylist.call(account6))}`));
+		console.log(chalk.yellow(`address_account7: ${account7} value: ${parseFloat(await stakingInstance_CERES_WETH.greylist.call(account7))}`));
 	});
 
 
