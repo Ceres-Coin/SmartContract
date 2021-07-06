@@ -389,6 +389,11 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 
 	});
 
+	it ("TEST SCRIPTS FOR TokenVesting.getBeneficiary()", async() => {
+		console.log(chalk.blue(`TokenVesting.getBeneficiary()`));
+	})
+
+	// TODO: finish test scripts later
 	it("Deploys a vesting contract and then executes a governance proposal to revoke it", async () => { 
 		console.log(chalk.blue("======== Setup vestingInstance ========"));
 		console.log(chalk.yellow(`vestingInstance: ${await vestingInstance.address}`));
@@ -405,6 +410,8 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		console.log(chalk.yellow(`initial_CSS_balance_5_BEFORE: ${initial_CSS_balance_5_BEFORE}`));
 		console.log(chalk.yellow(`initial_CSS_vestingInstance_BEFORE: ${initial_CSS_vestingInstance_BEFORE}`));
 
+		console.log(chalk.yellow(`getBeneficiary: ${await vestingInstance.getBeneficiary()}`));
+		expect(await vestingInstance.getBeneficiary()).to.equal(OWNER);
 		// console.log(chalk.blue('=== VESTING INSTANCE RELEASE ==='));
         // await vestingInstance.release({ from: account5 });
 

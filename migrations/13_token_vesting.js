@@ -150,7 +150,7 @@ module.exports = async function(deployer, network, accounts) {
 	const theTime = await time.latest();
 	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE)
 	{
-		await deployer.deploy(TokenVesting, METAMASK_ADDRESS, theTime, 86400, 86400 * 10, true, { from: OWNER });
+		await deployer.deploy(TokenVesting, OWNER, theTime, 86400, 86400 * 10, true, { from: OWNER });
 	}
 
 	const instanceTokenVesting = await TokenVesting.deployed();
