@@ -50,9 +50,9 @@ const SwapToPrice = artifacts.require("Uniswap/SwapToPrice");
 
 // Staking contracts
 const StakingRewards_CERES_WETH = artifacts.require("Staking/Variants/Stake_CERES_WETH.sol");
-const StakingRewards_CERES_USDC = artifacts.require("Staking/Variants/Stake_FRAX_USDC.sol");
-const StakingRewards_CERES_CSS = artifacts.require("Staking/Variants/Stake_FRAX_FXS.sol");
-const StakingRewards_CSS_WETH = artifacts.require("Staking/Variants/Stake_FXS_WETH.sol");
+const StakingRewards_CERES_USDC = artifacts.require("Staking/Variants/Stake_CERES_USDC.sol");
+const StakingRewards_CERES_CSS = artifacts.require("Staking/Variants/Stake_CERES_CSS.sol");
+const StakingRewards_CSS_WETH = artifacts.require("Staking/Variants/Stake_CSS_WETH.sol");
 
 // Uniswap Contract
 const Timelock = artifacts.require("Governance/Timelock");
