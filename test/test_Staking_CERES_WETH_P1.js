@@ -286,8 +286,12 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
     });
 
 	it ("Test Scripts for stakingInstance_CERES_WETH.address", async() => {
-		console.log(chalk.blue(`stakingInstance_CERES_WETH: ${stakingInstance_CERES_WETH.address}`));
+		// console.log(chalk.blue(`stakingInstance_CERES_WETH: ${stakingInstance_CERES_WETH.address}`));
 	});
+
+	it ("Test Scripts for stakingInstance_CERES_WETH.rewardRate", async() => {
+		console.log(chalk.yellow(`stakingInstance_CERES_WETH.rewardRate: ${await stakingInstance_CERES_WETH.rewardRate()}`));
+	})
 
 
 	
