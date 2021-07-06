@@ -1,3 +1,40 @@
+## [0.1.210706-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210706-a...0.1.210706-b) (2021-07-06)
+1. ADDED: STAKING FOLDERS
+   1. contracts/Staking/IStakingRewards.sol
+   2. contracts/Staking/IStakingRewardsDual.sol
+   3. contracts/Staking/IStakingRewardsDualForMigrator.sol
+   4. contracts/Staking/Owned.sol
+   5. contracts/Staking/Pausable.sol
+   6. contracts/Staking/RewardsDistributionRecipient.sol
+   7. contracts/Staking/StakingRewards.sol
+   8. contracts/Staking/StakingRewardsDual.sol
+   9. contracts/Staking/StakingRewardsDualV2.sol
+   10. contracts/Staking/UniLPToSushiLPMigrator.sol
+2. ADDED Contracts in Utils folder
+   1. contracts/Utils/StringHelpers.sol
+   2. contracts/Utils/ReentrancyGuard.sol
+3. FIX COMPILE BUGS
+   1. RUN SCRIPTS PASSED: "rm -rf build & truffle compile --all "
+   2. "clean_build_migrate_all" TASK PASSED
+4. MODIFIED: migrations/8_deploy_Uniswap_CERES_Oracle_Contract.js
+   1. ADDED:
+      1. StakingRewards_CERES_WETH
+      2. StakingRewards_CERES_USDC
+      3. StakingRewards_CERES_CSS
+      4. StakingRewards_CSS_WETH
+   2. TUNING CODE
+   3. rename file name
+   4. ADDED DEPLOYMENT SCRIPTS OF StakingRewards_CERES_WETH & other staking contracts in migrations/8_deploy_Uniswap_CERES_Oracle_Contract.js
+   5. ADDED pair_address_ceres_weth/ceres_usdc/css_weth
+   6. ADDED: TRANSFER CSS TO STAKING CONTRACT
+   7. ADDED: test/test_Staking_CERES_WETH_P1.js
+   8. MODIFY NPM RUN SCRIPTS
+5. CREATED: test/test_Staking_CERES_WETH_P1.js
+   1. Initialized "test/test_Staking_CERES_WETH_P1.js"
+   2. ADDED: "Test Scripts for stakingInstance_CERES_WETH.address" 
+
+<!-- TODO: NEXT TO DO: ADD MORE TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P1.js & CERES_USDC & CSS_WETH  -->
+
 ## [0.1.210706-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210705-a...0.1.210706-a) (2021-07-06)
 1. ADDED: ./test/test_Governance_proposal.js
    1. remove unused code
@@ -26,7 +63,7 @@
 3. modify ./test/test_New_Test.js
 4. RENAME TO ./test/test_Token_Vesting.js
 
-<!-- TODO: next to do: ADD Stake_CERES_USDC.sol & ADD to deployment script & add test scripts -->
+<!-- next to do: ADD Stake_CERES_USDC.sol & ADD to deployment script & add test scripts -->
 
 
 ## [0.1.210705-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210704-b...0.1.210705-a) (2021-07-05)
