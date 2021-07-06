@@ -377,11 +377,11 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		let css_price_from_CSS_USDC_AFTER = parseFloat((new BigNumber(await oracle_instance_CSS_USDC.consult.call(col_instance_USDC.address,BIG6))).div(BIG18));
 		let usdc_price_from_USDC_WETH_AFTER = parseFloat((new BigNumber(await oracle_instance_USDC_WETH.consult.call(wethInstance.address, BIG18))).div(BIG6));
 	
-		console.log(chalk.yellow(`ceres_price_from_CERES_WETH_AFTER: ${ceres_price_from_CERES_WETH_AFTER}`));
-		console.log(chalk.yellow(`ceres_price_from_CERES_USDC_AFTER: ${ceres_price_from_CERES_USDC_AFTER}`));
-		console.log(chalk.yellow(`css_price_from_CSS_WETH_AFTER: ${css_price_from_CSS_WETH_AFTER}`));
-		console.log(chalk.yellow(`css_price_from_CSS_USDC_AFTER: ${css_price_from_CSS_USDC_AFTER}`));
-		console.log(chalk.yellow(`usdc_price_from_USDC_WETH_AFTER: ${usdc_price_from_USDC_WETH_AFTER}`));
+		console.log(chalk.blue(`ceres_price_from_CERES_WETH_AFTER: ${ceres_price_from_CERES_WETH_AFTER}`));
+		console.log(chalk.blue(`ceres_price_from_CERES_USDC_AFTER: ${ceres_price_from_CERES_USDC_AFTER}`));
+		console.log(chalk.blue(`css_price_from_CSS_WETH_AFTER: ${css_price_from_CSS_WETH_AFTER}`));
+		console.log(chalk.blue(`css_price_from_CSS_USDC_AFTER: ${css_price_from_CSS_USDC_AFTER}`));
+		console.log(chalk.blue(`usdc_price_from_USDC_WETH_AFTER: ${usdc_price_from_USDC_WETH_AFTER}`));
 
 	})
 
