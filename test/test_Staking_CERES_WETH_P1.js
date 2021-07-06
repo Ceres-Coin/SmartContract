@@ -317,6 +317,10 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		expect(await stakingInstance_CERES_WETH.owner_address()).to.equal(STAKING_OWNER);
 	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.timelock_address, its default value is timelockInstance", async() => {
+		expect(await stakingInstance_CERES_WETH.timelock_address()).to.equal(timelockInstance.address);
+	});
+
 
 
 

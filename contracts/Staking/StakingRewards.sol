@@ -49,6 +49,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
     // TEST CASE DONE
     address public owner_address;
+    // TEST CASE DONE
     address public timelock_address; // Governance timelock address
 
     uint256 public locked_stake_max_multiplier = 3000000; // 6 decimals of precision. 1x = 1000000
