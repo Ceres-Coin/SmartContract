@@ -329,6 +329,15 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(parseFloat(await stakingInstance_CERES_WETH.earned.call(account6))).to.equal(0);
 		expect(parseFloat(await stakingInstance_CERES_WETH.earned.call(account7))).to.equal(0);
 	});
+
+	// TEST CASES FOR FUNCTION
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.renewIfApplicable", async() => {		
+		console.log(chalk.yellow(`lastUpdateTime_before: ${parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())}`))
+		
+		await stakingInstance_CERES_WETH.renewIfApplicable();
+
+		console.log(chalk.yellow(`lastUpdateTime_after: ${parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())}`))
+	});
 	
 
 
