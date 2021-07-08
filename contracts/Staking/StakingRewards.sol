@@ -181,7 +181,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         // You may have use earned() instead, because of the order in which the contract executes 
         return rewards[account];
     }
-
+    // TEST CASE DONE
     function lastTimeRewardApplicable() public override view returns (uint256) {
         return Math.min(block.timestamp, periodFinish);
     }
