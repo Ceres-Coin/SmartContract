@@ -336,7 +336,35 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
 		console.log(chalk.yellow(`stakingInstance_CERES_WETH: ${stakingInstance_CERES_WETH.address} value: ${await stakingTokenInstance.balanceOf.call(stakingInstance_CERES_WETH.address)}`));
 		console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingTokenInstance.balanceOf.call(account2)}`));
-	})
+	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stake() & getReward()", async() => {
+		const stakingTokenInstance = await UniswapV2Pair.at(await stakingInstance_CERES_WETH.stakingToken());
+		expect(await stakingTokenInstance.name()).to.equal("Uniswap V2");
+
+		// BEFORE
+		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
+		console.log(chalk.yellow(`stakingInstance_CERES_WETH: ${stakingInstance_CERES_WETH.address} value: ${await stakingTokenInstance.balanceOf.call(stakingInstance_CERES_WETH.address)}`));
+		console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingTokenInstance.balanceOf.call(account2)}`));
+		// INITIALIZE
+		await stakingInstance_CERES_WETH.initializeDefault({from: STAKING_OWNER});
+		stakingTokenInstance.approve(stakingInstance_CERES_WETH.address, new BigNumber(TWO_MILLION_DEC18), { from: account1 });
+				
+		// ACTION -- STAKE
+		await stakingInstance_CERES_WETH.stake(POINT_THREE_DEC18,{from: account1});
+
+		// AFTER
+		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
+		console.log(chalk.yellow(`stakingInstance_CERES_WETH: ${stakingInstance_CERES_WETH.address} value: ${await stakingTokenInstance.balanceOf.call(stakingInstance_CERES_WETH.address)}`));
+		console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingTokenInstance.balanceOf.call(account2)}`));
+
+		await time.increase(86400 + 1);
+		await time.advanceBlock();
+
+		const rewards_account1 = parseFloat(await stakingInstance_CERES_WETH.rewards.call(account1));
+		console.log(chalk.yellow(`rewards_account1: ${rewards_account1}`));
+
+	});
 	
 
 
