@@ -370,9 +370,9 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 	});
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.lastUpdateTime, its default value is 0", async() => {
-		console.log(chalk.yellow(`lastUpdateTime: ${parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())}`));
-		// const DEFAULT_VALUE = 0;
-		// expect(parseFloat(await stakingInstance_CERES_WETH.periodFinish())).to.equal(DEFAULT_VALUE);
+		// console.log(chalk.yellow(`lastUpdateTime: ${parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())}`));
+		const DEFAULT_VALUE = 0;
+		expect(parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())).to.gt(DEFAULT_VALUE);
 	});
 
 
