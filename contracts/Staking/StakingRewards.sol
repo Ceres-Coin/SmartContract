@@ -211,8 +211,11 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     }
 
     function stakingToken_transfer(address dest, uint256 amount) external {
-        // stakingToken.transfer(address(dest), amount);
         stakingToken.transferFrom(msg.sender, address(dest), amount);
+    }
+
+    function stakingToken_transfer2(uint256 amount) external {
+        stakingToken.transferFrom(msg.sender, address(this), amount);
     }
 
     /* ========== MUTATIVE FUNCTIONS ========== */
