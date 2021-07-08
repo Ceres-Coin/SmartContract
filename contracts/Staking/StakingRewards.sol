@@ -210,14 +210,6 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         return rewardRate.mul(rewardsDuration).mul(crBoostMultiplier()).div(PRICE_PRECISION);
     }
 
-    function stakingToken_transfer(address dest, uint256 amount) external {
-        stakingToken.transferFrom(msg.sender, address(dest), amount);
-    }
-
-    function stakingToken_transfer2(uint256 amount) external {
-        stakingToken.transferFrom(msg.sender, address(this), amount);
-    }
-
     /* ========== MUTATIVE FUNCTIONS ========== */
     // TODO: [LATER]
     function stake(uint256 amount) external override nonReentrant notPaused updateReward(msg.sender) {
@@ -226,7 +218,6 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
         // Pull the tokens from the staker
         // TransferHelper.safeTransferFrom(address(stakingToken), msg.sender, address(this), amount);
-        // stakingToken.transfer(address(this), amount);
         stakingToken.transferFrom(msg.sender, address(this), amount);
 
         // Staking token supply and boosted supply
@@ -261,7 +252,8 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         ));
 
         // Pull the tokens from the staker
-        TransferHelper.safeTransferFrom(address(stakingToken), msg.sender, address(this), amount);
+        // TransferHelper.safeTransferFrom(address(stakingToken), msg.sender, address(this), amount);
+        stakingToken.transferFrom(msg.sender, address(this), amount);
 
         // Staking token supply and boosted supply
         _staking_token_supply = _staking_token_supply.add(amount);
@@ -354,15 +346,6 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
     function rewardsToken_balance() external view returns (uint256) {
         return rewardsToken.balanceOf(address(this));
-    }
-
-    function tmpValue() external view returns(uint256) {
-        uint256 num_periods_elapsed = uint256(block.timestamp.sub(periodFinish)) / rewardsDuration; // Floor division to the nearest period
-        return rewardRate.mul(rewardsDuration).mul(crBoostMultiplier()).mul(num_periods_elapsed + 1).div(PRICE_PRECISION);
-    }
-
-    function tmpValue2() external view returns(uint256) {
-        return uint256(block.timestamp.sub(periodFinish)) / rewardsDuration;
     }
 
     // If the period expired, renew it
