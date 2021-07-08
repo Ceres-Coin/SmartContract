@@ -344,6 +344,14 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(parseFloat(await stakingInstance_CERES_WETH.periodFinish())).to.gt(0);
 
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.greylistAddress(account3)", async() => {		
+		
+		console.log(chalk.yellow(`greylistAddress(account3)_before: ${await stakingInstance_CERES_WETH.greylistAddress(account3)}`));
+
+		
+
+	});
 	
 
 
