@@ -87,7 +87,7 @@ const GovernorAlpha = artifacts.require("Governance/GovernorAlpha");
 const TokenVesting = artifacts.require("CSS/TokenVesting");
 const StakingRewards_CERES_WETH = artifacts.require("Staking/Variants/Stake_CERES_WETH.sol");
 
-contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
+contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts) => {
 	// deploy address;
 	let ADMIN;
 	let COLLATERAL_CERES_AND_CERESHARES_OWNER;
