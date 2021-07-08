@@ -19,6 +19,12 @@ const FakeCollateral_USDC = artifacts.require("FakeCollateral/FakeCollateral_USD
 const FakeCollateral_USDT = artifacts.require("FakeCollateral/FakeCollateral_USDT");
 const FakeCollateral_6DEC = artifacts.require("FakeCollateral/FakeCollateral_6DEC");
 
+// Staking contracts
+const StakingRewards_CERES_WETH = artifacts.require("Staking/Variants/Stake_CERES_WETH.sol");
+const StakingRewards_CERES_USDC = artifacts.require("Staking/Variants/Stake_CERES_USDC.sol");
+const StakingRewards_CERES_CSS = artifacts.require("Staking/Variants/Stake_CERES_CSS.sol");
+const StakingRewards_CSS_WETH = artifacts.require("Staking/Variants/Stake_CSS_WETH.sol");
+
 // set constants
 const ONE_MILLION_DEC18 = new BigNumber("1000000e18").toNumber();
 const FIVE_MILLION_DEC18 = new BigNumber("5000000e18").toNumber();
@@ -78,6 +84,11 @@ module.exports = async function(deployer, network, accounts) {
 	let col_instance_6DEC;
 	let timelockInstance;
 	let routerInstance;
+	let swapToPriceInstance;
+	let stakingInstance_CERES_WETH;
+	let stakingInstance_CERES_USDC;
+	let stakingInstance_CSS_WETH;
+
 
 	// Set the Network Settings
 	const IS_MAINNET = (network == 'mainnet');
@@ -118,11 +129,12 @@ module.exports = async function(deployer, network, accounts) {
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
 		timelockInstance = await Timelock.deployed();
 		routerInstance = await UniswapV2Router02_Modified.deployed(); 
+		swapToPriceInstance = await SwapToPrice.deployed();
 
-		console.log(chalk.red(`ceresInstance: ${ceresInstance.address}`));
-		console.log(chalk.red(`cssInstance: ${cssInstance.address}`));
-		console.log(chalk.red(`wethInstance: ${wethInstance.address}`))
-		console.log(chalk.red(`col_instance_USDC: ${col_instance_USDC.address}`))
+		stakingInstance_CERES_WETH = await StakingRewards_CERES_WETH.deployed();
+		stakingInstance_CERES_USDC = await StakingRewards_CERES_USDC.deployed();
+		stakingInstance_CSS_WETH = await StakingRewards_CSS_WETH.deployed();
+	
 	}
 	
 	// ============= Set the CERES Pools ========
@@ -170,4 +182,19 @@ module.exports = async function(deployer, network, accounts) {
 	if (IS_DEV || IS_BSC_TESTNET || IS_GANACHE) {
 		await col_instance_USDC.transfer(pool_instance_USDC.address, COLLATERAL_SEED_DEC6, { from:  OWNER});
 	}
+
+	console.log(chalk.red(`routerInstance: ${routerInstance.address}`));
+	console.log(chalk.red(`uniswapFactoryInstance: ${uniswapFactoryInstance.address}`));
+	console.log(chalk.red(`ceresInstance: ${ceresInstance.address}`));
+	console.log(chalk.red(`cssInstance: ${cssInstance.address}`));
+	console.log(chalk.red(`wethInstance: ${wethInstance.address}`));
+	console.log(chalk.red(`col_instance_USDC: ${col_instance_USDC.address}`));
+	console.log(chalk.red(`col_instance_USDT: ${col_instance_USDT.address}`));
+	console.log(chalk.red(`col_instance_6DEC: ${col_instance_6DEC.address}`));
+	console.log(chalk.red(`timelockInstance: ${timelockInstance.address}`));
+	console.log(chalk.red(`swapToPriceInstance: ${swapToPriceInstance.address}`));
+	console.log(chalk.red(`stakingInstance_CERES_WETH: ${stakingInstance_CERES_WETH.address}`));
+	console.log(chalk.red(`stakingInstance_CERES_USDC: ${stakingInstance_CERES_USDC.address}`));
+	console.log(chalk.red(`stakingInstance_CSS_WETH: ${stakingInstance_CSS_WETH.address}`));
+	console.log(chalk.red(`pool_instance_USDC: ${pool_instance_USDC.address}`))
 }

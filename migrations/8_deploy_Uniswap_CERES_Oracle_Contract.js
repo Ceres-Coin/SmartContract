@@ -78,6 +78,7 @@ module.exports = async function(deployer, network, accounts) {
 	let col_instance_6DEC;
 	let timelockInstance;
 	let routerInstance;
+	let swapToPriceInstance;
 
 	// Set the Network Settings
 	const IS_MAINNET = (network == 'mainnet');
@@ -121,6 +122,7 @@ module.exports = async function(deployer, network, accounts) {
 		col_instance_USDT = await FakeCollateral_USDT.deployed(); 
 		col_instance_6DEC = await FakeCollateral_6DEC.deployed();
 		timelockInstance = await Timelock.deployed();
+		swapToPriceInstance = await SwapToPrice.deployed();
 	}
 	
 	// add liquidility
@@ -287,6 +289,7 @@ module.exports = async function(deployer, network, accounts) {
 	console.log(chalk.red(`col_instance_USDT: ${col_instance_USDT.address}`));
 	console.log(chalk.red(`col_instance_6DEC: ${col_instance_6DEC.address}`));
 	console.log(chalk.red(`timelockInstance: ${timelockInstance.address}`));
+	console.log(chalk.red(`swapToPriceInstance: ${swapToPriceInstance.address}`));
 	console.log(chalk.red(`stakingInstance_CERES_WETH: ${stakingInstance_CERES_WETH.address}`));
 	console.log(chalk.red(`stakingInstance_CERES_USDC: ${stakingInstance_CERES_USDC.address}`));
 	console.log(chalk.red(`stakingInstance_CSS_WETH: ${stakingInstance_CSS_WETH.address}`));

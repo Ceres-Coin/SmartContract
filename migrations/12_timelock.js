@@ -136,6 +136,8 @@ module.exports = async function(deployer, network, accounts) {
 		governanceInstance = await GovernorAlpha.deployed();
 	}
 
+	if (IS_DEV) {
+
 	const pool_instance_USDC = await Pool_USDC.deployed();
 	
 	let current_timestamp = (await time.latest()).toNumber();
@@ -165,4 +167,5 @@ module.exports = async function(deployer, network, accounts) {
 	await governanceInstance.__acceptAdmin({ from: OWNER });
 	const timelock_admin_address = await timelockInstance.admin.call();
 	console.log("timelock_admin [AFTER]: ", timelock_admin_address)
+}
 }

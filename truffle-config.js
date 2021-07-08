@@ -124,8 +124,8 @@ module.exports = {
      },
 
      testnet: {
-       provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s1.binance.org:8545/'),
-      //  provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s2.binance.org:8545/'),
+      //  provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s1.binance.org:8545/'),
+       provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s2.binance.org:8545/'),
       //  provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s3.binance.org:8545/'),
       //  provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-2-s1.binance.org:8545/'),
       // provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-2-s2.binance.org:8545/'),
@@ -134,7 +134,8 @@ module.exports = {
        confirmations: 1,
        timeoutBlocks: 200,
        skipDryRun: true,
-       gas: 27492052
+       gas: 27492052,
+       networkCheckTimeout: 999999
      }
   },
 
