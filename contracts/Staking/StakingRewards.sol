@@ -46,6 +46,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     // TEST CASE DONE
     uint256 public rewardsDuration = 604800; // 7 * 86400  (7 days)
 
+    // TEST CASE DONE
     uint256 public lastUpdateTime;
     // TEST CASE DONE
     uint256 public rewardPerTokenStored = 0; 
