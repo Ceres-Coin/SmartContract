@@ -149,11 +149,13 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         return (_unlocked_balances[account]).add(_locked_balances[account]);
     }
 
+    // TEST CASE DONE
     // Total unlocked liquidity tokens
     function unlockedBalanceOf(address account) external view returns (uint256) {
         return _unlocked_balances[account];
     }
 
+    // TEST CASE DONE
     // Total locked liquidity tokens
     function lockedBalanceOf(address account) public view returns (uint256) {
         return _locked_balances[account];
