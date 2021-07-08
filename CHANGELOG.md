@@ -24,7 +24,7 @@
 2. [MOFIFIED][FILE]: contracts/CSS/CSS.sol
    1. REMOVE [TODO] TASKS
 
-<!-- TODO: NEXT : CREATED NEW test/test_Staking_CERES_WETH_P3.js -->
+TODO: NEXT : CREATED NEW test/test_Staking_CERES_WETH_P3.js
 
 
 ## [0.1.210708-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210706-b...0.1.210708-a) (2021-07-08)
@@ -49,7 +49,7 @@
    18. ADDED: "TEST SCRIPTS FOR stakingToken"
    19. added: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken PARAMETER"
 
-<!-- CREATED NEW test/test_Staking_CERES_WETH_P2.js -->
+CREATED NEW test/test_Staking_CERES_WETH_P2.js
 
 
 ## [0.1.210706-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210706-a...0.1.210706-b) (2021-07-06)
@@ -87,7 +87,7 @@
    1. Initialized "test/test_Staking_CERES_WETH_P1.js"
    2. ADDED: "Test Scripts for stakingInstance_CERES_WETH.address" 
 
-<!-- NEXT TO DO: ADD MORE TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P1.js & CERES_USDC & CSS_WETH  -->
+NEXT TO DO: ADD MORE TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P1.js & CERES_USDC & CSS_WETH  
 
 ## [0.1.210706-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210705-a...0.1.210706-a) (2021-07-06)
 1. ADDED: ./test/test_Governance_proposal.js
@@ -117,7 +117,7 @@
 3. modify ./test/test_New_Test.js
 4. RENAME TO ./test/test_Token_Vesting.js
 
-<!-- next to do: ADD Stake_CERES_USDC.sol & ADD to deployment script & add test scripts -->
+next to do: ADD Stake_CERES_USDC.sol & ADD to deployment script & add test scripts
 
 
 ## [0.1.210705-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210704-b...0.1.210705-a) (2021-07-05)
@@ -138,12 +138,12 @@
 2. ADDED: new code in test_helpers.js
    1. ADDED TEST SCRIPTS OF erc20.transFrom
 
-<!-- FINISH WRITE CORE CODE -->
-<!-- WRITE TEST SCRIPT for MINT1T1CERES/redeem1t1ceres -->
-<!-- WRITE TEST SCRIPT for mintFractionalCERES/redeemFractionalCERES/ --> 
-<!-- WRITE TEST SCRIPT for mintAlgorithmicCERES/redeemAlgorithmicCERES/ --> 
+FINISH WRITE CORE CODE -->
+WRITE TEST SCRIPT for MINT1T1CERES/redeem1t1ceres -->
+WRITE TEST SCRIPT for mintFractionalCERES/redeemFractionalCERES/ --> 
+WRITE TEST SCRIPT for mintAlgorithmicCERES/redeemAlgorithmicCERES/ --> 
 
-<!-- NEXT TO DO: TokenVesting.sol & test scripts -->
+NEXT TO DO: TokenVesting.sol & test scripts -->
 
 ## [0.1.210704-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210704-a...0.1.210704-b) (2021-07-04)
 1. ADDED test/test_6DEC_Tests.js
