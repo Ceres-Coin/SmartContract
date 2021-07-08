@@ -319,7 +319,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         }
 
     }
-    // TODO: [LATER]
+    // TEST CASE DONE
     function getReward() public override nonReentrant updateReward(msg.sender) {
         uint256 reward = rewards[msg.sender];
         if (reward > 0) {
