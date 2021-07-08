@@ -211,7 +211,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     }
 
     /* ========== MUTATIVE FUNCTIONS ========== */
-    // TODO: [LATER]
+    // TEST CASE DONE
     function stake(uint256 amount) external override nonReentrant notPaused updateReward(msg.sender) {
         require(amount > 0, "Cannot stake 0");
         require(greylist[msg.sender] == false, "address has been greylisted");
