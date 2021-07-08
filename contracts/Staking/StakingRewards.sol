@@ -131,17 +131,19 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         return _staking_token_boosted_supply;
     }
 
+    // TODO: [later]
     function stakingMultiplier(uint256 secs) public view returns (uint256) {
         uint256 multiplier = uint(MULTIPLIER_BASE).add(secs.mul(locked_stake_max_multiplier.sub(MULTIPLIER_BASE)).div(locked_stake_time_for_max_multiplier));
         if (multiplier > locked_stake_max_multiplier) multiplier = locked_stake_max_multiplier;
         return multiplier;
     }
-
+    // TODO: [LATER]
     function crBoostMultiplier() public view returns (uint256) {
         uint256 multiplier = uint(MULTIPLIER_BASE).add((uint(MULTIPLIER_BASE).sub(CERES.global_collateral_ratio())).mul(cr_boost_max_multiplier.sub(MULTIPLIER_BASE)).div(MULTIPLIER_BASE) );
         return multiplier;
     }
 
+    // TEST CASE DONE
     // Total unlocked and locked liquidity tokens
     function balanceOf(address account) external override view returns (uint256) {
         return (_unlocked_balances[account]).add(_locked_balances[account]);

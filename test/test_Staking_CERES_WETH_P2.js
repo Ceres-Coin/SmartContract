@@ -387,6 +387,19 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(parseFloat(await stakingInstance_CERES_WETH.totalBoostedSupply())).to.equal(DEFAULT_VALUE);
 	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.balanceOf(account0 - account7), check its default value for account0 - account7", async() => {
+		const value_account0 = await stakingInstance_CERES_WETH.balanceOf.call(account0);
+		console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0}`));
+
+		// console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingInstance_CERES_WETH.greylist.call(account1)}`));
+		// console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingInstance_CERES_WETH.greylist.call(account2)}`));
+		// console.log(chalk.yellow(`address_account3: ${account3} value: ${await stakingInstance_CERES_WETH.greylist.call(account3)}`));
+		// console.log(chalk.yellow(`address_account4: ${account4} value: ${await stakingInstance_CERES_WETH.greylist.call(account4)}`));
+		// console.log(chalk.yellow(`address_account5: ${account5} value: ${await stakingInstance_CERES_WETH.greylist.call(account5)}`));
+		// console.log(chalk.yellow(`address_account6: ${account6} value: ${await stakingInstance_CERES_WETH.greylist.call(account6)}`));
+		// console.log(chalk.yellow(`address_account7: ${account7} value: ${await stakingInstance_CERES_WETH.greylist.call(account7)}`));
+	});
+
 
 });
 
