@@ -114,7 +114,8 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         lastUpdateTime = block.timestamp;
         timelock_address = _timelock_address;
         pool_weight = _pool_weight;
-        rewardRate = 380517503805175038; // (uint256(12000000e18)).div(365 * 86400); // Base emission rate of 12M FXS over the first year
+        // rewardRate = 380517503805175038; // (uint256(12000000e18)).div(365 * 86400); // Base emission rate of 12M FXS over the first year
+        rewardRate = 3805175038051750; // (uint256(12000000e18)).div(365 * 86400); // Base emission rate of 12M FXS over the first year
         rewardRate = rewardRate.mul(pool_weight).div(1e6);
         unlockedStakes = false;
     }
@@ -335,6 +336,19 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         if (block.timestamp > periodFinish) {
             retroCatchUp();
         }
+    }
+
+    function rewardsToken_balance() external view returns (uint256) {
+        return rewardsToken.balanceOf(address(this));
+    }
+
+    function tmpValue() external view returns(uint256) {
+        uint256 num_periods_elapsed = uint256(block.timestamp.sub(periodFinish)) / rewardsDuration; // Floor division to the nearest period
+        return rewardRate.mul(rewardsDuration).mul(crBoostMultiplier()).mul(num_periods_elapsed + 1).div(PRICE_PRECISION);
+    }
+
+    function tmpValue2() external view returns(uint256) {
+        return uint256(block.timestamp.sub(periodFinish)) / rewardsDuration;
     }
 
     // If the period expired, renew it
