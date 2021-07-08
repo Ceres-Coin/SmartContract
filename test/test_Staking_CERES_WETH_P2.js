@@ -299,6 +299,18 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		const DEFAULT_VALUE = 0;
 		expect(parseFloat(await stakingInstance_CERES_WETH.periodFinish())).to.equal(DEFAULT_VALUE);
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken instance's NAME,SYMBOL,DECIMALS func", async() => {
+		const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
+		const NAME_DEFAULT_VALUE = "Uniswap V2";
+		const SYMBOL_DEFAULT_VALUE = "UNI-V2";
+		const DECIMALS_DEFAULT_VALUE = 18;
+
+		expect(parseFloat(await stakingInstance_CERES_WETH.decimals())).to.equal(DECIMALS_DEFAULT_VALUE);
+		
+
+		
+	});
 });
 
 

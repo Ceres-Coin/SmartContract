@@ -29,6 +29,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     ERC20 public rewardsToken;
     // TEST CASE DONE 
     ERC20 public stakingToken;
+    // TEST CASE DONE 
     uint256 public periodFinish;
 
     // Constant for various precisions
