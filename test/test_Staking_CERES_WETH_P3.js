@@ -358,8 +358,8 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(await stakingInstance_CERES_WETH.greylist(account3)).to.equal(false);
 	});
 
-	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.unlockStakes()", async() => {	
-		console.log(chalk.yellow(`unlockStakes: ${await stakingInstance_CERES_WETH.unlockStakes()}`));
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.unlockStakes() OWNER FUNC", async() => {	
+		console.log(chalk.yellow(`unlockStakes: ${await stakingInstance_CERES_WETH.unlockedStakes()}`));
 		// // BEFORE
 		// expect(await stakingInstance_CERES_WETH.unlockedStakes()).to.equal(false);
 		
