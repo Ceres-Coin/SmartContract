@@ -431,7 +431,7 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(parseFloat(await stakingInstance_CERES_WETH.lockedBalanceOf.call(account7))).to.equal(0);
 	});
 
-	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.boostedBalanceOf(account0 - account7), check its default value for account0 - account7", async() => {		
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.boostedBalanceOf(account0 - account7), check its default value for account0 - account7 is 0", async() => {		
 		expect(parseFloat(await stakingInstance_CERES_WETH.boostedBalanceOf.call(account0))).to.equal(0);
 		expect(parseFloat(await stakingInstance_CERES_WETH.boostedBalanceOf.call(account1))).to.equal(0);
 		expect(parseFloat(await stakingInstance_CERES_WETH.boostedBalanceOf.call(account2))).to.equal(0);
@@ -440,6 +440,20 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(parseFloat(await stakingInstance_CERES_WETH.boostedBalanceOf.call(account5))).to.equal(0);
 		expect(parseFloat(await stakingInstance_CERES_WETH.boostedBalanceOf.call(account6))).to.equal(0);
 		expect(parseFloat(await stakingInstance_CERES_WETH.boostedBalanceOf.call(account7))).to.equal(0);
+	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsFor(account0 - account7), check its default value for account0 - account7 is 0", async() => {
+		const value_account0 = await stakingInstance_CERES_WETH.rewardsFor.call(account0);
+		console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0}`));
+
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsFor.call(account0))).to.equal(0);
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsFor.call(account1))).to.equal(0);
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsFor.call(account2))).to.equal(0);
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsFor.call(account3))).to.equal(0);
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsFor.call(account4))).to.equal(0);
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsFor.call(account5))).to.equal(0);
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsFor.call(account6))).to.equal(0);
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsFor.call(account7))).to.equal(0);
 	});
 
 
