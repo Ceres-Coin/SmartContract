@@ -297,7 +297,8 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 
 		// const value_account0 = await stakingTokenInstance.balanceOf.call(account0);
 		// console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0}`));
-		// console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
+		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
+		console.log(chalk.yellow(`address_account1: ${stakingInstance_CERES_WETH.address} value: ${await stakingTokenInstance.balanceOf.call(stakingInstance_CERES_WETH.address)}`));
 		// console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingTokenInstance.balanceOf.call(account2)}`));
 		// console.log(chalk.yellow(`address_account3: ${account3} value: ${await stakingTokenInstance.balanceOf.call(account3)}`));
 		// console.log(chalk.yellow(`address_account4: ${account4} value: ${await stakingTokenInstance.balanceOf.call(account4)}`));
@@ -305,9 +306,13 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		// console.log(chalk.yellow(`address_account6: ${account6} value: ${await stakingTokenInstance.balanceOf.call(account6)}`));
 		// console.log(chalk.yellow(`address_account7: ${account7} value: ${await stakingTokenInstance.balanceOf.call(account7)}`));
 
+		stakingTokenInstance.transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from: account1});
+		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
+		console.log(chalk.yellow(`address_account1: ${stakingInstance_CERES_WETH.address} value: ${await stakingTokenInstance.balanceOf.call(stakingInstance_CERES_WETH.address)}`));
+
+
 		// await stakingInstance_CERES_WETH.stake(POINT_ONE_DEC18,{from: account1});
 
-		// await stakingInstance_CERES_WETH.initializeDefault({from: STAKING_OWNER});
 		const rewardsToken_balance = await stakingInstance_CERES_WETH.rewardsToken_balance();
 		console.log(chalk.yellow(`rewardsToken_balance: ${rewardsToken_balance}`));
 

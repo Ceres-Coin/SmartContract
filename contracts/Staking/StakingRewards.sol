@@ -217,7 +217,8 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         require(greylist[msg.sender] == false, "address has been greylisted");
 
         // Pull the tokens from the staker
-        TransferHelper.safeTransferFrom(address(stakingToken), msg.sender, address(this), amount);
+        // TransferHelper.safeTransferFrom(address(stakingToken), msg.sender, address(this), amount);
+        stakingToken.transfer(address(this), amount);
 
         // Staking token supply and boosted supply
         _staking_token_supply = _staking_token_supply.add(amount);
@@ -362,7 +363,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         // Reward + leftover must be less than 2^256 / 10^18 to avoid overflow.
         uint256 num_periods_elapsed = uint256(block.timestamp.sub(periodFinish)) / rewardsDuration; // Floor division to the nearest period
         uint balance = rewardsToken.balanceOf(address(this));
-        require(rewardRate.mul(rewardsDuration).mul(crBoostMultiplier()).mul(num_periods_elapsed + 1).div(PRICE_PRECISION) <= balance, "Not enough FXS available for rewards!");
+        require(rewardRate.mul(rewardsDuration).mul(crBoostMultiplier()).mul(num_periods_elapsed + 1).div(PRICE_PRECISION) <= balance, "Not enough CSS available for rewards!");
 
         // uint256 old_lastUpdateTime = lastUpdateTime;
         // uint256 new_lastUpdateTime = block.timestamp;
