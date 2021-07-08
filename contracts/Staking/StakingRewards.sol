@@ -196,7 +196,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
             );
         }
     }
-
+    // TEST CASE DONE
     function earned(address account) public override view returns (uint256) {
         return _boosted_balances[account].mul(rewardPerToken().sub(userRewardPerTokenPaid[account])).div(1e18).add(rewards[account]);
     }
