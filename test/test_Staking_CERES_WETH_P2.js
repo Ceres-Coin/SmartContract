@@ -351,6 +351,17 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(await stakingInstance_CERES_WETH.CERES()).to.equal(await ceresInstance.address);
 	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.CERES instance's NAME,SYMBOL,DECIMALS func", async() => {
+		const CERES_WETH_CeresInstance = await CEREStable.at(await stakingInstance_CERES_WETH.CERES());
+		const NAME_DEFAULT_VALUE = "CERES";
+		const SYMBOL_DEFAULT_VALUE = "CERES";
+		const DECIMALS_DEFAULT_VALUE = 18;
+
+		expect(await CERES_WETH_CeresInstance.name()).to.equal(NAME_DEFAULT_VALUE);
+		expect(await CERES_WETH_CeresInstance.symbol()).to.equal(SYMBOL_DEFAULT_VALUE);
+		expect(parseFloat(await CERES_WETH_CeresInstance.decimals())).to.equal(DECIMALS_DEFAULT_VALUE);
+	});
+
 
 });
 
