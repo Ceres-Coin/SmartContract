@@ -345,12 +345,17 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 
 	});
 
-	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.greylistAddress(account3)", async() => {		
-		
-		console.log(chalk.yellow(`greylist(account3)_before: ${await stakingInstance_CERES_WETH.greylist.call(account3)}`));
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.greylistAddress(account3)", async() => {	
+		// BEFORE
+		expect(await stakingInstance_CERES_WETH.greylist(account3)).to.equal(false);
+		// console.log(chalk.yellow(`greylist(account3)_before: ${await stakingInstance_CERES_WETH.greylist.call(account3)}`));
+		// ACTION & ASSERTION
+		await stakingInstance_CERES_WETH.greylistAddress(account3,{from: STAKING_OWNER});
+		expect(await stakingInstance_CERES_WETH.greylist(account3)).to.equal(true);
 
-		
-
+		// ROLLBACK
+		await stakingInstance_CERES_WETH.greylistAddress(account3,{from: STAKING_OWNER});
+		expect(await stakingInstance_CERES_WETH.greylist(account3)).to.equal(false);
 	});
 	
 
