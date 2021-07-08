@@ -1,3 +1,28 @@
+## [0.1.210708-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210706-b...0.1.210708-a) (2021-07-08)
+1. ADDED: test/test_Staking_CERES_WETH_P1.js
+   1. ADDED: "Test Scripts for stakingInstance_CERES_WETH.rewardRate"
+   2. ADDED: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsDuration, its default value is 7 days"
+   3. ADDED: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardPerTokenStored, its default value is 0"
+   4. ADDED: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.pool_weight, its default value is 500000"
+   5. ADDED: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.owner_address, its default value is STAKING_OWNER"
+   6. added: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.timelock_address, its default value is timelockInstance"
+   7. added: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.locked_stake_max_multiplier, its default value is 3000000"
+   8. added: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.locked_stake_time_for_max_multiplier, its default value is 3 years"
+   9. added: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.locked_stake_min_time, its default value is 7 days"
+   10. ADDED: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.locked_stake_min_time_str, its default value is `604800`"
+   11. ADDED: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.cr_boost_max_multiplier, its default value is 3000000"
+   12. "TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewards(account0 - account7), check its default value for account0 - account7"
+   13. added: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.userRewardPerTokenPaid(account0 - account7), check its default value for account0 - account7 should ALL be 0 "
+   14. "TEST SCRIPTS FOR stakingInstance_CERES_WETH.greylist(account0 - account7), check its default value for account0 - account7 should ALL be FALSE "
+   15. Added: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.unlockedStakes, its default value is FALSE"
+   16. ADDED: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.lockedStakesOf(account0)"
+   17. ADDED: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingDecimals()"
+   18. ADDED: "TEST SCRIPTS FOR stakingToken"
+   19. added: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken PARAMETER"
+
+<!-- TODO: CREATED NEW test/test_Staking_CERES_WETH_P2.js -->
+
+
 ## [0.1.210706-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210706-a...0.1.210706-b) (2021-07-06)
 1. ADDED: STAKING FOLDERS
    1. contracts/Staking/IStakingRewards.sol
@@ -33,7 +58,7 @@
    1. Initialized "test/test_Staking_CERES_WETH_P1.js"
    2. ADDED: "Test Scripts for stakingInstance_CERES_WETH.address" 
 
-<!-- TODO: NEXT TO DO: ADD MORE TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P1.js & CERES_USDC & CSS_WETH  -->
+<!-- NEXT TO DO: ADD MORE TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P1.js & CERES_USDC & CSS_WETH  -->
 
 ## [0.1.210706-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210705-a...0.1.210706-a) (2021-07-06)
 1. ADDED: ./test/test_Governance_proposal.js
