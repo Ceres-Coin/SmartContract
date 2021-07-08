@@ -375,6 +375,11 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())).to.gt(DEFAULT_VALUE);
 	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.totalSupply(), its default value is 0", async() => {
+		const DEFAULT_VALUE = 0;
+		expect(parseFloat(await stakingInstance_CERES_WETH.totalSupply())).to.equal(DEFAULT_VALUE);
+	});
+
 
 });
 

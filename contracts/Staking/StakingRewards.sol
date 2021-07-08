@@ -69,7 +69,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     // TEST CASE DONE
     uint256 public cr_boost_max_multiplier = 3000000; // 6 decimals of precision. 1x = 1000000
 
-    // [LATER]: FOR MAPPING
+    // TEST CASE DONE
     mapping(address => uint256) public userRewardPerTokenPaid; // TEST CASE DONE
     mapping(address => uint256) public rewards; // TEST CASE DONE
 
@@ -81,10 +81,10 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     mapping(address => uint256) private _boosted_balances;
 
     mapping(address => LockedStake[]) private lockedStakes;
+    // TEST CASE DONE
+    mapping(address => bool) public greylist; 
 
-    mapping(address => bool) public greylist; // TEST CASE DONE
-
-    // TEST CASE
+    // TEST CASE DONE
     bool public unlockedStakes; // Release lock stakes in case of system migration
 
     struct LockedStake {
@@ -121,6 +121,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
     /* ========== VIEWS ========== */
 
+    // TEST CASE DONE
     function totalSupply() external override view returns (uint256) {
         return _staking_token_supply;
     }
