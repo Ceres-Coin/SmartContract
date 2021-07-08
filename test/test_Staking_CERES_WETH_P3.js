@@ -331,10 +331,10 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 	});
 
 	// TEST CASES FOR FUNCTION
-	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.renewIfApplicable", async() => {		
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.initializeDefault()", async() => {		
 		console.log(chalk.yellow(`lastUpdateTime_before: ${parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())}`))
-		
-		await stakingInstance_CERES_WETH.renewIfApplicable();
+
+		await stakingInstance_CERES_WETH.initializeDefault({from: STAKING_OWNER});
 
 		console.log(chalk.yellow(`lastUpdateTime_after: ${parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())}`))
 	});

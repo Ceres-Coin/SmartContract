@@ -330,6 +330,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         getReward();
     }
 */
+    // TODO: [LATER]
     function renewIfApplicable() external {
         if (block.timestamp > periodFinish) {
             retroCatchUp();
@@ -428,7 +429,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         emit LockedStakeTimeForMaxMultiplier(locked_stake_time_for_max_multiplier);
         emit LockedStakeMinTime(_locked_stake_min_time);
     }
-
+    // TEST CASE DONE
     function initializeDefault() external onlyByOwnerOrGovernance {
         lastUpdateTime = block.timestamp;
         periodFinish = block.timestamp.add(rewardsDuration);
