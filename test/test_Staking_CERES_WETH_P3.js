@@ -384,7 +384,7 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(0);
 
 		// ROLLBACK
-		await stakingInstance_CERES_WETH.setRewardRate(REWARD_VALUE,{from: STAKING_OWNER});
+		await stakingInstance_CERES_WETH.setRewardRate(new BigNumber(REWARD_VALUE),{from: STAKING_OWNER});
 		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(REWARD_VALUE);
 	});
 	
