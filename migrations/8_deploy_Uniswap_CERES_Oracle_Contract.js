@@ -276,4 +276,20 @@ module.exports = async function(deployer, network, accounts) {
 			await time.advanceBlock();
 		};
 	
+
+
+	console.log(chalk.red(`routerInstance: ${routerInstance.address}`));
+	console.log(chalk.red(`uniswapFactoryInstance: ${uniswapFactoryInstance.address}`));
+	console.log(chalk.red(`ceresInstance: ${ceresInstance.address}`));
+	console.log(chalk.red(`cssInstance: ${cssInstance.address}`));
+	console.log(chalk.red(`wethInstance: ${wethInstance.address}`));
+	console.log(chalk.red(`col_instance_USDC: ${col_instance_USDC.address}`));
+	console.log(chalk.red(`col_instance_USDT: ${col_instance_USDT.address}`));
+	console.log(chalk.red(`col_instance_6DEC: ${col_instance_6DEC.address}`));
+	console.log(chalk.red(`timelockInstance: ${timelockInstance.address}`));
+	console.log(chalk.red(`stakingInstance_CERES_WETH: ${stakingInstance_CERES_WETH.address}`));
+	console.log(chalk.red(`stakingInstance_CERES_USDC: ${stakingInstance_CERES_USDC.address}`));
+	console.log(chalk.red(`stakingInstance_CSS_WETH: ${stakingInstance_CSS_WETH.address}`));
+
+		
 }
