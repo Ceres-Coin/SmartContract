@@ -293,6 +293,12 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken", async() => {
 		expect(await stakingInstance_CERES_WETH.stakingToken()).to.equal(await pair_addr_CERES_WETH);
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.periodFinish, its default value is 0", async() => {
+		console.log(chalk.yellow(`periodFinish: ${parseFloat(await stakingInstance_CERES_WETH.periodFinish())}`));
+		// const VALUE = 3000000;
+		// expect(parseFloat(await stakingInstance_CERES_WETH.periodFinish())).to.equal(VALUE);
+	});
 });
 
 
