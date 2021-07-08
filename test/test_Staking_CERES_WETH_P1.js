@@ -399,7 +399,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken PARAMETER", async() => {
 		console.log(chalk.yellow(`stakingDecimals: ${await stakingInstance_CERES_WETH.stakingDecimals.call()}`));
 		console.log(chalk.yellow(`stakingToken: ${await stakingInstance_CERES_WETH.stakingToken()}`));
-		console.log(chalk.yellow(`pair_addr_CERES_WETH: ${await pair_addr_CERES_WETH.address}`));
+		console.log(chalk.yellow(`pair_addr_CERES_WETH: ${await pair_addr_CERES_WETH}`));
 	})
 
 
