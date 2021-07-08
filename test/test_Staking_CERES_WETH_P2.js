@@ -362,6 +362,13 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(parseFloat(await CERES_WETH_CeresInstance.decimals())).to.equal(DECIMALS_DEFAULT_VALUE);
 	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.CERES instance's owner_address & timelock_address", async() => {
+		const CERES_WETH_CeresInstance = await CEREStable.at(await stakingInstance_CERES_WETH.CERES());
+
+		expect(await CERES_WETH_CeresInstance.owner_address()).to.equal(OWNER);
+		expect(await CERES_WETH_CeresInstance.timelock_address()).to.equal(timelockInstance.address);
+	});
+
 
 });
 
