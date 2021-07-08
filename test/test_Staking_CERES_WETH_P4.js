@@ -309,8 +309,17 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		// console.log(chalk.yellow(`address_account6: ${account6} value: ${await stakingTokenInstance.balanceOf.call(account6)}`));
 		// console.log(chalk.yellow(`address_account7: ${account7} value: ${await stakingTokenInstance.balanceOf.call(account7)}`));
 
-		const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
-		console.log(chalk.blue(`pair_instance_CERES_WETH: ${pair_instance_CERES_WETH.address}`));
+		console.log(chalk.yellow(`lastUpdateTime_before: ${parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())}`));
+		console.log(chalk.yellow(`periodFinish_before: ${parseFloat(await stakingInstance_CERES_WETH.periodFinish())}`));
+
+		await stakingInstance_CERES_WETH.initializeDefault({from: STAKING_OWNER});
+
+		console.log(chalk.yellow(`lastUpdateTime_after: ${parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())}`));
+		console.log(chalk.yellow(`periodFinish_after: ${parseFloat(await stakingInstance_CERES_WETH.periodFinish())}`))
+
+
+		// const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
+		// console.log(chalk.blue(`pair_instance_CERES_WETH: ${pair_instance_CERES_WETH.address}`));
 		console.log(chalk.blue(`stakingTokenInstance: ${stakingTokenInstance.address}`));
 
 		stakingTokenInstance.approve(stakingInstance_CERES_WETH.address, new BigNumber(TWO_MILLION_DEC18), { from: account1 });
@@ -318,8 +327,9 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		stakingTokenInstance.transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from: account1});
 		await stakingInstance_CERES_WETH.stakingToken_transfer(account2,POINT_ONE_DEC18,{from:account1});
 		await stakingInstance_CERES_WETH.stakingToken_transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from:account1});
+		await stakingInstance_CERES_WETH.stakingToken_transfer2(POINT_ONE_DEC18,{from:account1});
 
-		// await stakingInstance_CERES_WETH.stake(POINT_THREE_DEC18,{from: account1});
+		await stakingInstance_CERES_WETH.stake(POINT_ONE_DEC18,{from: account1});
 
 		
 		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
@@ -328,14 +338,14 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		
 		
 
-		const rewardsToken_balance = await stakingInstance_CERES_WETH.rewardsToken_balance();
-		console.log(chalk.yellow(`rewardsToken_balance: ${rewardsToken_balance}`));
+		// const rewardsToken_balance = await stakingInstance_CERES_WETH.rewardsToken_balance();
+		// console.log(chalk.yellow(`rewardsToken_balance: ${rewardsToken_balance}`));
 
-		const tmpValue = await stakingInstance_CERES_WETH.tmpValue();
-		console.log(chalk.yellow(`tmpValue: ${tmpValue}`));
+		// const tmpValue = await stakingInstance_CERES_WETH.tmpValue();
+		// console.log(chalk.yellow(`tmpValue: ${tmpValue}`));
 
-		const tmpValue2 = await stakingInstance_CERES_WETH.tmpValue2();
-		console.log(chalk.yellow(`tmpValue2: ${tmpValue2}`));
+		// const tmpValue2 = await stakingInstance_CERES_WETH.tmpValue2();
+		// console.log(chalk.yellow(`tmpValue2: ${tmpValue2}`));
 
 	})
 	
