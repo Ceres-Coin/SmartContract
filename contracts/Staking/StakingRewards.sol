@@ -185,7 +185,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     function lastTimeRewardApplicable() public override view returns (uint256) {
         return Math.min(block.timestamp, periodFinish);
     }
-
+    // TEST CASE DONE
     function rewardPerToken() public override view returns (uint256) {
         if (_staking_token_supply == 0) {
             return rewardPerTokenStored;
