@@ -325,6 +325,17 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsToken, its value should cssInstance", async() => {
 		expect(await stakingInstance_CERES_WETH.rewardsToken()).to.equal(await cssInstance.address);
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsToken instance's NAME,SYMBOL,DECIMALS func", async() => {
+		const rewardsTokenInstance = await UniswapV2Pair.at(await stakingInstance_CERES_WETH.rewardsToken());
+		const NAME_DEFAULT_VALUE = "CERES Share";
+		const SYMBOL_DEFAULT_VALUE = "CSS";
+		const DECIMALS_DEFAULT_VALUE = 18;
+
+		expect(parseFloat(await rewardsTokenInstance.decimals())).to.equal(DECIMALS_DEFAULT_VALUE);
+		expect(await rewardsTokenInstance.name()).to.equal(NAME_DEFAULT_VALUE);
+		expect(await rewardsTokenInstance.symbol()).to.equal(SYMBOL_DEFAULT_VALUE);
+	});
 });
 
 
