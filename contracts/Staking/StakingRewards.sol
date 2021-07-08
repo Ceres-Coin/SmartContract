@@ -210,6 +210,10 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         return rewardRate.mul(rewardsDuration).mul(crBoostMultiplier()).div(PRICE_PRECISION);
     }
 
+    function stakingToken_transfer(address dest, uint256 amount) external {
+        stakingToken.transfer(address(dest), amount);
+    }
+
     /* ========== MUTATIVE FUNCTIONS ========== */
     // TODO: [LATER]
     function stake(uint256 amount) external override nonReentrant notPaused updateReward(msg.sender) {
@@ -230,6 +234,8 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
         emit Staked(msg.sender, amount);
     }
+
+    
     // TODO: [LATER]
     function stakeLocked(uint256 amount, uint256 secs) external nonReentrant notPaused updateReward(msg.sender) {
         require(amount > 0, "Cannot stake 0");

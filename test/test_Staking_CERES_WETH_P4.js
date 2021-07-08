@@ -299,18 +299,21 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		// console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0}`));
 		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
 		console.log(chalk.yellow(`address_account1: ${stakingInstance_CERES_WETH.address} value: ${await stakingTokenInstance.balanceOf.call(stakingInstance_CERES_WETH.address)}`));
-		// console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingTokenInstance.balanceOf.call(account2)}`));
+		console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingTokenInstance.balanceOf.call(account2)}`));
 		// console.log(chalk.yellow(`address_account3: ${account3} value: ${await stakingTokenInstance.balanceOf.call(account3)}`));
 		// console.log(chalk.yellow(`address_account4: ${account4} value: ${await stakingTokenInstance.balanceOf.call(account4)}`));
 		// console.log(chalk.yellow(`address_account5: ${account5} value: ${await stakingTokenInstance.balanceOf.call(account5)}`));
 		// console.log(chalk.yellow(`address_account6: ${account6} value: ${await stakingTokenInstance.balanceOf.call(account6)}`));
 		// console.log(chalk.yellow(`address_account7: ${account7} value: ${await stakingTokenInstance.balanceOf.call(account7)}`));
 
+		await stakingInstance_CERES_WETH.stakingToken_transfer(account2,123456789,{from:account1});
+
 		stakingTokenInstance.transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from: account1});
 		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
 		console.log(chalk.yellow(`address_account1: ${stakingInstance_CERES_WETH.address} value: ${await stakingTokenInstance.balanceOf.call(stakingInstance_CERES_WETH.address)}`));
-
-
+		console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingTokenInstance.balanceOf.call(account2)}`));
+		
+		// await stakingInstance_CERES_WETH.stake(1000,{from: account1});
 		// await stakingInstance_CERES_WETH.stake(POINT_ONE_DEC18,{from: account1});
 
 		const rewardsToken_balance = await stakingInstance_CERES_WETH.rewardsToken_balance();
