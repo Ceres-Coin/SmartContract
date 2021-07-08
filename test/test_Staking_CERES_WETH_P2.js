@@ -290,14 +290,15 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		stakingInstance_CERES_WETH = await StakingRewards_CERES_WETH.deployed();
     });
 
-	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken", async() => {
-		expect(await stakingInstance_CERES_WETH.stakingToken()).to.equal(await pair_addr_CERES_WETH);
-	});
-
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.periodFinish, its default value is 0", async() => {
 		// console.log(chalk.yellow(`periodFinish: ${parseFloat(await stakingInstance_CERES_WETH.periodFinish())}`));
 		const DEFAULT_VALUE = 0;
 		expect(parseFloat(await stakingInstance_CERES_WETH.periodFinish())).to.equal(DEFAULT_VALUE);
+	});
+
+	// TEST CASES FOR CERES_WETH.stakingToken
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken", async() => {
+		expect(await stakingInstance_CERES_WETH.stakingToken()).to.equal(await pair_addr_CERES_WETH);
 	});
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken instance's NAME,SYMBOL,DECIMALS func", async() => {
@@ -322,6 +323,7 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		console.log(chalk.yellow(`price1CumulativeLast: ${await pair_instance_CERES_WETH.price1CumulativeLast()}`));
 	});
 
+	// TEST FOR CERES_WETH.rewardsToken
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsToken, its value should cssInstance", async() => {
 		expect(await stakingInstance_CERES_WETH.rewardsToken()).to.equal(await cssInstance.address);
 	});
@@ -343,6 +345,13 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(await rewardsTokenInstance.owner_address()).to.equal(OWNER);
 		expect(await rewardsTokenInstance.timelock_address()).to.equal(timelockInstance.address);
 	});
+
+	// TEST For CERES_WETH.CERES
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.CERES, its value should ceresInstance", async() => {
+		expect(await stakingInstance_CERES_WETH.CERES()).to.equal(await ceresInstance.address);
+	});
+
+
 });
 
 
