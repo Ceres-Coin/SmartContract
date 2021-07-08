@@ -371,6 +371,20 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		await stakingInstance_CERES_WETH.unlockStakes({from: STAKING_OWNER});
 		expect(await stakingInstance_CERES_WETH.unlockedStakes.call()).to.equal(false);
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.setRewardRate() OWNER FUNC", async() => {	
+		console.log(chalk.yellow(`rewardRate: ${await stakingInstance_CERES_WETH.rewardRate.call()}`));
+		// // BEFORE
+		// expect(await stakingInstance_CERES_WETH.unlockedStakes.call()).to.equal(false);
+		
+		// // ACTION & ASSERTION
+		// await stakingInstance_CERES_WETH.unlockStakes({from: STAKING_OWNER});
+		// expect(await stakingInstance_CERES_WETH.unlockedStakes.call()).to.equal(true);
+
+		// // ROLLBACK
+		// await stakingInstance_CERES_WETH.unlockStakes({from: STAKING_OWNER});
+		// expect(await stakingInstance_CERES_WETH.unlockedStakes.call()).to.equal(false);
+	});
 	
 
 
