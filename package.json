@@ -1,6 +1,6 @@
 {
   "name": "ceres",
-  "version": "0.1.210708a",
+  "version": "0.1.210708b",
   "description": "ceres",
   "main": "truffle-config.js",
   "directories": {
