@@ -1,3 +1,22 @@
+## [0.1.210708-c](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210708-b...0.1.210708-c) (2021-07-08)
+1. [ADDED][FILE]: test/test_Staking_CERES_WETH_P3.js
+   1. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.lastTimeRewardApplicable(), check its default value"
+   2. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardPerToken(), check its default value"
+   3. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.getRewardForDuration(), check its default value is gt 0"
+   4. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.earned(account0 - account7), check its default value for account0 - account7"
+   5. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.renewIfApplicable"
+   6. [FIX][BUGS]
+   7. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.initializeDefault()"
+   8. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.greylistAddress(account3)"
+   9. [MODIFIED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.greylistAddress(account3)"
+   10. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.unlockStakes()"
+   11. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.setRewardRate() OWNER FUNC"
+   12. [MODIFIED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.setRewardRate() OWNER FUNC"
+   13. [FIX][BUGS]
+   14. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.setOwnerAndTimelock() OWNER FUNC"
+
+TODO: NEXT : CREATED NEW test/test_Staking_CERES_WETH_P4.js
+
 ## [0.1.210708-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210708-a...0.1.210708-b) (2021-07-08)
 1. [ADD][FILE]: test/test_Staking_CERES_WETH_P2.js
    1. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.periodFinish, its default value is 0"
@@ -24,7 +43,7 @@
 2. [MOFIFIED][FILE]: contracts/CSS/CSS.sol
    1. REMOVE [TODO] TASKS
 
-TODO: NEXT : CREATED NEW test/test_Staking_CERES_WETH_P3.js
+NEXT : CREATED NEW test/test_Staking_CERES_WETH_P3.js
 
 
 ## [0.1.210708-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210706-b...0.1.210708-a) (2021-07-08)
