@@ -307,9 +307,8 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		const DECIMALS_DEFAULT_VALUE = 18;
 
 		expect(parseFloat(await pair_instance_CERES_WETH.decimals())).to.equal(DECIMALS_DEFAULT_VALUE);
-		
-
-		
+		expect(await pair_instance_CERES_WETH.name()).to.equal(NAME_DEFAULT_VALUE);
+		expect(await pair_instance_CERES_WETH.symbol()).to.equal(SYMBOL_DEFAULT_VALUE);
 	});
 });
 
