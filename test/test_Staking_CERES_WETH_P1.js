@@ -387,7 +387,7 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 	});
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.lockedStakesOf(account0)", async() => {
-		const value_account0 = await stakingInstance_CERES_WETH.lockedStakesOf.call(account0);
+		const value_account0 = (await stakingInstance_CERES_WETH.lockedStakesOf.call(account0)[0]);
 		console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0}`));
 	});
 
