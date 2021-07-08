@@ -386,6 +386,23 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		await stakingInstance_CERES_WETH.setRewardRate(REWARD_VALUE,{from: STAKING_OWNER});
 		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(parseFloat(REWARD_VALUE));
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.setOwnerAndTimelock() OWNER FUNC", async() => {	
+		// BEFORE
+		expect(await stakingInstance_CERES_WETH.owner_address).to.equal(STAKING_OWNER);
+		expect(await stakingInstance_CERES_WETH.timelock_address).to.equal(timelockInstance.address);
+		
+		// ACTION & ASSERTION
+		await stakingInstance_CERES_WETH.setOwnerAndTimelock(ADMIN,ADMIN,{from: STAKING_OWNER});
+		expect(await stakingInstance_CERES_WETH.owner_address).to.equal(ADMIN);
+		expect(await stakingInstance_CERES_WETH.timelock_address).to.equal(ADMIN);
+
+
+		// ROLLBACK
+		await stakingInstance_CERES_WETH.setOwnerAndTimelock(STAKING_OWNER,timelockInstance.address,{from: ADMIN});
+		expect(await stakingInstance_CERES_WETH.owner_address).to.equal(STAKING_OWNER);
+		expect(await stakingInstance_CERES_WETH.timelock_address).to.equal(timelockInstance.address);
+	});
 	
 
 

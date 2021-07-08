@@ -447,7 +447,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     function setRewardRate(uint256 _new_rate) external onlyByOwnerOrGovernance {
         rewardRate = _new_rate;
     }
-
+    // TEST CASE DONE
     function setOwnerAndTimelock(address _new_owner, address _new_timelock) external onlyByOwnerOrGovernance {
         owner_address = _new_owner;
         timelock_address = _new_timelock;
