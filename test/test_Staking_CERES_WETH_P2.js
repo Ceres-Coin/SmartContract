@@ -376,15 +376,15 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 	});
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.totalSupply(), its default value is 0", async() => {
-		console.log(chalk.yellow(`totalSupply: ${parseFloat(await stakingInstance_CERES_WETH.totalSupply())}`));
+		// console.log(chalk.yellow(`totalSupply: ${parseFloat(await stakingInstance_CERES_WETH.totalSupply())}`));
 		const DEFAULT_VALUE = 0;
 		expect(parseFloat(await stakingInstance_CERES_WETH.totalSupply())).to.equal(DEFAULT_VALUE);
 	});
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.totalBoostedSupply(), its default value is 0", async() => {
-		console.log(chalk.yellow(`totalBoostedSupply: ${parseFloat(await stakingInstance_CERES_WETH.totalBoostedSupply())}`));
-		// const DEFAULT_VALUE = 0;
-		// expect(parseFloat(await stakingInstance_CERES_WETH.totalBoostedSupply())).to.equal(DEFAULT_VALUE);
+		// console.log(chalk.yellow(`totalBoostedSupply: ${parseFloat(await stakingInstance_CERES_WETH.totalBoostedSupply())}`));
+		const DEFAULT_VALUE = 0;
+		expect(parseFloat(await stakingInstance_CERES_WETH.totalBoostedSupply())).to.equal(DEFAULT_VALUE);
 	});
 
 
