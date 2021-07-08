@@ -307,7 +307,7 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 
 		// await stakingInstance_CERES_WETH.stake(POINT_ONE_DEC18,{from: account1});
 
-		await stakingInstance_CERES_WETH.initializeDefault({from: STAKING_OWNER});
+		// await stakingInstance_CERES_WETH.initializeDefault({from: STAKING_OWNER});
 		const rewardsToken_balance = await stakingInstance_CERES_WETH.rewardsToken_balance();
 		console.log(chalk.yellow(`rewardsToken_balance: ${rewardsToken_balance}`));
 
