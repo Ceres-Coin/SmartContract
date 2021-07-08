@@ -310,6 +310,18 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(await pair_instance_CERES_WETH.name()).to.equal(NAME_DEFAULT_VALUE);
 		expect(await pair_instance_CERES_WETH.symbol()).to.equal(SYMBOL_DEFAULT_VALUE);
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken instance's token0,token1,reserve0,reserve1 func", async() => {
+		const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
+
+		console.log(chalk.yellow(`token0: ${await pair_instance_CERES_WETH.token0()}`));
+		console.log(chalk.yellow(`token0: ${await pair_instance_CERES_WETH.token1()}`));
+		console.log(chalk.blue(`ceres: ${await ceresInstance.address}`));
+		console.log(chalk.blue(`weth: ${await wethInstance.address}`));
+		console.log(chalk.yellow(`reserve0: ${await pair_instance_CERES_WETH.reserve0()}`));
+		console.log(chalk.yellow(`reserve1: ${await pair_instance_CERES_WETH.reserve1()}`));
+		
+	});
 });
 
 
