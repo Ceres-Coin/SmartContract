@@ -307,6 +307,28 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		const DEFAULT_VALUE = 0;
 		expect(parseFloat(await stakingInstance_CERES_WETH.getRewardForDuration())).to.gt(DEFAULT_VALUE);
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.earned(account0 - account7), check its default value for account0 - account7", async() => {
+		const value_account0 = await stakingInstance_CERES_WETH.earned.call(account0);
+		console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0}`));
+
+		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingInstance_CERES_WETH.earned.call(account1)}`));
+		console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingInstance_CERES_WETH.earned.call(account2)}`));
+		console.log(chalk.yellow(`address_account3: ${account3} value: ${await stakingInstance_CERES_WETH.earned.call(account3)}`));
+		console.log(chalk.yellow(`address_account4: ${account4} value: ${await stakingInstance_CERES_WETH.earned.call(account4)}`));
+		console.log(chalk.yellow(`address_account5: ${account5} value: ${await stakingInstance_CERES_WETH.earned.call(account5)}`));
+		console.log(chalk.yellow(`address_account6: ${account6} value: ${await stakingInstance_CERES_WETH.earned.call(account6)}`));
+		console.log(chalk.yellow(`address_account7: ${account7} value: ${await stakingInstance_CERES_WETH.earned.call(account7)}`));
+		
+		// expect(parseFloat(await stakingInstance_CERES_WETH.balanceOf.call(account0))).to.equal(0);
+		// expect(parseFloat(await stakingInstance_CERES_WETH.balanceOf.call(account1))).to.equal(0);
+		// expect(parseFloat(await stakingInstance_CERES_WETH.balanceOf.call(account2))).to.equal(0);
+		// expect(parseFloat(await stakingInstance_CERES_WETH.balanceOf.call(account3))).to.equal(0);
+		// expect(parseFloat(await stakingInstance_CERES_WETH.balanceOf.call(account4))).to.equal(0);
+		// expect(parseFloat(await stakingInstance_CERES_WETH.balanceOf.call(account5))).to.equal(0);
+		// expect(parseFloat(await stakingInstance_CERES_WETH.balanceOf.call(account6))).to.equal(0);
+		// expect(parseFloat(await stakingInstance_CERES_WETH.balanceOf.call(account7))).to.equal(0);
+	});
 	
 
 
