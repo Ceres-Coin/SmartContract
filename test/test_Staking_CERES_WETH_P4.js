@@ -309,8 +309,12 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		// console.log(chalk.yellow(`address_account7: ${account7} value: ${await stakingTokenInstance.balanceOf.call(account7)}`));
 
 		const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
-		pair_instance_CERES_WETH.approve(stakingInstance_CERES_WETH.address, new BigNumber(TWO_MILLION_DEC18), { from: account1 });
-		// await stakingInstance_CERES_WETH.stakingToken_transfer(account2,12,{from:account1});
+		console.log(chalk.blue(`pair_instance_CERES_WETH: ${pair_instance_CERES_WETH.address}`));
+		console.log(chalk.blue(`stakingTokenInstance: ${stakingTokenInstance.address}`));
+
+		stakingTokenInstance.approve(stakingInstance_CERES_WETH.address, new BigNumber(TWO_MILLION_DEC18), { from: account1 });
+		
+		await stakingInstance_CERES_WETH.stakingToken_transfer(account2,POINT_ONE_DEC18,{from:account1});
 
 		stakingTokenInstance.transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from: account1});
 		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));

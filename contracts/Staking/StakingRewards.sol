@@ -21,7 +21,7 @@ import "./Pausable.sol";
 
 contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, ReentrancyGuard, Pausable {
     using SafeMath for uint256;
-    using SafeERC20 for ERC20;
+    // using SafeERC20 for ERC20;
 
     /* ========== STATE VARIABLES ========== */
     // TEST CASE DONE 
@@ -211,7 +211,8 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     }
 
     function stakingToken_transfer(address dest, uint256 amount) external {
-        stakingToken.transfer(address(dest), amount);
+        // stakingToken.transfer(address(dest), amount);
+        stakingToken.transferFrom(msg.sender, address(dest), amount);
     }
 
     /* ========== MUTATIVE FUNCTIONS ========== */
@@ -281,7 +282,8 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         _staking_token_boosted_supply = _staking_token_boosted_supply.sub(amount);
 
         // Give the tokens to the withdrawer
-        stakingToken.safeTransfer(msg.sender, amount);
+        // stakingToken.safeTransfer(msg.sender, amount);
+        stakingToken.transfer(msg.sender, amount);
         emit Withdrawn(msg.sender, amount);
     }
     // TODO: [LATER]
@@ -314,7 +316,8 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
             delete lockedStakes[msg.sender][theIndex];
 
             // Give the tokens to the withdrawer
-            stakingToken.safeTransfer(msg.sender, theAmount);
+            // stakingToken.safeTransfer(msg.sender, theAmount);
+            stakingToken.transfer(msg.sender, theAmount);
 
             emit WithdrawnLocked(msg.sender, theAmount, kek_id);
         }
