@@ -357,6 +357,20 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		await stakingInstance_CERES_WETH.greylistAddress(account3,{from: STAKING_OWNER});
 		expect(await stakingInstance_CERES_WETH.greylist(account3)).to.equal(false);
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.unlockStakes()", async() => {	
+		console.log(chalk.yellow(`unlockStakes: ${await stakingInstance_CERES_WETH.unlockStakes()}`));
+		// // BEFORE
+		// expect(await stakingInstance_CERES_WETH.unlockedStakes()).to.equal(false);
+		
+		// // ACTION & ASSERTION
+		// await stakingInstance_CERES_WETH.greylistAddress(account3,{from: STAKING_OWNER});
+		// expect(await stakingInstance_CERES_WETH.greylist(account3)).to.equal(true);
+
+		// // ROLLBACK
+		// await stakingInstance_CERES_WETH.greylistAddress(account3,{from: STAKING_OWNER});
+		// expect(await stakingInstance_CERES_WETH.greylist(account3)).to.equal(false);
+	});
 	
 
 
