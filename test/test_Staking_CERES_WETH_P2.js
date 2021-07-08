@@ -301,7 +301,7 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 	});
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken instance's NAME,SYMBOL,DECIMALS func", async() => {
-		const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
+		const pair_instance_CERES_WETH = await UniswapV2Pair.at(await stakingInstance_CERES_WETH.stakingToken());
 		const NAME_DEFAULT_VALUE = "Uniswap V2";
 		const SYMBOL_DEFAULT_VALUE = "UNI-V2";
 		const DECIMALS_DEFAULT_VALUE = 18;
@@ -312,7 +312,7 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 	});
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken instance's token0,token1,price0CumulativeLast,price1CumulativeLast func", async() => {
-		const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
+		const pair_instance_CERES_WETH = await UniswapV2Pair.at(await stakingInstance_CERES_WETH.stakingToken());
 
 		console.log(chalk.yellow(`token0: ${await pair_instance_CERES_WETH.token0()}`));
 		console.log(chalk.yellow(`token0: ${await pair_instance_CERES_WETH.token1()}`));
@@ -320,7 +320,10 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		console.log(chalk.blue(`weth: ${await wethInstance.address}`));
 		console.log(chalk.yellow(`price0CumulativeLast: ${await pair_instance_CERES_WETH.price0CumulativeLast()}`));
 		console.log(chalk.yellow(`price1CumulativeLast: ${await pair_instance_CERES_WETH.price1CumulativeLast()}`));
+	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsToken, its value should cssInstance", async() => {
+		expect(await stakingInstance_CERES_WETH.rewardsToken()).to.equal(await cssInstance.address);
 	});
 });
 
