@@ -24,8 +24,9 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     using SafeERC20 for ERC20;
 
     /* ========== STATE VARIABLES ========== */
-
-    CEREStable public CERES                                     ;
+    // TEST CASE DONE 
+    CEREStable public CERES;
+    // TEST CASE DONE 
     ERC20 public rewardsToken;
     // TEST CASE DONE 
     ERC20 public stakingToken;
@@ -33,11 +34,13 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     uint256 public periodFinish;
 
     // Constant for various precisions
+    // NOTHING TO DO FOR PRIVATE
     uint256 private constant PRICE_PRECISION = 1e6;
     uint256 private constant MULTIPLIER_BASE = 1e6;
 
     // Max reward per second
-    uint256 public rewardRate; //TEST CASE DONE
+    //TEST CASE DONE
+    uint256 public rewardRate; 
 
     // uint256 public rewardsDuration = 86400 hours;
     // TEST CASE DONE
