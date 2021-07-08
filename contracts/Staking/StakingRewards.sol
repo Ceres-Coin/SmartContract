@@ -27,7 +27,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
     CEREStable public CERES                                     ;
     ERC20 public rewardsToken;
-    // TEST CASE DONE
+    // TEST CASE DONE 
     ERC20 public stakingToken;
     uint256 public periodFinish;
 
