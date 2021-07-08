@@ -443,8 +443,8 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 	});
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsFor(account0 - account7), check its default value for account0 - account7 is 0", async() => {
-		const value_account0 = await stakingInstance_CERES_WETH.rewardsFor.call(account0);
-		console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0}`));
+		// const value_account0 = await stakingInstance_CERES_WETH.rewardsFor.call(account0);
+		// console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0}`));
 
 		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsFor.call(account0))).to.equal(0);
 		expect(parseFloat(await stakingInstance_CERES_WETH.rewardsFor.call(account1))).to.equal(0);

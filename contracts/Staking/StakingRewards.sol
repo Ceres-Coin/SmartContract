@@ -176,7 +176,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     function stakingDecimals() external view returns (uint256) {
         return stakingToken.decimals();
     }
-
+    // TEST CASE DONE
     function rewardsFor(address account) external view returns (uint256) {
         // You may have use earned() instead, because of the order in which the contract executes 
         return rewards[account];
