@@ -385,11 +385,20 @@ contract('TEST SCRIPTS FOR test/test_New_Test.js', async (accounts) => {
 		const DEFAULT_VALUE = false;
 		expect(await stakingInstance_CERES_WETH.unlockedStakes.call()).to.equal(DEFAULT_VALUE);
 	});
-
+	
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.lockedStakesOf(account0)", async() => {
-		const value_account0 = (await stakingInstance_CERES_WETH.lockedStakesOf.call(account0)[0]);
-		console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0}`));
+		const value_account0 = await stakingInstance_CERES_WETH.lockedStakesOf.call(account0);
+		console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0[0]}`));
 	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingDecimals()", async() => {
+		console.log(chalk.yellow(`stakingDecimals: ${await stakingInstance_CERES_WETH.stakingDecimals.call()}`));
+		console.log(chalk.yellow(`stakingToken: ${await stakingToken.address}`));
+		console.log(chalk.yellow(`pair_addr_CERES_WETH: ${await pair_addr_CERES_WETH.address}`));
+		// const DEFAULT_VALUE = false;
+		// expect(await stakingInstance_CERES_WETH.stakingDecimals.call()).to.equal(DEFAULT_VALUE);
+
+	})
 
 
 	

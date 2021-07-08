@@ -96,14 +96,14 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         address _rewardsDistribution,
         address _rewardsToken,
         address _stakingToken,
-        address _frax_address,
+        address _ceres_address,
         address _timelock_address,
         uint256 _pool_weight
     ) public Owned(_owner){
         owner_address = _owner;
         rewardsToken = ERC20(_rewardsToken);
         stakingToken = ERC20(_stakingToken);
-        CERES = CEREStable(_frax_address);
+        CERES = CEREStable(_ceres_address);
         rewardsDistribution = _rewardsDistribution;
         lastUpdateTime = block.timestamp;
         timelock_address = _timelock_address;
@@ -156,6 +156,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     }
 
     // TEST CASE
+    // TODO: [LATER] Write some test scripts for this function
     function lockedStakesOf(address account) external view returns (LockedStake[] memory) {
         return lockedStakes[account];
     }
