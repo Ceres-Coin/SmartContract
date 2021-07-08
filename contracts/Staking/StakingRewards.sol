@@ -126,6 +126,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         return _staking_token_supply;
     }
 
+    // TEST CASE DONE
     function totalBoostedSupply() external view returns (uint256) {
         return _staking_token_boosted_supply;
     }
