@@ -31,6 +31,7 @@ const SafeERC20 = artifacts.require("ERC20/SafeERC20");
 
 // set constants
 const POINT_ONE_DEC18 = new BigNumber("1e17"); //0.1_dec18
+const POINT_THREE_DEC18 = new BigNumber("3e17"); //0.3_dec18
 const ONE_HUNDRED_DEC18 = new BigNumber("100e18");
 const ONE_HUNDRED_DEC6 = new BigNumber("100e6");
 const FIVE_HUNDRED_DEC18 = new BigNumber("500e18");
@@ -314,15 +315,17 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 
 		stakingTokenInstance.approve(stakingInstance_CERES_WETH.address, new BigNumber(TWO_MILLION_DEC18), { from: account1 });
 		
+		stakingTokenInstance.transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from: account1});
 		await stakingInstance_CERES_WETH.stakingToken_transfer(account2,POINT_ONE_DEC18,{from:account1});
 
-		stakingTokenInstance.transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from: account1});
+		await stakingInstance_CERES_WETH.stake(POINT_THREE_DEC18,{from: account1});
+
+		
 		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
 		console.log(chalk.yellow(`address_account1: ${stakingInstance_CERES_WETH.address} value: ${await stakingTokenInstance.balanceOf.call(stakingInstance_CERES_WETH.address)}`));
 		console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingTokenInstance.balanceOf.call(account2)}`));
 		
-		// await stakingInstance_CERES_WETH.stake(1000,{from: account1});
-		// await stakingInstance_CERES_WETH.stake(POINT_ONE_DEC18,{from: account1});
+		
 
 		const rewardsToken_balance = await stakingInstance_CERES_WETH.rewardsToken_balance();
 		console.log(chalk.yellow(`rewardsToken_balance: ${rewardsToken_balance}`));

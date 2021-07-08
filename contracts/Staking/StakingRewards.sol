@@ -223,7 +223,8 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
         // Pull the tokens from the staker
         // TransferHelper.safeTransferFrom(address(stakingToken), msg.sender, address(this), amount);
-        stakingToken.transfer(address(this), amount);
+        // stakingToken.transfer(address(this), amount);
+        stakingToken.transferFrom(msg.sender, address(this), amount);
 
         // Staking token supply and boosted supply
         _staking_token_supply = _staking_token_supply.add(amount);
