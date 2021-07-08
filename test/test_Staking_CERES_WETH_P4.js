@@ -32,6 +32,7 @@ const SafeERC20 = artifacts.require("ERC20/SafeERC20");
 // set constants
 const POINT_ONE_DEC18 = new BigNumber("1e17"); //0.1_dec18
 const POINT_THREE_DEC18 = new BigNumber("3e17"); //0.3_dec18
+const THREE_DEC18 = new BigNumber("3e18"); //3_dec18
 const ONE_HUNDRED_DEC18 = new BigNumber("100e18");
 const ONE_HUNDRED_DEC6 = new BigNumber("100e6");
 const FIVE_HUNDRED_DEC18 = new BigNumber("500e18");
@@ -318,18 +319,14 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		console.log(chalk.yellow(`periodFinish_after: ${parseFloat(await stakingInstance_CERES_WETH.periodFinish())}`))
 
 
-		// const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
-		// console.log(chalk.blue(`pair_instance_CERES_WETH: ${pair_instance_CERES_WETH.address}`));
-		console.log(chalk.blue(`stakingTokenInstance: ${stakingTokenInstance.address}`));
-
 		stakingTokenInstance.approve(stakingInstance_CERES_WETH.address, new BigNumber(TWO_MILLION_DEC18), { from: account1 });
 		
-		stakingTokenInstance.transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from: account1});
-		await stakingInstance_CERES_WETH.stakingToken_transfer(account2,POINT_ONE_DEC18,{from:account1});
-		await stakingInstance_CERES_WETH.stakingToken_transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from:account1});
-		await stakingInstance_CERES_WETH.stakingToken_transfer2(POINT_ONE_DEC18,{from:account1});
+		// stakingTokenInstance.transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from: account1});
+		// await stakingInstance_CERES_WETH.stakingToken_transfer(account2,POINT_ONE_DEC18,{from:account1});
+		// await stakingInstance_CERES_WETH.stakingToken_transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from:account1});
+		// await stakingInstance_CERES_WETH.stakingToken_transfer2(POINT_ONE_DEC18,{from:account1});
 
-		await stakingInstance_CERES_WETH.stake(POINT_ONE_DEC18,{from: account1});
+		await stakingInstance_CERES_WETH.stake(THREE_DEC18,{from: account1});
 
 		
 		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
