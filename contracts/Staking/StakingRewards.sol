@@ -325,7 +325,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     function exit() external override {
         withdraw(_balances[msg.sender]);
 
-        // TODO: Add locked stakes too?
+        // Add locked stakes too?
 
         getReward();
     }
