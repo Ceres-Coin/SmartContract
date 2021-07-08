@@ -364,6 +364,9 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		const rewards_account1 = parseFloat(await stakingInstance_CERES_WETH.rewards.call(account1));
 		console.log(chalk.yellow(`rewards_account1: ${rewards_account1}`));
 
+		console.log(chalk.yellow(`address_account1: ${account1} CSS Value: ${await cssInstance.balanceOf.call(account1)}`));
+		await stakingInstance_CERES_WETH.getReward({from: account1});
+		console.log(chalk.yellow(`address_account1: ${account1} CSS Value: ${await cssInstance.balanceOf.call(account1)}`));
 	});
 	
 
