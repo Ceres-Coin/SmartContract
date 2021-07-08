@@ -290,7 +290,7 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		stakingInstance_CERES_WETH = await StakingRewards_CERES_WETH.deployed();
     });
 
-	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.lastTimeRewardApplicable(), check its default value", async() => {
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.lastTimeRewardApplicable(), check its default value is 0", async() => {
 		// console.log(chalk.yellow(`lastTimeRewardApplicable: ${parseFloat(await stakingInstance_CERES_WETH.lastTimeRewardApplicable())}`));
 		const DEFAULT_VALUE = 0;
 		expect(parseFloat(await stakingInstance_CERES_WETH.lastTimeRewardApplicable())).to.equal(DEFAULT_VALUE);
