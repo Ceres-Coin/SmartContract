@@ -232,7 +232,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
     }
 
     
-    // TODO: [LATER]
+    // TEST CASE DONE
     function stakeLocked(uint256 amount, uint256 secs) external nonReentrant notPaused updateReward(msg.sender) {
         require(amount > 0, "Cannot stake 0");
         require(secs > 0, "Cannot wait for a negative number");
