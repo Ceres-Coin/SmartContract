@@ -1,3 +1,32 @@
+## [0.1.210708-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210708-a...0.1.210708-b) (2021-07-08)
+1. [ADD][FILE]: test/test_Staking_CERES_WETH_P2.js
+   1. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.periodFinish, its default value is 0"
+   2. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken instance's NAME,SYMBOL,DECIMALS func"
+   3. fix bugs
+   4. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken instance's token0,token1,reserve0,reserve1 func"
+   5. FIX BUGS
+   6. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsToken instance's NAME,SYMBOL,DECIMALS func"
+   7. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.CERES, its value should ceresInstance"
+   8. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.CERES instance's NAME,SYMBOL,DECIMALS func"
+   9. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.CERES instance's owner_address & timelock_address"
+   10. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.lastUpdateTime, its default value is 0"
+   11. fix bugs
+   12. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.totalSupply(), its default value is 0"
+   13. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.totalBoostedSupply(), its default value is 0"
+   14. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.balanceOf(account0 - account7), check its default value for account0 - account7"
+   15. FIX BUGS
+   16. fix bugs
+   17. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.lockedBalanceOf(account0 - account7), check its default value for account0 - account7 is 0"
+   18. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.boostedBalanceOf(account0 - account7), check its default value for account0 - account7"
+   19. [MODIFY][SCRIPTS]: FIX BUGS
+   20. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsFor(account0 - account7), check its default value for account0 - account7 is 0"
+
+2. [MOFIFIED][FILE]: contracts/CSS/CSS.sol
+   1. REMOVE [TODO] TASKS
+
+<!-- TODO: NEXT : CREATED NEW test/test_Staking_CERES_WETH_P3.js -->
+
+
 ## [0.1.210708-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210706-b...0.1.210708-a) (2021-07-08)
 1. ADDED: test/test_Staking_CERES_WETH_P1.js
    1. ADDED: "Test Scripts for stakingInstance_CERES_WETH.rewardRate"
@@ -20,7 +49,7 @@
    18. ADDED: "TEST SCRIPTS FOR stakingToken"
    19. added: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakingToken PARAMETER"
 
-<!-- TODO: CREATED NEW test/test_Staking_CERES_WETH_P2.js -->
+<!-- CREATED NEW test/test_Staking_CERES_WETH_P2.js -->
 
 
 ## [0.1.210706-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210706-a...0.1.210706-b) (2021-07-06)
