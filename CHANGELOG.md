@@ -1,3 +1,21 @@
+## [0.1.210709-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210708-c...0.1.210709-a) (2021-07-08)
+1. [ADDED][FILE]: test/test_Staking_CERES_WETH_P4.js
+   1. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.stake() FUNC"
+   2. [FIX][BUGS]
+   3. [fix][bugs]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.stake() FUNC
+   4. [MODIFY][SCRIPTS][REMOVED UNUSED CODE]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.stake() FUNC"
+   5. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.stakeLocked() FUNC"
+   6. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.getReward()"
+2. [MODIFY][FILE][SOLIDITY]: contracts/Staking/StakingRewards.sol
+   1. REMOVE UNUSED CODE
+3. [MODIFIED][FILE][MIGRATIONS]: migrations/8_deploy_Uniswap_CERES_Oracle_Contract.js
+4. [MODIFIED][FILE][MIGRATIONS]: migrations/9_deploy_Pool_USDC.js
+5. [MODIFIED][FILE][MIGRATIONS]: migrations/12_timelock.js
+6. FINISH DEPLOYMENT ON BSC-TESTNET
+
+TODO: NEXT TO INVESTIGATE OTHER CONTRACTS
+
+
 ## [0.1.210708-c](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210708-b...0.1.210708-c) (2021-07-08)
 1. [ADDED][FILE]: test/test_Staking_CERES_WETH_P3.js
    1. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.lastTimeRewardApplicable(), check its default value"
@@ -15,7 +33,7 @@
    13. [FIX][BUGS]
    14. [ADDED][SCRIPTS]: "TEST SCRIPTS FOR stakingInstance_CERES_WETH.setOwnerAndTimelock() OWNER FUNC"
 
-TODO: NEXT : CREATED NEW test/test_Staking_CERES_WETH_P4.js
+NEXT : CREATED NEW test/test_Staking_CERES_WETH_P4.js
 
 ## [0.1.210708-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210708-a...0.1.210708-b) (2021-07-08)
 1. [ADD][FILE]: test/test_Staking_CERES_WETH_P2.js
