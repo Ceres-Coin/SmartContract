@@ -327,7 +327,7 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 	});
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsToken instance's NAME,SYMBOL,DECIMALS func", async() => {
-		const rewardsTokenInstance = await UniswapV2Pair.at(await stakingInstance_CERES_WETH.rewardsToken());
+		const rewardsTokenInstance = await CEREShares.at(await stakingInstance_CERES_WETH.rewardsToken());
 		const NAME_DEFAULT_VALUE = "CERES Share";
 		const SYMBOL_DEFAULT_VALUE = "CSS";
 		const DECIMALS_DEFAULT_VALUE = 18;
@@ -335,6 +335,13 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(parseFloat(await rewardsTokenInstance.decimals())).to.equal(DECIMALS_DEFAULT_VALUE);
 		expect(await rewardsTokenInstance.name()).to.equal(NAME_DEFAULT_VALUE);
 		expect(await rewardsTokenInstance.symbol()).to.equal(SYMBOL_DEFAULT_VALUE);
+	});
+
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.rewardsToken instance's owner_address & timelock_address", async() => {
+		const rewardsTokenInstance = await CEREShares.at(await stakingInstance_CERES_WETH.rewardsToken());
+
+		expect(await rewardsTokenInstance.owner_address()).to.equal(OWNER);
+		expect(await rewardsTokenInstance.timelock_address()).to.equal(timelockInstance.address);
 	});
 });
 
