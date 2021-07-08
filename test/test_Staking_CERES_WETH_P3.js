@@ -30,7 +30,7 @@ const ERC20Custom = artifacts.require("ERC20/ERC20Custom");
 const SafeERC20 = artifacts.require("ERC20/SafeERC20");
 
 // set constants
-const POINT_ONE_DEC18 = (new BigNumber("1e17")).toNumber(); //0.1_dec18
+const POINT_ONE_DEC18 = new BigNumber("1e17"); //0.1_dec18
 const ONE_HUNDRED_DEC18 = new BigNumber("100e18");
 const ONE_HUNDRED_DEC6 = new BigNumber("100e6");
 const FIVE_HUNDRED_DEC18 = new BigNumber("500e18");
@@ -380,8 +380,8 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(REWARD_VALUE);
 		
 		// ACTION & ASSERTION
-		await stakingInstance_CERES_WETH.setRewardRate(POINT_ONE_DEC18,{from: STAKING_OWNER});
-		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(POINT_ONE_DEC18);
+		await stakingInstance_CERES_WETH.setRewardRate(0,{from: STAKING_OWNER});
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(0);
 
 		// ROLLBACK
 		await stakingInstance_CERES_WETH.setRewardRate(REWARD_VALUE,{from: STAKING_OWNER});
