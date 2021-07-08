@@ -153,10 +153,10 @@ NEXT TO DO: TokenVesting.sol & test scripts -->
 2. MODIFIED: migrations/10_price_and_addresses.js
    1. removed ceresInstance.refreshCollateralRatio() func
 
-<!-- START WRITE CORE CODE -->
-<!-- WRITE TEST SCRIPT for MINT1T1CERES/redeem1t1ceres -->
-<!-- WRITE TEST SCRIPT for mintFractionalCERES/redeemFractionalCERES/ --> 
-<!-- WRITE TEST SCRIPT for mintAlgorithmicCERES/redeemAlgorithmicCERES/ --> 
+START WRITE CORE CODE -->
+WRITE TEST SCRIPT for MINT1T1CERES/redeem1t1ceres -->
+WRITE TEST SCRIPT for mintFractionalCERES/redeemFractionalCERES/ --> 
+WRITE TEST SCRIPT for mintAlgorithmicCERES/redeemAlgorithmicCERES/ --> 
 
 
 ## [0.1.210704-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210703-a...0.1.210704-a) (2021-07-04)
@@ -189,7 +189,7 @@ NEXT TO DO: TokenVesting.sol & test scripts -->
 4. CSS/CSS.sol
    1. ADDED TODO TASK
    
-<!-- Continue to investigate other contracts -->
+Continue to investigate other contracts -->
 
 ## [0.1.210703-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210702-b...0.1.210703-a) (2021-07-03)
 1. ADDED: "test/test_CERES_Contract_P3.js"
@@ -216,7 +216,7 @@ NEXT TO DO: TokenVesting.sol & test scripts -->
 2. MODIFIED test/test_CERES_Contract_P2.js
    1. MOVE ceres_info() test scripts from P2 to P3
 
-<!-- add new test scripts & new tasks for CSS.sol contract-->
+Add new test scripts & new tasks for CSS.sol contract-->
 
 
 ## [0.1.210702-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210702-a...0.1.210702-b) (2021-07-02)
@@ -241,7 +241,7 @@ NEXT TO DO: TokenVesting.sol & test scripts -->
 2. contracts/ceres/ceres.sol
    1. REMOVE TODO
 
-<!-- Continue to write test scripts in test/test_CERES_Contract_P3.js -->
+Continue to write test scripts in test/test_CERES_Contract_P3.js -->
 
 
 ## [0.1.210702-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210701-b...0.1.210701-c) (2021-07-02)
@@ -292,7 +292,7 @@ NEXT TO DO: TokenVesting.sol & test scripts -->
    1. remove unused DEPLOYMENT SCRIPTS TASK
 7. ADD TODO TASKs
 
-<!-- Continue to write test scripts in test/test_CERES_Contract_P2.js -->
+Continue to write test scripts in test/test_CERES_Contract_P2.js -->
 
 
 ## [0.1.210701-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210701-a...0.1.210701-b) (2021-07-01)
@@ -302,7 +302,7 @@ FINISH DEPLOYMENT SCRIPTS IN "Migrations" folder
    1. "migrations/13_token_vesting.js"
 3. ADD NEW TODO: TASKS
 
-<!-- ADD More Test Scripts under "Test" folder -->
+ADD More Test Scripts under "Test" folder -->
 
 
 ## [0.1.210701-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210630-a...0.1.210701-a) (2021-06-30)
@@ -341,7 +341,7 @@ FINISH DEPLOYMENT SCRIPTS IN "Migrations" folder
 17. add oracle_instance.update() func
 18. add NEXT TO DO TASKS
 
-<!-- Next Release: add other deployment scritps -->
+Next Release: add other deployment scritps -->
 
 
 ## [0.1.210630-a](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210630-a) (2021-06-29)
@@ -381,7 +381,7 @@ FINISH DEPLOYMENT SCRIPTS IN "Migrations" folder
    17. added test cases for availableExcessCollatDV
    18. added test cases for getCollateralPrice() func
 
-<!-- Next Release: Continue to Investigate the Contract Code and Deployment Scripts -->
+Next Release: Continue to Investigate the Contract Code and Deployment Scripts -->
 
 
 ## [0.1.210629-b](https://github.com/Ceres-Coin/SmartContract/compare/0.1.210628-b...0.1.210629-b) (2021-06-29)
