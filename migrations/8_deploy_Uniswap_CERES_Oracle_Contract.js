@@ -37,6 +37,7 @@ const ONE_HUNDRED_DEC18 = new BigNumber("100e18").toNumber();
 const ONE_HUNDRED_DEC6 = new BigNumber("100e6").toNumber();
 const Number133_DEC18 = new BigNumber("133e18").toNumber();
 const EIGHT_HUNDRED_DEC18 = new BigNumber("800e18").toNumber();
+const TWO_MILLION_DEC18 = (new BigNumber("20000000e18")).toNumber();
 
 
 // Core Contract
@@ -257,6 +258,9 @@ module.exports = async function(deployer, network, accounts) {
 	console.log(chalk.red("stakingInstance_CERES_WETH: ",stakingInstance_CERES_WETH.address));
 	console.log(chalk.red("stakingInstance_CERES_USDC: ",stakingInstance_CERES_USDC.address));
 	console.log(chalk.red("stakingInstance_CSS_WETH: ",stakingInstance_CSS_WETH.address));
+
+	const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
+	pair_instance_CERES_WETH.approve(stakingInstance_CERES_WETH.address, new BigNumber(TWO_MILLION_DEC18), { from: OWNER });
 
 		// Transfer CSS to staking contracts
 		console.log(chalk.yellow('===== Transfer FXS to staking contracts ====='));

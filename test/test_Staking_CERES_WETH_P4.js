@@ -289,6 +289,8 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		governanceInstance = await GovernorAlpha.deployed();
 		vestingInstance = await TokenVesting.deployed();
 		stakingInstance_CERES_WETH = await StakingRewards_CERES_WETH.deployed();
+
+		
     });
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stake() FUNC", async() => {
@@ -306,7 +308,9 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		// console.log(chalk.yellow(`address_account6: ${account6} value: ${await stakingTokenInstance.balanceOf.call(account6)}`));
 		// console.log(chalk.yellow(`address_account7: ${account7} value: ${await stakingTokenInstance.balanceOf.call(account7)}`));
 
-		await stakingInstance_CERES_WETH.stakingToken_transfer(account2,123456789,{from:account1});
+		const pair_instance_CERES_WETH = await UniswapV2Pair.at(pair_addr_CERES_WETH);
+		pair_instance_CERES_WETH.approve(stakingInstance_CERES_WETH.address, new BigNumber(TWO_MILLION_DEC18), { from: account1 });
+		// await stakingInstance_CERES_WETH.stakingToken_transfer(account2,12,{from:account1});
 
 		stakingTokenInstance.transfer(stakingInstance_CERES_WETH.address,POINT_ONE_DEC18,{from: account1});
 		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingTokenInstance.balanceOf.call(account1)}`));
