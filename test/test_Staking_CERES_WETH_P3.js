@@ -347,7 +347,7 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.greylistAddress(account3)", async() => {		
 		
-		console.log(chalk.yellow(`greylistAddress(account3)_before: ${await stakingInstance_CERES_WETH.greylist.call(account3)}`));
+		console.log(chalk.yellow(`greylist(account3)_before: ${await stakingInstance_CERES_WETH.greylist.call(account3)}`));
 
 		
 
