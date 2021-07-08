@@ -338,7 +338,7 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingTokenInstance.balanceOf.call(account2)}`));
 	});
 
-	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.stake() & getReward()", async() => {
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.getReward()", async() => {
 		const stakingTokenInstance = await UniswapV2Pair.at(await stakingInstance_CERES_WETH.stakingToken());
 		expect(await stakingTokenInstance.name()).to.equal("Uniswap V2");
 
