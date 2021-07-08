@@ -400,6 +400,19 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 		console.log(chalk.yellow(`address_account7: ${account7} value: ${await stakingInstance_CERES_WETH.balanceOf.call(account7)}`));
 	});
 
+	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.unlockedBalanceOf(account0 - account7), check its default value for account0 - account7", async() => {
+		const value_account0 = await stakingInstance_CERES_WETH.unlockedBalanceOf.call(account0);
+		console.log(chalk.yellow(`address_account0: ${account0} value: ${value_account0}`));
+
+		console.log(chalk.yellow(`address_account1: ${account1} value: ${await stakingInstance_CERES_WETH.unlockedBalanceOf.call(account1)}`));
+		console.log(chalk.yellow(`address_account2: ${account2} value: ${await stakingInstance_CERES_WETH.unlockedBalanceOf.call(account2)}`));
+		console.log(chalk.yellow(`address_account3: ${account3} value: ${await stakingInstance_CERES_WETH.unlockedBalanceOf.call(account3)}`));
+		console.log(chalk.yellow(`address_account4: ${account4} value: ${await stakingInstance_CERES_WETH.unlockedBalanceOf.call(account4)}`));
+		console.log(chalk.yellow(`address_account5: ${account5} value: ${await stakingInstance_CERES_WETH.unlockedBalanceOf.call(account5)}`));
+		console.log(chalk.yellow(`address_account6: ${account6} value: ${await stakingInstance_CERES_WETH.unlockedBalanceOf.call(account6)}`));
+		console.log(chalk.yellow(`address_account7: ${account7} value: ${await stakingInstance_CERES_WETH.unlockedBalanceOf.call(account7)}`));
+	});
+
 
 });
 
