@@ -30,6 +30,7 @@ const ERC20Custom = artifacts.require("ERC20/ERC20Custom");
 const SafeERC20 = artifacts.require("ERC20/SafeERC20");
 
 // set constants
+const POINT_ONE_DEC18 = (new BigNumber("1e17")).toNumber(); //0.1_dec18
 const ONE_HUNDRED_DEC18 = new BigNumber("100e18");
 const ONE_HUNDRED_DEC6 = new BigNumber("100e6");
 const FIVE_HUNDRED_DEC18 = new BigNumber("500e18");
@@ -373,17 +374,18 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 	});
 
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.setRewardRate() OWNER FUNC", async() => {	
-		console.log(chalk.yellow(`rewardRate: ${await stakingInstance_CERES_WETH.rewardRate.call()}`));
-		// // BEFORE
-		// expect(await stakingInstance_CERES_WETH.unlockedStakes.call()).to.equal(false);
+		// console.log(chalk.yellow(`rewardRate: ${await stakingInstance_CERES_WETH.rewardRate.call()}`));
+		// BEFORE
+		const REWARD_VALUE = parseFloat(await stakingInstance_CERES_WETH.rewardRate.call());
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(REWARD_VALUE);
 		
-		// // ACTION & ASSERTION
-		// await stakingInstance_CERES_WETH.unlockStakes({from: STAKING_OWNER});
-		// expect(await stakingInstance_CERES_WETH.unlockedStakes.call()).to.equal(true);
+		// ACTION & ASSERTION
+		await stakingInstance_CERES_WETH.setRewardRate(POINT_ONE_DEC18,{from: STAKING_OWNER});
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(POINT_ONE_DEC18);
 
-		// // ROLLBACK
-		// await stakingInstance_CERES_WETH.unlockStakes({from: STAKING_OWNER});
-		// expect(await stakingInstance_CERES_WETH.unlockedStakes.call()).to.equal(false);
+		// ROLLBACK
+		await stakingInstance_CERES_WETH.setRewardRate(REWARD_VALUE,{from: STAKING_OWNER});
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(REWARD_VALUE);
 	});
 	
 
