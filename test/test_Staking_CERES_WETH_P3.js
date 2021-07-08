@@ -376,16 +376,15 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 	it ("TEST SCRIPTS FOR stakingInstance_CERES_WETH.setRewardRate() OWNER FUNC", async() => {	
 		// console.log(chalk.yellow(`rewardRate: ${await stakingInstance_CERES_WETH.rewardRate.call()}`));
 		// BEFORE
-		const REWARD_VALUE = parseFloat(await stakingInstance_CERES_WETH.rewardRate.call());
-		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(REWARD_VALUE);
+		const REWARD_VALUE = await stakingInstance_CERES_WETH.rewardRate.call();
 		
 		// ACTION & ASSERTION
 		await stakingInstance_CERES_WETH.setRewardRate(POINT_ONE_DEC18,{from: STAKING_OWNER});
 		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(POINT_ONE_DEC18.toNumber());
 
 		// ROLLBACK
-		await stakingInstance_CERES_WETH.setRewardRate(new BigNumber(REWARD_VALUE),{from: STAKING_OWNER});
-		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(REWARD_VALUE);
+		await stakingInstance_CERES_WETH.setRewardRate(REWARD_VALUE,{from: STAKING_OWNER});
+		expect(parseFloat(await stakingInstance_CERES_WETH.rewardRate.call())).to.equal(REWARD_VALUE.toNumber());
 	});
 	
 
