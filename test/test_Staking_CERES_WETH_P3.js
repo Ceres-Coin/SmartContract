@@ -339,6 +339,10 @@ contract('TEST SCRIPTS FOR test/test_Staking_CERES_WETH_P2.js', async (accounts)
 
 		console.log(chalk.yellow(`lastUpdateTime_after: ${parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())}`));
 		console.log(chalk.yellow(`periodFinish_after: ${parseFloat(await stakingInstance_CERES_WETH.periodFinish())}`))
+
+		expect(parseFloat(await stakingInstance_CERES_WETH.lastUpdateTime())).to.gt(0);
+		expect(parseFloat(await stakingInstance_CERES_WETH.periodFinish())).to.gt(0);
+
 	});
 	
 
