@@ -27,6 +27,7 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
 
     CEREStable public CERES                                     ;
     ERC20 public rewardsToken;
+    // TEST CASE DONE
     ERC20 public stakingToken;
     uint256 public periodFinish;
 
@@ -155,12 +156,12 @@ contract StakingRewards is IStakingRewards, RewardsDistributionRecipient, Reentr
         return _boosted_balances[account];
     }
 
-    // TEST CASE
+    
     // TODO: [LATER] Write some test scripts for this function
     function lockedStakesOf(address account) external view returns (LockedStake[] memory) {
         return lockedStakes[account];
     }
-
+    // TEST CASE DONE
     function stakingDecimals() external view returns (uint256) {
         return stakingToken.decimals();
     }
